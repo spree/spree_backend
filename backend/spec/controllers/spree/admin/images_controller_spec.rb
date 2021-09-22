@@ -80,15 +80,16 @@ module Spree
             end
           end
 
+          # TODO: Why? Why can't we destroy other product images?
+          #       What was this testing?
           # context 'cannot destroy image of other product' do
           #   let(:other_product) { create(:product, stores: [store]) }
           #   let(:image) { create(:image, viewable: other_product) }
 
-          #   it { expect(send_request).to redirect_to(spree.admin_product_images_path(product)) }
-
           #   it do
           #     send_request
-          #     expect(flash[:error]).to eq('Image is not found')
+
+          #     expect(flash[:success]).to eq('Image has been successfully removed!')
           #   end
           # end
 
@@ -159,6 +160,8 @@ module Spree
             end
           end
 
+          # TODO: Why? Why can't we destroy other product images?
+          #       What was this testing?
           # context 'cannot destroy image of other product' do
           #   let(:other_product) { create(:product, stores: [store]) }
           #   let(:image) { create(:image, viewable: other_product) }
