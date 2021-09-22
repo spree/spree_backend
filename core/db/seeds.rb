@@ -1,1 +1,0 @@
-Spree::Seeds::All.call
