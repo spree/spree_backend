@@ -1,6 +1,7 @@
 eval_gemfile('../common_spree_dependencies.rb')
 
-gem 'spree_core', path: '../core'
-gem 'spree_api', path: '../api'
+spree_opts = { github: 'spree/spree', branch: 'main' }
+gem 'spree_core', spree_opts
+gem 'spree_api', spree_opts
 
 gemspec
