@@ -83,12 +83,12 @@ function reloadPreview() {
 }
 
 function handleSectionReposition(evt) {
+  const sectionId = parseInt(evt.item.dataset.sectionId, 10)
   const data = {
-    section_id: parseInt(evt.item.dataset.sectionId, 10),
     new_position_idx: parseInt(evt.newIndex, 10)
   }
 
-  fetch(Spree.routes.sections_api_v2 + '/reposition', {
+  fetch(`${Spree.routes.sections_api_v2}/${sectionId}/reposition`, {
     method: 'PATCH',
     headers: {
       Authorization: 'Bearer ' + OAUTH_TOKEN,
