@@ -41,24 +41,6 @@ describe 'Stores admin', type: :feature do
   end
 
   describe 'creating store' do
-    context 'with checkout_zone set as preference in spree config file', js: true do
-      let!(:zone) { create(:zone, name: 'Asia') }
-
-      before do
-        store.update(checkout_zone_id: nil)
-        Spree::Config[:checkout_zone] = 'Asia'
-      end
-
-      it 'sets default zone' do
-        visit spree.admin_stores_path
-
-        click_link 'New Store'
-
-        expect(page).to have_current_path(spree.new_admin_store_path)
-        expect(page).to have_selector(:id, 'select2-store_checkout_zone_id-container', text: 'Asia')
-      end
-    end
-
     it 'sets default currency value', js: true do
       visit spree.admin_stores_path
 
