@@ -16,9 +16,9 @@ describe 'Users', type: :feature do
       li.update_column(:price, li.price + 10)
     end
   end
-  let!(:order_eur) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'EUR') }
-  let!(:order_gbp) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'GBP') }
-  let!(:orders) { Spree::Order.where(id: [order.id, order_2.id, order_eur.id, order_gbp.id]) }
+  let(:order_eur) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'EUR') }
+  let(:order_gbp) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'GBP') }
+  let(:orders) { Spree::Order.where(id: [order.id, order_2.id, order_eur.id, order_gbp.id]) }
 
   let!(:store_credit_usd) { create(:store_credit, amount: '100', store: store, user: user_a, currency: 'USD') }
   let!(:store_credit_eur) { create(:store_credit, amount: '90', store: store, user: user_a, currency: 'EUR') }
@@ -33,8 +33,8 @@ describe 'Users', type: :feature do
               expect(page).to have_content Spree.t(stat_name)
             end
 
-            total_sales = "$#{order.total.to_i + order_2.total.to_i}.00 €#{order_eur.total.to_i}.00 £#{order_gbp.total.to_i}.00"
-            total_average = "$#{(order.total.to_i + order_2.total.to_i)/2}.00 €#{order_eur.total.to_i}.00 £#{order_gbp.total.to_i}.00"
+            total_sales = "$#{order.total.to_i + order_2.total.to_i}.00 #{order_gbp.display_total} #{order_eur.display_total}"
+            total_average = "$#{(order.total.to_i + order_2.total.to_i)/2}.00 #{order_gbp.display_total} #{order_eur.display_total}"
             total_credits = "$#{store_credit_usd.amount.to_i}.00 €#{store_credit_eur.amount.to_i}.00 £#{store_credit_gbp.amount.to_i}.00"
             expect(page).to have_content("Total Sales: #{total_sales}", normalize_ws: true)
             expect(page).to have_content("Average Order Value: #{total_average}", normalize_ws: true)
