@@ -11,7 +11,7 @@ module Spree
       describe '#index' do
         let!(:store_credit_1) { create(:store_credit, user: user, store: store) }
         let!(:store_credit_2) { create(:store_credit, user: user, amount_used: 10, store: store) }
-        let!(:store_credit_3) { create(:store_credit, user: user) }
+        let!(:store_credit_3) { create(:store_credit, user: user, store: create(:store)) }
         let!(:store_credit_4) { create(:store_credit, store: store, user: create(:user)) }
 
         it 'should assign only the store credits for user and current store' do

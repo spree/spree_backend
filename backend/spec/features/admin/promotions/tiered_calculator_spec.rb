@@ -61,7 +61,7 @@ describe 'Tiered Calculator Promotions' do
 
       within('#actions_container') { click_button 'Update' }
 
-      calculator = promotion.actions.first.calculator
+      calculator = promotion.actions.first.calculator.reload
       expect(calculator.preferred_tiers).to eq Hash[100.0 => 10.0, 300.0 => 20.0]
     end
   end

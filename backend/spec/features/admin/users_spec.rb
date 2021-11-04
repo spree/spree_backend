@@ -33,8 +33,8 @@ describe 'Users', type: :feature do
               expect(page).to have_content Spree.t(stat_name)
             end
 
-            total_sales = "$#{order.total.to_i + order_2.total.to_i}.00 €#{order_eur.total.to_i}.00 £#{order_gbp.total.to_i}.00"
-            total_average = "$#{(order.total.to_i + order_2.total.to_i)/2}.00 €#{order_eur.total.to_i}.00 £#{order_gbp.total.to_i}.00"
+            total_sales = "$#{order.total.to_i + order_2.total.to_i}.00 #{order_gbp.display_total} #{order_eur.display_total}"
+            total_average = "$#{(order.total.to_i + order_2.total.to_i)/2}.00 #{order_gbp.display_total} #{order_eur.display_total}"
             total_credits = "$#{store_credit_usd.amount.to_i}.00 €#{store_credit_eur.amount.to_i}.00 £#{store_credit_gbp.amount.to_i}.00"
             expect(page).to have_content("Total Sales: #{total_sales}", normalize_ws: true)
             expect(page).to have_content("Average Order Value: #{total_average}", normalize_ws: true)
@@ -214,53 +214,6 @@ describe 'Users', type: :feature do
       end
 
       expect(user_a.reload.ship_address == user_a.reload.bill_address).to eq true
-    end
-
-    context 'no api key exists' do
-      it 'can generate a new api key' do
-        within('#admin_user_edit_api_key') do
-          expect(user_a.spree_api_key).to be_blank
-          click_button Spree.t('generate_key', scope: 'api')
-        end
-
-        expect(user_a.reload.spree_api_key).to be_present
-
-        within('#admin_user_edit_api_key') do
-          expect(page).to have_css('#current-api-key', text: /Key: #{user_a.spree_api_key}/)
-        end
-      end
-    end
-
-    context 'an api key exists' do
-      before do
-        user_a.generate_spree_api_key!
-        expect(user_a.reload.spree_api_key).to be_present
-        refresh
-      end
-
-      it 'can clear an api key' do
-        within('#admin_user_edit_api_key') do
-          click_button Spree.t('clear_key', scope: 'api')
-        end
-
-        expect(user_a.reload.spree_api_key).to be_blank
-        expect(page).not_to have_css('#current-api-key')
-      end
-
-      it 'can regenerate an api key' do
-        old_key = user_a.spree_api_key
-
-        within('#admin_user_edit_api_key') do
-          click_button Spree.t('regenerate_key', scope: 'api')
-        end
-
-        expect(user_a.reload.spree_api_key).to be_present
-        expect(user_a.reload.spree_api_key).not_to eq old_key
-
-        within('#admin_user_edit_api_key') do
-          expect(page).to have_css('#current-api-key', text: /Key: #{user_a.spree_api_key}/)
-        end
-      end
     end
   end
 

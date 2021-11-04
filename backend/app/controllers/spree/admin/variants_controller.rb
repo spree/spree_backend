@@ -40,8 +40,7 @@ module Spree
         return @collection if @collection.present?
 
         params[:q] ||= {}
-        @deleted = params.dig(:q, :deleted_at_null) || '0'
-
+        @deleted = params[:q].delete(:deleted_at_null) || '0'
         @collection = super
         @collection = @collection.deleted if @deleted == '1'
         # @search needs to be defined as this is passed to search_link

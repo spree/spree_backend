@@ -25,6 +25,7 @@ describe 'Variant Prices', type: :feature, js: true do
 
       click_button 'Update'
       expect(page).to have_content 'Prices successfully saved'
+      product.reload
       expect(product.master.price_in('USD').amount).to eq(29.95)
       expect(product.master.price_in('EUR').amount).to eq(21.94)
       expect(product.master.price_in('GBP').amount).to eq(19.94)
@@ -45,6 +46,7 @@ describe 'Variant Prices', type: :feature, js: true do
 
       click_button 'Update'
       expect(page).to have_content 'Prices successfully saved'
+      product.reload
       expect(product.master.price_in('USD').compare_at_amount).to eq(59.95)
       expect(product.master.price_in('EUR').compare_at_amount).to eq(51.94)
       expect(product.master.price_in('GBP').compare_at_amount).to eq(49.94)
