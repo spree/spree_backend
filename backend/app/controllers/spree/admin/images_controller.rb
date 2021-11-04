@@ -41,7 +41,7 @@ module Spree
         spree.admin_product_images_url
       end
 
-      def modle_class
+      def model_class
         Spree::Image
       end
 
