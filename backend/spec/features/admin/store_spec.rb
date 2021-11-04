@@ -106,56 +106,11 @@ describe 'Stores', type: :feature do
     end
   end
 
-  context 'with checkout_zone preference set in spree config file', js: true do
-    let!(:store) { create(:store, name: 'Some existing store') }
-    let!(:zone) { create(:zone, name: 'Asia') }
-
-    before do
-      Spree::Config[:checkout_zone] = 'Asia'
-
-      visit spree.admin_path
-
-      click_link 'Configurations'
-      click_link 'Stores'
-    end
-
-    it 'edits existing store' do
-      within_row(1) { click_icon :edit }
-      fill_in 'Mail from address', with: 'new_email@example.com'
-      click_button 'Update'
-
-      expect(page).to have_content('successfully updated!')
-    end
-  end
-
   context 'with checkout_zone_id attribute set for store', js: true do
     let!(:store) { create(:store, name: 'Some existing store', checkout_zone_id: zone.id) }
     let!(:zone) { create(:zone, name: 'Asia') }
 
     before do
-      Spree::Config.preference_default(:checkout_zone)
-
-      visit spree.admin_path
-
-      click_link 'Configurations'
-      click_link 'Stores'
-    end
-
-    it 'edits existing store' do
-      within_row(1) { click_icon :edit }
-      fill_in 'Mail from address', with: 'some_email@example.com'
-      click_button 'Update'
-
-      expect(page).to have_content('successfully updated!')
-    end
-  end
-
-  context 'without checkout_zone_id attribute and checkout_zone preference', js: true do
-    let!(:store) { create(:store, name: 'Some existing store', checkout_zone_id: nil) }
-
-    before do
-      Spree::Config.preference_default(:checkout_zone)
-
       visit spree.admin_path
 
       click_link 'Configurations'
