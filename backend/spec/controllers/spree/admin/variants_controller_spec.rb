@@ -23,7 +23,7 @@ module Spree
         end
 
         context 'deleted is requested' do
-          before { variant_2.destroy }
+          before { variant_2.destroy! }
 
           it 'assigns only deleted variants for a requested product' do
             get :index, params: { product_id: product.slug, q: { deleted_at_null: '1' } }
