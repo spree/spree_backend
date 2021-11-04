@@ -16,9 +16,9 @@ describe 'Users', type: :feature do
       li.update_column(:price, li.price + 10)
     end
   end
-  let(:order_eur) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'EUR') }
-  let(:order_gbp) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'GBP') }
-  let(:orders) { Spree::Order.where(id: [order.id, order_2.id, order_eur.id, order_gbp.id]) }
+  let!(:order_eur) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'EUR') }
+  let!(:order_gbp) { create(:completed_order_with_totals, store: store, user: user_a, currency: 'GBP') }
+  let!(:orders) { Spree::Order.where(id: [order.id, order_2.id, order_eur.id, order_gbp.id]) }
 
   let!(:store_credit_usd) { create(:store_credit, amount: '100', store: store, user: user_a, currency: 'USD') }
   let!(:store_credit_eur) { create(:store_credit, amount: '90', store: store, user: user_a, currency: 'EUR') }
