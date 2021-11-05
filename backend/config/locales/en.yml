@@ -1,0 +1,7 @@
+en:
+  spree:
+    admin:
+    linkable:
+      search_for_a_page: Search for a page
+      search_for_a_taxon: Search for a Taxon
+      search_for_a_product: Search for a Product
