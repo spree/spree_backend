@@ -51,37 +51,44 @@ run_tests: &run_tests
                               -- ${TESTFILES}
     - store_test_results:
           path: ~/rspec
-
     - store_artifacts:
           path: tmp/capybara
 
 run_tests_3_0: &run_tests_3_0
   <<: *defaults_3_0
+  parallelism: 8
   steps:
     - checkout
     - restore_cache:
         keys:
-          - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
-          - spree-dashboard-bundle-v9-ruby-3-0
+          - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
+          - spree-dashboard-bundle-v9-ruby-2-7
     - run:
-        name: Ensure Bundle Install
+          name: Set bundle path
+          command: bundle config --local path vendor/bundle
+    - run:
+          name: Ensure bundle Install
+          command: |
+            bundle check || bundle install
+    - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432
+    - run:
+        name: Create test app
         command: |
-          cd backend && bundle install
+          bundle exec rake test_app
     - run:
-        name: Ensure Bundle Install
-        command: |
-          bin/build-ci.rb install
-    - run:
-        name: Run rspec in parallel
-        command: ./bin/build-ci.rb test
-    - store_artifacts:
-        path: /tmp/test-artifacts
-        destination: test-artifacts
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: raw-test-output
+          name: Run Rspec
+          command: |
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec --format documentation \
+                              --format RspecJunitFormatter \
+                              -o ~/rspec/rspec.xml \
+                              -- ${TESTFILES}
     - store_test_results:
-        path: /tmp/test-results
+          path: ~/rspec
+    - store_artifacts:
+          path: tmp/capybara
 
 jobs:
   bundle:
@@ -113,17 +120,16 @@ jobs:
             - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
             - spree-dashboard-bundle-v9-ruby-3-0
       - run:
-          name: Ensure Bundle Install
-          command: |
-            cd backend && bundle install
+          name: Set bundle path
+          command: bundle config --local path vendor/bundle
       - run:
           name: Bundle Install
           command: |
-            bin/build-ci.rb install
+            bundle check || bundle install
       - save_cache:
-          key: spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}-{{ checksum "backend/Gemfile.lock" }}
           paths:
-            - ~/spree/vendor/bundle
+            - vendor/bundle
+          key: spree-dashboard-bundle-v9-ruby-3-0-{{ checksum "Gemfile.lock" }}
 
   tests_postgres: &tests_postgres
     <<: *run_tests
@@ -148,37 +154,6 @@ jobs:
       - image: *postgres_image
       - image: *redis_image
 
-  tests_postgres_rails_6_0:
-    <<: *tests_postgres
-    environment:
-      <<: *postgres_environment
-      RAILS_VERSION: '~> 6.0.0'
-    steps:
-    - checkout
-    - restore_cache:
-        keys:
-          - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
-          - spree-dashboard-bundle-v9-ruby-2-7
-    - run:
-        name: Ensure Bundle Install
-        command: |
-          cd backend && bundle install
-    - run:
-        name: Ensure Bundle Install
-        command: |
-          bin/build-ci.rb install
-    - run:
-        name: Run rspec in parallel
-        command: ./bin/build-ci.rb test
-    - store_artifacts:
-        path: /tmp/test-artifacts
-        destination: test-artifacts
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: raw-test-output
-    - store_test_results:
-        path: /tmp/test-results
-
   tests_mysql: &tests_mysql
     <<: *run_tests
     environment: &mysql_environment
@@ -192,45 +167,6 @@ jobs:
       - image: *ruby_image
       - image: *redis_image
       - image: &mysql_image circleci/mysql:8-ram
-
-  tests_mysql_ruby_3_0:
-    <<: *run_tests_3_0
-    environment:
-      <<: *mysql_environment
-    docker:
-      - image: *ruby_3_0_image
-      - image: *redis_image
-      - image: *mysql_image
-        command: [--default-authentication-plugin=mysql_native_password]
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
-            - spree-dashboard-bundle-v9-ruby-3-0
-      - run:
-          name: Ensure Bundle Install
-          command: |
-            cd backend && bundle install
-      - run:
-          name: Ensure Bundle Install
-          command: |
-            bin/build-ci.rb install
-      - run:
-          name: Run rspec in parallel
-          command: ./bin/build-ci.rb test
-      - store_artifacts:
-          path: /tmp/test-artifacts
-          destination: test-artifacts
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: raw-test-output
-      - store_test_results:
-          path: /tmp/test-results
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - simplecov
 
   update_staging_repository:
     docker:
@@ -272,6 +208,13 @@ workflows:
   main:
     jobs:
       - bundle
+      - bundle_ruby_3_0
       - tests_postgres:
+          requires:
+            - bundle
+      - tests_postgres_ruby_3_0:
+          requires:
+            - bundle_ruby_3_0
+      - tests_mysql:
           requires:
             - bundle
