@@ -12,6 +12,10 @@ module Spree
         app.config.filter_parameters += [:password, :password_confirmation, :number]
       end
 
+      initializer 'spree.backend.importmap', after: 'importmap' do |app|
+        app.importmap.draw(Engine.root.join('config/importmap.rb'))
+      end
+
       initializer 'spree.backend.checking_deprecated_preferences' do
         Spree::Backend::Config.deprecated_preferences.each do |pref|
           # FIXME: we should only notify about deprecated preferences that are in use, not all of them
