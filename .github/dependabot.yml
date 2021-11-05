@@ -1,27 +1,7 @@
 version: 2
 updates:
 - package-ecosystem: bundler
-  directory: "/backend"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-- package-ecosystem: bundler
-  directory: "/core"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-- package-ecosystem: bundler
-  directory: "/cli"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-- package-ecosystem: bundler
-  directory: "/api"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-- package-ecosystem: bundler
-  directory: "/sample"
+  directory: "/"
   schedule:
     interval: daily
   open-pull-requests-limit: 10
