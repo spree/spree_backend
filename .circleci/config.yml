@@ -20,7 +20,7 @@ defaults_3_0: &defaults_3_0
 
 run_tests: &run_tests
   <<: *defaults
-  parallelism: 4
+  parallelism: 8
   steps:
     - checkout
     - restore_cache:
