@@ -61,8 +61,8 @@ run_tests_3_0: &run_tests_3_0
     - checkout
     - restore_cache:
         keys:
-          - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
-          - spree-dashboard-bundle-v9-ruby-2-7
+          - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
+          - spree-dashboard-bundle-v9-ruby-3-0
     - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
