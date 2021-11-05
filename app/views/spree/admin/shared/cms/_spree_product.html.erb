@@ -2,7 +2,7 @@
   <%= f.label save_to, Spree.t('admin.cms.link_to_product') %>
   <%= f.select save_to, options_from_collection_for_select([resource], save_to, save_to, resource.send(save_to) || nil), { include_blank: true },
                           id: "cms_section_#{save_to}",
-                          data: { autocomplete_placeholder_value: Spree.t('admin.navigation.seach_for_a_product'),
+                          data: { autocomplete_placeholder_value: Spree.t('admin.navigation.search_for_a_product'),
                                   autocomplete_clear_value: true,
                                   autocomplete_url_value: 'products_api_v2',
                                   autocomplete_return_attr_value: 'name',
