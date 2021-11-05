@@ -35,9 +35,6 @@ run_tests: &run_tests
           command: |
             bundle check || bundle install
     - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432
-    - run:
         name: Create test app
         command: |
           bundle exec rake test_app
@@ -70,9 +67,6 @@ run_tests_3_0: &run_tests_3_0
           name: Ensure bundle Install
           command: |
             bundle check || bundle install
-    - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://localhost:3306
     - run:
         name: Create test app
         command: |
