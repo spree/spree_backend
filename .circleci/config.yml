@@ -72,7 +72,7 @@ run_tests_3_0: &run_tests_3_0
             bundle check || bundle install
     - run:
           name: Wait for DB
-          command: dockerize -wait tcp://localhost:5432
+          command: dockerize -wait tcp://localhost:3306
     - run:
         name: Create test app
         command: |
