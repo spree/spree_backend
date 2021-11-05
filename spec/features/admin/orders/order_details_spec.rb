@@ -191,12 +191,14 @@ describe 'Order Details', type: :feature, js: true do
         let(:tote) { create(:product, name: 'Tote', price: 15.00) }
 
         before do
-          tote.master.stock_items.first.update(backorderable: false)
-          tote.master.stock_items.first.update(count_on_hand: 0)
+          tote.master.stock_items.first.update(backorderable: false, count_on_hand: 0)
+          Rails.cache.clear
         end
 
         it 'does not add a product to the order' do
-          select2 tote.name, from: Spree.t(:name_or_sku), search: true
+          select2_open label: Spree.t(:name_or_sku)
+          select2_search tote.name, from: Spree.t(:name_or_sku)
+          select2_select tote.name, from: Spree.t(:name_or_sku), match: :first
 
           within('table.stock-levels') do
             expect(page).to have_content(Spree.t(:out_of_stock))

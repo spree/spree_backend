@@ -1,9 +1,5 @@
-# By placing all of Spree's shared dependencies in this file and then loading
-# it for each component's Gemfile, we can be sure that we're only testing just
-# the one component of Spree.
 source 'https://rubygems.org'
 
-gem 'sqlite3', '~> 1.4.0', platforms: [:ruby, :mingw, :mswin, :x64_mingw]
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 
 %w[
@@ -15,7 +11,6 @@ end
 
 platforms :jruby do
   gem 'jruby-openssl'
-  gem 'activerecord-jdbcsqlite3-adapter'
 end
 
 platforms :ruby do
@@ -59,3 +54,9 @@ group :development do
   gem 'github_fast_changelog'
   gem 'solargraph'
 end
+
+spree_opts = { github: 'spree/spree', branch: 'main' }
+gem 'spree_core', spree_opts
+gem 'spree_api', spree_opts
+
+gemspec
