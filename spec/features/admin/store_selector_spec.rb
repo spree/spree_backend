@@ -14,7 +14,7 @@ describe 'Admin store switcher', type: :feature, js: true do
       visit spree.admin_path
     end
 
-    it 'allows to change the url to the seleted store and returns you to orders page' do
+    it 'allows to change the url to the selected store and returns you to orders page' do
       find('a#storeSelectorDropdown').click
 
       expect(page).to have_selector(:css, "a[href*='#{store_one.formatted_url}:#{port}/admin/orders']")

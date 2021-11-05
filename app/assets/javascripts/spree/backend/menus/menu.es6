@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     swapThreshold: 0.5,
     emptyInsertThreshold: 8,
     dragClass: 'menu-item-dragged',
-    draggable: '.dragable',
+    draggable: '.draggable',
     animation: 350,
     forceFallback: false,
     onEnd: function (evt) {

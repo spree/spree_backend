@@ -28,7 +28,7 @@ describe Spree::Admin::BaseHelper, type: :helper do
       expect(order_time(time)).to eq "2016-05-06 1:33 PM #{time.zone}"
     end
 
-    it 'return empty stirng when nil is supplied' do
+    it 'return empty string when nil is supplied' do
       expect(order_time(nil)).to eq ''
     end
   end

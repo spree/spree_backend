@@ -101,7 +101,7 @@ describe Spree::Admin::OrdersController, type: :controller do
     describe '#resend' do
       let(:order) { create(:order, state: 'canceled', store: store) }
 
-      it 'resends oder mailer' do
+      it 'resends order mailer' do
         put :resend, params: { id: order.number }
         expect(flash[:success]).to eq Spree.t(:order_email_resent)
       end

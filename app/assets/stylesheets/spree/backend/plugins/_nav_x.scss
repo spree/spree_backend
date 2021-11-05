@@ -27,7 +27,7 @@
   }
 
   // Bug fix for iOS jittery elastic scroll from Bootstrap
-  // transaition on pills and buttons.
+  // transition on pills and buttons.
   & > li > a {
     transition: none !important;
   }

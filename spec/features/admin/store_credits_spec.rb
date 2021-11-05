@@ -138,7 +138,7 @@ describe 'Store credits admin', type: :feature do
       allow_any_instance_of(Spree::Admin::StoreCreditsController).to receive(:try_spree_current_user).and_return(admin_user)
     end
 
-    it 'displays flash withe error' do
+    it 'displays flash with error' do
       expect(page).to have_content(Spree.t(:user_not_found))
     end
   end

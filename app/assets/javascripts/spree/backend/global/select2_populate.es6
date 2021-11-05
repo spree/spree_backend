@@ -1,6 +1,6 @@
 /**
   populateSelectOptionsFromApi(params)
-  Allows you to easily fetch data from API (Platfrom v2) and populate an empty <select> with <option> tags, including a selected <option> tag.
+  Allows you to easily fetch data from API (Platform v2) and populate an empty <select> with <option> tags, including a selected <option> tag.
 
   ## EXAMPLE A
   # Populating a list of all taxons including a selected item
