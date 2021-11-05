@@ -131,7 +131,7 @@ jobs:
     docker:
       - image: *ruby_image
       - image: *redis_image
-      - image: &postgres_image circleci/postgres:13-alpine
+      - image: &postgres_image circleci/postgres:12-alpine
         environment:
           POSTGRES_USER: postgres
 
