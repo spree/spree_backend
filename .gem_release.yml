@@ -1,7 +1,4 @@
 
 bump:
   recurse: false
-  file: 'core/lib/spree/core/version.rb'
-
-release:
-  recurse: true
+  file: 'lib/spree/backend/version.rb'

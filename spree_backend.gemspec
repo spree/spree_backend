@@ -13,10 +13,10 @@ Gem::Specification.new do |s|
   s.license     = 'BSD-3-Clause'
 
   s.metadata = {
-    "bug_tracker_uri"   => "https://github.com/spree/spree/issues",
-    "changelog_uri"     => "https://github.com/spree/spree/releases/tag/v#{s.version}",
+    "bug_tracker_uri"   => "https://github.com/spree/spree_backend/issues",
+    "changelog_uri"     => "https://github.com/spree/spree_backend/releases/tag/v#{s.version}",
     "documentation_uri" => "https://dev-docs.spreecommerce.org/",
-    "source_code_uri"   => "https://github.com/spree/spree/tree/v#{s.version}",
+    "source_code_uri"   => "https://github.com/spree/spree_backend/tree/v#{s.version}",
   }
 
   s.required_ruby_version = '>= 2.5'
@@ -25,8 +25,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_api', ">= #{s.version}"
-  s.add_dependency 'spree_core', ">= #{s.version}"
+  s.add_dependency 'spree', ">= 4.3.0"
 
   s.add_dependency 'babel-transpiler', '~> 0.7'
   s.add_dependency 'bootstrap',       '~> 4.0'

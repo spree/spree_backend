@@ -20,31 +20,36 @@ defaults_3_0: &defaults_3_0
 
 run_tests: &run_tests
   <<: *defaults
+  parallelism: 4
   steps:
     - checkout
     - restore_cache:
         keys:
-          - spree-bundle-v9-ruby-2-7-{{ .Branch }}
-          - spree-bundle-v9-ruby-2-7
+          - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
+          - spree-dashboard-bundle-v9-ruby-2-7
     - run:
-        name: Ensure Bundle Install
+          name: Set bundle path
+          command: bundle config --local path vendor/bundle
+    - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432
+    - run:
+        name: Create test app
         command: |
-          cd backend && bundle install
+          bundle exec rake test_app
     - run:
-        name: Ensure Bundle Install
-        command: |
-          bin/build-ci.rb install
-    - run:
-        name: Run rspec in parallel
-        command: ./bin/build-ci.rb test
-    - store_artifacts:
-        path: /tmp/test-artifacts
-        destination: test-artifacts
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: raw-test-output
+          name: Run Rspec
+          command: |
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            bundle exec rspec --format documentation \
+                              --format RspecJunitFormatter \
+                              -o ~/rspec/rspec.xml \
+                              -- ${TESTFILES}
     - store_test_results:
-        path: /tmp/test-results
+          path: ~/rspec
+
+    - store_artifacts:
+          path: tmp/capybara
 
 run_tests_3_0: &run_tests_3_0
   <<: *defaults_3_0
@@ -52,8 +57,8 @@ run_tests_3_0: &run_tests_3_0
     - checkout
     - restore_cache:
         keys:
-          - spree-bundle-v9-ruby-3-0-{{ .Branch }}
-          - spree-bundle-v9-ruby-3-0
+          - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
+          - spree-dashboard-bundle-v9-ruby-3-0
     - run:
         name: Ensure Bundle Install
         command: |
@@ -81,20 +86,19 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - spree-bundle-v9-ruby-2-7-{{ .Branch }}
-            - spree-bundle-v9-ruby-2-7
+            - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
+            - spree-dashboard-bundle-v9-ruby-2-7
       - run:
-          name: Ensure Bundle Install
-          command: |
-            cd backend && bundle install
+          name: Set bundle path
+          command: bundle config --local path vendor/bundle
       - run:
-          name: Ensure Bundle Install
+          name: Bundle Install
           command: |
-            bin/build-ci.rb install
+            bundle check || bundle install --deployment
       - save_cache:
-          key: spree-bundle-v9-ruby-2-7-{{ .Branch }}-{{ checksum "backend/Gemfile.lock" }}
           paths:
-            - ~/spree/vendor/bundle
+            - vendor/bundle
+          key: spree-dashboard-bundle-v9-ruby-2-7-{{ checksum "Gemfile.lock" }}
 
   bundle_ruby_3_0:
     <<: *defaults_3_0
@@ -102,8 +106,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - spree-bundle-v9-ruby-3-0-{{ .Branch }}
-            - spree-bundle-v9-ruby-3-0
+            - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
+            - spree-dashboard-bundle-v9-ruby-3-0
       - run:
           name: Ensure Bundle Install
           command: |
@@ -113,7 +117,7 @@ jobs:
           command: |
             bin/build-ci.rb install
       - save_cache:
-          key: spree-bundle-v9-ruby-3-0-{{ .Branch }}-{{ checksum "backend/Gemfile.lock" }}
+          key: spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}-{{ checksum "backend/Gemfile.lock" }}
           paths:
             - ~/spree/vendor/bundle
 
@@ -127,7 +131,7 @@ jobs:
     docker:
       - image: *ruby_image
       - image: *redis_image
-      - image: &postgres_image circleci/postgres:12-alpine
+      - image: &postgres_image circleci/postgres:13-alpine
         environment:
           POSTGRES_USER: postgres
 
@@ -149,39 +153,8 @@ jobs:
     - checkout
     - restore_cache:
         keys:
-          - spree-bundle-v9-ruby-2-7-{{ .Branch }}
-          - spree-bundle-v9-ruby-2-7
-    - run:
-        name: Ensure Bundle Install
-        command: |
-          cd backend && bundle install
-    - run:
-        name: Ensure Bundle Install
-        command: |
-          bin/build-ci.rb install
-    - run:
-        name: Run rspec in parallel
-        command: ./bin/build-ci.rb test
-    - store_artifacts:
-        path: /tmp/test-artifacts
-        destination: test-artifacts
-    - store_artifacts:
-        path: /tmp/test-results
-        destination: raw-test-output
-    - store_test_results:
-        path: /tmp/test-results
-
-  tests_postgres_rails_5_2:
-    <<: *tests_postgres
-    environment:
-      <<: *postgres_environment
-      RAILS_VERSION: '~> 5.2.0'
-    steps:
-    - checkout
-    - restore_cache:
-        keys:
-          - spree-bundle-v9-ruby-2-7-{{ .Branch }}
-          - spree-bundle-v9-ruby-2-7
+          - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
+          - spree-dashboard-bundle-v9-ruby-2-7
     - run:
         name: Ensure Bundle Install
         command: |
@@ -229,8 +202,8 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - spree-bundle-v9-ruby-3-0-{{ .Branch }}
-            - spree-bundle-v9-ruby-3-0
+            - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
+            - spree-dashboard-bundle-v9-ruby-3-0
       - run:
           name: Ensure Bundle Install
           command: |
@@ -254,34 +227,6 @@ jobs:
           root: /tmp/workspace
           paths:
             - simplecov
-
-  send_test_coverage:
-    <<: *defaults
-    steps:
-      - checkout
-      - attach_workspace:
-          at: /tmp/workspace
-      - run:
-          name:  Download cc-test-reporter
-          command: |
-            mkdir -p tmp/
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
-            chmod +x ./tmp/cc-test-reporter
-      - run:
-          name: Setup ENVs
-          command: |
-            export GIT_BRANCH="$CIRCLE_BRANCH"
-            export GIT_COMMIT_SHA="$CIRCLE_SHA1"
-            export GIT_COMMITTED_AT="$(date +%s)"
-      - run:
-          name: Format test coverage
-          command: |
-            ./tmp/cc-test-reporter format-coverage -t simplecov -o tmp/codeclimate.backend.json /tmp/workspace/simplecov/backend/.resultset.json
-      - run:
-          name: Upload coverage results to Code Climate
-          command: |
-            ./tmp/cc-test-reporter sum-coverage tmp/codeclimate.*.json -p 1 -o tmp/codeclimate.total.json
-            ./tmp/cc-test-reporter upload-coverage -i tmp/codeclimate.total.json
 
   update_staging_repository:
     docker:
@@ -323,29 +268,6 @@ workflows:
   main:
     jobs:
       - bundle
-      - bundle_ruby_3_0
       - tests_postgres:
           requires:
             - bundle
-      - tests_postgres_ruby_3_0:
-          requires:
-            - bundle_ruby_3_0
-      - tests_postgres_rails_6_0:
-          requires:
-            - bundle
-      - tests_postgres_rails_5_2:
-          requires:
-            - bundle
-      - tests_mysql_ruby_3_0:
-          requires:
-            - bundle_ruby_3_0
-      - send_test_coverage:
-          requires:
-            - tests_mysql_ruby_3_0
-  update_staging_repository:
-    jobs:
-      - update_staging_repository:
-          filters:
-            branches:
-              only:
-                - main
