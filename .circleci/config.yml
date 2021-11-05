@@ -94,7 +94,7 @@ jobs:
       - run:
           name: Bundle Install
           command: |
-            bundle check || bundle install --deployment
+            bundle check || bundle install
       - save_cache:
           paths:
             - vendor/bundle
