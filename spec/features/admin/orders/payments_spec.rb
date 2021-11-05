@@ -174,7 +174,7 @@ describe 'Payments', type: :feature, js: true do
         fill_in 'Card Number', with: '4111 1111 1111 1111'
         fill_in 'Name', with: 'Test User'
         fill_in 'Expiration', with: "09 / #{Time.current.year + 1}"
-        fill_in 'Card Varification Code (CVC)', with: '007'
+        fill_in 'Card Verification Code (CVC)', with: '007'
         # Regression test for #4277
         expect(page).to have_field(class: 'ccType', type: :hidden, with: 'visa')
         click_button 'Continue'

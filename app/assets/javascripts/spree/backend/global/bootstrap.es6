@@ -1,4 +1,4 @@
-// Use this file for Boostrap customization applied across the Spree Backend
+// Use this file for Bootstrap customization applied across the Spree Backend
 
 document.addEventListener('DOMContentLoaded', function() {
   $('.with-tip').each(function() {

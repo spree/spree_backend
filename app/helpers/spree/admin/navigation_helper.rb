@@ -3,7 +3,7 @@ module Spree
     module NavigationHelper
       # Makes an admin navigation tab (<li> tag) that links to a routing resource under /admin.
       # The arguments should be a list of symbolized controller names that will cause this tab to
-      # be highlighted, with the first being the name of the resouce to link (uses URL helpers).
+      # be highlighted, with the first being the name of the resource to link (uses URL helpers).
       #
       # Option hash may follow. Valid options are
       #   * :label to override link text, otherwise based on the first resource name (translated)

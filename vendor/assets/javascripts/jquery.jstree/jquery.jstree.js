@@ -508,7 +508,7 @@
             });
           }
           if(done) {
-            // TODO: find a more elegant approach to syncronizing returning requests
+            // TODO: find a more elegant approach to synchronizing returning requests
             if(this.data.core.reopen) { clearTimeout(this.data.core.reopen); }
             this.data.core.reopen = setTimeout(function () { _this.__callback({}, _this); }, 50);
             this.data.core.refreshing = false;
@@ -2225,7 +2225,7 @@
       }
 
       // maybe use a scrolling parent element instead of document?
-      if(e.type === "mousemove") { // thought of adding scroll in order to move the helper, but mouse poisition is n/a
+      if(e.type === "mousemove") { // thought of adding scroll in order to move the helper, but mouse position is n/a
         var d = $(document), t = d.scrollTop(), l = d.scrollLeft();
         if(e.pageY - t < 20) {
           if(sti && dir1 === "down") { clearInterval(sti); sti = false; }

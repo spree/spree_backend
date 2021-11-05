@@ -6,19 +6,19 @@ module Spree
       end
 
       def build_menu_item(menu, item)
-        decendents = []
+        descendants = []
 
         unless item.leaf?
           item.children.each do |child_item|
-            decendents << build_menu_item(menu, child_item) unless item.leaf?
+            descendants << build_menu_item(menu, child_item) unless item.leaf?
           end
         end
 
         info_row = menu_item_bar(menu, item)
-        menu_container = content_tag(:div, raw(decendents.join), class: 'menu-container', data: { parent_id: item.id })
+        menu_container = content_tag(:div, raw(descendants.join), class: 'menu-container', data: { parent_id: item.id })
 
         content_tag(:div, info_row + menu_container,
-                    class: 'menu-item menu-container-item dragable removable-dom-element',
+                    class: 'menu-item menu-container-item draggable removable-dom-element',
                     data: { item_id: item.id })
       end
 

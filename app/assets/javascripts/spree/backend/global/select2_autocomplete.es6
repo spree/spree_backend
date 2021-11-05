@@ -8,14 +8,14 @@
 //  data-autocomplete-url-value="products_api_v2"
 
 //  OPTIONAL:
-//  data-autocomplete-placeholder-value="Seach Pages"     <- Sets the placeholder | DEFAULT is: 'Search'.
+//  data-autocomplete-placeholder-value="Search Pages"     <- Sets the placeholder | DEFAULT is: 'Search'.
 //  data-autocomplete-clear-value=boolean                 <- Allow select2 to be cleared | DEFAULT is: false (no clear button).
 //  data-autocomplete-multiple-value=boolean              <- Multiple or Single select | DEFAULT is: false (single).
 //  data-autocomplete-return-attr-value="pretty_name"     <- Return Attribute. | DEFAULT is: 'name'.
 //  data-autocomplete-min-input-value="4"                 <- Minimum input for search | DEFAULT is: 3.
 //  data-autocomplete-search-query-value="title_i_cont"   <- Custom search query | DEFAULT is: 'name_i_cont'.
 //  data-autocomplete-custom-return-id-value="permalink"  <- Return a custom attribute | DEFAULT: returns id.
-//  data-autocomplete-debug-mode-value=boolean            <- Turn on console loggin of data returned by the request.
+//  data-autocomplete-debug-mode-value=boolean            <- Turn on console login of data returned by the request.
 //
 //  Add your own custom URL params to the request as needed
 //  EXAMPLE:
@@ -77,7 +77,7 @@ $.fn.select2Autocomplete = function(params) {
     // URL + Additional URL Params + Sparse Fields
     apiUrl = `${params.apiUrl}?${additionalUrlParams}&${sparseFields}`
   } else {
-    // URL + Sparse Fields (the default response for a noraml Select2)
+    // URL + Sparse Fields (the default response for a normal Select2)
     apiUrl = `${params.apiUrl}?${sparseFields}`
   }
 
