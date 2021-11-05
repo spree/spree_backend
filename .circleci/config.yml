@@ -31,6 +31,10 @@ run_tests: &run_tests
           name: Set bundle path
           command: bundle config --local path vendor/bundle
     - run:
+          name: Ensure bundle Install
+          command: |
+            bundle check || bundle install
+    - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432
     - run:
