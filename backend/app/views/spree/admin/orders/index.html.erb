@@ -10,9 +10,9 @@
       id: 'admin_new_order' %>
 <% end if can? :create, Spree::Order %>
 
-<% if @orders.any? %>
+<%= render "search" if @orders.any? || params[:q].present? %>
 
-<%= render "search" %>
+<% if @orders.any? %>
 
 <div data-nav-x-wrapper>
   <div data-nav-x-container>
