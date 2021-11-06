@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap',       '~> 4.0'
   s.add_dependency 'glyphicons',      '~> 1.0'
   s.add_dependency 'flatpickr',       '~> 4.6'
+  s.add_dependency 'hotwire-rails'
   s.add_dependency 'inline_svg',      '~> 1.5'
   s.add_dependency 'jquery-rails',    '~> 4.3'
   s.add_dependency 'jquery-ui-rails', '~> 6.0'
