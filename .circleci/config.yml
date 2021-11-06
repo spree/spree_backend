@@ -39,9 +39,13 @@ run_tests: &run_tests
         command: |
           bundle exec rake test_app
     - run:
+        name: Unlink NPM package
+        command: |
+          cd spec/dummy && unlink @spree/dashboard
+    - run:
           name: Run Rspec
           command: |
-            TESTFILES=$(circleci tests glob "~/spree/spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec --format documentation \
                               --format RspecJunitFormatter \
                               -o ~/rspec/rspec.xml \
@@ -72,9 +76,13 @@ run_tests_3_0: &run_tests_3_0
         command: |
           bundle exec rake test_app
     - run:
+        name: Unlink NPM package
+        command: |
+          cd spec/dummy && unlink @spree/dashboard
+    - run:
           name: Run Rspec
           command: |
-            TESTFILES=$(circleci tests glob "~/spree/spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+            TESTFILES=$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
             bundle exec rspec --format documentation \
                               --format RspecJunitFormatter \
                               -o ~/rspec/rspec.xml \
