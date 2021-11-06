@@ -3,7 +3,7 @@ import "./controllers"
 
 class Dashboard {
   constructor() {
-    console.log("works!!! 2223333444")
+    console.log("Spree Dashboard initialized")
   }
 }
 
