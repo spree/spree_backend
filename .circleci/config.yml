@@ -41,7 +41,7 @@ run_tests: &run_tests
     - run:
         name: Unlink NPM package
         command: |
-          cd spec/dummy && unlink @spree/dashboard
+          cd spec/dummy && yarn unlink @spree/dashboard
     - run:
           name: Run Rspec
           command: |
@@ -78,7 +78,7 @@ run_tests_3_0: &run_tests_3_0
     - run:
         name: Unlink NPM package
         command: |
-          cd spec/dummy && unlink @spree/dashboard
+          cd spec/dummy && yarn unlink @spree/dashboard
     - run:
           name: Run Rspec
           command: |
