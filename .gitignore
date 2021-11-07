@@ -56,3 +56,9 @@ vendor/bundle
 */vendor/bundle
 .ignore
 TODO
+
+
+node_modules
+app/assets/javascripts/spree_dashboard.js
+app/assets/javascripts/spree_dashboard.*.js
+src
