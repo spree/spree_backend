@@ -198,6 +198,8 @@ Spree::Core::Engine.add_routes do
       end
     end
 
+    get '/switch_store/:id', to: 'stores#switch', as: :switch_store
+
     get '/forbidden', to: 'errors#forbidden', as: :forbidden
   end
 

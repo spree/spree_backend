@@ -86,6 +86,17 @@ module Spree
         @stores = stores_scope.order(default: :desc)
       end
 
+      def current_store
+        return @current_store if @current_store.present?
+
+        if session[:current_store_id].present?
+          @current_store = Spree::Store.find(session[:current_store_id])
+          authorize! :show, @current_store
+        else
+          super
+        end
+      end
+
       def can_not_transition_without_customer_info
         unless @order.billing_address.present?
           flash[:notice] = Spree.t(:fill_in_customer_info)

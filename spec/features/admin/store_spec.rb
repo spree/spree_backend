@@ -7,16 +7,12 @@ describe 'Stores', type: :feature do
     before do
       create(:zone, name: 'No Limits')
 
-      visit spree.admin_path
+      visit spree.admin_stores_path
 
-      click_link 'Configurations'
-      click_link 'Stores'
       within '#contentHeaderRow' do
         click_link 'New Store'
       end
     end
-
-    after { Capybara.app_host = nil }
 
     it 'has required fields' do
       expect(page).to have_field(id: 'store_name')
@@ -46,11 +42,7 @@ describe 'Stores', type: :feature do
 
       click_button 'Create'
 
-      Capybara.app_host = 'http://another-store.lvh.me'
-
-      expect(page).to have_content('http://another-store.lvh.me')
-      expect(page).to have_content('example_store')
-      expect(page).to have_content('Stores')
+      expect(page).to have_current_path(spree.admin_orders_path)
     end
 
     it 'creates a new store with footer and seo data' do
@@ -69,10 +61,7 @@ describe 'Stores', type: :feature do
 
       click_button 'Create'
 
-      Capybara.app_host = 'http://one-another-store.lvh.me'
-
-      expect(page).to have_content('http://one-another-store.lvh.me')
-      expect(page).to have_content('Stores')
+      expect(page).to have_current_path(spree.admin_orders_path)
     end
   end
 
@@ -83,10 +72,7 @@ describe 'Stores', type: :feature do
       @zone = create(:zone, name: 'No Limits')
       create(:store, name: 'Some existing store', checkout_zone_id: @zone.id)
 
-      visit spree.admin_path
-
-      click_link 'Configurations'
-      click_link 'Stores'
+      visit spree.admin_stores_path
     end
 
     it 'edits existing store' do
@@ -111,10 +97,7 @@ describe 'Stores', type: :feature do
     let!(:zone) { create(:zone, name: 'Asia') }
 
     before do
-      visit spree.admin_path
-
-      click_link 'Configurations'
-      click_link 'Stores'
+      visit spree.admin_stores_path
     end
 
     it 'edits existing store' do

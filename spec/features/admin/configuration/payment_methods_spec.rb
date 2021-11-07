@@ -15,7 +15,7 @@ describe 'Payment Methods', type: :feature do
     visit spree.admin_payment_methods_path
   end
 
-  context 'managine payment methods by store' do
+  context 'manage payment methods by store' do
     it 'only displays payment methods for current store' do
       within('table#listing_payment_methods') do
         expect(page).to have_content(payment_method_one.name)

@@ -7,7 +7,7 @@ describe Spree::Admin::StoresController do
   let(:image_file)      { Rack::Test::UploadedFile.new(Spree::Backend::Engine.root.join('spec', 'fixtures', 'thinking-cat.jpg')) }
   let(:store_with_logo) { create(:store, logo: image_file) }
 
-  describe 'on :index' do
+  describe '#index' do
     it 'renders index' do
       get :index
 
@@ -32,11 +32,25 @@ describe Spree::Admin::StoresController do
     end
   end
 
-  context 'update' do
+  describe '#update' do
     it 'can update logo' do
       put :update, params: { id: store.to_param, store: { logo: image_file } }
 
       expect(store.reload.logo.blob.filename).to eq(image_file.original_filename)
+    end
+  end
+
+  describe '#switch' do
+    let(:another_store) { create(:store) }
+    let(:execute) { get :switch, params: { id: another_store.id } }
+
+    it 'sets current_store_id session variable' do
+      execute
+      expect(session[:current_store_id]).to eq(another_store.id)
+    end
+
+    it 'redirects do root path' do
+      expect(execute).to redirect_to(spree.admin_path)
     end
   end
 end

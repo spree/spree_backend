@@ -40,7 +40,8 @@ module Spree
 
         if @store.save
           flash[:success] = flash_message_for(@store, :successfully_created)
-          redirect_to @store.formatted_url + spree.admin_stores_path
+          session[:current_store_id] = @store.id
+          redirect_to spree.admin_path
         else
           flash[:error] = "#{Spree.t('store_errors.unable_to_create')}: #{@store.errors.full_messages.join(', ')}"
           render :new
@@ -89,6 +90,13 @@ module Spree
         end
 
         redirect_to spree.admin_stores_path
+      end
+
+      def switch
+        store = stores_scope.find(params[:id])
+        session[:current_store_id] = store.id
+
+        redirect_to spree.admin_path
       end
 
       protected

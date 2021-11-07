@@ -17,6 +17,23 @@ describe Spree::Admin::BaseController, type: :controller do
     end
   end
 
+  describe '#current_store' do
+    let(:another_store) { create(:store, name: 'Another store') }
+    let(:url_store) { create(:store, url: 'some-domain.com') }
+
+    context 'session based' do
+      it 'sets current store based on session' do
+        get :index, session: { current_store_id: another_store.id }
+        expect(controller.send(:current_store)).to eq(another_store)
+      end
+
+      it 'fallbacks to URL' do
+        get :index
+        expect(controller.send(:current_store)).to eq(Spree::Store.default)
+      end
+    end
+  end
+
   context '#generate_api_key' do
     let(:user) { mock_model(Spree.user_class, has_spree_role?: true) }
 
