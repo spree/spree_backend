@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_tag "var taxonomy_id = #{@taxonomy.id};
+  <%= javascript_tag "var taxonomy_id = '#{@taxonomy.id}';
     $(document).ready(function(){
       setup_taxonomy_tree(taxonomy_id);
     });
