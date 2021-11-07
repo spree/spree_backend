@@ -17,7 +17,7 @@ describe 'Product Taxons', type: :feature, js: true do
 
       select2_open label: 'Taxons'
       select2_search 'Clothing', from: 'Taxons'
-      select2_select 'Categories -> Clothing', from: 'Taxons', match: :first
+      select2_select 'Clothing', from: 'Taxons', match: :first
 
       click_button 'Update'
 

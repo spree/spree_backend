@@ -89,7 +89,12 @@ RSpec.configure do |config|
     country = create(:country, name: 'United States of America', iso_name: 'UNITED STATES', iso: 'US', states_required: true)
     Spree::Config[:default_country_id] = country.id
 
-    create(:store, default: true)
+    create(:store, default: true, url: 'localhost')
+    Capybara.app_host = 'http://localhost'
+  end
+
+  config.before(:each, js: true) do
+    Capybara.page.driver.browser.manage.window.resize_to(1400, 2000)
   end
 
   config.after(:each, type: :feature) do |example|
