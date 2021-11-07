@@ -91,20 +91,14 @@ describe 'Orders Listing', type: :feature do
 
       visit spree.admin_orders_path
 
-      Capybara.app_host = 'http://another-store.lvh.me'
-
       find('a#storeSelectorDropdown').click
       within('.dropdown-menu') { click_link other_store.unique_name }
-
-      expect(current_url).to match('another-store.lvh.me')
 
       expect(page).to have_content('R300')
       expect(page).to have_content('R400')
 
       expect(page).not_to have_content('R100')
       expect(page).not_to have_content('R200')
-
-      Capybara.app_host = nil
     end
   end
 
