@@ -104,7 +104,9 @@ Spree.routes.taxons_api_v2 = Spree.pathFor('/api/v2/platform/taxons')
 Spree.routes.users_api_v2 = Spree.pathFor('api/v2/platform/users')
 
 Spree.apiV2Authentication = function() {
-  return {
-    'Authorization': 'Bearer ' + OAUTH_TOKEN
+  if (typeof OAUTH_TOKEN != 'undefined') {
+    return {
+      'Authorization': 'Bearer ' + OAUTH_TOKEN
+    }
   }
 }
