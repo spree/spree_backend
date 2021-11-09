@@ -1,4 +1,3 @@
-//= require modernizr
 //= require purify
 //= require sortable
 //= require flatpickr
