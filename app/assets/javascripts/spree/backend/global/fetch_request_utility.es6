@@ -59,7 +59,7 @@ const spreeWindowReload = function() {
 //
 // SPREE FECTCH REQUEST
 // Pass a json object containing your fetch request details and settings, you can also send a second optional
-// argument, this second argument is your success response handeler, and lastly a third argument that carries
+// argument, this second argument is your success response handler, and lastly a third argument that carries
 // through a target element to the response method if needed, the second and third arguments are optional.
 // When using spreeFetchRequest() the loading... progress bar, flash notice and errors are all handled for you.
 //
