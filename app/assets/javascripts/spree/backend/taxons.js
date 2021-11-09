@@ -14,20 +14,25 @@ $(function () {
       swapThreshold: 0.9,
       forceFallback: true,
       onEnd: function (evt) {
-        var classificationId = evt.item.getAttribute('data-classification-id')
-        var newIndex = evt.newIndex
-        return $.ajax({
-          url: Spree.routes.classifications_api_v2 + '/' + classificationId.toString() + '/reposition',
-          headers: Spree.apiV2Authentication(),
-          method: 'PATCH',
-          dataType: 'json',
-          data: {
-            classification: {
-              position: newIndex
-            }
-          }
-        })
+        handleClassificationReposition(evt)
       }
+    })
+  }
+
+  function handleClassificationReposition(evt) {
+    var classificationId = evt.item.getAttribute('data-classification-id')
+    var data = {
+      classification: {
+        position: parseInt(evt.newIndex, 10) + 1
+      }
+    }
+    fetch(Spree.routes.classifications_api_v2 + '/' + classificationId.toString(), {
+      method: 'PATCH',
+      headers: {
+        Authorization: 'Bearer ' + OAUTH_TOKEN,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     })
   }
 
