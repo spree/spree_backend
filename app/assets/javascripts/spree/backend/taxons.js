@@ -26,14 +26,12 @@ $(function () {
         position: parseInt(evt.newIndex, 10) + 1
       }
     }
-    fetch(Spree.routes.classifications_api_v2 + '/' + classificationId.toString(), {
-      method: 'PATCH',
-      headers: {
-        Authorization: 'Bearer ' + OAUTH_TOKEN,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
+    var requestData = {
+       uri: Spree.routes.classifications_api_v2 + '/' + classificationId,
+       method: 'PATCH',
+       dataBody: data,
+    }
+    spreeFetchRequest(requestData)
   }
 
   if (taxonId.length > 0) {
