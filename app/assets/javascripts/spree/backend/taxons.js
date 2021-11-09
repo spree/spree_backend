@@ -19,7 +19,7 @@ $(function () {
         return $.ajax({
           url: Spree.routes.classifications_api_v2 + '/' + classificationId.toString() + '/reposition',
           headers: Spree.apiV2Authentication(),
-          method: 'PUT',
+          method: 'PATCH',
           dataType: 'json',
           data: {
             classification: {
