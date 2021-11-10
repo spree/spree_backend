@@ -32,32 +32,24 @@ function handleTogglePageVisibility(obj) {
   let checkedState = null
   if (obj.checked) checkedState = true
 
-  const pageId = parseInt(obj.dataset.cmsPageId, 10)
+  const pageId = obj.dataset.cmsPageId
 
   const data = {
     cms_page: {
       visible: checkedState
     }
   }
+  const requestData = {
+     uri: Spree.routes.pages_api_v2 + `/${pageId}`,
+     method: 'PATCH',
+     dataBody: data,
+  }
+  spreeFetchRequest(requestData, handleToggleSuccess)
 
-  fetch(Spree.routes.pages_api_v2 + `/${pageId}`, {
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Bearer ' + OAUTH_TOKEN,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.ok) {
-        reloadPreview()
-        toggleVisibilityState(obj)
-      } else {
-        // eslint-disable-next-line no-undef
-        spreeHandleApiRequestError(response)
-      }
-    })
-    .catch(err => { console.error(err) })
+  function handleToggleSuccess() {
+    toggleVisibilityState(obj)
+    reloadPreview()
+  }
 }
 
 function toggleVisibilityState(obj) {
@@ -83,30 +75,18 @@ function reloadPreview() {
 }
 
 function handleSectionReposition(evt) {
-  const sectionId = parseInt(evt.item.dataset.sectionId, 10)
+  const sectionId = evt.item.dataset.sectionId
   const data = {
     cms_section: {
       position: parseInt(evt.newIndex, 10) + 1
     }
   }
-
-  fetch(`${Spree.routes.sections_api_v2}/${sectionId}`, {
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Bearer ' + OAUTH_TOKEN,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.ok) {
-        reloadPreview()
-      } else {
-        // eslint-disable-next-line no-undef
-        spreeHandleApiRequestError(response.status)
-      }
-    })
-    .catch(err => { console.error(err) })
+  const requestData = {
+     uri: `${Spree.routes.sections_api_v2}/${sectionId}`,
+     method: 'PATCH',
+     dataBody: data,
+  }
+  spreeFetchRequest(requestData, reloadPreview)
 }
 
 function updateCmsPageType() {
