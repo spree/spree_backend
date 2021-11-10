@@ -82,6 +82,32 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     expect(page).to have_css('#taxon_icon_field img')
   end
 
+  # it 'admin should be able to drag and save' do
+  #   taxon_2 = create(:taxon, name: 'Drag Test')
+
+  #   product_drag_a = create(:product, stores: Spree::Store.all)
+  #   product_drag_b = create(:product, stores: Spree::Store.all)
+  #   product_drag_c = create(:product, stores: Spree::Store.all)
+  #   product_drag_d = create(:product, stores: Spree::Store.all)
+  #   product_drag_e = create(:product, stores: Spree::Store.all)
+
+  #   product_drag_a.taxons << taxon_2
+  #   product_drag_b.taxons << taxon_2
+  #   product_drag_c.taxons << taxon_2
+  #   product_drag_d.taxons << taxon_2
+  #   product_drag_e.taxons << taxon_2
+
+  #   visit spree.admin_taxons_path
+
+  #   select2(taxon_2.pretty_name, css: '#taxonSearch', search: 'Drag')
+
+  #   first_item = page.find("li#product_#{product_drag_a.id} > div > nav > a")
+  #   last_item =  page.find("li#product_#{product_drag_e.id} > div > nav > a")
+
+  #   last_item.drag_to(first_item)
+  #   expect(page).to have_content('Fail')
+  # end
+
   it 'admin should be able to remove taxon icon' do
     add_icon_to_root_taxon
 

@@ -14,21 +14,24 @@ $(function () {
       swapThreshold: 0.9,
       forceFallback: true,
       onEnd: function (evt) {
-        var classificationId = evt.item.getAttribute('data-classification-id')
-        var newIndex = evt.newIndex
-        return $.ajax({
-          url: Spree.routes.classifications_api_v2 + '/' + classificationId.toString() + '/reposition',
-          headers: Spree.apiV2Authentication(),
-          method: 'PUT',
-          dataType: 'json',
-          data: {
-            classification: {
-              position: newIndex
-            }
-          }
-        })
+        handleClassificationReposition(evt)
       }
     })
+  }
+
+  function handleClassificationReposition(evt) {
+    var classificationId = evt.item.getAttribute('data-classification-id')
+    var data = {
+      classification: {
+        position: parseInt(evt.newIndex, 10) + 1
+      }
+    }
+    var requestData = {
+       uri: Spree.routes.classifications_api_v2 + '/' + classificationId,
+       method: 'PATCH',
+       dataBody: data,
+    }
+    spreeFetchRequest(requestData)
   }
 
   if (taxonId.length > 0) {
