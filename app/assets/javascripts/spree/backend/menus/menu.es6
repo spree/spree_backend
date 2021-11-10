@@ -34,23 +34,12 @@ function handleMenuItemMove(evt) {
       new_position_idx: parseInt(evt.newIndex, 10)
     }
   }
-
-  fetch(`${Spree.routes.menus_items_api_v2}/${evt.item.dataset.itemId}/reposition`, {
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Bearer ' + OAUTH_TOKEN,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-    .then(response => {
-      if (response.ok !== true) {
-        handleMenuItemMoveError()
-      }
-    })
-    .catch(err => {
-      console.error(err);
-    });
+  const requestData = {
+     uri: `${Spree.routes.menus_items_api_v2}/${evt.item.dataset.itemId}/reposition`,
+     method: 'PATCH',
+     dataBody: data,
+  }
+  spreeFetchRequest(requestData)
 }
 
 function handleMenuItemMoveError () {
