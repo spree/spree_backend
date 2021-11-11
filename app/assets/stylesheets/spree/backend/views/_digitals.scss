@@ -1,0 +1,13 @@
+.delete-digital-button-container {
+  min-width: 44px;
+  flex-grow: 0;
+  a {
+    padding: 3px;
+  }
+}
+
+.delete-digital-info-container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

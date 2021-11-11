@@ -1,38 +1,30 @@
-<div>
-  <%= form_for(:digital, url: admin_product_digitals_path(@product), method: :create, multipart: true ) do |f| %>
-    <fieldset>
-      <legend class='h4 pl-0 <%= variant.digital? ? "mb-0" : "mb-3" %>'><%= Spree::Variant.model_name.human %> "<%= variant.is_master ? "Master" : variant.options_text %>"</legend>
-      <% if variant.digital? %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th><%= Spree.t(:file_name, scope: "spree_digital") %></th>
-              <th class="actions"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% variant.digitals.each do |digital| %>
-              <tr>
-                <td>
-                  <%= digital.attachment.filename %>
-                  (<%= number_to_human_size(digital.attachment.byte_size) %>)
-                  <%= digital.attachment.content_type %>
-                </td>
-                <td class="actions text-right">
-                  <%= link_to_with_icon 'delete.svg', Spree.t(:delete_file, scope: 'digitals'), admin_product_digital_url(@product, digital), data: { confirm: Spree.t(:delete_file_confirmation, scope: 'digitals', filename: digital.attachment.filename) }, method: :delete, class: 'btn btn-danger btn-sm delete-resource' %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
-
-      <div class="form-group">
-        <%= f.label :file, Spree.t(:add_new_file, scope: 'digitals') %> <span class="required">*</span><br>
-        <%= f.file_field :attachment %>
-        <%= hidden_field_tag 'digital[variant_id]', variant.id %>
-        <%= button Spree.t(:upload, scope: "spree_digital"), 'add.svg', 'submit', { class: 'btn btn-primary' } %>
+<%= form_for(:digital, url: admin_product_digitals_path(@product), method: :create, multipart: true ) do |f| %>
+    <% if variant.digital? %>
+        <div class="row">
+        <% variant.digitals.each do |digital| %>
+          <div class="col-12 col-md-6 mb-3 removable-dom-element">
+            <div class="d-flex flex-row align-items-center border rounded">
+              <div class="col p-0" style="width: 50px; flex-grow: 0;">
+                <%= asset_icon(digital) %>
+              </div>
+              <div class="col p-2 delete-digital-info-container">
+                <span>Name:</span> <span class="text-secondary"><%= digital.attachment.filename %></span><br>
+                <span>Size:</span> <span class="text-secondary"><%= number_to_human_size(digital.attachment.byte_size) %></span>
+              </div>
+              <div class="col p-2 text-right delete-digital-button-container">
+                <%= link_to (svg_icon name: "close.svg", width: '20', height: '20'), admin_product_digital_url(@product, digital), data: { confirm: Spree.t(:delete_file_confirmation, scope: 'digitals', filename: digital.attachment.filename) }, method: :delete, class: 'btn delete-resource' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </fieldset>
-  <% end %>
-</div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :file, Spree.t(:add_new_file, scope: 'digitals'), id: "digital_attachment_#{variant.id}" %> <span class="required">*</span><br>
+      <%= f.file_field :attachment, id: "digital_attachment_#{variant.id}", class: 'upload-button-toggle', data: { upload_input_id_value: variant.id } %>
+      <%= hidden_field_tag 'digital[variant_id]', variant.id %>
+      <%= button Spree.t(:upload, scope: "spree_digital"), 'add.svg', 'submit', { class: 'btn btn-primary', data: { upload_button_id_value: variant.id } } %>
+    </div>
+<% end %>
+
