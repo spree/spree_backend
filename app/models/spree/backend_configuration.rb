@@ -11,6 +11,7 @@ module Spree
     preference :locale, :string, default: Rails.application.config.i18n.default_locale
     preference :variants_per_page, :integer, default: Kaminari.config.default_per_page
     preference :menus_per_page, :integer, default: Kaminari.config.default_per_page
+    preference :cms_page_wysiwyg_editor_enabled, :boolean, default: true
     preference :product_wysiwyg_editor_enabled, :boolean, default: true
     preference :taxon_wysiwyg_editor_enabled, :boolean, default: true
     preference :show_only_complete_orders_by_default, :boolean, default: true
