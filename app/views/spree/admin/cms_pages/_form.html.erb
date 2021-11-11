@@ -124,7 +124,7 @@
   <div class="row">
     <div class="col-12">
       <%= f.field_container :content, class: ['form-group']  do %>
-        <%= f.text_area :content, { rows: 22, class: 'spree-rte'} %>
+        <%= f.text_area :content, { rows: 22, class: "form-control #{"spree-rte" if cms_page_wysiwyg_editor_enabled? }" } %>
         <%= f.error_message_on :content %>
       <% end %>
     </div>

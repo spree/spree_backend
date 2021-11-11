@@ -286,6 +286,10 @@ module Spree
         end
       end
 
+      def cms_page_wysiwyg_editor_enabled?
+        Spree::Backend::Config[:cms_page_wysiwyg_editor_enabled]
+      end
+
       def product_wysiwyg_editor_enabled?
         Spree::Backend::Config[:product_wysiwyg_editor_enabled]
       end
