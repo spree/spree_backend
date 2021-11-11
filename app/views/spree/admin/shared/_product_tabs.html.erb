@@ -52,5 +52,13 @@
         class: "nav-link #{'active' if current == :prices}" %>
 
     <% end if can?(:admin, Spree::Price) && !@product.deleted? %>
+
+    <%= content_tag :li do %>
+      <%= link_to_with_icon 'hdd.svg',
+        Spree.t(:digital_assets, scope: 'digitals'),
+        admin_product_digitals_path(@product),
+        class: "nav-link #{'active' if current == :digitals} #{current}" %>
+
+    <% end if can?(:admin, Spree::Digital) && !@product.deleted? %>
   </ul>
 <% end %>

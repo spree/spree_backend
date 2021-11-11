@@ -1,0 +1,9 @@
+<%= render partial: 'spree/admin/shared/product_tabs', locals: { current: :digitals } %>
+
+<% if @product.has_variants? %>
+  <% for variant in @product.variants do %>
+    <%= render 'form', variant: variant %>
+  <% end %>
+<% else %>
+  <%= render 'form', variant: @product.master %>
+<% end %>
