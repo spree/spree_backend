@@ -74,6 +74,7 @@ en:
         search_for_a_product: Search for a Product
       tab:
         configuration: Configuration
+        integrations: Integrations
         content: Content
         option_types: Option Types
         orders: Orders

@@ -1,0 +1,4 @@
+<ul data-hook="admin_integrations_sidebar_menu" class="border-top bg-white collapse nav nav-pills nav-stacked" id="sidebar-integration">
+  <%= configurations_sidebar_menu_item(Spree.t(:payment_methods), spree.admin_payment_methods_path) if can? :manage, Spree::PaymentMethod %>
+  <%= configurations_sidebar_menu_item(Spree.t(:shipping_methods), spree.admin_shipping_methods_path) if can? :manage, Spree::ShippingMethod %>
+</ul>
