@@ -1,4 +1,8 @@
-// Use this file for Bootstrap customization applied across the Spree Backend
+import jquery from 'jquery'
+import 'bootstrap'
+import 'popper.js'
+
+const $ = jquery
 
 document.addEventListener('DOMContentLoaded', function() {
   $('.with-tip').each(function() {
