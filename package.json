@@ -1,6 +1,6 @@
 {
   "name": "@spree/dashboard",
-  "version": "0.0.1-alpha1",
+  "version": "0.0.1",
   "description": "Spree Dashboard",
   "main": "app/assets/javascripts/spree_dashboard.js",
   "type": "module",
@@ -20,7 +20,10 @@
   "license": "MIT",
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
-    "@hotwired/turbo": "^7.0.1"
+    "@hotwired/turbo": "^7.0.1",
+    "bootstrap": "4.6.1",
+    "jquery": "3.5.1",
+    "popper.js": "1.16.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.1",

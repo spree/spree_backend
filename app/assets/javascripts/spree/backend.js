@@ -2,8 +2,6 @@
 //= require sortable
 //= require flatpickr
 //= require jquery3
-//= require popper
-//= require bootstrap-sprockets
 //= require handlebars
 //= require cleave
 //= require js.cookie
