@@ -47,10 +47,10 @@ $.fn.variantAutocomplete = function () {
         var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer
         new JSONAPIDeserializer({ keyForAttribute: 'snake_case' }).deserialize(data, function (_err, variants) {
           jsonApiVariants = variants
+          window.variants = variants
         })
       },
       processResults: function (_data) {
-        window.varants = jsonApiVariants
         return { results: jsonApiVariants } // we need to return deserialized json api data
       }
     },
