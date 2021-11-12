@@ -36,6 +36,6 @@
     "build": "rollup --config rollup.config.js",
     "watch": "rollup --config rollup.config.js -w",
     "lint": "eslint app/javascript",
-    "prepublishOnly": "rm -rf src && cp -R app/javascript/spree_dashboard src"
+    "prepublishOnly": "rm -rf src && cp -R app/javascript/spree/dashboard src"
   }
 }
