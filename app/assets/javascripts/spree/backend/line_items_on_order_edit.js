@@ -5,11 +5,11 @@ $(document).ready(function () {
 
   // handle variant selection, show stock level.
   $('#add_line_item_variant_id').change(function () {
-    var variantId = $(this).val()
+    var variantId = $(this).val().toString()
 
     var variant = _.find(window.variants, function (variant) {
       // eslint-disable-next-line eqeqeq
-      return variant.id == variantId
+      return variant.id.toString() == variantId
     })
     $('#stock_details').html(variantLineItemTemplate({ variant: variant }))
     $('#stock_details').show()

@@ -5,9 +5,9 @@ $(document).ready(function () {
 
   // handle variant selection, show stock level.
   $('#add_variant_id').change(function () {
-    var variantId = parseInt($(this).val())
+    var variantId = $(this).val().toString()
     var variant = _.find(window.variants, function (variant) {
-      return variant.id === variantId
+      return variant.id.toString() === variantId
     })
 
     $('#stock_details').html(variantStockTemplate({ variant: variant }))

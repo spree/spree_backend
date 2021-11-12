@@ -149,6 +149,10 @@ describe 'New Order', type: :feature do
 
       click_on 'Shipments'
       select2 product.name, from: Spree.t(:name_or_sku), search: true
+
+      expect(page).to have_content(product.name)
+      expect(page).to have_content('Select stock')
+
       click_icon :add
       expect(page).not_to have_content('Your order is empty')
 

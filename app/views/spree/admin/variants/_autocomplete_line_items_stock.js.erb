@@ -13,7 +13,7 @@
       <tr>
         <td>{{variant.name}}</td>
         {{#if variant.track_inventory}}
-          {{#if variant.is_orderable}}
+          {{#if variant.purchasable}}
             <td class="text-center">
               {{variant.total_on_hand}}
             </td>
@@ -29,7 +29,7 @@
               </span>
             </td>
           {{else}}
-            {{#if variant.is_backorderable}}
+            {{#if variant.backorderable}}
               <td class="text-center">
                 {{variant.total_on_hand}} (<%= Spree.t(:backorders_allowed) %>)
               </td>
