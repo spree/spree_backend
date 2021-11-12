@@ -37,7 +37,7 @@ $.fn.variantAutocomplete = function () {
           filter: {
             search_by_product_name_or_sku: params.term
           },
-          include: 'images'
+          include: 'images,stock_items.stock_location'
         }
 
         return query;

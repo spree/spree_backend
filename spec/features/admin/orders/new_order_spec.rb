@@ -148,10 +148,7 @@ describe 'New Order', type: :feature do
       click_on 'Update'
 
       click_on 'Shipments'
-      # select2 product.name, from: Spree.t(:name_or_sku), search: true
-      select2_open label: Spree.t(:name_or_sku)
-      select2_search product.name, from: Spree.t(:name_or_sku)
-      select2_select product.name, from: Spree.t(:name_or_sku), match: :first
+      select2 product.name, from: Spree.t(:name_or_sku), search: true
 
       expect(page).to have_content(product.name)
       expect(page).to have_content('Select stock')
