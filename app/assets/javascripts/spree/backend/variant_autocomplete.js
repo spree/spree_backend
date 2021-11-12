@@ -14,8 +14,8 @@ function formatVariantResult(variant) {
     return variant.text
   }
 
-  if (variant['images'][0] !== undefined && variant['images'][0].formatted_url !== undefined) {
-    variant.image = variant.images[0].formatted_url
+  if (variant['images'][0] !== undefined && variant['images'][0].transformed_url !== undefined) {
+    variant.image = variant.images[0].transformed_url
   }
   return $(variantTemplate({
     variant: variant
@@ -37,7 +37,10 @@ $.fn.variantAutocomplete = function () {
           filter: {
             search_by_product_name_or_sku: params.term
           },
-          include: 'images,stock_items.stock_location'
+          include: 'images,stock_items.stock_location',
+          image_transformation: {
+            size: '100x100'
+          }
         }
 
         return query;
