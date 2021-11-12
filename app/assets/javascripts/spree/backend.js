@@ -99,6 +99,7 @@ Spree.routes.products_api_v2 = Spree.pathFor('/api/v2/platform/products')
 Spree.routes.sections_api_v2 = Spree.pathFor('/api/v2/platform/cms_sections')
 Spree.routes.taxons_api_v2 = Spree.pathFor('/api/v2/platform/taxons')
 Spree.routes.users_api_v2 = Spree.pathFor('api/v2/platform/users')
+Spree.routes.variants_api_v2 = Spree.pathFor('api/v2/platform/variants')
 
 Spree.apiV2Authentication = function() {
   return {
