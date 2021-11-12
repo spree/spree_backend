@@ -119,6 +119,13 @@ module Spree
         redirect_back fallback_location: spree.edit_admin_order_url(@order)
       end
 
+      def reset_digitals
+        load_order
+        @order.digital_links.each(&:reset!)
+        flash[:notice] = Spree.t('admin.digitals.downloads_reset')
+        redirect_to spree.edit_admin_order_path(@order)
+      end
+
       def open_adjustments
         adjustments = @order.all_adjustments.finalized
         adjustments.update_all(state: 'open')

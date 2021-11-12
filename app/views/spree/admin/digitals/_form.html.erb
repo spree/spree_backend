@@ -1,10 +1,10 @@
-<%= form_for(:digital, url: admin_product_digitals_path(@product), method: :create, multipart: true ) do |f| %>
+<%= form_for :digital, url: admin_product_digitals_path(@product) do |f| %>
     <% if variant.digital? %>
         <div class="row">
         <% variant.digitals.each do |digital| %>
           <div class="col-12 col-md-6 mb-3 removable-dom-element">
-            <div class="d-flex flex-row align-items-center border rounded">
-              <div class="col p-0" style="width: 50px; flex-grow: 0;">
+            <div class="d-flex flex-row align-items-center digital-container border rounded">
+              <div class="col p-0 delete-digital-icon-container">
                 <%= asset_icon(digital) %>
               </div>
               <div class="col p-2 delete-digital-info-container">

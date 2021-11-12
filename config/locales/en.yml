@@ -68,6 +68,11 @@ en:
           layout_style: Layout Style
           square_image: Please use an image with an aspect ratio of 18:13 (1080px x 780px).
           tall_image: Please use an image with an aspect ratio of 27:40 (1080px x 1600px).
+      digitals:
+        digital: Digital
+        digital_assets: Digital Assets
+        reset_download_links: Reset Digital Download Links
+        downloads_reset: Digital Download Links Reset
       linkable:
         search_for_a_page: Search for a page
         search_for_a_taxon: Search for a Taxon

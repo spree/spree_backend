@@ -55,7 +55,7 @@
 
     <%= content_tag :li do %>
       <%= link_to_with_icon 'hdd.svg',
-        Spree.t(:digital_assets, scope: 'digitals'),
+        Spree.t('admin.digitals.digital_assets'),
         admin_product_digitals_path(@product),
         class: "nav-link #{'active' if current == :digitals} #{current}" %>
 

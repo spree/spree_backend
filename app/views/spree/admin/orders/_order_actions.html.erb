@@ -8,4 +8,10 @@
           method: :post,
           icon: 'envelope.svg' %>
   <% end %>
+
+  <% if can? :update, @order && @order.some_digital? %>
+    <%= button_link_to Spree.t('admin.digitals.reset_download_links'),
+        reset_digitals_admin_order_url(@order),
+        icon: 'hdd.svg' %>
+  <% end %>
 <% end %>
