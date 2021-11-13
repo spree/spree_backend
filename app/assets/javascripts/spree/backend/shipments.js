@@ -1,4 +1,4 @@
-/* global shipments, variantStockTemplate, order_number */
+/* global shipments, variantStockTemplate, order_number, order_id */
 // Shipments AJAX API
 $(document).ready(function () {
   'use strict'

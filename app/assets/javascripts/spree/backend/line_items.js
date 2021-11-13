@@ -37,19 +37,19 @@ function toggleLineItemEdit () {
 
 function lineItemURL (lineItemId) {
   // eslint-disable-next-line camelcase
-  return Spree.routes.orders_api + '/' + order_number + '/line_items/' + lineItemId + '.json'
+  return Spree.routes.line_items_api_v2 + '/' + lineItemId
 }
 
 function adjustLineItem (lineItemId, quantity) {
   $.ajax({
-    type: 'PUT',
+    type: 'PATCH',
     url: Spree.url(lineItemURL(lineItemId)),
     data: {
       line_item: {
         quantity: quantity
-      },
-      token: Spree.api_key
-    }
+      }
+    },
+    headers: Spree.apiV2Authentication(),
   }).done(function () {
     window.Spree.advanceOrder()
   })
@@ -59,9 +59,7 @@ function deleteLineItem (lineItemId) {
   $.ajax({
     type: 'DELETE',
     url: Spree.url(lineItemURL(lineItemId)),
-    headers: {
-      'X-Spree-Token': Spree.api_key
-    }
+    headers: Spree.apiV2Authentication(),
   }).done(function () {
     $('#line-item-' + lineItemId).remove()
     if ($('.line-items tr.line-item').length === 0) {
