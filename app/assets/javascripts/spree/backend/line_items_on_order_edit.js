@@ -35,9 +35,9 @@ adjustLineItems = function(order_id, variant_id, quantity){
         order_id: order_id,
         variant_id: variant_id,
         quantity: quantity
-      },
-      headers: Spree.apiV2Authentication()
-    }
+      }
+    },
+    headers: Spree.apiV2Authentication()
   }).done(function () {
       window.Spree.advanceOrder()
       window.location.reload()
