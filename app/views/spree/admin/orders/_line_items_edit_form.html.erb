@@ -25,6 +25,7 @@
 
   <script>
     var order_number = '<%= @order.number %>';
+    var order_id = '<%= @order.id %>';
     var shipments = [];
 
     <% @order.shipments.each do |shipment| %>
