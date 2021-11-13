@@ -1,4 +1,4 @@
-/* global variantLineItemTemplate, order_number */
+/* global variantLineItemTemplate, order_number, order_id */
 // This file contains the code for interacting with line items in the manual cart
 $(document).ready(function () {
   'use strict'
@@ -22,31 +22,30 @@ function addVariant () {
   var variantId = $('select.variant_autocomplete').val()
   var quantity = $('input#variant_quantity').val()
 
-  adjustLineItems(order_number, variantId, quantity)
+  adjustLineItems(order_id, variantId, quantity)
   return 1
 }
 
-adjustLineItems = function(order_number, variant_id, quantity){
-    var url = Spree.routes.orders_api + '/' + order_number + '/line_items'
-
-    $.ajax({
-      type: 'POST',
-      url: Spree.url(url),
-      data: {
-        line_item: {
-          variant_id: variant_id,
-          quantity: quantity
-        },
-        token: Spree.api_key
-      }
-    }).done(function () {
-        window.Spree.advanceOrder()
-        window.location.reload()
-    }).fail(function (msg) {
-      if (typeof msg.responseJSON.message != 'undefined') {
-        alert(msg.responseJSON.message)
-      } else {
-        alert(msg.responseJSON.exception)
-      }
-    })
+adjustLineItems = function(order_id, variant_id, quantity){
+  $.ajax({
+    type: 'POST',
+    url: Spree.routes.line_items_api_v2,
+    data: {
+      line_item: {
+        order_id: order_id,
+        variant_id: variant_id,
+        quantity: quantity
+      },
+      headers: Spree.apiV2Authentication()
+    }
+  }).done(function () {
+      window.Spree.advanceOrder()
+      window.location.reload()
+  }).fail(function (msg) {
+    if (typeof msg.responseJSON.message != 'undefined') {
+      alert(msg.responseJSON.message)
+    } else {
+      alert(msg.responseJSON.exception)
+    }
+  })
 }
