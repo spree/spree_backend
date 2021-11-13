@@ -37,7 +37,7 @@ jQuery(function ($) {
       })
     }
 
-    Payment.prototype.update = function (attributes) {
+    Payment.prototype.update = function (attributes, onDone) {
       this.updating = true
       var jqXHR = $.ajax({
         type: 'PATCH',
@@ -52,10 +52,12 @@ jQuery(function ($) {
       }.bind(this))
       jqXHR.done(function (data) {
         this.data = data.data
+        onDone()
       }.bind(this))
       jqXHR.fail(function () {
         var response = (jqXHR.responseJSON && jqXHR.responseJSON.error) || jqXHR.statusText
         show_flash('error', response)
+        onDone()
       })
       return jqXHR
     }
@@ -194,11 +196,14 @@ jQuery(function ($) {
 
     EditPaymentView.prototype.save = function () {
       if (!this.payment.updating) {
-        return this.payment.update({
-          amount: this.$input().val()
-        }).done(function () {
-          return this.show()
-        }.bind(this))
+        return this.payment.update(
+          {
+            amount: this.$input().val()
+          },
+          function () {
+            this.show()
+          }.bind(this)
+        )
       }
     }
 
