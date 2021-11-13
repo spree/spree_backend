@@ -1,5 +1,6 @@
 //= link_tree ../images
 
+//= link spree-dashboard.js
 //= link spree/backend/all.js
 //= link spree/backend/all.css
 //= link jquery.jstree/themes/spree/style.css
