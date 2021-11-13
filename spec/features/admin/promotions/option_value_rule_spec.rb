@@ -3,8 +3,9 @@ require 'spec_helper'
 describe 'Promotion with option value rule', type: :feature do
   stub_authorization!
 
-  let(:variant) { create :variant }
-  let!(:product) { variant.product }
+  let(:store) { Spree::Store.default }
+  let(:product) { create(:product, stores: [store]) }
+  let!(:variant) { create(:variant, product: product) }
   let!(:option_value) { variant.option_values.first }
 
   let(:promotion) { create :promotion }
@@ -38,8 +39,8 @@ describe 'Promotion with option value rule', type: :feature do
   end
 
   context 'with an existing option value rule' do
-    let(:variant1) { create :variant }
-    let(:variant2) { create :variant }
+    let(:variant1) { create(:variant, product: create(:product, stores: [store])) }
+    let(:variant2) { create(:variant, product: create(:product, stores: [store])) }
 
     before do
       rule = Spree::Promotion::Rules::OptionValue.new
