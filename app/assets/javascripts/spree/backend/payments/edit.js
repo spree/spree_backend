@@ -13,21 +13,25 @@ jQuery(function ($) {
     return child
   }
   var hasProp = {}.hasOwnProperty
-  var EditPaymentView, Payment, PaymentView, ShowPaymentView, orderId
-  orderId = $('#payments').data('order-id')
+  var EditPaymentView, Payment, PaymentView, ShowPaymentView
   Payment = (function () {
-    function Payment (number) {
-      this.url = Spree.url(((Spree.routes.payments_api(orderId)) + '/' + number + '.json') + '?token=' + Spree.api_key)
-      this.json = $.getJSON(this.url.toString(), function (data) {
-        this.data = data
-      }.bind(this))
+    function Payment (id) {
+      this.url = Spree.routes.payments_api_v2 + '/' + id
+      this.json = $.ajax({
+        dataType: "json",
+        url: this.url,
+        headers: Spree.apiV2Authentication(),
+        success: function (data) {
+          this.data = data.data
+        }.bind(this)
+      })
       this.updating = false
     }
 
     Payment.prototype.if_editable = function (callback) {
       return this.json.done(function (data) {
         var ref
-        if ((ref = data.state) === 'checkout' || ref === 'pending') {
+        if ((ref = data.data.attributes.state) === 'checkout' || ref === 'pending') {
           return callback()
         }
       })
@@ -36,17 +40,18 @@ jQuery(function ($) {
     Payment.prototype.update = function (attributes) {
       this.updating = true
       var jqXHR = $.ajax({
-        type: 'PUT',
-        url: this.url.toString(),
+        type: 'PATCH',
+        url: this.url,
         data: {
           payment: attributes
-        }
+        },
+        headers: Spree.apiV2Authentication()
       })
       jqXHR.always(function () {
         this.updating = false
       }.bind(this))
       jqXHR.done(function (data) {
-        this.data = data
+        this.data = data.data
       }.bind(this))
       jqXHR.fail(function () {
         var response = (jqXHR.responseJSON && jqXHR.responseJSON.error) || jqXHR.statusText
@@ -56,11 +61,11 @@ jQuery(function ($) {
     }
 
     Payment.prototype.amount = function () {
-      return this.data.amount
+      return this.data.attributes.amount
     }
 
     Payment.prototype.display_amount = function () {
-      return this.data.display_amount
+      return this.data.attributes.display_amount
     }
     return Payment
   })()
@@ -223,7 +228,7 @@ jQuery(function ($) {
   })(PaymentView)
   return $('.admin tr[data-hook=payments_row]').each(function () {
     var $el = $(this)
-    var payment = new Payment($el.attr('data-number'))
+    var payment = new Payment($el.attr('data-id'))
     return payment.if_editable(function () {
       return new ShowPaymentView($el, payment)
     })
