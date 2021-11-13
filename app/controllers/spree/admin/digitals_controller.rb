@@ -5,7 +5,7 @@ module Spree
 
       private
 
-      def location_after_save
+      def collection_url
         spree.admin_product_digitals_path(@product)
       end
 

@@ -123,7 +123,8 @@ module Spree
         load_order
         @order.digital_links.each(&:reset!)
         flash[:notice] = Spree.t('admin.digitals.downloads_reset')
-        redirect_to spree.edit_admin_order_path(@order)
+
+        redirect_back fallback_location: spree.edit_admin_order_url(@order)
       end
 
       def open_adjustments

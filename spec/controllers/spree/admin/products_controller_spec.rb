@@ -24,8 +24,6 @@ describe Spree::Admin::ProductsController, type: :controller do
     end
   end
 
-
-
   # regression test for #1370
   context 'adding properties to a product' do
     let!(:product) { create(:product, stores: [store]) }
