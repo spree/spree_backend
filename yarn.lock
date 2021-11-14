@@ -96,6 +96,17 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
+"@spree/dashboard@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@spree/dashboard/-/dashboard-0.0.1.tgz#ad967ca489b3690681ae751362b26d6e34876bf2"
+  integrity sha512-hyZzuch9wmEN878XiOZx5EOL/MwIPgk1vwX30m8xUfRAOQjwbfAxKs4Riuy2ZuWv1PY1LwxxKfKOAF7G7DjMPw==
+  dependencies:
+    "@hotwired/stimulus" "^3.0.1"
+    "@hotwired/turbo" "^7.0.1"
+    bootstrap "4.6.1"
+    jquery "3.5.1"
+    popper.js "1.16.1"
+
 "@types/estree@*":
   version "0.0.50"
   resolved "https://registry.npmjs.org/@types/estree/-/estree-0.0.50.tgz"
