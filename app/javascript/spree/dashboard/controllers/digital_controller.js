@@ -4,10 +4,10 @@ export default class extends Controller {
   static targets = [ "uploadButton"]
 
   initialize() {
-    this.uploadButtonTarget.disabled = true
+    this.uploadButtonTarget.disabled = false
   }
 
   buttonState() {
-    this.uploadButtonTarget.disabled = true
+    this.uploadButtonTarget.disabled = false
   }
 }
