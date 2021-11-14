@@ -3,12 +3,12 @@ import commonjs from "@rollup/plugin-commonjs"
 import { terser } from "rollup-plugin-terser"
 
 const terserOptions = {
- mangle: false,
- compress: false,
- format: {
-   beautify: true,
-   indent_level: 2
- }
+  mangle: false,
+  compress: false,
+  format: {
+    beautify: true,
+    indent_level: 2
+  }
 }
 
 export default [
