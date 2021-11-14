@@ -1,10 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "name" ]
+  static targets = [ "uploadButton"]
 
-  greet() {
-    console.log(`Hello, ${this.name}!`)
+  initialize() {
+    this.uploadButtonTarget.disabled = true
   }
 
+  buttonState() {
+    this.uploadButtonTarget.disabled = false
+  }
 }
