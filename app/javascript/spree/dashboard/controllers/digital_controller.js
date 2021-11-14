@@ -4,10 +4,10 @@ export default class extends Controller {
   static targets = [ "uploadButton"]
 
   initialize() {
-    THE TESTS SHOULD FAIL
+    this.uploadButtonTarget.disabled = true
   }
 
   buttonState() {
-    THE TESTS SHOULD FAIL
+    this.uploadButtonTarget.disabled = true
   }
 }
