@@ -2,26 +2,26 @@ module Spree
   module Admin
     module DigitalHelper
       def asset_icon(asset)
-        icon_size = 50
+        file_name = case asset.attachment.content_type
+                    when /pdf\z/
+                      'file-earmark-pdf.svg'
+                    when /\Aimage/
+                      'file-earmark-image.svg'
+                    when /zip\z/
+                      'file-earmark-zip.svg'
+                    when 'text/csv', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                      'file-earmark-spreadsheet.svg'
+                    when /\Avideo/
+                      'file-earmark-play.svg'
+                    when /\Aaudio/
+                      'file-earmark-music.svg'
+                    when /\Afont/
+                      'file-earmark-font.svg'
+                    else
+                      'file-earmark.svg'
+                    end
 
-        case asset.attachment.content_type
-        when 'application/pdf'
-          svg_icon name: 'file-earmark-pdf.svg', width: icon_size, height: icon_size
-        when 'image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/bmp', 'image/tiff', 'image/svg+xml'
-          svg_icon name: 'file-earmark-image.svg', width: icon_size, height: icon_size
-        when 'application/zip', 'application/epub+zip', 'application/zip', 'application/gzip'
-          svg_icon name: 'file-earmark-zip.svg', width: icon_size, height: icon_size
-        when 'text/csv'
-          svg_icon name: 'file-earmark-spreadsheet.svg', width: icon_size, height: icon_size
-        when 'video/mpeg', 'video/webm', 'video/mp4', 'video/quicktime'
-          svg_icon name: 'file-earmark-play.svg', width: icon_size, height: icon_size
-        when 'audio/mp4', 'audio/mpeg', 'audio/ogg', 'audio/aac'
-          svg_icon name: 'file-earmark-music.svg', width: icon_size, height: icon_size
-        when 'font/otf', 'font/ttf', 'font/woff', 'font/woff2'
-          svg_icon name: 'file-earmark-font.svg', width: icon_size, height: icon_size
-        else
-          svg_icon name: 'file-earmark.svg', width: icon_size, height: icon_size
-        end
+        svg_icon name: file_name, width: 50, height: 50
       end
     end
   end
