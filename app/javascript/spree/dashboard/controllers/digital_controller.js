@@ -8,6 +8,6 @@ export default class extends Controller {
   }
 
   buttonState() {
-    this.uploadButtonTarget.disabled = false
+    this.uploadButtonTarget.disabled = true
   }
 }
