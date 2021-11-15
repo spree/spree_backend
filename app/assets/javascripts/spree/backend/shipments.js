@@ -45,18 +45,19 @@ $(document).ready(function () {
       var shipmentNumber = del.data('shipment-number')
       var variantId = del.data('variant-id')
       // eslint-disable-next-line
-      var shipment = _.findWhere(shipments, { number: shipmentNumber + '' })
-      var url = Spree.routes.shipments_api + '/' + shipmentNumber + '/remove'
+      var url = Spree.routes.shipments_api_v2 + '/' + shipmentNumber + '/remove_item'
 
       toggleItemEdit()
 
       $.ajax({
-        type: 'PUT',
+        type: 'PATCH',
         url: Spree.url(url),
         data: {
-          variant_id: variantId,
-          token: Spree.api_key
-        }
+          shipment: {
+            variant_id: variantId
+          }
+        },
+        headers: Spree.apiV2Authentication()
       }).done(function (msg) {
         window.location.reload()
       }).fail(function (msg) {
@@ -69,14 +70,11 @@ $(document).ready(function () {
   // handle ship click
   $('[data-hook=admin_shipment_form] a.ship').on('click', function () {
     var link = $(this)
-    var shipmentNumber = link.data('shipment-number')
-    var url = Spree.url(Spree.routes.shipments_api + '/' + shipmentNumber + '/ship.json')
+    var url = Spree.url(Spree.routes.shipments_api_v2 + '/' + link.data('shipment-number') + '/ship')
     $.ajax({
-      type: 'PUT',
+      type: 'PATCH',
       url: url,
-      data: {
-        token: Spree.api_key
-      }
+      headers: Spree.apiV2Authentication()
     }).done(function () {
       window.location.reload()
     }).fail(function (msg) {
@@ -96,18 +94,18 @@ $(document).ready(function () {
     var shipmentNumber = link.data('shipment-number')
     var selectedShippingRateId = link.parents('tbody').find("select#selected_shipping_rate_id[data-shipment-number='" + shipmentNumber + "']").val()
     var unlock = link.parents('tbody').find("input[name='open_adjustment'][data-shipment-number='" + shipmentNumber + "']:checked").val()
-    var url = Spree.url(Spree.routes.shipments_api + '/' + shipmentNumber + '.json')
+    var url = Spree.url(Spree.routes.shipments_api_v2 + '/' + shipmentNumber + '.json')
 
     $.ajax({
-      type: 'PUT',
+      type: 'PATCH',
       url: url,
       data: {
         shipment: {
           selected_shipping_rate_id: selectedShippingRateId,
           unlock: unlock
         },
-        token: Spree.api_key
-      }
+      },
+      headers: Spree.apiV2Authentication()
     }).done(function () {
       window.location.reload()
     }).fail(function (msg) {
@@ -128,16 +126,11 @@ $(document).ready(function () {
   $('a.cancel-tracking').click(toggleTrackingEdit)
 
   function createTrackingValueContent(data) {
-    var selectedShippingMethod = data.shipping_methods.filter(function (method) {
-      return method.id === data.selected_shipping_rate.shipping_method_id
-    })[0]
-
-    if (selectedShippingMethod && selectedShippingMethod.tracking_url) {
-      var shipmentTrackingUrl = selectedShippingMethod.tracking_url.replace(/:tracking/, data.tracking)
-      return '<a target="_blank" href="' + shipmentTrackingUrl + '">' + data.tracking + '<a>'
+    if (data.attributes.tracking_url && data.attributes.tracking) {
+      return '<a target="_blank" href="' + data.attributes.tracking_url + '">' + data.attributes.tracking + '<a>'
     }
 
-    return data.tracking
+    return data.attributes.tracking
   }
 
   // handle tracking save
@@ -147,25 +140,25 @@ $(document).ready(function () {
     var link = $(this)
     var shipmentNumber = link.data('shipment-number')
     var tracking = link.parents('tbody').find('input#tracking').val()
-    var url = Spree.url(Spree.routes.shipments_api + '/' + shipmentNumber + '.json')
+    var url = Spree.url(Spree.routes.shipments_api_v2 + '/' + shipmentNumber + '.json')
 
     $.ajax({
-      type: 'PUT',
+      type: 'PATCH',
       url: url,
       data: {
         shipment: {
           tracking: tracking
-        },
-        token: Spree.api_key
-      }
-    }).done(function (data) {
+        }
+      },
+      headers: Spree.apiV2Authentication()
+    }).done(function (json) {
       link.parents('tbody').find('tr.edit-tracking').toggle()
 
       var show = link.parents('tbody').find('tr.show-tracking')
       show.toggle()
 
-      if (data.tracking) {
-        show.find('.tracking-value').html($('<strong>').html(Spree.translations.tracking + ': ')).append(createTrackingValueContent(data))
+      if (json.data.attributes.tracking) {
+        show.find('.tracking-value').html($('<strong>').html(Spree.translations.tracking + ': ')).append(createTrackingValueContent(json.data))
       } else {
         show.find('.tracking-value').html(Spree.translations.no_tracking_present)
       }
@@ -176,30 +169,32 @@ $(document).ready(function () {
 function adjustShipmentItems(shipmentNumber, variantId, quantity) {
   var shipment = _.findWhere(shipments, { number: shipmentNumber + '' })
   var inventoryUnits = _.where(shipment.inventory_units, { variant_id: variantId })
-  var url = Spree.routes.shipments_api + '/' + shipmentNumber
+  var url = Spree.routes.shipments_api_v2 + '/' + shipmentNumber
   var previousQuantity = inventoryUnits.reduce(function (accumulator, currentUnit, _index, _array) {
     return accumulator + currentUnit.quantity
   }, 0)
   var newQuantity = 0
 
   if (previousQuantity < quantity) {
-    url += '/add'
+    url += '/add_item'
     newQuantity = (quantity - previousQuantity)
   } else if (previousQuantity > quantity) {
-    url += '/remove'
+    url += '/remove_item'
     newQuantity = (previousQuantity - quantity)
   }
   url += '.json'
 
   if (newQuantity !== 0) {
     $.ajax({
-      type: 'PUT',
+      type: 'PATCH',
       url: Spree.url(url),
       data: {
-        variant_id: variantId,
-        quantity: newQuantity,
-        token: Spree.api_key
-      }
+        shipment: {
+          variant_id: variantId,
+          quantity: newQuantity,
+        }
+      },
+      headers: Spree.apiV2Authentication()
     }).done(function (msg) {
       window.location.reload()
     }).fail(function (msg) {
@@ -245,15 +240,15 @@ function startItemSplit(event) {
   $.ajax({
     type: 'GET',
     async: false,
-    url: Spree.url(Spree.routes.variants_api),
+    url: Spree.url(Spree.routes.variants_api_v2),
     data: {
-      q: {
+      filter: {
         'id_eq': variantId
-      },
-      token: Spree.api_key
-    }
-  }).done(function (data) {
-    variant = data['variants'][0]
+      }
+    },
+    headers: Spree.apiV2Authentication()
+  }).done(function (json) {
+    variant = json['data'][0]
   }).fail(function (msg) {
     alert(msg.responseJSON.message || msg.responseJSON.exception)
   })
@@ -308,10 +303,13 @@ function completeItemSplit(event) {
     }
 
     $.ajax({
-      type: 'POST',
+      type: 'PATCH',
       async: false,
-      url: Spree.url(Spree.routes.shipments_api + path),
-      data: $.extend(data, additionalData)
+      url: Spree.url(Spree.routes.shipments_api_v2 + path),
+      data: {
+        shipment: $.extend(data, additionalData)
+      },
+      headers: Spree.apiV2Authentication()
     }).fail(function (msg) {
       alert(msg.responseJSON.message || msg.responseJSON.exception)
     }).done(function (msg) {
@@ -347,13 +345,16 @@ function addVariantFromStockLocation(event) {
     $.ajax({
       type: 'POST',
       // eslint-disable-next-line camelcase
-      url: Spree.url(Spree.routes.shipments_api + '?shipment[order_id]=' + order_number),
+      url: Spree.routes.shipments_api_v2,
       data: {
-        variant_id: variantId,
-        quantity: quantity,
-        stock_location_id: stockLocationId,
-        token: Spree.api_key
-      }
+        shipment: {
+          order_id: order_id,
+          variant_id: variantId,
+          quantity: quantity,
+          stock_location_id: stockLocationId
+        }
+      },
+      headers: Spree.apiV2Authentication()
     }).done(function (msg) {
       window.location.reload()
     }).fail(function (msg) {
