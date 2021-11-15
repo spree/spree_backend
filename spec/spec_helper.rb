@@ -51,6 +51,8 @@ require 'spree/backend/testing_support/flatpickr_capybara'
 require 'spree/core/controller_helpers/strong_parameters'
 require 'webdrivers'
 
+require 'spree/api/testing_support/factories'
+
 RSpec.configure do |config|
   config.color = true
   config.default_formatter = 'doc'
