@@ -24,10 +24,10 @@
     </div>
   <% end %>
 
-  <div class="form-group" data-controller="digital">
+  <div class="form-group" data-controller="upload-button">
     <%= f.label :file, Spree.t('admin.digitals.add_new_file'), id: "digital_attachment_#{variant.id}" %> <span class="required">*</span><br>
-    <%= f.file_field :attachment, id: "digital_attachment_#{variant.id}", data: { action: "input->digital#buttonState" } %>
+    <%= f.file_field :attachment, id: "digital_attachment_#{variant.id}", data: { action: "input->upload-button#buttonState" } %>
     <%= hidden_field_tag 'digital[variant_id]', variant.id %>
-    <%= button Spree.t('admin.digitals.upload'), 'add.svg', 'submit', { data: { digital_target: "uploadButton" } } %>
+    <%= button Spree.t('admin.digitals.upload'), 'add.svg', 'submit', { data: { upload_button_target: "uploadButton" } } %>
   </div>
 <% end %>

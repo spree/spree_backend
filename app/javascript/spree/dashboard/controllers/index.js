@@ -2,5 +2,5 @@
 
 import { application } from "./application"
 
-import DigitalController from "./digital_controller"
-application.register("digital", DigitalController)
+import UploadButtonController from "./upload_button_controller"
+application.register("upload-button", UploadButtonController)
