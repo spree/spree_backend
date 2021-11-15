@@ -1470,7 +1470,7 @@
       }
     });
     // autodetect themes path
-    $(function () {
+    document.addEventListener("turbo:load", function() {
       if($.jstree._themes === false) {
         $("script").each(function () {
           if(this.src.toString().match(/jquery\.jstree[^\/]*?\.js(\?.*)?$/)) {
