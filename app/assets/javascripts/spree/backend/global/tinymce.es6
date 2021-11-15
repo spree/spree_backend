@@ -1,5 +1,6 @@
 document.addEventListener("turbo:load", function() {
-  // eslint-disable-next-line no-undef
+  tinymce.remove() // Required for turbo:load
+
   tinymce.init({
     selector: '.spree-rte',
     plugins: [
