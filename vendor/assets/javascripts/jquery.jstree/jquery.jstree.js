@@ -86,11 +86,11 @@
             try { tmp = document.createStyleSheet(opts.url); } catch (e) { }
           }
           else {
-            tmp			= document.createElement('link');
-            tmp.rel		= 'stylesheet';
-            tmp.type	= 'text/css';
-            tmp.media	= "all";
-            tmp.href	= opts.url;
+            tmp     = document.createElement('link');
+            tmp.rel   = 'stylesheet';
+            tmp.type  = 'text/css';
+            tmp.media = "all";
+            tmp.href  = opts.url;
             document.getElementsByTagName("head")[0].appendChild(tmp);
             return tmp.styleSheet;
           }
@@ -99,10 +99,10 @@
     };
 
     // private variables
-    var instances = [],			// instance array (used by $.jstree.reference/create/focused)
-      focused_instance = -1,	// the index in the instance array of the currently focused instance
-      plugins = {},			// list of included plugins
-      prepared_move = {};		// for the move_node function
+    var instances = [],     // instance array (used by $.jstree.reference/create/focused)
+      focused_instance = -1,  // the index in the instance array of the currently focused instance
+      plugins = {},     // list of included plugins
+      prepared_move = {};   // for the move_node function
 
     // jQuery plugin wrapper (thanks to jquery UI widget function)
     $.fn.jstree = function (settings) {
@@ -183,29 +183,29 @@
       _instance : function (index, container, settings) {
         // for plugins to store data in
         this.data = { core : {} };
-        this.get_settings	= function () { return $.extend(true, {}, settings); };
-        this._get_settings	= function () { return settings; };
-        this.get_index		= function () { return index; };
-        this.get_container	= function () { return container; };
+        this.get_settings = function () { return $.extend(true, {}, settings); };
+        this._get_settings  = function () { return settings; };
+        this.get_index    = function () { return index; };
+        this.get_container  = function () { return container; };
         this.get_container_ul = function () { return container.children("ul:eq(0)"); };
-        this._set_settings	= function (s) {
+        this._set_settings  = function (s) {
           settings = $.extend(true, {}, settings, s);
         };
       },
       _fn : { },
       plugin : function (pname, pdata) {
         pdata = $.extend({}, {
-          __init		: $.noop,
-          __destroy	: $.noop,
-          _fn			: {},
-          defaults	: false
+          __init    : $.noop,
+          __destroy : $.noop,
+          _fn     : {},
+          defaults  : false
         }, pdata);
         plugins[pname] = pdata;
 
         $.jstree.defaults[pname] = pdata.defaults;
         $.each(pdata._fn, function (i, val) {
-          val.plugin		= pname;
-          val.old			= $.jstree._fn[i];
+          val.plugin    = pname;
+          val.old     = $.jstree._fn[i];
           $.jstree._fn[i] = function () {
             var rslt,
               func = val,
@@ -330,22 +330,22 @@
         this.data.core.to_load = this.get_settings().core.initially_load;
       },
       defaults : {
-        html_titles	: false,
-        animation	: 500,
+        html_titles : false,
+        animation : 500,
         initially_open : [],
         initially_load : [],
         open_parents : true,
         notify_plugins : true,
-        rtl			: false,
-        load_open	: false,
-        strings		: {
-          loading		: "Loading ...",
-          new_node	: "New node",
+        rtl     : false,
+        load_open : false,
+        strings   : {
+          loading   : "Loading ...",
+          new_node  : "New node",
           multiple_selection : "Multiple selection"
         }
       },
       _fn : {
-        init	: function () {
+        init  : function () {
           this.set_focus();
           if(this._get_settings().core.rtl) {
             this.get_container().addClass("jstree-rtl").css("direction", "rtl");
@@ -409,7 +409,7 @@
           this.__callback();
           this.load_node(-1, function () { this.loaded(); this.reload_nodes(); });
         },
-        destroy	: function () {
+        destroy : function () {
           var i,
             n = this.get_index(),
             s = this._get_settings(),
@@ -535,11 +535,11 @@
           this.load_node(obj, function () { _this.__callback({ "obj" : obj}); _this.reload_nodes(); });
         },
         // Dummy function to fire after the first load (so that there is a jstree.loaded event)
-        loaded	: function () {
+        loaded  : function () {
           this.__callback();
         },
         // deal with focus
-        set_focus	: function () {
+        set_focus : function () {
           if(this.is_focused()) { return; }
           var f = $.jstree._focused();
           if(f) { f.unset_focus(); }
@@ -548,10 +548,10 @@
           focused_instance = this.get_index();
           this.__callback();
         },
-        is_focused	: function () {
+        is_focused  : function () {
           return focused_instance == this.get_index();
         },
-        unset_focus	: function () {
+        unset_focus : function () {
           if(this.is_focused()) {
             this.get_container().removeClass("jstree-focused");
             focused_instance = -1;
@@ -560,13 +560,13 @@
         },
 
         // traverse
-        _get_node		: function (obj) {
+        _get_node   : function (obj) {
           var $obj = $(obj, this.get_container());
           if($obj.is(".jstree") || obj == -1) { return -1; }
           $obj = $obj.closest("li", this.get_container());
           return $obj.length ? $obj : false;
         },
-        _get_next		: function (obj, strict) {
+        _get_next   : function (obj, strict) {
           obj = this._get_node(obj);
           if(obj === -1) { return this.get_container().find("> ul > li:first-child"); }
           if(!obj.length) { return false; }
@@ -576,7 +576,7 @@
           else if(obj.nextAll("li").size() > 0) { return obj.nextAll("li:eq(0)"); }
           else { return obj.parentsUntil(".jstree","li").next("li").eq(0); }
         },
-        _get_prev		: function (obj, strict) {
+        _get_prev   : function (obj, strict) {
           obj = this._get_node(obj);
           if(obj === -1) { return this.get_container().find("> ul > li:last-child"); }
           if(!obj.length) { return false; }
@@ -589,19 +589,19 @@
           }
           else { var o = obj.parentsUntil(".jstree","li:eq(0)"); return o.length ? o : false; }
         },
-        _get_parent		: function (obj) {
+        _get_parent   : function (obj) {
           obj = this._get_node(obj);
           if(obj == -1 || !obj.length) { return false; }
           var o = obj.parentsUntil(".jstree", "li:eq(0)");
           return o.length ? o : -1;
         },
-        _get_children	: function (obj) {
+        _get_children : function (obj) {
           obj = this._get_node(obj);
           if(obj === -1) { return this.get_container().children("ul:eq(0)").children("li"); }
           if(!obj.length) { return false; }
           return obj.children("ul:eq(0)").children("li");
         },
-        get_path		: function (obj, id_mode) {
+        get_path    : function (obj, id_mode) {
           var p = [],
             _this = this;
           obj = this._get_node(obj);
@@ -619,17 +619,17 @@
           return this._get_settings().core.strings[key] || key;
         },
 
-        is_open		: function (obj) { obj = this._get_node(obj); return obj && obj !== -1 && obj.hasClass("jstree-open"); },
-        is_closed	: function (obj) { obj = this._get_node(obj); return obj && obj !== -1 && obj.hasClass("jstree-closed"); },
-        is_leaf		: function (obj) { obj = this._get_node(obj); return obj && obj !== -1 && obj.hasClass("jstree-leaf"); },
-        correct_state	: function (obj) {
+        is_open   : function (obj) { obj = this._get_node(obj); return obj && obj !== -1 && obj.hasClass("jstree-open"); },
+        is_closed : function (obj) { obj = this._get_node(obj); return obj && obj !== -1 && obj.hasClass("jstree-closed"); },
+        is_leaf   : function (obj) { obj = this._get_node(obj); return obj && obj !== -1 && obj.hasClass("jstree-leaf"); },
+        correct_state : function (obj) {
           obj = this._get_node(obj);
           if(!obj || obj === -1) { return false; }
           obj.removeClass("jstree-closed jstree-open").addClass("jstree-leaf").children("ul").remove();
           this.__callback({ "obj" : obj });
         },
         // open/close
-        open_node	: function (obj, callback, skip_animation) {
+        open_node : function (obj, callback, skip_animation) {
           obj = this._get_node(obj);
           if(!obj.length) { return false; }
           if(!obj.hasClass("jstree-closed")) { if(callback) { callback.call(); } return false; }
@@ -653,8 +653,8 @@
             if(callback) { callback.call(); }
           }
         },
-        after_open	: function (obj) { this.__callback({ "obj" : obj }); },
-        close_node	: function (obj, skip_animation) {
+        after_open  : function (obj) { this.__callback({ "obj" : obj }); },
+        close_node  : function (obj, skip_animation) {
           obj = this._get_node(obj);
           var s = skip_animation || is_ie6 ? 0 : this._get_settings().core.animation,
             t = this;
@@ -665,13 +665,13 @@
           else { t.after_close(obj); }
           this.__callback({ "obj" : obj });
         },
-        after_close	: function (obj) { this.__callback({ "obj" : obj }); },
-        toggle_node	: function (obj) {
+        after_close : function (obj) { this.__callback({ "obj" : obj }); },
+        toggle_node : function (obj) {
           obj = this._get_node(obj);
           if(obj.hasClass("jstree-closed")) { return this.open_node(obj); }
           if(obj.hasClass("jstree-open")) { return this.close_node(obj); }
         },
-        open_all	: function (obj, do_animation, original_obj) {
+        open_all  : function (obj, do_animation, original_obj) {
           obj = obj ? this._get_node(obj) : -1;
           if(!obj || obj === -1) { obj = this.get_container_ul(); }
           if(original_obj) {
@@ -691,14 +691,14 @@
           // so that callback is fired AFTER all nodes are open
           if(original_obj.find('li.jstree-closed').length === 0) { this.__callback({ "obj" : original_obj }); }
         },
-        close_all	: function (obj, do_animation) {
+        close_all : function (obj, do_animation) {
           var _this = this;
           obj = obj ? this._get_node(obj) : this.get_container();
           if(!obj || obj === -1) { obj = this.get_container_ul(); }
           obj.find("li.jstree-open").addBack().each(function () { _this.close_node(this, !do_animation); });
           this.__callback({ "obj" : obj });
         },
-        clean_node	: function (obj) {
+        clean_node  : function (obj) {
           obj = obj && obj != -1 ? $(obj) : this.get_container_ul();
           obj = obj.is("li") ? obj.find("li").addBack() : obj.find("li");
           obj.removeClass("jstree-last")
@@ -719,11 +719,11 @@
           this.__callback();
         },
         // Dummy functions to be overwritten by any datastore plugin included
-        load_node	: function (obj, s_call, e_call) { this.__callback({ "obj" : obj }); },
-        _is_loaded	: function (obj) { return true; },
+        load_node : function (obj, s_call, e_call) { this.__callback({ "obj" : obj }); },
+        _is_loaded  : function (obj) { return true; },
 
         // Basic operations: create
-        create_node	: function (obj, position, js, callback, is_loaded) {
+        create_node : function (obj, position, js, callback, is_loaded) {
           obj = this._get_node(obj);
           position = typeof position === "undefined" ? "last" : position;
           var d = $("<li />"),
@@ -796,7 +796,7 @@
           return d;
         },
         // Basic operations: rename (deal with text)
-        get_text	: function (obj) {
+        get_text  : function (obj) {
           obj = this._get_node(obj);
           if(!obj.length) { return false; }
           var s = this._get_settings().core.html_titles;
@@ -811,7 +811,7 @@
             return obj.nodeValue;
           }
         },
-        set_text	: function (obj, val) {
+        set_text  : function (obj, val) {
           obj = this._get_node(obj);
           if(!obj.length) { return false; }
           obj = obj.children("a:eq(0)");
@@ -1255,10 +1255,10 @@
       defaults : {
         input_width_limit : 200,
         move : {
-          always_copy			: false, // false, true or "multitree"
-          open_onmove			: true,
-          default_position	: "last",
-          check_move			: function (m) { return true; }
+          always_copy     : false, // false, true or "multitree"
+          open_onmove     : true,
+          default_position  : "last",
+          check_move      : function (m) { return true; }
         }
       },
       _fn : {
@@ -1313,14 +1313,14 @@
             ).children(".jstree-rename-input");
           this.set_text(obj, "");
           h1.css({
-            fontFamily		: h2.css('fontFamily')		|| '',
-            fontSize		: h2.css('fontSize')		|| '',
-            fontWeight		: h2.css('fontWeight')		|| '',
-            fontStyle		: h2.css('fontStyle')		|| '',
-            fontStretch		: h2.css('fontStretch')		|| '',
-            fontVariant		: h2.css('fontVariant')		|| '',
-            letterSpacing	: h2.css('letterSpacing')	|| '',
-            wordSpacing		: h2.css('wordSpacing')		|| ''
+            fontFamily    : h2.css('fontFamily')    || '',
+            fontSize    : h2.css('fontSize')    || '',
+            fontWeight    : h2.css('fontWeight')    || '',
+            fontStyle   : h2.css('fontStyle')   || '',
+            fontStretch   : h2.css('fontStretch')   || '',
+            fontVariant   : h2.css('fontVariant')   || '',
+            letterSpacing : h2.css('letterSpacing') || '',
+            wordSpacing   : h2.css('wordSpacing')   || ''
           });
           h2.width(Math.min(h1.text("pW" + h2[0].value).width(),w))[0].select();
         },
@@ -1458,14 +1458,14 @@
           else { this.show_icons(); }
           this.__callback();
         },
-        get_theme	: function () { return this.data.themes.theme; },
+        get_theme : function () { return this.data.themes.theme; },
 
-        show_dots	: function () { this.data.themes.dots = true; this.get_container().children("ul").removeClass("jstree-no-dots"); },
-        hide_dots	: function () { this.data.themes.dots = false; this.get_container().children("ul").addClass("jstree-no-dots"); },
-        toggle_dots	: function () { if(this.data.themes.dots) { this.hide_dots(); } else { this.show_dots(); } },
+        show_dots : function () { this.data.themes.dots = true; this.get_container().children("ul").removeClass("jstree-no-dots"); },
+        hide_dots : function () { this.data.themes.dots = false; this.get_container().children("ul").addClass("jstree-no-dots"); },
+        toggle_dots : function () { if(this.data.themes.dots) { this.hide_dots(); } else { this.show_dots(); } },
 
-        show_icons	: function () { this.data.themes.icons = true; this.get_container().children("ul").removeClass("jstree-no-icons"); },
-        hide_icons	: function () { this.data.themes.icons = false; this.get_container().children("ul").addClass("jstree-no-icons"); },
+        show_icons  : function () { this.data.themes.icons = true; this.get_container().children("ul").removeClass("jstree-no-icons"); },
+        hide_icons  : function () { this.data.themes.icons = false; this.get_container().children("ul").addClass("jstree-no-icons"); },
         toggle_icons: function () { if(this.data.themes.icons) { this.hide_icons(); } else { this.show_icons(); } }
       }
     });
@@ -2050,26 +2050,6 @@
   })(jQuery);
 //*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
  * jsTree cookies plugin
  * Stores the currently opened/selected nodes in a cookie and then restores them
@@ -2103,11 +2083,11 @@
         }, this));
     },
     defaults : {
-      save_loaded		: "jstree_load",
-      save_opened		: "jstree_open",
-      save_selected	: "jstree_select",
-      auto_save		: true,
-      cookie_options	: {}
+      save_loaded   : "jstree_load",
+      save_opened   : "jstree_open",
+      save_selected : "jstree_select",
+      auto_save   : true,
+      cookie_options  : {}
     },
     _fn : {
       save_cookie : function (c) {
@@ -2466,18 +2446,18 @@
           if(this.data.dnd.to2) { clearTimeout(this.data.dnd.to2); }
           if(this.data.dnd.i1) { clearInterval(this.data.dnd.i1); }
           if(this.data.dnd.i2) { clearInterval(this.data.dnd.i2); }
-          this.data.dnd.after		= false;
-          this.data.dnd.before	= false;
-          this.data.dnd.inside	= false;
-          this.data.dnd.off		= false;
-          this.data.dnd.prepared	= false;
-          this.data.dnd.w			= false;
-          this.data.dnd.to1		= false;
-          this.data.dnd.to2		= false;
-          this.data.dnd.i1		= false;
-          this.data.dnd.i2		= false;
-          this.data.dnd.active	= false;
-          this.data.dnd.foreign	= false;
+          this.data.dnd.after   = false;
+          this.data.dnd.before  = false;
+          this.data.dnd.inside  = false;
+          this.data.dnd.off   = false;
+          this.data.dnd.prepared  = false;
+          this.data.dnd.w     = false;
+          this.data.dnd.to1   = false;
+          this.data.dnd.to2   = false;
+          this.data.dnd.i1    = false;
+          this.data.dnd.i2    = false;
+          this.data.dnd.active  = false;
+          this.data.dnd.foreign = false;
           if(m) { m.css({ "top" : "-2000px" }); }
           if(ml) { ml.css({ "top" : "-2000px" }); }
         }, this))
@@ -2544,15 +2524,15 @@
       }
     },
     defaults : {
-      copy_modifier	: "ctrl",
-      check_timeout	: 100,
-      open_timeout	: 500,
-      drop_target		: ".jstree-drop",
-      drop_check		: function (data) { return true; },
-      drop_finish		: $.noop,
-      drag_target		: ".jstree-draggable",
-      drag_finish		: $.noop,
-      drag_check		: function (data) { return { after : false, before : false, inside : true }; }
+      copy_modifier : "ctrl",
+      check_timeout : 100,
+      open_timeout  : 500,
+      drop_target   : ".jstree-drop",
+      drop_check    : function (data) { return true; },
+      drop_finish   : $.noop,
+      drag_target   : ".jstree-draggable",
+      drag_finish   : $.noop,
+      drag_check    : function (data) { return { after : false, before : false, inside : true }; }
     },
     _fn : {
       dnd_prepare : function () {
@@ -2674,9 +2654,9 @@
         }
       },
         dnd_leave : function (e) {
-          this.data.dnd.after		= false;
-          this.data.dnd.before	= false;
-          this.data.dnd.inside	= false;
+          this.data.dnd.after   = false;
+          this.data.dnd.before  = false;
+          this.data.dnd.inside  = false;
           $.vakata.dnd.helper.children("ins").attr("class","jstree-invalid");
           m.hide();
           if(ml) { ml.hide(); }
@@ -2710,7 +2690,7 @@
         }
     }
   });
-  $(function() {
+  document.addEventListener("turbo:load", function() {
     var css_string = '' +
       '#vakata-dragged ins { display:block; text-decoration:none; width:16px; height:16px; margin:0 0 0 0; padding:0; position:absolute; top:4px; left:4px; ' +
       ' -moz-border-radius:4px; border-radius:4px; -webkit-border-radius:4px; ' +
@@ -3052,60 +3032,60 @@
     '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >' +
     '<xsl:output method="html" encoding="utf-8" omit-xml-declaration="yes" standalone="no" indent="no" media-type="text/html" />' +
     '<xsl:template match="/">' +
-    '	<xsl:call-template name="nodes">' +
-    '		<xsl:with-param name="node" select="/root" />' +
-    '	</xsl:call-template>' +
+    ' <xsl:call-template name="nodes">' +
+    '   <xsl:with-param name="node" select="/root" />' +
+    ' </xsl:call-template>' +
     '</xsl:template>' +
     '<xsl:template name="nodes">' +
-    '	<xsl:param name="node" />' +
-    '	<ul>' +
-    '	<xsl:for-each select="$node/item">' +
-    '		<xsl:variable name="children" select="count(./item) &gt; 0" />' +
-    '		<li>' +
-    '			<xsl:attribute name="class">' +
-    '				<xsl:if test="position() = last()">jstree-last </xsl:if>' +
-    '				<xsl:choose>' +
-    '					<xsl:when test="@state = \'open\'">jstree-open </xsl:when>' +
-    '					<xsl:when test="$children or @hasChildren or @state = \'closed\'">jstree-closed </xsl:when>' +
-    '					<xsl:otherwise>jstree-leaf </xsl:otherwise>' +
-    '				</xsl:choose>' +
-    '				<xsl:value-of select="@class" />' +
-    '			</xsl:attribute>' +
-    '			<xsl:for-each select="@*">' +
-    '				<xsl:if test="name() != \'class\' and name() != \'state\' and name() != \'hasChildren\'">' +
-    '					<xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
-    '				</xsl:if>' +
-    '			</xsl:for-each>' +
-    '	<ins class="jstree-icon"><xsl:text>&#xa0;</xsl:text></ins>' +
-    '			<xsl:for-each select="content/name">' +
-    '				<a>' +
-    '				<xsl:attribute name="href">' +
-    '					<xsl:choose>' +
-    '					<xsl:when test="@href"><xsl:value-of select="@href" /></xsl:when>' +
-    '					<xsl:otherwise>#</xsl:otherwise>' +
-    '					</xsl:choose>' +
-    '				</xsl:attribute>' +
-    '				<xsl:attribute name="class"><xsl:value-of select="@lang" /> <xsl:value-of select="@class" /></xsl:attribute>' +
-    '				<xsl:attribute name="style"><xsl:value-of select="@style" /></xsl:attribute>' +
-    '				<xsl:for-each select="@*">' +
-    '					<xsl:if test="name() != \'style\' and name() != \'class\' and name() != \'href\'">' +
-    '						<xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
-    '					</xsl:if>' +
-    '				</xsl:for-each>' +
-    '					<ins>' +
-    '						<xsl:attribute name="class">jstree-icon ' +
-    '							<xsl:if test="string-length(attribute::icon) > 0 and not(contains(@icon,\'/\'))"><xsl:value-of select="@icon" /></xsl:if>' +
-    '						</xsl:attribute>' +
-    '						<xsl:if test="string-length(attribute::icon) > 0 and contains(@icon,\'/\')"><xsl:attribute name="style">background:url(<xsl:value-of select="@icon" />) center center no-repeat;</xsl:attribute></xsl:if>' +
-    '						<xsl:text>&#xa0;</xsl:text>' +
-    '					</ins>' +
-    '					<xsl:copy-of select="./child::node()" />' +
-    '				</a>' +
-    '			</xsl:for-each>' +
-    '			<xsl:if test="$children or @hasChildren"><xsl:call-template name="nodes"><xsl:with-param name="node" select="current()" /></xsl:call-template></xsl:if>' +
-    '		</li>' +
-    '	</xsl:for-each>' +
-    '	</ul>' +
+    ' <xsl:param name="node" />' +
+    ' <ul>' +
+    ' <xsl:for-each select="$node/item">' +
+    '   <xsl:variable name="children" select="count(./item) &gt; 0" />' +
+    '   <li>' +
+    '     <xsl:attribute name="class">' +
+    '       <xsl:if test="position() = last()">jstree-last </xsl:if>' +
+    '       <xsl:choose>' +
+    '         <xsl:when test="@state = \'open\'">jstree-open </xsl:when>' +
+    '         <xsl:when test="$children or @hasChildren or @state = \'closed\'">jstree-closed </xsl:when>' +
+    '         <xsl:otherwise>jstree-leaf </xsl:otherwise>' +
+    '       </xsl:choose>' +
+    '       <xsl:value-of select="@class" />' +
+    '     </xsl:attribute>' +
+    '     <xsl:for-each select="@*">' +
+    '       <xsl:if test="name() != \'class\' and name() != \'state\' and name() != \'hasChildren\'">' +
+    '         <xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
+    '       </xsl:if>' +
+    '     </xsl:for-each>' +
+    ' <ins class="jstree-icon"><xsl:text>&#xa0;</xsl:text></ins>' +
+    '     <xsl:for-each select="content/name">' +
+    '       <a>' +
+    '       <xsl:attribute name="href">' +
+    '         <xsl:choose>' +
+    '         <xsl:when test="@href"><xsl:value-of select="@href" /></xsl:when>' +
+    '         <xsl:otherwise>#</xsl:otherwise>' +
+    '         </xsl:choose>' +
+    '       </xsl:attribute>' +
+    '       <xsl:attribute name="class"><xsl:value-of select="@lang" /> <xsl:value-of select="@class" /></xsl:attribute>' +
+    '       <xsl:attribute name="style"><xsl:value-of select="@style" /></xsl:attribute>' +
+    '       <xsl:for-each select="@*">' +
+    '         <xsl:if test="name() != \'style\' and name() != \'class\' and name() != \'href\'">' +
+    '           <xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
+    '         </xsl:if>' +
+    '       </xsl:for-each>' +
+    '         <ins>' +
+    '           <xsl:attribute name="class">jstree-icon ' +
+    '             <xsl:if test="string-length(attribute::icon) > 0 and not(contains(@icon,\'/\'))"><xsl:value-of select="@icon" /></xsl:if>' +
+    '           </xsl:attribute>' +
+    '           <xsl:if test="string-length(attribute::icon) > 0 and contains(@icon,\'/\')"><xsl:attribute name="style">background:url(<xsl:value-of select="@icon" />) center center no-repeat;</xsl:attribute></xsl:if>' +
+    '           <xsl:text>&#xa0;</xsl:text>' +
+    '         </ins>' +
+    '         <xsl:copy-of select="./child::node()" />' +
+    '       </a>' +
+    '     </xsl:for-each>' +
+    '     <xsl:if test="$children or @hasChildren"><xsl:call-template name="nodes"><xsl:with-param name="node" select="current()" /></xsl:call-template></xsl:if>' +
+    '   </li>' +
+    ' </xsl:for-each>' +
+    ' </ul>' +
     '</xsl:template>' +
     '</xsl:stylesheet>',
 
@@ -3113,71 +3093,71 @@
     '<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >' +
     '<xsl:output method="html" encoding="utf-8" omit-xml-declaration="yes" standalone="no" indent="no" media-type="text/xml" />' +
     '<xsl:template match="/">' +
-    '	<ul>' +
-    '	<xsl:for-each select="//item[not(@parent_id) or @parent_id=0 or not(@parent_id = //item/@id)]">' + /* the last `or` may be removed */
-    '		<xsl:call-template name="nodes">' +
-    '			<xsl:with-param name="node" select="." />' +
-    '			<xsl:with-param name="is_last" select="number(position() = last())" />' +
-    '		</xsl:call-template>' +
-    '	</xsl:for-each>' +
-    '	</ul>' +
+    ' <ul>' +
+    ' <xsl:for-each select="//item[not(@parent_id) or @parent_id=0 or not(@parent_id = //item/@id)]">' + /* the last `or` may be removed */
+    '   <xsl:call-template name="nodes">' +
+    '     <xsl:with-param name="node" select="." />' +
+    '     <xsl:with-param name="is_last" select="number(position() = last())" />' +
+    '   </xsl:call-template>' +
+    ' </xsl:for-each>' +
+    ' </ul>' +
     '</xsl:template>' +
     '<xsl:template name="nodes">' +
-    '	<xsl:param name="node" />' +
-    '	<xsl:param name="is_last" />' +
-    '	<xsl:variable name="children" select="count(//item[@parent_id=$node/attribute::id]) &gt; 0" />' +
-    '	<li>' +
-    '	<xsl:attribute name="class">' +
-    '		<xsl:if test="$is_last = true()">jstree-last </xsl:if>' +
-    '		<xsl:choose>' +
-    '			<xsl:when test="@state = \'open\'">jstree-open </xsl:when>' +
-    '			<xsl:when test="$children or @hasChildren or @state = \'closed\'">jstree-closed </xsl:when>' +
-    '			<xsl:otherwise>jstree-leaf </xsl:otherwise>' +
-    '		</xsl:choose>' +
-    '		<xsl:value-of select="@class" />' +
-    '	</xsl:attribute>' +
-    '	<xsl:for-each select="@*">' +
-    '		<xsl:if test="name() != \'parent_id\' and name() != \'hasChildren\' and name() != \'class\' and name() != \'state\'">' +
-    '		<xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
-    '		</xsl:if>' +
-    '	</xsl:for-each>' +
-    '	<ins class="jstree-icon"><xsl:text>&#xa0;</xsl:text></ins>' +
-    '	<xsl:for-each select="content/name">' +
-    '		<a>' +
-    '		<xsl:attribute name="href">' +
-    '			<xsl:choose>' +
-    '			<xsl:when test="@href"><xsl:value-of select="@href" /></xsl:when>' +
-    '			<xsl:otherwise>#</xsl:otherwise>' +
-    '			</xsl:choose>' +
-    '		</xsl:attribute>' +
-    '		<xsl:attribute name="class"><xsl:value-of select="@lang" /> <xsl:value-of select="@class" /></xsl:attribute>' +
-    '		<xsl:attribute name="style"><xsl:value-of select="@style" /></xsl:attribute>' +
-    '		<xsl:for-each select="@*">' +
-    '			<xsl:if test="name() != \'style\' and name() != \'class\' and name() != \'href\'">' +
-    '				<xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
-    '			</xsl:if>' +
-    '		</xsl:for-each>' +
-    '			<ins>' +
-    '				<xsl:attribute name="class">jstree-icon ' +
-    '					<xsl:if test="string-length(attribute::icon) > 0 and not(contains(@icon,\'/\'))"><xsl:value-of select="@icon" /></xsl:if>' +
-    '				</xsl:attribute>' +
-    '				<xsl:if test="string-length(attribute::icon) > 0 and contains(@icon,\'/\')"><xsl:attribute name="style">background:url(<xsl:value-of select="@icon" />) center center no-repeat;</xsl:attribute></xsl:if>' +
-    '				<xsl:text>&#xa0;</xsl:text>' +
-    '			</ins>' +
-    '			<xsl:copy-of select="./child::node()" />' +
-    '		</a>' +
-    '	</xsl:for-each>' +
-    '	<xsl:if test="$children">' +
-    '		<ul>' +
-    '		<xsl:for-each select="//item[@parent_id=$node/attribute::id]">' +
-    '			<xsl:call-template name="nodes">' +
-    '				<xsl:with-param name="node" select="." />' +
-    '				<xsl:with-param name="is_last" select="number(position() = last())" />' +
-    '			</xsl:call-template>' +
-    '		</xsl:for-each>' +
-    '		</ul>' +
-    '	</xsl:if>' +
-    '	</li>' +
+    ' <xsl:param name="node" />' +
+    ' <xsl:param name="is_last" />' +
+    ' <xsl:variable name="children" select="count(//item[@parent_id=$node/attribute::id]) &gt; 0" />' +
+    ' <li>' +
+    ' <xsl:attribute name="class">' +
+    '   <xsl:if test="$is_last = true()">jstree-last </xsl:if>' +
+    '   <xsl:choose>' +
+    '     <xsl:when test="@state = \'open\'">jstree-open </xsl:when>' +
+    '     <xsl:when test="$children or @hasChildren or @state = \'closed\'">jstree-closed </xsl:when>' +
+    '     <xsl:otherwise>jstree-leaf </xsl:otherwise>' +
+    '   </xsl:choose>' +
+    '   <xsl:value-of select="@class" />' +
+    ' </xsl:attribute>' +
+    ' <xsl:for-each select="@*">' +
+    '   <xsl:if test="name() != \'parent_id\' and name() != \'hasChildren\' and name() != \'class\' and name() != \'state\'">' +
+    '   <xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
+    '   </xsl:if>' +
+    ' </xsl:for-each>' +
+    ' <ins class="jstree-icon"><xsl:text>&#xa0;</xsl:text></ins>' +
+    ' <xsl:for-each select="content/name">' +
+    '   <a>' +
+    '   <xsl:attribute name="href">' +
+    '     <xsl:choose>' +
+    '     <xsl:when test="@href"><xsl:value-of select="@href" /></xsl:when>' +
+    '     <xsl:otherwise>#</xsl:otherwise>' +
+    '     </xsl:choose>' +
+    '   </xsl:attribute>' +
+    '   <xsl:attribute name="class"><xsl:value-of select="@lang" /> <xsl:value-of select="@class" /></xsl:attribute>' +
+    '   <xsl:attribute name="style"><xsl:value-of select="@style" /></xsl:attribute>' +
+    '   <xsl:for-each select="@*">' +
+    '     <xsl:if test="name() != \'style\' and name() != \'class\' and name() != \'href\'">' +
+    '       <xsl:attribute name="{name()}"><xsl:value-of select="." /></xsl:attribute>' +
+    '     </xsl:if>' +
+    '   </xsl:for-each>' +
+    '     <ins>' +
+    '       <xsl:attribute name="class">jstree-icon ' +
+    '         <xsl:if test="string-length(attribute::icon) > 0 and not(contains(@icon,\'/\'))"><xsl:value-of select="@icon" /></xsl:if>' +
+    '       </xsl:attribute>' +
+    '       <xsl:if test="string-length(attribute::icon) > 0 and contains(@icon,\'/\')"><xsl:attribute name="style">background:url(<xsl:value-of select="@icon" />) center center no-repeat;</xsl:attribute></xsl:if>' +
+    '       <xsl:text>&#xa0;</xsl:text>' +
+    '     </ins>' +
+    '     <xsl:copy-of select="./child::node()" />' +
+    '   </a>' +
+    ' </xsl:for-each>' +
+    ' <xsl:if test="$children">' +
+    '   <ul>' +
+    '   <xsl:for-each select="//item[@parent_id=$node/attribute::id]">' +
+    '     <xsl:call-template name="nodes">' +
+    '       <xsl:with-param name="node" select="." />' +
+    '       <xsl:with-param name="is_last" select="number(position() = last())" />' +
+    '     </xsl:call-template>' +
+    '   </xsl:for-each>' +
+    '   </ul>' +
+    ' </xsl:if>' +
+    ' </li>' +
     '</xsl:template>' +
     '</xsl:stylesheet>'
   },
@@ -3535,14 +3515,14 @@
   $.vakata.context = {
     hide_on_mouseleave : false,
 
-    cnt		: $("<div id='vakata-contextmenu' />"),
-    vis		: false,
-    tgt		: false,
-    par		: false,
-    func	: false,
-    data	: false,
-    rtl		: false,
-    show	: function (s, t, x, y, d, p, rtl) {
+    cnt   : $("<div id='vakata-contextmenu' />"),
+    vis   : false,
+    tgt   : false,
+    par   : false,
+    func  : false,
+    data  : false,
+    rtl   : false,
+    show  : function (s, t, x, y, d, p, rtl) {
       $.vakata.context.rtl = !!rtl;
       var html = $.vakata.context.parse(s), h, w;
       if(!html) { return; }
@@ -3588,12 +3568,12 @@
         .show();
       $(document).triggerHandler("context_show.vakata");
     },
-    hide	: function () {
+    hide  : function () {
       $.vakata.context.vis = false;
       $.vakata.context.cnt.attr("class","").css({ "visibility" : "hidden" });
       $(document).triggerHandler("context_hide.vakata");
     },
-    parse	: function (s, is_callback) {
+    parse : function (s, is_callback) {
       if(!s) { return false; }
       var str = "",
         tmp = false,
@@ -3630,7 +3610,7 @@
       $(document).triggerHandler("context_parse.vakata");
       return str.length > 10 ? str : false;
     },
-    exec	: function (i) {
+    exec  : function (i) {
       if($.isFunction($.vakata.context.func[i])) {
         // if is string - eval and call it!
         $.vakata.context.func[i].call($.vakata.context.data, $.vakata.context.par);
@@ -3738,50 +3718,50 @@
       show_at_node : true,
       items : { // Could be a function that should return an object like this one
         "create" : {
-          "separator_before"	: false,
-          "separator_after"	: true,
-          "label"				: "Create",
-          "action"			: function (obj) { this.create(obj); }
+          "separator_before"  : false,
+          "separator_after" : true,
+          "label"       : "Create",
+          "action"      : function (obj) { this.create(obj); }
         },
         "rename" : {
-          "separator_before"	: false,
-          "separator_after"	: false,
-          "label"				: "Rename",
-          "action"			: function (obj) { this.rename(obj); }
+          "separator_before"  : false,
+          "separator_after" : false,
+          "label"       : "Rename",
+          "action"      : function (obj) { this.rename(obj); }
         },
         "remove" : {
-          "separator_before"	: false,
-          "icon"				: false,
-          "separator_after"	: false,
-          "label"				: "Delete",
-          "action"			: function (obj) { if(this.is_selected(obj)) { this.remove(); } else { this.remove(obj); } }
+          "separator_before"  : false,
+          "icon"        : false,
+          "separator_after" : false,
+          "label"       : "Delete",
+          "action"      : function (obj) { if(this.is_selected(obj)) { this.remove(); } else { this.remove(obj); } }
         },
         "ccp" : {
-          "separator_before"	: true,
-          "icon"				: false,
-          "separator_after"	: false,
-          "label"				: "Edit",
-          "action"			: false,
+          "separator_before"  : true,
+          "icon"        : false,
+          "separator_after" : false,
+          "label"       : "Edit",
+          "action"      : false,
           "submenu" : {
             "cut" : {
-              "separator_before"	: false,
-              "separator_after"	: false,
-              "label"				: "Cut",
-              "action"			: function (obj) { this.cut(obj); }
+              "separator_before"  : false,
+              "separator_after" : false,
+              "label"       : "Cut",
+              "action"      : function (obj) { this.cut(obj); }
             },
             "copy" : {
-              "separator_before"	: false,
-              "icon"				: false,
-              "separator_after"	: false,
-              "label"				: "Copy",
-              "action"			: function (obj) { this.copy(obj); }
+              "separator_before"  : false,
+              "icon"        : false,
+              "separator_after" : false,
+              "label"       : "Copy",
+              "action"      : function (obj) { this.copy(obj); }
             },
             "paste" : {
-              "separator_before"	: false,
-              "icon"				: false,
-              "separator_after"	: false,
-              "label"				: "Paste",
-              "action"			: function (obj) { this.paste(obj); }
+              "separator_before"  : false,
+              "icon"        : false,
+              "separator_after" : false,
+              "label"       : "Paste",
+              "action"      : function (obj) { this.paste(obj); }
             }
           }
         }
@@ -3838,11 +3818,11 @@
             });
             if(!tp.icon) { return true; }
             if( tp.icon.image || tp.icon.position) {
-              if(i == "default")	{ icons_css += '.jstree-' + _this.get_index() + ' a > .jstree-icon { '; }
-              else				{ icons_css += '.jstree-' + _this.get_index() + ' li[' + attr + '="' + i + '"] > a > .jstree-icon { '; }
-              if(tp.icon.image)	{ icons_css += ' background-image:url(' + tp.icon.image + '); '; }
+              if(i == "default")  { icons_css += '.jstree-' + _this.get_index() + ' a > .jstree-icon { '; }
+              else        { icons_css += '.jstree-' + _this.get_index() + ' li[' + attr + '="' + i + '"] > a > .jstree-icon { '; }
+              if(tp.icon.image) { icons_css += ' background-image:url(' + tp.icon.image + '); '; }
               if(tp.icon.position){ icons_css += ' background-position:' + tp.icon.position + '; '; }
-              else				{ icons_css += ' background-position:0 0; '; }
+              else        { icons_css += ' background-position:0 0; '; }
               icons_css += '} ';
             }
           });
@@ -3886,11 +3866,11 @@
     },
     defaults : {
       // defines maximum number of root nodes (-1 means unlimited, -2 means disable max_children checking)
-      max_children		: -1,
+      max_children    : -1,
       // defines the maximum depth of the tree (-1 means unlimited, -2 means disable max_depth checking)
-      max_depth			: -1,
+      max_depth     : -1,
       // defines valid node types for the root nodes
-      valid_children		: "all",
+      valid_children    : "all",
 
       // whether to use $.data
       use_data : false,
@@ -3900,12 +3880,12 @@
       types : {
         // the default type
         "default" : {
-          "max_children"	: -1,
-          "max_depth"		: -1,
+          "max_children"  : -1,
+          "max_depth"   : -1,
           "valid_children": "all"
 
           // Bound functions - you can bind any other function here (using boolean or function)
-          //"select_node"	: true
+          //"select_node" : true
         }
       }
     },
@@ -4294,14 +4274,14 @@
       }
     },
     defaults : {
-      "opened"	: "ui-icon-triangle-1-se",
-      "closed"	: "ui-icon-triangle-1-e",
-      "item"		: "ui-state-default",
-      "item_h"	: "ui-state-hover",
-      "item_a"	: "ui-state-active",
-      "item_open"	: "ui-icon-folder-open",
-      "item_clsd"	: "ui-icon-folder-collapsed",
-      "item_leaf"	: "ui-icon-document"
+      "opened"  : "ui-icon-triangle-1-se",
+      "closed"  : "ui-icon-triangle-1-e",
+      "item"    : "ui-state-default",
+      "item_h"  : "ui-state-hover",
+      "item_a"  : "ui-state-active",
+      "item_open" : "ui-icon-folder-open",
+      "item_clsd" : "ui-icon-folder-collapsed",
+      "item_leaf" : "ui-icon-document"
     }
   });
   $(function() {

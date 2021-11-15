@@ -6,7 +6,7 @@ import * as Turbo from "@hotwired/turbo"
 
 class Dashboard {
   constructor() {
-    console.log("Spree Dashboard initialized!!")
+    console.log("Spree Dashboard initialized")
   }
 }
 
