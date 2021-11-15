@@ -3619,7 +3619,7 @@
       else { return false; }
     }
   };
-  $(function () {
+  document.addEventListener("turbo:load", function() {
     var css_string = '' +
       '#vakata-contextmenu { display:block; visibility:hidden; left:0; top:-200px; position:absolute; margin:0; padding:0; min-width:180px; background:#ebebeb; border:1px solid silver; z-index:10000; *width:180px; } ' +
       '#vakata-contextmenu ul { min-width:180px; *width:180px; } ' +
