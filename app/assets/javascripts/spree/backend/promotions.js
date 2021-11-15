@@ -163,7 +163,7 @@ function initProductActions () {
   })()
 }
 
-$(document).ready(function () {
+document.addEventListener("turbo:load", function() {
   var promotion_form = $('form.edit_promotion')
 
   if (promotion_form.length) {

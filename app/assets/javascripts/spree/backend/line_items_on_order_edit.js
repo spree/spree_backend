@@ -1,6 +1,6 @@
 /* global variantLineItemTemplate, order_number, order_id */
 // This file contains the code for interacting with line items in the manual cart
-$(document).ready(function () {
+document.addEventListener("turbo:load", function() {
   'use strict'
 
   // handle variant selection, show stock level.
