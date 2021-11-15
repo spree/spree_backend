@@ -1,6 +1,6 @@
 /* global variantTemplate */
 // variant autocompletion
-$(function () {
+document.addEventListener("turbo:load", function() {
   var variantAutocompleteTemplate = $('#variant_autocomplete_template')
   if (variantAutocompleteTemplate.length > 0) {
     window.variantTemplate = Handlebars.compile(variantAutocompleteTemplate.text())

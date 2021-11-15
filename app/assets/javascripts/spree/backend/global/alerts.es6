@@ -1,6 +1,6 @@
 /* global Swal */
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   const alertEl = document.querySelectorAll('[data-alert-type]')
 
   if (!alertEl) return

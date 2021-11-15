@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   const QuickSearchInput = document.getElementById('quick_search')
 
   if (QuickSearchInput) {

@@ -1,5 +1,5 @@
 /* global toggleItemEdit, order_number */
-$(function () {
+document.addEventListener("turbo:load", function() {
   // handle edit click
   $('a.edit-line-item').click(toggleLineItemEdit)
   // handle cancel click

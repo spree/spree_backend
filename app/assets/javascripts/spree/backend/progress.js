@@ -1,4 +1,4 @@
-$(function () {
+document.addEventListener("turbo:load", function() {
   $(document).ajaxStart(function () {
     $('#progress').stop(true, true).fadeIn()
   })

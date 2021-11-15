@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   // eslint-disable-next-line no-undef
   tinymce.init({
     selector: '.spree-rte',

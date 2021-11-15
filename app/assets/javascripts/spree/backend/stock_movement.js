@@ -1,5 +1,5 @@
 /* global variantTemplate */
-$(function () {
+document.addEventListener("turbo:load", function() {
   var el = $('#stock_movement_stock_item_id')
   el.select2({
     placeholder: 'Find a stock item', // translate

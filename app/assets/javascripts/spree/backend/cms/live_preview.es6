@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   const LiveViewSwitcher = document.getElementById('LiveViewSwitcher')
 
   if (!LiveViewSwitcher) return

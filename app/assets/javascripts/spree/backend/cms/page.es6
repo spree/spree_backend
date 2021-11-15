@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   const pageVisabilityAttribute = document.querySelectorAll('[data-cms-page-id]')
   const pageTypeSelector = document.getElementById('cms_page_type')
   const el = document.getElementById('cmsPagesectionsArea')

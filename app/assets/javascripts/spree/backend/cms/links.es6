@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("turbo:load", function() {
   const linkSwitcher = $('.link_switcher').select2()
 
   linkSwitcher.on('change', function() {

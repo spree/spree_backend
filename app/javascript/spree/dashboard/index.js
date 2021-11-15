@@ -1,14 +1,15 @@
 import "./controllers"
-import './bootstrap'
-// import * as Turbo from "@hotwired/turbo"
+import "./bootstrap"
+
+import * as Turbo from "@hotwired/turbo"
+
 
 class Dashboard {
   constructor() {
-    console.log("Spree Dashboard initialized")
+    console.log("Spree Dashboard initialized!!")
   }
 }
 
 export {
-  Dashboard
-  // Turbo
+  Dashboard, Turbo
 }
