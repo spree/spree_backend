@@ -13,7 +13,7 @@ describe 'Rich Text Content section', type: :feature do
     visit spree.edit_admin_cms_page_cms_section_path(feature_page, section)
   end
 
-  context 'editing new page', js: true  do
+  context 'editing new page', js: true do
     it 'loads with correct defaults setings' do
       expect(page).to have_field('Name *', with: "Test #{section_type}")
       expect(page).to have_select('Section Type', selected: section_type)
@@ -23,6 +23,8 @@ describe 'Rich Text Content section', type: :feature do
     it 'saves WYSIWYG content to database' do
       rte_content = 'Ipsum blanditiis labore voluptates vero asperiores ullam excepturi'
 
+      wait_for_turbo
+
       page.execute_script("$(tinymce.editors[0].setContent('#{rte_content}'))")
 
       click_on 'Update'
@@ -30,7 +32,6 @@ describe 'Rich Text Content section', type: :feature do
       expect(page).to have_field(id: 'cms_section_rte_content', with: "<p>#{rte_content}</p>", visible: :hidden, disabled: false)
       assert_admin_flash_alert_success('Section "Test Rich Text Content" has been successfully updated!')
     end
-
 
     it 'allows changing of the section name' do
       fill_in 'Name *', with: 'My New Section Name'
