@@ -1,0 +1,33 @@
+div.digital-container {
+  border: 1px solid $gray-500;
+  background-color: #fefefe;
+  border-radius: $border-radius;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+
+  .delete-digital-info-container {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .delete-digital-button-container {
+    min-width: 44px;
+    flex-grow: 0;
+    a {
+      padding: 3px;
+      height: 32px;
+    }
+  }
+
+  .delete-digital-icon-container {
+    width: 50px;
+    flex-grow: 0;
+    svg {
+      color: $gray-600;
+      align-self: center;
+    }
+  }
+}
