@@ -2,12 +2,10 @@ $.fn.taxonAutocomplete = function() {
   'use strict'
 
   function formatTaxonList(values) {
-    console.warn('taxonAutocomplete is deprecated and will be removed in Spree 5.0')
-
     return values.map(function (obj) {
       return {
         id: obj.id,
-        text: obj.pretty_name
+        text: obj.attributes.pretty_name
       }
     })
   }
@@ -17,19 +15,22 @@ $.fn.taxonAutocomplete = function() {
     placeholder: Spree.translations.taxon_placeholder,
     minimumInputLength: 2,
     ajax: {
-      url: Spree.routes.taxons_api,
+      url: Spree.routes.taxons_api_v2,
       dataType: 'json',
       data: function (params) {
         return {
-          q: {
+          filter: {
             name_cont: params.term
           },
-          token: Spree.api_key
+          fields: {
+            taxon: 'pretty_name'
+          }
         }
       },
+      headers: Spree.apiV2Authentication(),
       processResults: function(data) {
         return {
-          results: formatTaxonList(data.taxons)
+          results: formatTaxonList(data.data)
         }
       }
     }
