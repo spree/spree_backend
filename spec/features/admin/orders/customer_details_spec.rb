@@ -20,7 +20,7 @@ describe 'Customer Details', type: :feature, js: true do
 
   # Value attribute is dynamically set via JS, so not observable via a CSS/XPath selector
   # As the browser might take time to make the values visible in the dom we need to
-  # "intelligiently" wait for that event o prevent a race.
+  # "intelligently" wait for that event o prevent a race.
   def expect_form_value(selector, value)
     expect(page).to have_css(selector){ |n| n.value.eql?(value) }
   end
@@ -55,6 +55,8 @@ describe 'Customer Details', type: :feature, js: true do
       expect_form_value('#order_bill_address_attributes_phone', user.bill_address.phone)
       wait_for { !page.has_button?('Update') }
       click_button 'Update'
+      wait_for_turbo
+
       expect(Spree::Order.last.user).to eq(user)
     end
   end
@@ -107,6 +109,8 @@ describe 'Customer Details', type: :feature, js: true do
 
     it 'shows validation errors' do
       click_link 'Customer'
+      wait_for_turbo
+
       click_button 'Update'
       expect(page).to have_content("Shipping address first name can't be blank")
     end
@@ -118,7 +122,10 @@ describe 'Customer Details', type: :feature, js: true do
       fill_in 'order_email', with: 'newemail@example.com'
       expect(order.user_id).to eq previous_user.id
       expect(order.user.email).to eq previous_user.email
-      expect { click_button 'Update' }.to change { order.reload.email }.to 'newemail@example.com'
+      expect do
+        click_button 'Update'
+        wait_for_turbo
+      end.to change { order.reload.email }.to 'newemail@example.com'
     end
 
     # Regression test for #942

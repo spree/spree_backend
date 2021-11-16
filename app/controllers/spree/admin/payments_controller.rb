@@ -54,7 +54,7 @@ module Spree
             @payment ||= @order.payments.build(object_params)
             invoke_callbacks(:create, :fails)
             flash[:error] = Spree.t(:payment_could_not_be_created)
-            render :new
+            render :new, status: :unprocessable_entity
           end
         rescue Spree::Core::GatewayError => e
           invoke_callbacks(:create, :fails)

@@ -1,5 +1,5 @@
 /* global show_flash */
-jQuery(function ($) {
+document.addEventListener("turbo:load", function() {
   var extend = function (child, parent) {
     for (var key in parent) {
       if (hasProp.call(parent, key)) child[key] = parent[key]
