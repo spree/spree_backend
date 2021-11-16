@@ -19,7 +19,7 @@ end
 ENV['RAILS_ENV'] ||= 'test'
 
 begin
-  require File.expand_path('../dummy/config/environment', __FILE__)
+  require File.expand_path('dummy/config/environment', __dir__)
 rescue LoadError
   puts 'Could not load dummy application. Please ensure you have run `bundle exec rake test_app`'
   exit
@@ -93,7 +93,7 @@ RSpec.configure do |config|
   end
 
   config.after(:each, type: :feature) do |example|
-    missing_translations = page.body.scan(/translation missing: #{I18n.locale}\.(.*?)[\s<\"&]/)
+    missing_translations = page.body.scan(/translation missing: #{I18n.locale}\.(.*?)[\s<"&]/)
     if missing_translations.any?
       puts "Found missing translations: #{missing_translations.inspect}"
       puts "In spec: #{example.location}"
@@ -148,6 +148,12 @@ module Spree
 
         within('#FlashAlertsContainer', visible: :all) do
           expect(page).to have_css('span[data-alert-type="notice"]', text: message_content, visible: :all)
+        end
+      end
+
+      def wait_for_turbo(timeout = nil)
+        if has_css?('.turbo-progress-bar', visible: true, wait: 0.25.seconds)
+          has_no_css?('.turbo-progress-bar', wait: timeout.presence || 0.5.seconds)
         end
       end
     end
