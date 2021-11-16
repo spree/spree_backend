@@ -8,7 +8,7 @@ module Spree
           [
             File.expand_path('templates', __dir__),
             File.expand_path('../templates', "../#{__FILE__}"),
-            File.expand_path('../templates', "../../#{__FILE__}"),
+            File.expand_path('../templates', "../../#{__FILE__}")
           ]
         end
 
