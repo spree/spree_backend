@@ -61,7 +61,7 @@ $(document).ready(function () {
       }).done(function (msg) {
         window.location.reload()
       }).fail(function (msg) {
-        alert(msg.responseJSON.message || msg.responseJSON.exception)
+        alert(msg.responseJSON.error)
       })
     }
     return false
@@ -78,7 +78,7 @@ $(document).ready(function () {
     }).done(function () {
       window.location.reload()
     }).fail(function (msg) {
-      alert(msg.responseJSON.message || msg.responseJSON.exception)
+      alert(msg.responseJSON.error)
     })
   })
 
@@ -109,7 +109,7 @@ $(document).ready(function () {
     }).done(function () {
       window.location.reload()
     }).fail(function (msg) {
-      alert(msg.responseJSON.message || msg.responseJSON.exception)
+      alert(msg.responseJSON.error)
     })
   })
 
@@ -198,7 +198,7 @@ function adjustShipmentItems(shipmentNumber, variantId, quantity) {
     }).done(function (msg) {
       window.location.reload()
     }).fail(function (msg) {
-      alert(msg.responseJSON.message || msg.responseJSON.exception)
+      alert(msg.responseJSON.error)
     })
   }
 }
@@ -260,7 +260,7 @@ function startItemSplit(event) {
       $('#item_stock_location').select2({ width: 'resolve', placeholder: Spree.translations.item_stock_placeholder })
     })
   }).fail(function (msg) {
-    alert(msg.responseJSON.message || msg.responseJSON.exception)
+    alert(msg.responseJSON.error)
   })
 }
 
@@ -311,7 +311,7 @@ function completeItemSplit(event) {
       },
       headers: Spree.apiV2Authentication()
     }).fail(function (msg) {
-      alert(msg.responseJSON.message || msg.responseJSON.exception)
+      alert(msg.responseJSON.error)
     }).done(function (msg) {
       window.location.reload()
     })
@@ -358,7 +358,7 @@ function addVariantFromStockLocation(event) {
     }).done(function (msg) {
       window.location.reload()
     }).fail(function (msg) {
-      alert(msg.responseJSON.message || msg.responseJSON.exception)
+      alert(msg.responseJSON.error)
     })
   } else {
     // add to existing shipment
