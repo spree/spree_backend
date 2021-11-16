@@ -323,7 +323,7 @@ describe 'Order Details', type: :feature, js: true do
 
           context 'A shipment has shipped' do
             it 'does not show or let me back to the cart page, nor show the shipment edit buttons', js: false do
-              order = create(:order, state: 'payment')
+              order = create(:order, state: 'payment', store: store)
               order.shipments.create!(stock_location_id: stock_location.id, state: 'shipped')
 
               visit spree.cart_admin_order_path(order)
@@ -628,10 +628,11 @@ describe 'Order Details', type: :feature, js: true do
       can [:admin, :manage, :read, :ship], Spree::Shipment
     end
 
+    let(:admin_token) { Spree::OauthAccessToken.create!(scopes: 'admin read write').token }
+
     before do
-      allow(Spree.user_class).to receive(:find_by).
-        with(hash_including(:spree_api_key)).
-        and_return(Spree.user_class.new)
+      allow(Spree.user_class).to receive(:find_by).and_return(Spree.user_class.new)
+      allow_any_instance_of(Spree::Admin::BaseController).to receive(:admin_oauth_token).and_return(admin_token)
     end
 
     it 'does not display order tabs or edit buttons without ability', js: false do
@@ -660,7 +661,7 @@ describe 'Order Details', type: :feature, js: true do
     end
 
     it 'can change the shipping method' do
-      order = create(:completed_order_with_totals)
+      order = create(:completed_order_with_totals, store: store)
       visit spree.edit_admin_order_path(order)
       within('table.table tr.show-method') do
         click_icon :edit
@@ -673,7 +674,7 @@ describe 'Order Details', type: :feature, js: true do
     end
 
     it 'can ship' do
-      order = create(:order_ready_to_ship)
+      order = create(:order_ready_to_ship, store: store)
       order.refresh_shipment_rates
       visit spree.edit_admin_order_path(order)
       click_on 'Ship'
