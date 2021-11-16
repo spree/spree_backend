@@ -17,13 +17,16 @@ describe Spree::Admin::WebhooksSubscribersHelper, type: :helper do
     end
 
     context 'when it has additional events' do
-      before { allow(Spree::Admin::WebhooksSubscribersHelper::ADDITIONAL_EVENTS_LISTS).to receive(:[]).with(resource_name).and_return(additional_events) }
+      before do
+        allow(Spree::Webhooks::Subscriber::LIST_OF_ALL_EVENTS).to receive(:include?).with(resource_name).and_return(true)
+        allow(Spree::Webhooks::Subscriber::LIST_OF_ALL_EVENTS).to receive(:[]).with(resource_name).and_return(additional_events)
+      end
 
-      let(:additional_events) { "#{resource_name}.event1,#{resource_name}.event2" }
+      let(:additional_events) { %W[#{resource_name}.event1 #{resource_name}.event2] }
       let(:resource_name) { :product }
 
       it 'returns the default events and the additional events' do
-        expect(subject).to eq("#{default_events},#{additional_events}")
+        expect(subject).to eq("#{default_events},#{additional_events.join(',')}")
       end
     end
   end

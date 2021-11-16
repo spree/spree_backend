@@ -21,15 +21,23 @@
 
   <div>
     <%= f.field_container :subscriptions, class: ['form-group'] do %>
-      <div class="radio my-2">
-        <%= radio_button_tag :subscribe_to_all_events, true, @webhooks_subscriber.subscriptions == ['*'], { id: 'subscribe-to-all', class: 'events' } %>
-        <%= f.label :subscribe_to_all_events, Spree.t(:subscribe_to_all_events) %>
+      <div data-controller="webhooks_subscriber_events">
+        <div class="radio my-2">
+          <%= radio_button_tag :subscribe_to_all_events, true,
+                               @webhooks_subscriber.subscriptions == ['*'],
+                               { id: 'subscribe-to-all',
+                                 'data-action' => 'webhooks_subscriber_events#disableCheckboxes',
+                                 class: 'events' } %>
+          <%= f.label :subscribe_to_all_events, Spree.t(:subscribe_to_all_events) %>
+        </div>
+        <div class="radio my-2">
+          <%= radio_button_tag :subscribe_to_all_events, false,
+                               @webhooks_subscriber.subscriptions != ['*'],
+                               { 'data-action' => 'webhooks_subscriber_events#enableCheckboxes',
+                                 class: 'events' } %>
+          <%= f.label :select_events, Spree.t(:select_events) %>
+        </div>
       </div>
-      <div class="radio my-2">
-        <%= radio_button_tag :subscribe_to_all_events, false, @webhooks_subscriber.subscriptions != ['*'], { class: 'events' } %>
-        <%= f.label :select_events, Spree.t(:select_events) %>
-      </div>
-
       <br/>
 
       <div class="row">

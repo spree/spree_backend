@@ -1,16 +1,9 @@
 module Spree
   module Admin
     module WebhooksSubscribersHelper
-      ADDITIONAL_EVENTS_LISTS = {
-        order: 'order.canceled,order.paid,order.placed,order.resumed,order.shipped',
-        payment: 'payment.paid,payment.voided',
-        product: 'product.back_in_stock,product.backorderable,product.discontinued,product.out_of_stock',
-        variant: 'variant.back_in_stock,variant.backorderable,variant.discontinued,variant.out_of_stock',
-      }
-
       def event_list_for(resource_name)
         result = default_event_list(resource_name)
-        result += ",#{ADDITIONAL_EVENTS_LISTS[resource_name]}" if ADDITIONAL_EVENTS_LISTS.include?(resource_name)
+        result += ",#{additional_events_for(resource_name)}" if additional_events?(resource_name)
         result
       end
 
@@ -21,6 +14,14 @@ module Spree
       end
 
       private
+
+      def additional_events?(resource_name)
+        Spree::Webhooks::Subscriber::LIST_OF_ALL_EVENTS.include? resource_name
+      end
+
+      def additional_events_for(resource_name)
+        Spree::Webhooks::Subscriber::LIST_OF_ALL_EVENTS[resource_name].join(',')
+      end
 
       def event_checkbox_opts(resource_name)
         {

@@ -35,6 +35,9 @@ application.register("spree", SpreeController)
 import SortableTreeController from "./controllers/sortable_tree_controller"
 application.register("sortable-tree", SortableTreeController)
 
+import WebhooksSubscriberEventsController from "./webhooks_subscriber_events_controller"
+application.register("webhooks_subscriber_events", WebhooksSubscriberEventsController)
+
 //
 // Export
 export { Dashboard, application, flatpickr, Turbo }
