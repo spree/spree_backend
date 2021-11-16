@@ -12,9 +12,11 @@ describe 'Tiered Calculator Promotions' do
   it 'adding a tiered percent calculator', js: true do
     select2 'Create whole-order adjustment', from: 'Add action of type'
     within('#action_fields') { click_button 'Add' }
+    wait_for_turbo
 
     select2 'Tiered Percent', from: 'Calculator'
     within('#actions_container') { click_button 'Update' }
+    wait_for_turbo
 
     within('#actions_container .settings') do
       expect(page).to have_content('Base Percent')
@@ -22,6 +24,7 @@ describe 'Tiered Calculator Promotions' do
 
       click_button 'Add'
     end
+    wait_for_turbo
 
     fill_in 'Base Percent', with: 5
 
@@ -30,6 +33,7 @@ describe 'Tiered Calculator Promotions' do
       fill_in(class: 'js-value-input', with: '10')
     end
     within('#actions_container') { click_button 'Update' }
+    wait_for_turbo
 
     first_action = promotion.actions.first
     expect(first_action.class).to eq Spree::Promotion::Actions::CreateAdjustment
@@ -60,6 +64,7 @@ describe 'Tiered Calculator Promotions' do
       end
 
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       calculator = promotion.actions.first.calculator.reload
       expect(calculator.preferred_tiers).to eq Hash[100.0 => 10.0, 300.0 => 20.0]
