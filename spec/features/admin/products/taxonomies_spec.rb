@@ -28,6 +28,8 @@ describe 'Taxonomies', type: :feature, js: true do
       expect(page).to have_content('New Taxonomy')
       fill_in 'taxonomy_name', with: 'sports'
       click_button 'Create'
+      wait_for_turbo
+
       expect(page).to have_content('successfully created!')
     end
 

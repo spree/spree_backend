@@ -39,8 +39,8 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
     else
       invoke_callbacks(:update, :fails)
       respond_with(@object) do |format|
-        format.html { render action: :edit }
-        format.js { render layout: false }
+        format.html { render action: :edit, status: :unprocessable_entity }
+        format.js { render layout: false, status: :unprocessable_entity }
       end
     end
   end
@@ -58,8 +58,8 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
     else
       invoke_callbacks(:create, :fails)
       respond_with(@object) do |format|
-        format.html { render action: :new }
-        format.js { render layout: false }
+        format.html { render action: :new, status: :unprocessable_entity }
+        format.js { render layout: false, status: :unprocessable_entity }
       end
     end
   end
