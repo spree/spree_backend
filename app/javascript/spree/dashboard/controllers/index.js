@@ -4,4 +4,7 @@
 import { application } from "./application"
 
 import HelloController from "./hello_controller"
+import WebhooksSubscriberEventsController from "./webhooks_subscriber_events_controller"
+
 application.register("hello", HelloController)
+application.register("webhooks_subscriber_events", WebhooksSubscriberEventsController)
