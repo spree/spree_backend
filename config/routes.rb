@@ -46,6 +46,7 @@ Spree::Core::Engine.add_routes do
       end
       resources :variants_including_master, only: [:update]
       resources :prices, only: [:index, :create]
+      resources :digitals
     end
 
     resources :option_types do
@@ -86,6 +87,7 @@ Spree::Core::Engine.add_routes do
         put :resume
         get :channel
         put :set_channel
+        get :reset_digitals
       end
 
       resources :state_changes, only: [:index]

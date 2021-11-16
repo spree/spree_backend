@@ -68,6 +68,15 @@ en:
           layout_style: Layout Style
           square_image: Please use an image with an aspect ratio of 18:13 (1080px x 780px).
           tall_image: Please use an image with an aspect ratio of 27:40 (1080px x 1600px).
+      digitals:
+        digital: Digital
+        add_new_file: Add a new digital asset.
+        digital_assets: Digital Assets
+        reset_download_links: Reset Digital Download Links
+        downloads_reset: Digital Download Links Reset
+        no_digital_assets_added: No digital assets.
+        delete_file_confirmation: "Are you sure you want to delete: %{filename}"
+        upload: Upload
       linkable:
         search_for_a_page: Search for a page
         search_for_a_taxon: Search for a Taxon

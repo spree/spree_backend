@@ -3,19 +3,19 @@ import commonjs from "@rollup/plugin-commonjs"
 import { terser } from "rollup-plugin-terser"
 
 const terserOptions = {
- mangle: false,
- compress: false,
- format: {
-   beautify: true,
-   indent_level: 2
- }
+  mangle: false,
+  compress: false,
+  format: {
+    beautify: true,
+    indent_level: 2
+  }
 }
 
 export default [
   {
     input: "app/javascript/spree/dashboard/index.js",
     output: {
-      file: "app/assets/javascripts/spree_dashboard.js",
+      file: "app/assets/javascripts/spree-dashboard.js",
       format: "umd",
       name: "SpreeDashboard"
     },
@@ -29,7 +29,7 @@ export default [
   {
     input: "app/javascript/spree/dashboard/index.js",
     output: {
-      file: "app/assets/javascripts/spree_dashboard.esm.js",
+      file: "app/assets/javascripts/spree-dashboard.esm.js",
       format: "es"
     },
     plugins: [
