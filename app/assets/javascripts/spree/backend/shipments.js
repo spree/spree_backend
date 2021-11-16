@@ -240,26 +240,28 @@ function startItemSplit(event) {
   $.ajax({
     type: 'GET',
     async: false,
-    url: Spree.url(Spree.routes.variants_api_v2),
+    url: Spree.routes.variants_api_v2 + '/' + variantId,
     data: {
-      filter: {
-        'id_eq': variantId
-      }
+      include: 'stock_items.stock_location'
     },
     headers: Spree.apiV2Authentication()
   }).done(function (json) {
-    variant = json['data'][0]
+    var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer
+    new JSONAPIDeserializer({ keyForAttribute: 'snake_case' }).deserialize(json, function (_err, deserializedJson) {
+      variant = deserializedJson
+
+      var maxQuantity = link.closest('tr').data('item-quantity')
+      var splitItemTemplate = Handlebars.compile($('#variant_split_template').text())
+
+      link.closest('tr').after(splitItemTemplate({ variant: variant, shipments: shipments, max_quantity: maxQuantity }))
+      $('a.cancel-split').click(cancelItemSplit)
+      $('a.save-split').click(completeItemSplit)
+
+      $('#item_stock_location').select2({ width: 'resolve', placeholder: Spree.translations.item_stock_placeholder })
+    })
   }).fail(function (msg) {
     alert(msg.responseJSON.message || msg.responseJSON.exception)
   })
-
-  var maxQuantity = link.closest('tr').data('item-quantity')
-  var splitItemTemplate = Handlebars.compile($('#variant_split_template').text())
-  link.closest('tr').after(splitItemTemplate({ variant: variant, shipments: shipments, max_quantity: maxQuantity }))
-  $('a.cancel-split').click(cancelItemSplit)
-  $('a.save-split').click(completeItemSplit)
-
-  $('#item_stock_location').select2({ width: 'resolve', placeholder: Spree.translations.item_stock_placeholder })
 }
 
 function completeItemSplit(event) {
@@ -296,16 +298,14 @@ function completeItemSplit(event) {
     }
 
     var data = {
-      original_shipment_number: originalShipmentNumber,
       variant_id: variantId,
-      quantity: quantity,
-      token: Spree.api_key
+      quantity: quantity
     }
 
     $.ajax({
       type: 'PATCH',
       async: false,
-      url: Spree.url(Spree.routes.shipments_api_v2 + path),
+      url: Spree.url(Spree.routes.shipments_api_v2 + '/' + originalShipmentNumber + path),
       data: {
         shipment: $.extend(data, additionalData)
       },
