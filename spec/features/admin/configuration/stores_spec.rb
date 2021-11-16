@@ -117,6 +117,7 @@ describe 'Stores admin', type: :feature do
       end
       page.fill_in 'store_new_order_notifications_email', with: store_owner_email
       click_button 'Update'
+      wait_for_turbo
 
       store.reload
       expect(store.new_order_notifications_email).to eq(store_owner_email)

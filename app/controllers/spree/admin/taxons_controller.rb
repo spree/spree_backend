@@ -56,7 +56,7 @@ module Spree
           end
         else
           respond_with(@taxon) do |format|
-            format.html { render :edit }
+            format.html { render :edit, status: :unprocessable_entity }
             format.json { render json: @taxon.errors.full_messages.to_sentence, status: 422 }
           end
         end
