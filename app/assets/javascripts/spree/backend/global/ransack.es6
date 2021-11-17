@@ -80,7 +80,7 @@ document.addEventListener("turbo:load", function() {
     }
   })
 
-  // per page dropdown
+  // per page drop-down
   // preserves all selected filters / queries supplied by user
   // changes only per_page value
   $('.js-per-page-select').change(function() {
@@ -92,7 +92,7 @@ document.addEventListener("turbo:load", function() {
     } else {
       url += '?per_page=' + value
     }
-    window.location = url
+    Turbo.visit(url)
   })
 
   // injects per_page settings to all available search forms
@@ -101,7 +101,9 @@ document.addEventListener("turbo:load", function() {
     var perPageDropdown = $('.js-per-page-select:first')
     if (perPageDropdown.length) {
       var perPageValue = perPageDropdown.val().toString()
-      var perPageInput = '<input type="hidden" name="per_page" value=' + perPageValue + ' />'
+      var perPageInput = '<input class="hidden_per_page_input" type="hidden" name="per_page" value=' + perPageValue + ' />'
+
+      $('.hidden_per_page_input').remove()
       $('#table-filter form').append(perPageInput)
     }
   })
