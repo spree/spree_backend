@@ -69,10 +69,6 @@ Spree.routes.apply_coupon_code = function (orderId) {
   return Spree.pathFor('api/v2/platform/orders/' + orderId + '/apply_coupon_code')
 }
 
-Spree.routes.stock_items_api = function (stockLocationId) {
-  return Spree.pathFor('api/v1/stock_locations/' + stockLocationId + '/stock_items')
-}
-
 // API v2
 Spree.routes.countries_api_v2 = Spree.pathFor('api/v2/platform/countries')
 Spree.routes.classifications_api_v2 = Spree.pathFor('api/v2/platform/classifications')
