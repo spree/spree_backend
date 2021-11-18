@@ -20,7 +20,7 @@ $(document).ready(function () {
 function addVariant () {
   $('#stock_details').hide()
   var variantId = $('select.variant_autocomplete').val()
-  var quantity = $('input#variant_quantity').val()
+  var quantity = parseInt($('input#variant_quantity').val())
 
   adjustLineItems(order_id, variantId, quantity)
   return 1
@@ -41,11 +41,7 @@ adjustLineItems = function(order_id, variant_id, quantity){
   }).done(function () {
       window.Spree.advanceOrder()
       window.location.reload()
-  }).fail(function (msg) {
-    if (typeof msg.responseJSON.message != 'undefined') {
-      alert(msg.responseJSON.message)
-    } else {
-      alert(msg.responseJSON.exception)
-    }
+  }).fail(function (response) {
+    show_flash('error', response.responseJSON.error)
   })
 }
