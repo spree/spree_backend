@@ -1,6 +1,6 @@
 <% content_for :head do %>
   <%= javascript_tag "var taxonomy_id = '#{@taxonomy.id}'
-    document.addEventListener('turbo:load', function() {
+    document.addEventListener('spree:load', function() {
       setup_taxonomy_tree(taxonomy_id)
     })" %>
 <% end %>

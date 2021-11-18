@@ -2,7 +2,7 @@
 function Spree () {}
 
 Spree.ready = function (callback) {
-  return document.addEventListener("turbo:load", function() {
+  return document.addEventListener("spree:load", function() {
     return callback(jQuery)
   })
 }

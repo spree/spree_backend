@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   // Initiate a standard Select2 on any select element with the class .select2
   // Remember to add a place holder in the HTML as needed.
   $('select.select2').select2({})

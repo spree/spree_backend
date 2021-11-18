@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   const QuickSearchInput = document.getElementById('quick_search')
 
   if (QuickSearchInput) {
@@ -97,7 +97,7 @@ document.addEventListener("turbo:load", function() {
 
   // injects per_page settings to all available search forms
   // so when user changes some filters / queries per_page is preserved
-  document.addEventListener("turbo:load", function() {
+  document.addEventListener("spree:load", function() {
     var perPageDropdown = $('.js-per-page-select:first')
     if (perPageDropdown.length) {
       var perPageValue = perPageDropdown.val().toString()

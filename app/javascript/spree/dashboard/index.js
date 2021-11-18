@@ -7,7 +7,10 @@ import * as Turbo from "@hotwired/turbo"
 
 class Dashboard {
   constructor() {
-    console.log("Spree Dashboard initialized")
+    const event = new Event("spree:load")
+
+    document.addEventListener("turbo:load", function() { document.dispatchEvent(event) })
+    document.addEventListener("turbo:render", function() { document.dispatchEvent(event) })
   }
 }
 

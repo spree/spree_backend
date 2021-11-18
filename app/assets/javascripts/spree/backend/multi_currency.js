@@ -1,6 +1,6 @@
 //= require spree/backend
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   $.expr[':'].Contains = function (a, i, m) {
     return (
       (a.textContent || a.innerText || '')
@@ -32,7 +32,7 @@ document.addEventListener("turbo:load", function() {
   }
 
   // ondomready
-  document.addEventListener("turbo:load", function() {
+  document.addEventListener("spree:load", function() {
     listFilter($('#variant-prices'))
   })
 })

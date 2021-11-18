@@ -1,6 +1,6 @@
 /* global order_number, show_flash */
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   /**
     OBSERVE FIELD:
   **/

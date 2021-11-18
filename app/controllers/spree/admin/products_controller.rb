@@ -42,7 +42,9 @@ module Spree
           # update the product again
           @product.slug = @product.slug_was if @product.slug.blank?
           invoke_callbacks(:update, :fails)
-          respond_with(@object, status: :unprocessable_entity)
+          respond_with(@object) do |format|
+            format.html { render :edit, status: :unprocessable_entity }
+          end
         end
       end
 

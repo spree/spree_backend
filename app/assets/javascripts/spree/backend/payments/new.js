@@ -1,6 +1,6 @@
 /* global Cleave */
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   if ($('#new_payment').length) {
     var cardCodeCleave;
     var updateCardCodeCleave = function (length) {

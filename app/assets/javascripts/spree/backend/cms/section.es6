@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   const sectionKindSelector = $('#cms_section_type').select2()
   const layoutSwitcher = $('#cms_section_layout_style').select2()
 

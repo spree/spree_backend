@@ -1,5 +1,5 @@
 /* global show_flash */
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   $('[data-hook=general_settings_clear_cache] #clear_cache').click(function () {
     if (confirm(Spree.translations.are_you_sure)) {
       $.ajax({

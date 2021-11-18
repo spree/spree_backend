@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   var parentEl = document.getElementsByClassName('sortable')[0];
   if (parentEl) {
     var element = parentEl.querySelector('tbody')

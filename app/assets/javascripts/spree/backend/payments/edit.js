@@ -1,5 +1,5 @@
 /* global show_flash */
-document.addEventListener("turbo:load", function() {
+document.addEventListener("spree:load", function() {
   var extend = function (child, parent) {
     for (var key in parent) {
       if (hasProp.call(parent, key)) child[key] = parent[key]
