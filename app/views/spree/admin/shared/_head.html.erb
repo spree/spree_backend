@@ -28,7 +28,7 @@
 <script>
   <%== "Spree.api_key = '#{try_spree_current_user.spree_api_key}';" if try_spree_current_user&.respond_to?(:spree_api_key) %>
   <% if Rails.env.test? %>
-  jQuery.fx.off = false
+    jQuery.fx.off = false
   <% end %>
 </script>
 
