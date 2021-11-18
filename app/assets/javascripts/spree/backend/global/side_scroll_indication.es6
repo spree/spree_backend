@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function () {
+document.addEventListener("turbo:load", function () {
   const navWrapper = document.querySelectorAll('[data-nav-x-wrapper]')
   navWrapper.forEach(el => initHorizontalNav(el))
 })
@@ -16,7 +16,7 @@ function initHorizontalNav (containerEl) {
   const navContent = navContainer.querySelector('[data-nav-x-content]')
   const activeNavItem = navContent.querySelector('.active')
 
-  // Trigger on turbo:render
+  // Trigger on turbo:load
   setOverscrollIndicators()
 
   if (activeNavItem) focusActiveItem(navContainer, activeNavItem)

@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   if ($('#permalink_part_display').length) {
     var field = $('#permalink_part')
     var target = $('#permalink_part_display')

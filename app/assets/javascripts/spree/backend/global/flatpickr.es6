@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   flatpickr.setDefaults({
     altInput: true,
     time_24hr: true,

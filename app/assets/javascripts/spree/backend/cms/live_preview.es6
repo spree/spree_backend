@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   const LiveViewSwitcher = document.getElementById('LiveViewSwitcher')
 
   if (!LiveViewSwitcher) return

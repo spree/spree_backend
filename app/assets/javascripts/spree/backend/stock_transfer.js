@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   function TransferVariant (variant1) {
     // refactor variant1
     this.variant = variant1

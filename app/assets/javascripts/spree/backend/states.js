@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   'use strict'
 
   if ($('#new_state_link').length) {

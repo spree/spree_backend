@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   var parentEl = document.getElementsByClassName('sortable')[0];
   if (parentEl) {
     var element = parentEl.querySelector('tbody')

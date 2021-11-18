@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   var calculatorSelect = $('select#calc_type')
   var originalCalcType = calculatorSelect.prop('value')
   $('.calculator-settings-warning').hide()

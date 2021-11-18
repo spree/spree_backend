@@ -1,5 +1,5 @@
 /* global productTemplate */
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   window.productTemplate = Handlebars.compile($('#product_template').text())
   var taxonProducts = $('#taxon_products')
   var taxonId = $('#taxon_id')

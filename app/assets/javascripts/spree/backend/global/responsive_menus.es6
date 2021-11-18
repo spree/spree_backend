@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   var body = $('body')
   var modalBackdrop = $('#multi-backdrop')
 

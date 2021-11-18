@@ -1,4 +1,4 @@
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   $('.track_inventory_checkbox').on('click', function () {
     $(this).siblings('.variant_track_inventory').val($(this).is(':checked'))
     $(this).parents('form').submit()

@@ -33,6 +33,6 @@ $.fn.userAutocomplete = function () {
   })
 }
 
-document.addEventListener("turbo:render", function() {
+document.addEventListener("turbo:load", function() {
   $('.user_picker').userAutocomplete()
 })
