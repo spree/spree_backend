@@ -99,12 +99,17 @@ Spree.routes.pages_api_v2 = Spree.pathFor('api/v2/platform/cms_pages')
 Spree.routes.payments_api_v2 = Spree.pathFor('/api/v2/platform/payments')
 Spree.routes.products_api_v2 = Spree.pathFor('/api/v2/platform/products')
 Spree.routes.sections_api_v2 = Spree.pathFor('/api/v2/platform/cms_sections')
+Spree.routes.shipments_api_v2 = Spree.pathFor('/api/v2/platform/shipments')
+Spree.routes.stock_items_api_v2 = Spree.pathFor('/api/v2/platform/stock_items')
+Spree.routes.stock_locations_api_v2 = Spree.pathFor('/api/v2/platform/stock_locations')
 Spree.routes.taxons_api_v2 = Spree.pathFor('/api/v2/platform/taxons')
 Spree.routes.users_api_v2 = Spree.pathFor('api/v2/platform/users')
 Spree.routes.variants_api_v2 = Spree.pathFor('api/v2/platform/variants')
 
 Spree.apiV2Authentication = function() {
-  return {
-    'Authorization': 'Bearer ' + OAUTH_TOKEN
+  if (typeof(OAUTH_TOKEN) !== 'undefined') {
+    return {
+      'Authorization': 'Bearer ' + OAUTH_TOKEN
+    }
   }
 }
