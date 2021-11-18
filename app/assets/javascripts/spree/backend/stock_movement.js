@@ -1,18 +1,38 @@
 /* global variantTemplate */
 $(function () {
   var el = $('#stock_movement_stock_item_id')
+  var jsonApiVariants = {}
   el.select2({
     placeholder: 'Find a stock item', // translate
     ajax: {
-      url: Spree.url(Spree.routes.stock_items_api(el.data('stock-location-id'))),
+      url: Spree.routes.stock_items_api_v2,
       data: function (term, page) {
         return {
-          q: {
-            variant_product_name_cont: term
+          filter: {
+            variant_product_name_cont: term,
+            stock_location_id_eq: el.data('stock-location-id')
+          },
+          fields: {
+            'variant': 'name,sku,options_text'
           },
           per_page: 50,
-          page: page,
-          token: Spree.api_key
+          page: page
+        }
+      },
+      headers: Spree.apiV2Authentication(),
+      success: function(data) {
+        var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer
+        new JSONAPIDeserializer({ keyForAttribute: 'snake_case' }).deserialize(data, function (_err, variants) {
+          jsonApiVariants = variants
+        })
+      },
+      processResults: function (json) {
+        var res = jsonApiVariants.map(function (stockItem) {
+          return formattedVariantList(stockItem.variant)
+        })
+
+        return {
+          results: res
         }
       },
       results: function (data, page) {
