@@ -80,6 +80,8 @@ Spree.routes.edit_product = function (productId) {
 
 Spree.routes.payments_api = function (orderId) {
   return Spree.pathFor('api/v1/orders/' + orderId + '/payments')
+Spree.routes.apply_coupon_code = function (orderId) {
+  return Spree.pathFor('api/v2/platform/orders/' + orderId + '/apply_coupon_code')
 }
 
 Spree.routes.stock_items_api = function (stockLocationId) {
