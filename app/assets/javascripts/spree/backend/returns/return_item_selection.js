@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   var formFields = $("[data-hook='admin_customer_return_form_fields'], [data-hook='admin_return_authorization_form_fields']")
 
   function checkAddItemBox () {

@@ -4,7 +4,7 @@ import 'popper.js'
 
 const $ = jquery
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   $('.with-tip').each(function() {
     $(this).tooltip({
       container: $(this)

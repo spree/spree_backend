@@ -22,6 +22,7 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo": "^7.0.1",
     "bootstrap": "4.6.1",
+    "flatpickr": "^4.6.9",
     "jquery": "3.5.1",
     "popper.js": "1.16.1"
   },

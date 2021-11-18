@@ -1,5 +1,6 @@
 import "./controllers"
 import "./bootstrap"
+import flatpickr from "flatpickr"
 
 import * as Turbo from "@hotwired/turbo"
 
@@ -11,5 +12,5 @@ class Dashboard {
 }
 
 export {
-  Dashboard, Turbo
+  Dashboard, Turbo, flatpickr
 }

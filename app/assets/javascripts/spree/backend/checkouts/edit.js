@@ -103,7 +103,7 @@ $.fn.customerAutocomplete = function() {
   })
 }
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   $('#customer_search').customerAutocomplete()
 
   if ($('#customer_autocomplete_template').length > 0) {

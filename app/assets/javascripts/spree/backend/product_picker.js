@@ -52,6 +52,6 @@ $.fn.productAutocomplete = function (options) {
   }
 }
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   $('.product_picker').productAutocomplete()
 })

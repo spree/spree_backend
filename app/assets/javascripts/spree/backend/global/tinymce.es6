@@ -1,5 +1,5 @@
-document.addEventListener("turbo:load", function() {
-  tinymce.remove() // Required for turbo:load
+document.addEventListener("turbo:render", function() {
+  tinymce.remove() // Required for turbo:render
 
   tinymce.init({
     selector: '.spree-rte',

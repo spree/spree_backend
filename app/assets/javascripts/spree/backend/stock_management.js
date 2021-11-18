@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   $('.stock_item_backorderable').on('click', function () {
     $(this).parent('form').submit()
   })

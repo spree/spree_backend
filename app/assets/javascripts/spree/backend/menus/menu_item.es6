@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   const menuItemType = $('#menu_item_item_type').select2()
 
   updateContainerMessage()

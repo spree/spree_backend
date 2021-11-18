@@ -21,7 +21,7 @@
 //  EXAMPLE:
 //  data-autocomplete-additional-url-params-value="filter[type_not_eq]=Spree::Cms::Pages::Homepage"
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   loadAutoCompleteParams()
 })
 

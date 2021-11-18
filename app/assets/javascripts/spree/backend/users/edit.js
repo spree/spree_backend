@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   var useBilling = $('#user_use_billing')
 
   if (useBilling.is(':checked')) {

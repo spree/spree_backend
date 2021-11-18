@@ -1,6 +1,6 @@
 /* global shipments, variantStockTemplate, order_number, order_id */
 // Shipments AJAX API
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   'use strict'
 
   // handle variant selection, show stock level.

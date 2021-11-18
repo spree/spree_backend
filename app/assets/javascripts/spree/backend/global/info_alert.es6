@@ -1,5 +1,5 @@
 /* global Swal */
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   const infoToggle = document.querySelectorAll('[data-show-info]')
 
   infoToggle.forEach(function(infoElem) {

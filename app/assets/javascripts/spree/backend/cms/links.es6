@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   const linkSwitcher = $('.link_switcher').select2()
 
   linkSwitcher.on('change', function() {

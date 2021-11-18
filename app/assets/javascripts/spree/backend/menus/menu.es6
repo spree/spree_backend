@@ -1,6 +1,6 @@
 /* eslint-disable no-new */
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   const menuItemSortable = {
     group: {
       name: 'sortable-menu',

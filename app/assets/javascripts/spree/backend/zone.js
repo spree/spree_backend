@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   var countryBased = $('#country_based')
   var stateBased = $('#state_based')
   countryBased.click(show_country)

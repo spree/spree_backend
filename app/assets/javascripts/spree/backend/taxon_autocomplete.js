@@ -36,7 +36,7 @@ $.fn.taxonAutocomplete = function() {
   })
 }
 
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   var productTaxonSelector = document.getElementById('product_taxon_ids')
   if (productTaxonSelector == null) return
   if (productTaxonSelector.hasAttribute('data-autocomplete-url-value')) return

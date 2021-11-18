@@ -2,7 +2,7 @@
   radioControlsVisibilityOfElement:
   Apply to individual radio button that makes another element visible when checked
 **/
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbo:render", function() {
   $.fn.radioControlsVisibilityOfElement = function(dependentElementSelector) {
     if (!this.get(0)) { return }
     var showValue = this.get(0).value
