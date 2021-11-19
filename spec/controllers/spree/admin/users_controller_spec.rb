@@ -81,8 +81,8 @@ describe Spree::Admin::UsersController, type: :controller do
     end
 
     let(:permitted_user_attrs) do
-      permitted_user_attributes.reject { |attr| attr.is_a? Hash } +
-        permitted_user_attributes.select { |attr| attr.is_a? Hash }.map(&:keys)
+      (permitted_user_attributes.reject { |attr| attr.is_a? Hash } +
+        permitted_user_attributes.select { |attr| attr.is_a? Hash }.map(&:keys)).flatten
     end
 
     it 'can create a shipping_address' do
