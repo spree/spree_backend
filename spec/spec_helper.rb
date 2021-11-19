@@ -154,8 +154,8 @@ module Spree
       end
 
       def wait_for_turbo(timeout = nil)
-        if has_css?('.turbo-progress-bar', visible: true, wait: 0.25.seconds)
-          has_no_css?('.turbo-progress-bar', wait: timeout.presence || 0.05.seconds)
+        if has_css?('.turbo-progress-bar', visible: true, wait: 0.5.seconds)
+          has_no_css?('.turbo-progress-bar', wait: timeout.presence || 1.seconds)
         end
       end
     end
