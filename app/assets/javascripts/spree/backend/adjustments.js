@@ -6,12 +6,12 @@ document.addEventListener("spree:load", function() {
       return
     }
     $.ajax({
-      type: 'PUT',
-      url: Spree.url(Spree.routes.apply_coupon_code(order_number)),
+      type: 'PATCH',
+      url: Spree.routes.apply_coupon_code(order_number),
       data: {
         coupon_code: couponCode,
-        token: Spree.api_key
-      }
+      },
+      headers: Spree.apiV2Authentication(),
     }).done(function () {
       window.location.reload()
     }).fail(function (message) {

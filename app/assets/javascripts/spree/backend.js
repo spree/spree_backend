@@ -60,29 +60,12 @@
 //= require spree/backend/zone
 
 Spree.routes.clear_cache = Spree.adminPathFor('general_settings/clear_cache')
-Spree.routes.checkouts_api = Spree.pathFor('api/v1/checkouts')
-Spree.routes.classifications_api = Spree.pathFor('api/v1/classifications')
-Spree.routes.option_types_api = Spree.pathFor('api/v1/option_types')
-Spree.routes.option_values_api = Spree.pathFor('api/v1/option_values')
-Spree.routes.orders_api = Spree.pathFor('api/v1/orders')
-Spree.routes.products_api = Spree.pathFor('api/v1/products')
-Spree.routes.shipments_api = Spree.pathFor('api/v1/shipments')
-Spree.routes.stock_locations_api = Spree.pathFor('api/v1/stock_locations')
-Spree.routes.taxon_products_api = Spree.pathFor('api/v1/taxons/products')
-Spree.routes.taxons_api = Spree.pathFor('api/v1/taxons')
-Spree.routes.users_api = Spree.pathFor('api/v1/users')
-Spree.routes.variants_api = Spree.pathFor('api/v1/variants')
 
 Spree.routes.edit_product = function (productId) {
   return Spree.adminPathFor('products/' + productId + '/edit')
 }
-
-Spree.routes.payments_api = function (orderId) {
-  return Spree.pathFor('api/v1/orders/' + orderId + '/payments')
-}
-
-Spree.routes.stock_items_api = function (stockLocationId) {
-  return Spree.pathFor('api/v1/stock_locations/' + stockLocationId + '/stock_items')
+Spree.routes.apply_coupon_code = function (orderId) {
+  return Spree.pathFor('api/v2/platform/orders/' + orderId + '/apply_coupon_code')
 }
 
 // API v2
