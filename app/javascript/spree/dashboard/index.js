@@ -10,7 +10,12 @@ class Dashboard {
     const event = new Event("spree:load")
 
     document.addEventListener("turbo:load", function() { document.dispatchEvent(event) })
-    document.addEventListener("turbo:render", function() { document.dispatchEvent(event) })
+
+    // If a form is submitted with an invalid field, the response for Hotwire should be a
+    // 422 Unprocessable Entity with a render, but this causes all JavaScript initialized from "turbo:load" to
+    // fail.
+
+    // document.addEventListener("turbo:render", function() { document.dispatchEvent(event) })
   }
 }
 
