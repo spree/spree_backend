@@ -1,5 +1,3 @@
-/* eslint-disable no-new */
-
 document.addEventListener("spree:load", function() {
   const menuItemSortable = {
     group: {
@@ -40,9 +38,4 @@ function handleMenuItemMove(evt) {
      dataBody: data,
   }
   spreeFetchRequest(requestData)
-}
-
-function handleMenuItemMoveError () {
-  // eslint-disable-next-line no-undef
-  show_flash('error', Spree.translations.move_could_not_be_saved)
 }

@@ -1,0 +1,16 @@
+<div class="sortable-tree-item-row d-flex flex-nowrap">
+  <div class="move-handle d-flex align-items-center p-3">
+    <%= svg_icon(name: 'sort.svg', width: '20', height: '20') %>
+  </div>
+
+  <div class="d-flex align-items-center overflow-hidden w-100">
+    <div class="overflow-hidden">
+      <%= taxon.name %>
+    </div>
+  </div>
+
+  <div class="d-flex align-items-center space-buttons px-2">
+    <%= link_to_edit(taxon, no_text: true, url: spree.edit_admin_menu_menu_item_path(taxonomy, taxon)) %>
+    <%= link_to_delete(taxon, no_text: true, url: spree.admin_menu_menu_item_path(taxonomy, taxon)) if can?(:destroy, taxon) %>
+  </div>
+</div>
