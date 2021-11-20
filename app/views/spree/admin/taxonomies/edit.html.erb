@@ -1,23 +1,50 @@
-<div id="sortableTreeArea">
-  <div class="row mt-2">
-    <div class="col-12">
-      <% if @taxonomy.root.present? %>
-        <div class="card-body p-0 bg-light" data-controller="sortable-tree" data-sortable-tree-handle-value=".move-handle">
-          <div id="primaryContainer" data-sortable-tree-parent-id-value="<%= @taxonomy.root.id %> ">
+<% content_for :page_title do %>
+  <%= link_to Spree.t('admin.taxonomies.taxonomies'), spree.admin_taxonomies_path %> / <%= @taxonomy.name %>
+<% end %>
 
-            <% if @taxonomy.root.children.present? %>
-              <% @taxonomy.root.children.each do |root_children| %>
-                   <%= build_taxonomy_tree(@taxonomy, root_children) %>
-              <% end %>
-            <% else %>
-              <div class="alert alert-info no-objects-found m-5">
-                <%= raw Spree.t('admin.navigation.no_menu_items', menu: @taxonomy.root.name) %>
-              </div>
-            <% end %>
-
+<div class="row pb-0">
+  <div class="col-12">
+    <div class="card rounded-top-only border-bottom-0">
+      <div class="card-header">
+        <h5 class="mb-0"><%= Spree.t('taxonomy_details') %></h5>
+      </div>
+      <div class="card-body">
+        <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @taxonomy } %>
+        <%= form_for [:admin, @taxonomy] do |f| %>
+          <%= render partial: 'form', locals: { f: f } %>
+          <div class="d-flex ">
+            <%= render partial: 'spree/admin/shared/edit_resource_links' %>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="sortableTreeArea">
+  <div class="row">
+    <div class="col-12">
+
+      <div class="card mb-3 rounded-bottom-only">
+        <% if @taxonomy.root.present? %>
+          <div class="card-body p-0 bg-light" data-controller="sortable-tree" data-sortable-tree-handle-value=".move-handle">
+            <div data-sortable-tree-parent-id-value="<%= @taxonomy.root.id %> ">
+
+              <% if @taxonomy.root.children.present? %>
+                <% @taxonomy.root.children.each do |root_children| %>
+                     <%= build_taxonomy_tree(@taxonomy, root_children) %>
+                <% end %>
+              <% else %>
+                <div class="alert alert-info no-objects-found m-5">
+                  <%= raw Spree.t('admin.navigation.no_menu_items', menu: @taxonomy.root.name) %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>

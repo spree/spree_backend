@@ -1,8 +1,8 @@
 module Spree
   module Admin
     class TaxonsController < Spree::Admin::BaseController
-      before_action :load_taxonomy, only: [:create, :edit, :update, :remove_icon]
-      before_action :load_taxon, only: [:edit, :update, :remove_icon]
+      before_action :load_taxonomy, only: [:create, :edit, :update, :remove_icon, :destroy]
+      before_action :load_taxon, only: [:edit, :update, :remove_icon, :destroy]
       before_action :set_permalink_part, only: [:edit, :update]
       respond_to :html, :js
 
@@ -59,6 +59,19 @@ module Spree
             format.html { render :edit, status: :unprocessable_entity }
             format.json { render json: @taxon.errors.full_messages.to_sentence, status: 422 }
           end
+        end
+      end
+
+      def destroy
+        if @taxon.destroy
+          flash[:success] = flash_message_for(@taxon, :successfully_removed)
+        else
+          flash[:error] = @taxon.errors.full_messages.join(', ')
+        end
+
+        respond_with(@taxon) do |format|
+          format.html { redirect_to location_after_destroy }
+          format.js   { render_js_for_destroy }
         end
       end
 
