@@ -6,7 +6,20 @@
   <div class="d-flex align-items-center overflow-hidden w-100">
     <div class="overflow-hidden">
       <%= taxon.name %>
+      <h6 class="form-text text-muted mt-0 mb-1">
+        <span class="badge badge-light badge-light-muted-text"><%= taxon.permalink %></span>
+      </h6>
+      <small class="form-text text-muted mt-0 mb-1">
+        Submenu: <%= active_badge(!taxon.hide_from_nav) %>
+      </small>
     </div>
+    <% if taxon.icon.present? %>
+      <div class="ml-2">
+        <div class="item_image_holder">
+          <%= image_tag main_app.url_for(taxon.icon.attachment) %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="d-flex align-items-center space-buttons px-2">

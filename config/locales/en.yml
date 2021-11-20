@@ -103,6 +103,7 @@ en:
       taxonomies:
         taxonomies: Taxonomies
         taxons_belonging_to: "Taxons Belonging To %{taxonomy_name}"
+        shown_in_submenu: Shown in sub-menu
       order:
         changing_store_warning: If you change the store this order belongs to, the order will be reset.
         once_an_order_is_complete_you_can_not_change_store: 'Sorry, once an order is complete, you can no longer change the store that the order belongs to.'
