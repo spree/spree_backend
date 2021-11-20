@@ -21,7 +21,6 @@
 //= require spree/backend/calculator
 //= require spree/backend/checkouts/edit
 //= require spree/backend/gateway
-//= require spree/backend/general_settings
 //= require spree/backend/handlebar_extensions
 //= require spree/backend/line_items
 //= require spree/backend/line_items_on_order_edit
@@ -51,8 +50,6 @@
 //= require spree/backend/variant_autocomplete
 //= require spree/backend/variant_management
 //= require spree/backend/zone
-
-Spree.routes.clear_cache = Spree.adminPathFor('general_settings/clear_cache')
 
 Spree.routes.edit_product = function (productId) {
   return Spree.adminPathFor('products/' + productId + '/edit')

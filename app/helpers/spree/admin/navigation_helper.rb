@@ -247,14 +247,14 @@ module Spree
       end
 
       def configurations_sidebar_menu_item(link_text, url, options = {})
-        is_selected = url.ends_with?(controller.controller_name) ||
+        options[:is_selected] ||= url.ends_with?(controller.controller_name) ||
           url.ends_with?("#{controller.controller_name}/edit") ||
           url.ends_with?("#{controller.controller_name.singularize}/edit")
 
         options[:class] = 'sidebar-menu-item d-block w-100'
-        options[:class] << ' selected' if is_selected
+        options[:class] << ' selected' if options[:is_selected]
         content_tag(:li, options) do
-          link_to(link_text, url, class: "#{'text-success' if is_selected} sidebar-submenu-item w-100 py-2 py-md-1 pl-3 d-block")
+          link_to(link_text, url, class: "#{'text-success' if options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 pl-3 d-block")
         end
       end
 
