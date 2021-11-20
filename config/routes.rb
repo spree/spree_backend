@@ -199,6 +199,5 @@ Spree::Core::Engine.add_routes do
     get '/forbidden', to: 'errors#forbidden', as: :forbidden
   end
 
-  spree_path = Rails.application.routes.url_helpers.try(:spree_path, trailing_slash: true) || '/'
-  get Spree.admin_path, to: redirect((spree_path + Spree.admin_path + '/orders').gsub('//', '/')), as: :admin
+  get Spree.admin_path, to: 'admin/dashboard#show', as: :admin
 end
