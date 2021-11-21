@@ -4,6 +4,13 @@ import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
 import * as Turbo from "@hotwired/turbo"
 
+//
+// Initialize Dashboard
+class Dashboard {
+  constructor() {
+    console.log("Spree Dashboard Initialized")
+  }
+}
 
 //
 // Import Utility JavaScript required globally.
@@ -26,7 +33,6 @@ application.register("spree", SpreeController)
 import SortableTreeController from "./controllers/sortable_tree_controller"
 application.register("sortable-tree", SortableTreeController)
 
-
 //
 // Export
-export { application, flatpickr, Turbo }
+export { Dashboard, application, flatpickr, Turbo }

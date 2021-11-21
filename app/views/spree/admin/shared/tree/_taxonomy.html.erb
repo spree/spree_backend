@@ -6,9 +6,11 @@
   <div class="d-flex align-items-center overflow-hidden w-100">
     <div class="overflow-hidden">
       <%= taxon.name %>
-      <h6 class="form-text text-muted mt-0 mb-1">
-        <span class="badge badge-light badge-light-muted-text"><%= svg_icon(name: 'link.svg', width: '16', height: '16') %> <%= taxon.permalink %></span>
-      </h6>
+      <!--
+        <h6 class="form-text text-muted mt-0 mb-1">
+          <span class="badge badge-light badge-light-muted-text"><%#= svg_icon(name: 'link.svg', width: '16', height: '16') %> <%= taxon.permalink %></span>
+        </h6>
+      -->
       <small class="form-text text-muted mt-0 mb-1">
         <%= Spree.t('admin.taxonomies.submenu') %>: <%= active_badge(!taxon.hide_from_nav) %>
       </small>
