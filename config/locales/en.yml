@@ -38,7 +38,7 @@ en:
         toggle_page_visibility: Toggle page visibility
         meta_title: Meta Title
         meta_description: Meta Description
-        preview_page: Preview Page
+        page: Page
         full_screen_mode: '<span class="exit">Exit </span>Full Screen Mode'
         hero:
           aspect_ratio: Please use an image with the aspect ratio of 12:5 (2400px x 1000px)
@@ -180,3 +180,5 @@ en:
         used_in: Used In
         you_have_no_menus: You have no Menus, click the Add New Menu button to create your first Menu.
         this_link_takes_you_to_your_stores_home_page: This link takes you to your stores home page.
+      utilities:
+        preview: Preview %{name}

@@ -1,8 +1,14 @@
 <div data-hook="admin_inside_taxon_form">
   <%= f.field_container :name, class: ['form-group'] do %>
     <%= f.label :name, raw(Spree.t(:name) + required_span_tag) %>
-    <%= text_field :taxon, :name, class: 'form-control' %>
+    <%= text_field :taxon, :name, class: 'form-control', required: true %>
     <%= f.error_message_on :name, class: 'error-message' %>
+  <% end %>
+
+  <%= f.field_container :hide_from_nav, class: ['custom-control', 'custom-checkbox'] do %>
+    <%= f.check_box :hide_from_nav, class: 'custom-control-input' %>
+    <%= f.label :hide_from_nav, Spree.t(:hide_from_subcategories_nav), class: 'custom-control-label' %>
+    <%= f.error_message_on :hide_from_nav %>
   <% end %>
 
   <%= f.field_container :permalink, class: ['form-group'] do %>
@@ -15,15 +21,6 @@
       </div>
       <%= text_field_tag :permalink_part, @permalink_part, class: 'form-control', required: true %>
     </div>
-  <% end %>
-
-  <%= f.field_container :hide_from_nav, class: ['form-group'] do %>
-    <%= f.label :hide_from_nav do %>
-      <%= Spree.t(:hide_from_subcategories_nav) %>
-      <br>
-      <%= f.check_box :hide_from_nav, { checked: @taxon.hide_from_nav } %>
-      <small><%= Spree.t(:say_yes) %></small>
-    <% end %>
   <% end %>
 
   <%= f.field_container :icon, class: ['form-group'] do %>
