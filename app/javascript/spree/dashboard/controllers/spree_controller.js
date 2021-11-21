@@ -3,9 +3,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
 
-    // This is a hack to allow legacy JavaScript to run in Turbo.
-    // Once all JavaScript is reduced to Hotwire and Stimulus controllers
-    // This can be removed.
+    // This is a hack to allow legacy JavaScript to run in a Turbo enabled environment.
+    // Once all JavaScript is reduced to Stimulus controllers, this can be removed.
     const event = new Event("spree:load")
     document.dispatchEvent(event)
 
