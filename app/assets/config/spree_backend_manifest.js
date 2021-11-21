@@ -3,7 +3,6 @@
 //= link spree-dashboard.js
 //= link spree/backend/all.js
 //= link spree/backend/all.css
-//= link jquery.jstree/themes/spree/style.css
 
 //= link select2_locale_af.js
 //= link select2_locale_ar.js
