@@ -4,7 +4,6 @@
 //= require handlebars
 //= require cleave
 //= require js.cookie
-//= require jquery.jstree/jquery.jstree
 //= require jquery_ujs
 //= require jquery-ui/widgets/autocomplete
 //= require select2-full

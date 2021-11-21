@@ -9,13 +9,21 @@
         <h5 class="mb-0"><%= Spree.t('taxonomy_details') %></h5>
       </div>
       <div class="card-body">
-        <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @taxonomy } %>
-        <%= form_for [:admin, @taxonomy] do |f| %>
-          <%= render partial: 'form', locals: { f: f } %>
-          <div class="d-flex ">
-            <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+        <div class="row">
+          <div class="col-8">
+            <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @taxonomy } %>
+            <%= form_for [:admin, @taxonomy] do |f| %>
+              <%= render partial: 'form', locals: { f: f } %>
+              <div class="d-flex ">
+                <%#= render partial: 'spree/admin/shared/edit_resource_links' %>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+          <div class="col-4 text-right">
+            <%= button_link_to Spree.t('admin.taxonomies.add_new_taxon'), spree.new_admin_taxonomy_taxon_path(@taxonomy.id), icon: 'add.svg', class: 'no-wrap btn btn-success align-self-center mt-4' %>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
