@@ -1,12 +1,12 @@
-import "./request_utility"
 import "./controllers"
-import "./bootstrap"
+import "./utilities/bootstrap"
+
 import flatpickr from "flatpickr"
 import * as Turbo from "@hotwired/turbo"
 
 class Dashboard {
   constructor() {
-    console.log('Spree Dashboard Initiated')
+    console.log("Spree Dashboard Initiated")
   }
 }
 
