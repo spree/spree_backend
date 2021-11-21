@@ -2,38 +2,29 @@
   <%= link_to Spree.t('admin.taxonomies.taxonomies'), spree.admin_taxonomies_path %> / <%= @taxonomy.name %>
 <% end %>
 
-<div class="row pb-0">
-  <div class="col-12">
-    <div class="card rounded-top-only border-bottom-0">
-      <div class="card-header">
-        <h5 class="mb-0"><%= Spree.t('taxonomy_details') %></h5>
-      </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-8">
-            <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @taxonomy } %>
-            <%= form_for [:admin, @taxonomy] do |f| %>
-              <%= render partial: 'form', locals: { f: f } %>
-              <div class="d-flex ">
-                <%#= render partial: 'spree/admin/shared/edit_resource_links' %>
-              </div>
-            <% end %>
-          </div>
-          <div class="col-4 text-right">
-            <%= button_link_to Spree.t('admin.taxonomies.add_new_taxon'), spree.new_admin_taxonomy_taxon_path(@taxonomy.id), icon: 'add.svg', class: 'no-wrap btn btn-success align-self-center mt-4' %>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-
 <div id="sortableTreeArea">
   <div class="row">
     <div class="col-12">
 
-      <div class="card mb-3 rounded-bottom-only">
+      <div class="card mb-3">
+        <div class="card-header">
+          <div class="row pb-0">
+            <div class="col d-flex">
+              <%= form_for [:admin, @taxonomy] do |f| %>
+                <div class="input-group" data-controller="upload-button">
+                  <%= f.text_field :name, class: 'form-control', required: true, data: { action: "input->upload-button#buttonState" } %>
+                  <div class="input-group-append">
+                    <%= button Spree.t('actions.update'), 'save.svg', 'submit', { class: 'btn btn-outline-secondary', data: { disable_with: "#{ Spree.t(:saving) }...", upload_button_target: "uploadButton" } } %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col d-flex justify-content-end">
+              <%= button_link_to Spree.t('admin.taxonomies.add_new_taxon'), spree.new_admin_taxonomy_taxon_path(@taxonomy.id), icon: 'add.svg', class: 'no-wrap btn btn-success align-self-center' %>
+            </div>
+          </div>
+        </div>
+
         <% if @taxonomy.root.present? %>
           <div class="card-body p-0 bg-light" data-controller="sortable-tree" data-sortable-tree-handle-value=".move-handle">
             <div data-sortable-tree-parent-id-value="<%= @taxonomy.root.id %> ">
