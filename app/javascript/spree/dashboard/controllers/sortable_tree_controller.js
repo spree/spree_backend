@@ -1,13 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
-import Sortable from "sortablejs"
-import { patch } from "@rails/request.js"
+import { Sortable } from "sortablejs"
+import { patch } from "../request_utility"
 
 export default class extends Controller {
-  static values = {
-    resourceName: String,
-    animation: Number,
-    handle: String
-  }
+  static values = { handle: String }
 
   connect() {
     const itemSortable = {
@@ -32,13 +28,11 @@ export default class extends Controller {
       }
     }
 
-    await patch(item.dataset.sortableTreeUpdateUrlValue, {
-      body: data,
-      contentType: "application/json",
-      headers: {
-        'Authorization': 'Bearer ' + OAUTH_TOKEN
-      }
-    })
+    const response = await patch(item.dataset.sortableTreeUpdateUrlValue, { body: data })
+
+    if (!response.ok) {
+      show_flash("error", "This move could not be saved.")
+    }
   }
 
   get options() {

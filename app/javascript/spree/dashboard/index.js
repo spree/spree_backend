@@ -1,9 +1,8 @@
+import "./request_utility"
 import "./controllers"
 import "./bootstrap"
 import flatpickr from "flatpickr"
-
 import * as Turbo from "@hotwired/turbo"
-
 
 class Dashboard {
   constructor() {
@@ -11,6 +10,4 @@ class Dashboard {
   }
 }
 
-export {
-  Dashboard, flatpickr
-}
+export { Dashboard, flatpickr, Turbo }

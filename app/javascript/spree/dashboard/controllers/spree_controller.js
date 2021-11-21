@@ -12,7 +12,7 @@ export default class extends Controller {
     // The Issue
     // If you initiate common JavaScript with an event listener of "turbo:load"
     // This will work, but if someone submits an update to a field that is required,
-    // a 442 Unprocessable entity is used, and a render event is used render the errors in place.
+    // a 442 Unprocessable entity is returned, and a render event is used render the errors in place.
 
     // Because this in not a successful "turbo:load" event, all common JavaScript will fail.
     // You could set up a separate listener for "turbo:render", but this can cause duplicate loading.
