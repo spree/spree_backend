@@ -200,12 +200,12 @@ module Spree
           text = "#{icon} #{text}"
         end
 
-        css_classes = options[:class] || 'btn btn-primary'
+        css_classes = options[:class] || 'btn-primary'
         button_tag(
           text.html_safe,
           options.merge(
             type: button_type,
-            class: css_classes,
+            class: "btn #{css_classes}",
             'data-disable-with' => "#{Spree.t(:saving)}..."
           )
         )

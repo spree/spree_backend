@@ -10,12 +10,12 @@ RequestInterceptor.register(async (request) => {
 
 //
 // Setup Turbo Progress bar on @rails/request.js requests.
-function showProgressBar() {
+export function showProgressBar() {
   navigator.delegate.adapter.progressBar.setValue(0)
   navigator.delegate.adapter.progressBar.show()
 }
 
-function hideProgressBar() {
+export function hideProgressBar() {
   navigator.delegate.adapter.progressBar.setValue(1)
   navigator.delegate.adapter.progressBar.hide()
 }

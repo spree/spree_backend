@@ -1,8 +1,10 @@
 document.addEventListener("spree:load", function() {
   $(document).ajaxStart(function () {
-    $('#progress').stop(true, true).fadeIn()
+    Turbo.navigator.delegate.adapter.progressBar.setValue(0)
+    Turbo.navigator.delegate.adapter.progressBar.show()
   })
   $(document).ajaxStop(function () {
-    $('#progress').fadeOut()
+    Turbo.navigator.delegate.adapter.progressBar.setValue(1)
+    Turbo.navigator.delegate.adapter.progressBar.hide()
   })
 })

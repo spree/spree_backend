@@ -4,21 +4,15 @@
 //
 // Shows the progress bar on fech requests
 const showProgressIndicator = () => {
-  const progressBar = document.querySelector('#progress')
-  progressBar.classList.add('d-block')
-  animateCSS('#progress', 'fadeIn', 'faster')
+  Turbo.navigator.delegate.adapter.progressBar.setValue(0)
+  Turbo.navigator.delegate.adapter.progressBar.show()
 }
 
 //
 // Hides the progress bar on fech requests
 const hideProgressIndicator = () => {
-  const progressBar = document.querySelector('#progress')
-
-  animateCSS('#progress', 'fadeOut', 'fast')
-
-  progressBar.addEventListener('animationend', () => {
-    progressBar.classList.remove('d-block')
-  })
+  Turbo.navigator.delegate.adapter.progressBar.setValue(1)
+  Turbo.navigator.delegate.adapter.progressBar.hide()
 }
 
 //
