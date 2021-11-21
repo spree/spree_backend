@@ -1,10 +1,4 @@
 //
-// Import JavaScript packages that are required globally.
-import { Application } from "@hotwired/stimulus"
-import flatpickr from "flatpickr"
-import * as Turbo from "@hotwired/turbo"
-
-//
 // Initialize Dashboard
 class Dashboard {
   constructor() {
@@ -13,9 +7,14 @@ class Dashboard {
 }
 
 //
+// Import JavaScript packages that are required globally.
+import { Application } from "@hotwired/stimulus"
+import flatpickr from "flatpickr"
+import * as Turbo from "@hotwired/turbo"
+
+//
 // Import Utility JavaScript required globally.
 import "./utilities/bootstrap"
-
 
 //
 // Stimulus - Setup

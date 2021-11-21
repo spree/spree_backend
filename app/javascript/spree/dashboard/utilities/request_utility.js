@@ -6,7 +6,6 @@ import { navigator } from "@hotwired/turbo"
 // Inject Authorization & Content-Type into @rails/request.js requests.
 RequestInterceptor.register(async (request) => {
   request.addHeader("Authorization", `Bearer ${OAUTH_TOKEN}`)
-  request.addHeader("Content-Type", "application/json")
 })
 
 //
