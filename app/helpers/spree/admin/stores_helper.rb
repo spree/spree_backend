@@ -23,7 +23,7 @@ module Spree
         end
 
         link_to icon + store.unique_name, url_for(host: store.formatted_url),
-                class: "#{classes} text-dark p-3 dropdown-item", id: store.code
+                class: "#{classes} text-dark p-3 dropdown-item", id: store.code, data: { turbo: false }
       end
     end
   end
