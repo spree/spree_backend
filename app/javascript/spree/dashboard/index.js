@@ -12,6 +12,9 @@ import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
 import * as Turbo from "@hotwired/turbo"
 
+// To disable Turbo, un-comment the line below.
+// Turbo.session.drive = false
+
 //
 // Import Utility JavaScript required globally.
 import "./utilities/bootstrap"
