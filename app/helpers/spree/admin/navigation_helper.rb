@@ -263,7 +263,7 @@ module Spree
 
       def main_part_classes
         ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
-          Admin::NavigationsHelper#main_sidebar_classes is deprecated and will be removed in Spree 5.0.
+          Admin::NavigationsHelper#main_part_classes is deprecated and will be removed in Spree 5.0.
         DEPRECATION
         if cookies['sidebar-minimized'] == 'true'
           'col-12 sidebar-collapsed'
