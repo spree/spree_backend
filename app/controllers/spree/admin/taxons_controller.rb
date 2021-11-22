@@ -61,10 +61,6 @@ module Spree
         spree.edit_admin_taxonomy_taxon_path(@taxonomy.id, @taxon.id)
       end
 
-      def collection_url
-        spree.edit_admin_taxonomy_url(@taxonomy)
-      end
-
       def parent_data
         if action_name == 'index'
           nil

@@ -49,7 +49,8 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     click_button 'Update'
     wait_for_turbo
 
-    expect(page).to have_content("Name can't be blank")
+    message = page.find('[name="taxon[name]"]').native.attribute("validationMessage")
+    expect(message).to eq "Please fill out this field."
   end
 
   it 'admin should be able to remove a product from a taxon', js: true do

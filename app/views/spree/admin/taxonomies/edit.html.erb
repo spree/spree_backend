@@ -28,7 +28,7 @@
                 <% end %>
               <% else %>
                 <div class="alert alert-info no-objects-found m-5">
-                  <%= raw Spree.t('admin.navigation.no_menu_items', menu: @taxonomy.root.name) %>
+                  <%= raw Spree.t('admin.taxonomies.no_taxons', taxonomy: @taxonomy.root.name ) %>
                 </div>
               <% end %>
 
