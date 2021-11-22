@@ -1,6 +1,12 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t('admin.taxonomies.taxonomies'), spree.admin_taxonomies_path %> / <%= @taxonomy.name %>
+  <%= link_to Spree.t('admin.taxonomies.taxonomies'), spree.admin_taxonomies_path %> / <%= @taxonomy.root.name %>
 <% end %>
+
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t('admin.taxonomies.edit_root_taxon'), spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxonomy.root.id), icon: 'edit.svg', class: 'no-wrap btn-outline-secondary align-self-center' %>
+<% end %>
+
 
 <div id="sortableTreeArea">
   <div class="row">
@@ -10,14 +16,7 @@
         <div class="card-header">
           <div class="row pb-0">
             <div class="col d-flex">
-              <%= form_for [:admin, @taxonomy] do |f| %>
-                <div class="input-group" data-controller="upload-button">
-                  <%= f.text_field :name, class: 'form-control', required: true, data: { action: "input->upload-button#buttonState" } %>
-                  <div class="input-group-append">
-                    <%= button Spree.t('actions.update'), 'save.svg', 'submit', { class: 'btn btn-outline-secondary', data: { disable_with: "#{ Spree.t(:saving) }...", upload_button_target: "uploadButton" } } %>
-                  </div>
-                </div>
-              <% end %>
+              <h5><%= @taxonomy.root.name %></h5>
             </div>
             <div class="col d-flex justify-content-end">
               <%= button_link_to Spree.t('admin.taxonomies.add_new_taxon'), spree.new_admin_taxonomy_taxon_path(@taxonomy.id), icon: 'add.svg', class: 'no-wrap btn btn-success align-self-center' %>

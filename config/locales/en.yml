@@ -103,6 +103,7 @@ en:
       taxon:
         nested_under_info: Nest this Taxon within the Taxonomy tree.
       taxonomies:
+        edit_root_taxon: Edit Root Taxon
         taxonomies: Taxonomies
         taxons_belonging_to: "Taxons Belonging To %{taxonomy_name}"
         submenu: Submenu
