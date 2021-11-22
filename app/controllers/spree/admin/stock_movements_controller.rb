@@ -6,8 +6,8 @@ module Spree
 
       def index
         @stock_movements = stock_location.stock_movements.recent.
-                           includes(stock_item: { variant: :product }).
-                           page(params[:page])
+          includes(stock_item: { variant: :product }).
+          page(params[:page])
       end
 
       def new
@@ -15,7 +15,7 @@ module Spree
       end
 
       def create
-        @stock_movement = stock_location.stock_movements.build(stock_movement_params.merge(stock_item_id: stock_item_id))
+        @stock_movement = stock_location.stock_movements.build(stock_movement_params)
         if @stock_movement.save
           flash[:success] = flash_message_for(@stock_movement, :successfully_created)
           redirect_to spree.admin_stock_location_stock_movements_path(stock_location)
@@ -32,10 +32,6 @@ module Spree
 
       def stock_movement_params
         params.require(:stock_movement).permit(:quantity, :stock_item_id, :action)
-      end
-
-      def stock_item_id
-        stock_location.variants.find(stock_movement_params[:stock_item_id]).stock_items.take.id
       end
     end
   end
