@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div id="menuArea">
+<div id="sortableTreeArea">
   <div class="row mt-2">
     <div class="col-12">
       <div class="card mb-3">
@@ -37,11 +37,11 @@
         </div>
 
         <% if @menu.root.present? %>
-          <div class="card-body p-0 bg-light">
-            <div id="primaryMenuContainer" class="menu-container" data-parent-id="<%= @menu.root.id %>">
+          <div class="card-body p-0 bg-light" data-controller="sortable-tree" data-sortable-tree-handle-value=".move-handle">
+            <div data-sortable-tree-parent-id-value="<%= @menu.root.id %>">
               <% if @menu.root.children.present? %>
                 <% @menu.root.children.each do |root_children| %>
-                     <%= build_menu_item(@menu, root_children) %>
+                     <%= build_sortable_tree(@menu, root_children) %>
                 <% end %>
               <% else %>
                 <div class="alert alert-info no-objects-found m-5">

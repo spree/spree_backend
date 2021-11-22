@@ -1,4 +1,7 @@
-<div class="container-item-row d-flex flex-nowrap">
+<% menu = parent_resource %>
+<% item = child_resource %>
+
+<div class="sortable-tree-item-row d-flex flex-nowrap">
   <div class="move-handle d-flex align-items-center p-3">
     <%= svg_icon(name: 'sort.svg', width: '20', height: '20') %>
   </div>
@@ -16,7 +19,7 @@
     </div>
     <% if item.icon.present? %>
       <div class="ml-2">
-        <div class="menu_items_image_holder">
+        <div class="item_image_holder">
           <%= image_tag main_app.url_for(item.icon.attachment) %>
         </div>
       </div>

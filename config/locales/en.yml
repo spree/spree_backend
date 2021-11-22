@@ -107,8 +107,8 @@ en:
         taxonomies: Taxonomies
         taxons_belonging_to: "Taxons Belonging To %{taxonomy_name}"
         submenu: Submenu
-        add_new_taxon: Add a new Taxon to %{name}
-        no_taxons: '<b>%{taxonomy}</b> has no Taxons. Click the <b>Add a new Taxon to %{taxonomy}</b>, to begin adding Taxons.'
+        add_new_taxon: Add a new Taxon
+        no_taxons: '<b>%{taxonomy}</b> has no Taxons. Click the <b>Add a new Taxon</b> button, to begin adding Taxons.'
       order:
         changing_store_warning: If you change the store this order belongs to, the order will be reset.
         once_an_order_is_complete_you_can_not_change_store: 'Sorry, once an order is complete, you can no longer change the store that the order belongs to.'
