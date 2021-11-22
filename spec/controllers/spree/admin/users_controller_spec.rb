@@ -80,6 +80,11 @@ describe Spree::Admin::UsersController, type: :controller do
       user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
     end
 
+    let(:permitted_user_attrs) do
+      (permitted_user_attributes.reject { |attr| attr.is_a? Hash } +
+        permitted_user_attributes.select { |attr| attr.is_a? Hash }.map(&:keys)).flatten
+    end
+
     it 'can create a shipping_address' do
       expect(Spree.user_class).to receive(:new).with(ActionController::Parameters.new(
         'ship_address_attributes' => { 'city' => 'New York' }
@@ -95,7 +100,7 @@ describe Spree::Admin::UsersController, type: :controller do
     end
 
     it 'redirects to user edit page' do
-      post :create, params: { user: user.slice(*permitted_user_attributes) }
+      post :create, params: { user: user.slice(permitted_user_attrs) }
       expect(response).to redirect_to(spree.edit_admin_user_path(assigns[:user]))
     end
   end
