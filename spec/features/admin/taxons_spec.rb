@@ -38,6 +38,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     wait_for_turbo
 
     expect(page).to have_content('Taxon "Shirt" has been successfully updated!')
+    expect(page).to have_field('Permalink', with: 'shirt-rails')
   end
 
   it 'taxon without name should not be updated' do

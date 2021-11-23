@@ -52,6 +52,9 @@ describe 'Taxonomies', type: :feature, js: true do
       wait_for_turbo
 
       click_link Spree.t('admin.taxonomies.edit_root_taxonomy', name: tx.name )
+      wait_for_turbo
+
+      expect(page).not_to (have_selector 'select2-hidden-accessible')
 
       fill_in 'taxon_name', with: 'sports 99'
       click_button 'Update'
