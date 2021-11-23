@@ -15,6 +15,22 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     end
   end
 
+  context 'admin should be able to edit taxon changing nesting level' do
+    let!(:taxonomy_1) { create(:taxonomy, name: 'clothing') }
+    let!(:taxon_a) { create(:taxon, taxonomy: taxonomy_1, name: 'jackets') }
+    let!(:taxon_b) { create(:taxon, taxonomy: taxonomy_1, name: 'Sports Jacket') }
+
+    it 'updates the taxon path' do
+      visit spree.edit_admin_taxonomy_taxon_path(taxonomy_1, taxon_b.id)
+      select2 '- jackets', from: 'Nested under'
+
+      click_button 'Update'
+      wait_for_turbo
+
+      expect(page).to have_content('t/clothing/jackets/')
+    end
+  end
+
   context 'when WYSIWYG editor is disabled' do
     before { Spree::Backend::Config.taxon_wysiwyg_editor_enabled = false }
 
