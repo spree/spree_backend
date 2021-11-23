@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function handleMenuItemMove(evt) {
   const data = {
     menu_item: {
-      new_parent_id: parseInt(evt.to.dataset.parentId, 10) || null,
+      new_parent_id: evt.to.dataset.parentId || null,
       new_position_idx: parseInt(evt.newIndex, 10)
     }
   }
