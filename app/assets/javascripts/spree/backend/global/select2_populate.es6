@@ -67,7 +67,7 @@ const updateSelectSuccess = function(parsedData, returnValueFromAttributes, retu
 
     if (returnValueFromAttributes == null) {
       optionEl.value = object.id
-      if (parseInt(selectedOption, 10) === parseInt(object.id, 10)) optionEl.selected = true
+      if (selectedOption === object.id) optionEl.selected = true
     } else {
       optionEl.value = object.attributes[returnValueFromAttributes]
       if (selectedOpt.value === object.attributes[returnValueFromAttributes]) {
