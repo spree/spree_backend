@@ -46,7 +46,7 @@ describe Spree::Admin::BaseController, type: :controller do
     end
     context 'when logged in' do
       before do
-        allow(controller).to receive_messages(try_spree_current_user: double('User', id: 1, last_incomplete_spree_order: nil))
+        allow(controller).to receive_messages(try_spree_current_user: double('User', id: 1, last_incomplete_spree_order: nil, persisted?: true))
       end
 
       it 'redirects forbidden path' do
