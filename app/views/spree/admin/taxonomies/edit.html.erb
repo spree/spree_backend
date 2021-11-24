@@ -20,7 +20,7 @@
 
         <% if @taxonomy.root.present? %>
           <div class="card-body p-0 bg-light" data-controller="sortable-tree" data-sortable-tree-handle-value=".move-handle">
-            <div data-sortable-tree-parent-id-value="<%= @taxonomy.root.id %> ">
+            <div data-sortable-tree-parent-id-value="<%= @taxonomy.root.id %>">
 
               <% if @taxonomy.root.children.present? %>
                 <% @taxonomy.root.children.each do |root_children| %>
