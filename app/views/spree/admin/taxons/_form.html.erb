@@ -17,18 +17,18 @@
     </div>
 
     <div class="col-12 col-md-8">
-      <%= f.field_container :permalink, class: ['form-group'] do %>
-        <%= label_tag :permalink_part, raw(Spree.t(:permalink) + required_span_tag) %>
-        <div class="input-group mb-3">
-          <% unless @taxon.new_record? %>
-          <div class="input-group-prepend">
-            <span class="input-group-text">
-              <%= [Spree::Config[:storefront_taxons_path] , @parent_permalink].join('/') %>
-            </span>
+      <% unless @taxon.new_record? %>
+        <%= f.field_container :permalink, class: ['form-group'] do %>
+          <%= label_tag :permalink_part, raw(Spree.t(:permalink) + required_span_tag) %>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <%= [Spree::Config[:storefront_taxons_path] , @parent_permalink].join('/') %>
+              </span>
+            </div>
+            <%= text_field_tag :permalink_part, @permalink_part, class: 'form-control', required: true %>
           </div>
-          <% end %>
-          <%= text_field_tag :permalink_part, @permalink_part, class: 'form-control', required: true %>
-        </div>
+        <% end %>
       <% end %>
     </div>
 
