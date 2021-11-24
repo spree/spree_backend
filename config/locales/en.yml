@@ -81,6 +81,22 @@ en:
         search_for_a_page: Search for a page
         search_for_a_taxon: Search for a Taxon
         search_for_a_product: Search for a Product
+      store:
+        digital_settings:
+          digital_asset_settings: Digital Asset Settings
+          limit_digital_download_count: Limit Download Count
+          limit_digital_download_days: Limit Download Days
+          digital_asset_authorized_clicks:
+            authorized_clicks: Authorized Download Count
+            info: Number of times a download link can be clicked.
+          digital_asset_authorized_days:
+            authorized_days: Authorized Download Days
+            info: The number of days a purchase can be downloaded after purchase.
+          digital_asset_link_expire_time:
+            download_link_expire_time: Download Link Expire Time
+            link_expire_time: Set the expire time of each download link. (seconds).
+
+
       tab:
         configuration: Configuration
         content: Content
