@@ -95,8 +95,6 @@ en:
           digital_asset_link_expire_time:
             download_link_expire_time: Download Link Expire Time
             link_expire_time: Set the expire time of each download link. (seconds).
-
-
       tab:
         configuration: Configuration
         content: Content
