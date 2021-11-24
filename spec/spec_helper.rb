@@ -19,7 +19,7 @@ end
 ENV['RAILS_ENV'] ||= 'test'
 
 begin
-  require File.expand_path('dummy/config/environment', __dir__)
+  require File.expand_path('../dummy/config/environment', __FILE__)
 rescue LoadError
   puts 'Could not load dummy application. Please ensure you have run `bundle exec rake test_app`'
   exit
@@ -39,14 +39,14 @@ require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/factories'
 require 'spree/testing_support/preferences'
 require 'spree/testing_support/controller_requests'
-require 'spree/testing_support/flash'
+require 'spree/backend/testing_support/flash'
 require 'spree/testing_support/url_helpers'
 require 'spree/testing_support/order_walkthrough'
-require 'spree/testing_support/capybara_ext'
+require 'spree/backend/testing_support/capybara_utils'
 require 'spree/testing_support/capybara_config'
 require 'spree/testing_support/rspec_retry_config'
 require 'spree/testing_support/image_helpers'
-require 'spree/testing_support/flatpickr_capybara'
+require 'spree/backend/testing_support/flatpickr_capybara'
 
 require 'spree/core/controller_helpers/strong_parameters'
 require 'webdrivers'
@@ -110,12 +110,13 @@ RSpec.configure do |config|
   config.include CapybaraSelect2::Helpers
   config.include FactoryBot::Syntax::Methods
 
+  config.include Spree::Backend::TestingSupport::CapybaraUtils
   config.include Spree::TestingSupport::Preferences
   config.include Spree::TestingSupport::UrlHelpers
   config.include Spree::TestingSupport::ControllerRequests, type: :controller
-  config.include Spree::TestingSupport::Flash
+  config.include Spree::Backend::TestingSupport::Flash
   config.include Spree::TestingSupport::ImageHelpers
-  config.include Spree::TestingSupport::FlatpickrCapybara
+  config.include Spree::Backend::TestingSupport::FlatpickrCapybara
 
   config.include Spree::Core::ControllerHelpers::StrongParameters, type: :controller
 
@@ -124,40 +125,4 @@ RSpec.configure do |config|
 
   config.filter_run_including focus: true unless ENV['CI']
   config.run_all_when_everything_filtered = true
-end
-
-module Spree
-  module TestingSupport
-    module Flash
-      def assert_admin_flash_alert_success(message)
-        message_content = convert_flash(message)
-
-        within('#FlashAlertsContainer', visible: :all) do
-          expect(page).to have_css('span[data-alert-type="success"]', text: message_content, visible: :all)
-        end
-      end
-
-      def assert_admin_flash_alert_error(message)
-        message_content = convert_flash(message)
-
-        within('#FlashAlertsContainer', visible: :all) do
-          expect(page).to have_css('span[data-alert-type="error"]', text: message_content, visible: :all)
-        end
-      end
-
-      def assert_admin_flash_alert_notice(message)
-        message_content = convert_flash(message)
-
-        within('#FlashAlertsContainer', visible: :all) do
-          expect(page).to have_css('span[data-alert-type="notice"]', text: message_content, visible: :all)
-        end
-      end
-
-      def wait_for_turbo(timeout = nil)
-        if has_css?('.turbo-progress-bar', visible: true, wait: 0.5.seconds)
-          has_no_css?('.turbo-progress-bar', wait: timeout.presence || 1.seconds)
-        end
-      end
-    end
-  end
 end
