@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t('admin.taxonomies.taxonomies'), spree.admin_taxonomies_path %> / <%= @taxonomy.root.name %>
+  <%= link_to Spree.t('admin.taxonomies.taxonomies'), spree.admin_taxonomies_path %> / <%= @taxonomy.name %>
 <% end %>
 
 <div id="sortableTreeArea">
