@@ -8,8 +8,6 @@
 //= require select2-full
 //= require sweetalert2
 //= require tinymce
-//= require spree/backend/global/tinymce
-
 //= require underscore-min.js
 //= require jsonapi-serializer.min
 
