@@ -5,7 +5,7 @@
    <% active_id_holder = resource.linked_resource.id %>
  <% end %>
 
- <%= f.field_container :linked_resource_field, class: ['form-group'] do %>
+ <%= f.field_container :linked_resource_field do %>
    <%= f.label :linked_resource_id, Spree.t('taxon') %>
    <%= f.select :linked_resource_id,
         options_from_collection_for_select(resource_holder || [],

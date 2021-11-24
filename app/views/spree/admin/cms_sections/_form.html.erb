@@ -1,14 +1,14 @@
 <div data-hook="admin_cms_section_form_fields">
   <div class="row">
     <div class="col-12 col-md-6">
-      <%= f.field_container :name, class: ['form-group'] do %>
+      <%= f.field_container :name do %>
         <%= f.label :name, raw(Spree.t(:name) + required_span_tag) %>
         <%= f.text_field :name, class: 'form-control', required: true, autocomplete: false %>
         <%= f.error_message_on :name %>
       <% end %>
     </div>
     <div class="col-12 col-md-6">
-      <%= f.field_container :type, class: ['form-group'] do %>
+      <%= f.field_container :type do %>
         <%= f.label :type, Spree.t('admin.cms.section_type') %>
         <%= f.select(:type, spree_humanize_dropdown_values('Spree::CmsSection', {const: 'TYPES'}), {include_blank: false}) %>
         <%= f.error_message_on :type %>
