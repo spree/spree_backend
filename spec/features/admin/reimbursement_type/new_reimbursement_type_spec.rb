@@ -8,7 +8,7 @@ describe 'new reimbursement type', type: :feature do
   end
 
   it 'view should have select field' do
-    expect(page).to have_css('div#reimbursement_type_type_field.form-group.field')
+    expect(page).to have_css('div#reimbursement_type_type_field.form-group')
   end
 
   context 'with valid attributes' do

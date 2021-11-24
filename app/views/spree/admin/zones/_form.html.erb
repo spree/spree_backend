@@ -6,13 +6,13 @@
       </div>
 
       <div class="card-body">
-        <%= zone_form.field_container :name, class: ['form-group'] do %>
+        <%= zone_form.field_container :name do %>
           <%= zone_form.label :name, Spree.t(:name) %>
           <%= zone_form.text_field :name, class: 'form-control' %>
           <%= zone_form.error_message_on :name %>
         <% end %>
 
-        <%= zone_form.field_container :description, class: ['form-group'] do %>
+        <%= zone_form.field_container :description do %>
           <%= zone_form.label :description, Spree.t(:description) %>
           <%= zone_form.text_field :description, class: 'form-control' %>
         <% end %>

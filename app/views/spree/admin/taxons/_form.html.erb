@@ -1,7 +1,7 @@
 <div data-hook="admin_inside_taxon_form">
   <div class="row">
     <div class="col-12 col-md-8">
-      <%= f.field_container :name, class: ['form-group'] do %>
+      <%= f.field_container :name do %>
         <%= f.label :name, raw(Spree.t(:name) + required_span_tag) %>
         <%= text_field :taxon, :name, class: 'form-control', required: true %>
         <%= f.error_message_on :name, class: 'error-message' %>
@@ -18,7 +18,7 @@
 
     <div class="col-12 col-md-8">
       <% unless @taxon.new_record? %>
-        <%= f.field_container :permalink, class: ['form-group'] do %>
+        <%= f.field_container :permalink do %>
           <%= label_tag :permalink_part, raw(Spree.t(:permalink) + required_span_tag) %>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -38,7 +38,7 @@
       <% else %>
         <% disabled = @taxon.root? %>
       <% end %>
-      <%= f.field_container :parent_id, class: ['form-group'] do %>
+      <%= f.field_container :parent_id do %>
         <%= f.label :parent_id, Spree.t('admin.navigation.nested_under') %>
         <%= f.select :parent_id, nested_set_options(@taxonomy.taxons, @taxon) {|i| "#{'-' * i.level} #{i.name}" }, { include_blank: false }, { class: 'select2', disabled: disabled  } %>
         <%= f.error_message_on :parent_id %>
@@ -57,7 +57,7 @@
 
   <div class="row">
     <div class="col-12 col-md-8">
-      <%= f.field_container :description, class: ['form-group'] do %>
+      <%= f.field_container :description do %>
         <%= f.label :description, Spree.t(:description) %>
         <%= f.text_area :description, class: "form-control #{'spree-rte' if taxon_wysiwyg_editor_enabled? }", rows: 14 %>
       <% end %>
@@ -83,17 +83,17 @@
 
   <div class="row">
     <div class="col-12">
-      <%= f.field_container :meta_title, class: ['form-group'] do %>
+      <%= f.field_container :meta_title do %>
         <%= f.label :meta_title, Spree.t(:meta_title) %>
         <%= f.text_field :meta_title, class: 'form-control', rows: 6 %>
       <% end %>
 
-      <%= f.field_container :meta_description, class: ['form-group'] do %>
+      <%= f.field_container :meta_description do %>
         <%= f.label :meta_description, Spree.t(:meta_description) %>
         <%= f.text_area :meta_description, class: 'form-control', rows: 6 %>
       <% end %>
 
-      <%= f.field_container :meta_keywords, class: ['form-group'] do %>
+      <%= f.field_container :meta_keywords do %>
         <%= f.label :meta_keywords, Spree.t(:meta_keywords) %>
         <%= f.text_field :meta_keywords, class: 'form-control', rows: 6 %>
       <% end %>
