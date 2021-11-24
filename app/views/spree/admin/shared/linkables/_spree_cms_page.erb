@@ -4,7 +4,7 @@
    <% name_holder = :title %>
    <% active_id_holder = resource.linked_resource.id %>
  <% end %>
- <%= f.field_container :linked_resource_id, class: ['form-group'] do %>
+ <%= f.field_container :linked_resource_id do %>
     <%= f.label :linked_resource_id, Spree.t('page') %>
     <%= f.select :linked_resource_id,
          options_from_collection_for_select(resorce_holder || [],

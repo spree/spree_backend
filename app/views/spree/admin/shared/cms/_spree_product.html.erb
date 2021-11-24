@@ -1,4 +1,4 @@
-<%= f.field_container save_to, class: ['form-group'] do %>
+<%= f.field_container save_to do %>
   <%= f.label save_to, Spree.t('admin.cms.link_to_product') %>
   <%= f.select save_to, options_from_collection_for_select([resource], save_to, save_to, resource.send(save_to) || nil), { include_blank: true },
                           id: "cms_section_#{save_to}",
