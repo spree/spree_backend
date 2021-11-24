@@ -1,4 +1,4 @@
-$(function () {
+document.addEventListener("spree:load", function() {
   $('.stock_item_backorderable').on('click', function () {
     $(this).parent('form').submit()
   })

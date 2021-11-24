@@ -1,5 +1,5 @@
 /* global variantTemplate */
-$(function () {
+document.addEventListener("spree:load", function() {
   var el = $('#stock_movement_stock_item_id')
   var jsonApiVariants = {}
   el.select2({

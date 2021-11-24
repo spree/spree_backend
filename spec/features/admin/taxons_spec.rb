@@ -15,6 +15,22 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     end
   end
 
+  context 'admin should be able to edit taxon changing nesting level' do
+    let!(:taxonomy_1) { create(:taxonomy, name: 'clothing') }
+    let!(:taxon_a) { create(:taxon, taxonomy: taxonomy_1, name: 'jackets') }
+    let!(:taxon_b) { create(:taxon, taxonomy: taxonomy_1, name: 'Sports Jacket') }
+
+    it 'updates the taxon path' do
+      visit spree.edit_admin_taxonomy_taxon_path(taxonomy_1, taxon_b.id)
+      select2 '- jackets', from: 'Nested under'
+
+      click_button 'Update'
+      wait_for_turbo
+
+      expect(page).to have_content('t/clothing/jackets/')
+    end
+  end
+
   context 'when WYSIWYG editor is disabled' do
     before { Spree::Backend::Config.taxon_wysiwyg_editor_enabled = false }
 
@@ -35,7 +51,10 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
 
     fill_in 'permalink_part', with: 'shirt-rails'
     click_button 'Update'
+    wait_for_turbo
+
     expect(page).to have_content('Taxon "Shirt" has been successfully updated!')
+    expect(page).to have_field('Permalink', with: 'shirt-rails')
   end
 
   it 'taxon without name should not be updated' do
@@ -45,7 +64,10 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
 
     fill_in 'permalink_part', with: 'shirt-rails'
     click_button 'Update'
-    expect(page).to have_content("Name can't be blank")
+    wait_for_turbo
+
+    message = page.find('[name="taxon[name]"]').native.attribute("validationMessage")
+    expect(message).to eq "Please fill out this field."
   end
 
   it 'admin should be able to remove a product from a taxon', js: true do
@@ -60,6 +82,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     find('.product .dropdown-toggle').click
 
     click_link 'Remove'
+    wait_for_turbo
 
     expect(page).not_to have_css('.product')
 
@@ -74,6 +97,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
 
     attach_file('taxon_icon', file_path)
     click_button 'Update'
+    wait_for_turbo
 
     expect(page).to have_content('successfully updated!')
 
@@ -114,6 +138,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     visit spree.edit_admin_taxonomy_taxon_path(taxonomy, taxonomy.root_id)
 
     click_link 'Remove Image'
+    wait_for_turbo
 
     expect(page).to have_content('Image has been successfully removed')
   end
@@ -128,5 +153,6 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     visit spree.edit_admin_taxonomy_taxon_path(taxonomy, taxonomy.root_id)
     attach_file('taxon_icon', file_path)
     click_button 'Update'
+    wait_for_turbo
   end
 end

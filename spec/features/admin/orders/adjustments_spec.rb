@@ -79,7 +79,10 @@ describe 'Adjustments', type: :feature do
 
   context 'admin editing an adjustment', js: true do
     before do
-      within_row(2) { click_icon :edit }
+      within_row(2) do
+        visit current_path
+        click_icon :edit
+      end
     end
 
     context 'successfully' do
@@ -87,6 +90,8 @@ describe 'Adjustments', type: :feature do
         fill_in 'adjustment_amount', with: '99'
         fill_in 'adjustment_label', with: 'rebate 99'
         click_button 'Continue'
+        wait_for_turbo
+
         expect(page).to have_content('successfully updated!')
         expect(page).to have_content('rebate 99')
         within('.adjustments') do
@@ -101,7 +106,10 @@ describe 'Adjustments', type: :feature do
       it 'does not update the adjustment' do
         fill_in 'adjustment_amount', with: ''
         fill_in 'adjustment_label', with: ''
+
         click_button 'Continue'
+        wait_for_turbo
+
         expect(page).to have_content("Label can't be blank")
       end
     end

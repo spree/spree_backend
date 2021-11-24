@@ -1,4 +1,4 @@
-$(document).ready(function () {
+document.addEventListener("spree:load", function() {
   var useBilling = $('#user_use_billing')
 
   if (useBilling.is(':checked')) {

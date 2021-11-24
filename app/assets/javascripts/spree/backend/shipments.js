@@ -1,6 +1,6 @@
 /* global shipments, variantStockTemplate, order_number, order_id */
 // Shipments AJAX API
-$(document).ready(function () {
+document.addEventListener("spree:load", function() {
   'use strict'
 
   // handle variant selection, show stock level.

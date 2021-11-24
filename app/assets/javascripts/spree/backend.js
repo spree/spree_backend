@@ -1,10 +1,8 @@
 //= require purify
 //= require sortable
-//= require flatpickr
 //= require jquery3
 //= require handlebars
 //= require cleave
-//= require jquery.jstree/jquery.jstree
 //= require jquery_ujs
 //= require jquery-ui/widgets/autocomplete
 //= require select2-full

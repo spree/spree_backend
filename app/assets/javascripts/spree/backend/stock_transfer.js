@@ -1,4 +1,4 @@
-$(function () {
+document.addEventListener("spree:load", function() {
   function TransferVariant (variant1) {
     // refactor variant1
     this.variant = variant1

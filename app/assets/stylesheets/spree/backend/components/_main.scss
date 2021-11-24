@@ -36,3 +36,11 @@ body.modal-open #multi-backdrop {
     padding: 1.25rem;
   }
 }
+
+.rounded-bottom-only {
+  border-radius: 0 0 $border-radius $border-radius;
+}
+
+.rounded-top-only {
+  border-radius: $border-radius $border-radius 0 0;
+}

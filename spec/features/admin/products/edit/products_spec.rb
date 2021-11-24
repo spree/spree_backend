@@ -53,7 +53,7 @@ describe 'Product Details', type: :feature, js: true do
 
       click_link 'Details'
 
-      expect(page).to have_css('#admin_preview_product')
+      expect(page).to have_css('#adminPreviewProduct')
       expect(page).to have_link Spree.t(:preview_product), href: "http://www.example.com/products/bun-th-t-n-ng"
     end
   end

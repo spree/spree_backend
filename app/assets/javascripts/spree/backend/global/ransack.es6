@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("spree:load", function() {
   const QuickSearchInput = document.getElementById('quick_search')
 
   if (QuickSearchInput) {
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })
 
-  // per page dropdown
+  // per page drop-down
   // preserves all selected filters / queries supplied by user
   // changes only per_page value
   $('.js-per-page-select').change(function() {
@@ -92,16 +92,18 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       url += '?per_page=' + value
     }
-    window.location = url
+    Turbo.visit(url)
   })
 
   // injects per_page settings to all available search forms
   // so when user changes some filters / queries per_page is preserved
-  $(document).ready(function() {
+  document.addEventListener("spree:load", function() {
     var perPageDropdown = $('.js-per-page-select:first')
     if (perPageDropdown.length) {
       var perPageValue = perPageDropdown.val().toString()
-      var perPageInput = '<input type="hidden" name="per_page" value=' + perPageValue + ' />'
+      var perPageInput = '<input class="hidden_per_page_input" type="hidden" name="per_page" value=' + perPageValue + ' />'
+
+      $('.hidden_per_page_input').remove()
       $('#table-filter form').append(perPageInput)
     }
   })

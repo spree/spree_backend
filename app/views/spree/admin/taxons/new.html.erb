@@ -1,0 +1,16 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:taxonomies), spree.admin_taxonomies_url %> /
+  <%= link_to @taxonomy.root.name, spree.edit_admin_taxonomy_url(@taxonomy) %> / New
+<% end %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @taxon } %>
+
+<%= form_for [:admin, @taxonomy, @taxon] do |f| %>
+  <%= render 'form', f: f %>
+
+  <div class="form-actions" data-hook="buttons">
+    <%= button Spree.t('actions.create'), 'save.svg' %>
+    <span class="or"><%= Spree.t(:or) %></span>
+    <%= button_link_to Spree.t('actions.cancel'), edit_admin_taxonomy_url(@taxonomy), icon: "cancel.svg" %>
+  </div>
+<% end %>

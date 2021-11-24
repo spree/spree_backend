@@ -339,14 +339,19 @@ describe 'Products', type: :feature do
 
           visit spree.admin_products_path
           click_on 'Filter'
+          wait_for_turbo
+
           find('label', text: 'Show Deleted').click
           click_on 'Search'
+          wait_for_turbo
 
           expect(page).to have_content('apache baseball cap')
 
           within_row(1) do
+            wait_for_turbo
             click_icon :clone
           end
+          wait_for_turbo
 
           expect(page).to have_content('Product has been cloned')
         end

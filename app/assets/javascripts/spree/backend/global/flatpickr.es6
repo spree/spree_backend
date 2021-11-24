@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("spree:load", function() {
   flatpickr.setDefaults({
     altInput: true,
     time_24hr: true,
@@ -20,3 +20,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
   flatpickr('.datepicker', {})
 })
+

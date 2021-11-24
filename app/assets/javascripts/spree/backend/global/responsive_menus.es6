@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("spree:load", function() {
   var body = $('body')
   var modalBackdrop = $('#multi-backdrop')
 

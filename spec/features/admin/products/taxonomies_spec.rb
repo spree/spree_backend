@@ -26,26 +26,48 @@ describe 'Taxonomies', type: :feature, js: true do
 
     it 'allows an admin to create a new taxonomy' do
       expect(page).to have_content('New Taxonomy')
+
       fill_in 'taxonomy_name', with: 'sports'
       click_button 'Create'
+      wait_for_turbo
+
+      expect(page).to have_content ('sports has no Taxons. Click the Add a new Taxon button, to begin adding Taxons.')
       expect(page).to have_content('successfully created!')
     end
 
     it 'displays validation errors' do
       fill_in 'taxonomy_name', with: ''
       click_button 'Create'
-      expect(page).to have_content("can't be blank")
+
+      message = page.find('[name="taxonomy[name]"]').native.attribute("validationMessage")
+      expect(message).to eq "Please fill out this field."
     end
   end
 
   context 'edit' do
-    it 'allows an admin to update an existing taxonomy' do
-      create(:taxonomy)
+    it 'allows an admin to update an existing taxonomy through root taxon' do
+      tx = create(:taxonomy)
       click_link 'Taxonomies'
       within_row(1) { click_icon :edit }
-      fill_in 'taxonomy_name', with: 'sports 99'
+      wait_for_turbo
+
+      click_link Spree.t('admin.taxonomies.edit_root_taxonomy', name: tx.name )
+      wait_for_turbo
+
+      expect(page).not_to (have_selector 'select2-hidden-accessible')
+
+      fill_in 'taxon_name', with: 'sports 99'
       click_button 'Update'
+
       expect(page).to have_content('successfully updated!')
+      expect(page).to have_content('sports 99')
+
+      within '#contentHeaderRow' do
+        click_link 'Taxonomies'
+      end
+
+      wait_for_turbo
+
       expect(page).to have_content('sports 99')
     end
   end

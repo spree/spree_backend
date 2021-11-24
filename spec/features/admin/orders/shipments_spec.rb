@@ -25,6 +25,7 @@ describe 'Shipments', type: :feature do
       visit spree.admin_orders_path
       within_row(1) do
         click_link 'R100'
+        wait_for_turbo
       end
     end
 

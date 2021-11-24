@@ -40,6 +40,7 @@ describe 'New Order', type: :feature do
     check 'order_use_billing'
     fill_in_address
     click_on 'Update'
+    wait_for_turbo
 
     click_on 'Payments'
     click_on 'Update'
@@ -48,7 +49,10 @@ describe 'New Order', type: :feature do
     click_icon 'capture'
 
     click_on 'Shipments'
+    wait_for_turbo
+
     click_on 'Ship'
+    wait_for_turbo
 
     expect(page).to have_content('shipped')
   end
@@ -73,6 +77,7 @@ describe 'New Order', type: :feature do
       check 'order_use_billing'
       fill_in_address
       click_on 'Update'
+      wait_for_turbo
 
       click_on 'Shipments'
 
@@ -175,12 +180,15 @@ describe 'New Order', type: :feature do
         fill_in 'variant_quantity', with: 1
         click_icon :add
       end
+
       expect(page).not_to have_content('Your order is empty')
 
       click_link 'Customer'
       select_customer
       wait_for { !page.has_button?('Update') }
       click_button 'Update'
+      wait_for_turbo
+
       expect(order.state).to eq 'delivery'
     end
   end
@@ -192,7 +200,7 @@ describe 'New Order', type: :feature do
     fill_in 'Address (contd.)',          with: '#101'
     fill_in 'City',                      with: 'Bethesda'
     fill_in 'Zip Code',                  with: '20170'
-    select2 state.name,                   css: '#bstate'
+    select2 state.name,                  css: '#bstate'
     fill_in 'Phone',                     with: '123-456-7890'
   end
 

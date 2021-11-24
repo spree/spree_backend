@@ -237,18 +237,28 @@ module Spree
       end
 
       def product_preview_link(product)
-        button_link_to(
-          Spree.t(:preview_product),
-          spree_storefront_resource_url(product),
-          class: 'btn-outline-secondary', icon: 'view.svg', id: 'admin_preview_product', target: :blank
-        )
+       ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
+         Admin::BaseHelper#product_preview_link is deprecated and will be removed in Spree 5.0. - Use Admin::BaseHelper#external_page_preview_link
+       DEPRECATION
+
+        external_page_preview_link(product)
       end
 
       def taxon_preview_link(taxon)
+        ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
+          Admin::BaseHelper#taxon_preview_link is deprecated and will be removed in Spree 5.0. - Use Admin::BaseHelper#external_page_preview_link
+        DEPRECATION
+
+        external_page_preview_link(taxon)
+      end
+
+      def external_page_preview_link(resource, options = {})
+        resource_name = options[:name] || resource.class.name.demodulize
+
         button_link_to(
-          Spree.t(:preview_taxon),
-          spree_storefront_resource_url(taxon),
-          class: 'btn-outline-secondary', icon: 'view.svg', id: 'admin_preview_taxon', target: :blank
+          Spree.t('admin.utilities.preview', name: resource_name ),
+          spree_storefront_resource_url(resource),
+          class: 'btn-outline-secondary', icon: 'view.svg', id: "adminPreview#{resource_name}", target: :blank, data: { turbo: false }
         )
       end
 

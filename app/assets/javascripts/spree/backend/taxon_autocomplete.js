@@ -37,7 +37,7 @@ $.fn.taxonAutocomplete = function() {
   })
 }
 
-$(document).ready(function () {
+document.addEventListener("spree:load", function() {
   var productTaxonSelector = document.getElementById('product_taxon_ids')
   if (productTaxonSelector == null) return
   if (productTaxonSelector.hasAttribute('data-autocomplete-url-value')) return

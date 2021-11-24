@@ -30,6 +30,12 @@ module Spree
           end
         end
 
+        def wait_for_turbo(timeout = nil)
+          if has_css?('.turbo-progress-bar', visible: true, wait: 0.5.seconds)
+            has_no_css?('.turbo-progress-bar', wait: timeout.presence || 1.seconds)
+          end
+        end
+
         def disable_html5_validation
           page.execute_script('for(var f=document.forms,i=f.length;i--;)f[i].setAttribute("novalidate",i)')
         end

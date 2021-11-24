@@ -51,7 +51,7 @@ describe 'Edit Standard Page', type: :feature do
       expect(page).to have_text('Français (FR)')
     end
 
-    it 'allows user to toggle visability', js: true do
+    it 'allows user to toggle visibility', js: true do
       expect(page).to have_text ('Visible')
 
       find(:xpath, '//*[@id="cms_page_visible"]/..').click
@@ -61,12 +61,13 @@ describe 'Edit Standard Page', type: :feature do
 
     it 'allows user to toggle more page settings enter data and save', js: true do
       find('[aria-controls="collapsePageSettings"]').click
-      fill_in 'Meta Description', with: 'M-Descript'
+      fill_in 'Meta Description', with: 'M-Description'
 
       click_on 'Update'
+      wait_for_turbo
 
       find('[aria-controls="collapsePageSettings"]').click
-      expect(page).to have_text ('M-Descript')
+      expect(page).to have_text ('M-Description')
     end
   end
 end

@@ -1,5 +1,5 @@
 /* global order_number, show_flash */
-$(function () {
+document.addEventListener("spree:load", function() {
   $('[data-hook=adjustments_new_coupon_code] #add_coupon_code').click(function () {
     var couponCode = $('#coupon_code').val()
     if (couponCode.length === 0) {

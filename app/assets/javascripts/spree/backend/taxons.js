@@ -1,5 +1,5 @@
 /* global productTemplate */
-$(function () {
+document.addEventListener("spree:load", function() {
   window.productTemplate = Handlebars.compile($('#product_template').text())
   var taxonProducts = $('#taxon_products')
   var taxonId = $('#taxon_id')
