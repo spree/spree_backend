@@ -70,7 +70,6 @@ describe 'Products', type: :feature do
       context 'currency displaying' do
         context 'using Russian Rubles' do
           before do
-            Spree::Config[:currency] = 'RUB'
             Spree::Store.default.update!(default_currency: 'RUB')
             create(:product, name: 'Just a product', price: 19.99)
           end
