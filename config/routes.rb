@@ -180,8 +180,6 @@ Spree::Core::Engine.add_routes do
       member do
         get :addresses
         put :addresses
-        put :clear_api_key
-        put :generate_api_key
         get :items
         get :orders
       end
