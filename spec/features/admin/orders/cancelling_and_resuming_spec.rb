@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Cancelling + Resuming', type: :feature do
   stub_authorization!
 
-  let(:user) { double(id: 123, has_spree_role?: true, spree_api_key: 'fake', email: 'spree@example.com', persisted?: true) }
+  let(:user) { double(id: 123, has_spree_role?: true, email: 'spree@example.com', persisted?: true) }
   let(:order) do
     order = create(:order)
     order.update_columns(state: 'complete', completed_at: Time.current)
