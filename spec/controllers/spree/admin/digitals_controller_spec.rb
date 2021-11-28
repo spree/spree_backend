@@ -64,7 +64,8 @@ RSpec.describe Spree::Admin::DigitalsController do
             product_id: product.slug,
             digital: { variant_id: product.master.id }
           } # fail validation by not passing attachment
-          expect(response).to redirect_to(spree.admin_product_digitals_path(product))
+          expect(flash[:error]).to eq("Attachment can't be blank")
+          expect(response).to have_http_status(:unprocessable_entity)
         end.to change(Spree::Digital, :count).by(0)
       end
     end

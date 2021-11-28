@@ -12,7 +12,7 @@ module Spree
         else
           invoke_callbacks(:create, :fails)
           flash[:error] = @object.errors.full_messages.join(', ')
-          redirect_to location_after_save
+          render action: :index, status: :unprocessable_entity
         end
       end
 
