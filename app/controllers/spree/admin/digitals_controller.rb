@@ -12,7 +12,10 @@ module Spree
         else
           invoke_callbacks(:create, :fails)
           flash[:error] = @object.errors.full_messages.join(', ')
-          render action: :index, status: :unprocessable_entity
+          respond_with(@object) do |format|
+            format.html { render action: :index, status: :unprocessable_entity }
+            format.js { render layout: false, status: :unprocessable_entity }
+          end
         end
       end
 
