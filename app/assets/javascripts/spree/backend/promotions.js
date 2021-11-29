@@ -16,10 +16,12 @@ function initProductActions () {
         $warning.hide()
         $settings.show()
         $settings.find('input').removeProp('disabled')
+        $settings.find('select').removeProp('disabled')
       } else {
         $warning.show()
         $settings.hide()
         $settings.find('input').prop('disabled', 'disabled')
+        $settings.find('select').prop('disabled', 'disabled')
       }
     })
   })
@@ -161,7 +163,7 @@ function initProductActions () {
   })()
 }
 
-$(document).ready(function () {
+document.addEventListener("spree:load", function() {
   var promotion_form = $('form.edit_promotion')
 
   if (promotion_form.length) {

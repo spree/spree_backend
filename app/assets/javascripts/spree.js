@@ -2,7 +2,7 @@
 function Spree () {}
 
 Spree.ready = function (callback) {
-  return jQuery(document).on('page:load turbolinks:load', function () {
+  return document.addEventListener("spree:load", function() {
     return callback(jQuery)
   })
 }
@@ -67,12 +67,5 @@ Spree.ajax = function (urlOrSettings, settings) {
   }
 }
 
-Spree.routes = {
-  states_search: Spree.pathFor('api/v1/states'),
-  apply_coupon_code: function (orderId) {
-    return Spree.pathFor('api/v1/orders/' + orderId + '/apply_coupon_code')
-  },
-  cart: Spree.pathFor('cart')
-}
-
+Spree.routes = {}
 Spree.url_params = {}

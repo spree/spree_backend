@@ -1,4 +1,4 @@
-$(function () {
+document.addEventListener("spree:load", function() {
   var countryBased = $('#country_based')
   var stateBased = $('#state_based')
   countryBased.click(show_country)

@@ -1,6 +1,6 @@
 /* global variantTemplate */
 // variant autocompletion
-$(function () {
+document.addEventListener("spree:load", function() {
   var variantAutocompleteTemplate = $('#variant_autocomplete_template')
   if (variantAutocompleteTemplate.length > 0) {
     window.variantTemplate = Handlebars.compile(variantAutocompleteTemplate.text())
@@ -14,8 +14,8 @@ function formatVariantResult(variant) {
     return variant.text
   }
 
-  if (variant['images'][0] !== undefined && variant['images'][0].mini_url !== undefined) {
-    variant.image = variant.images[0].mini_url
+  if (variant['images'][0] !== undefined && variant['images'][0].transformed_url !== undefined) {
+    variant.image = variant.images[0].transformed_url
   }
   return $(variantTemplate({
     variant: variant
@@ -30,23 +30,31 @@ $.fn.variantAutocomplete = function () {
     minimumInputLength: 3,
     quietMillis: 200,
     ajax: {
-      url: Spree.url(Spree.routes.variants_api),
+      url: Spree.url(Spree.routes.variants_api_v2),
       dataType: 'json',
       data: function (params) {
         var query = {
-          q: {
+          filter: {
             search_by_product_name_or_sku: params.term
           },
-          token: Spree.api_key
+          include: 'images,stock_items.stock_location',
+          image_transformation: {
+            size: '100x100'
+          }
         }
 
         return query;
       },
-      processResults: function(data) {
-        window.variants = data['variants']
-        return {
-          results: data.variants
-        }
+      headers: Spree.apiV2Authentication(),
+      success: function(data) {
+        var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer
+        new JSONAPIDeserializer({ keyForAttribute: 'snake_case' }).deserialize(data, function (_err, variants) {
+          jsonApiVariants = variants
+          window.variants = variants
+        })
+      },
+      processResults: function (_data) {
+        return { results: jsonApiVariants } // we need to return deserialized json api data
       }
     },
     templateResult: formatVariantResult,

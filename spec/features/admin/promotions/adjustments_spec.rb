@@ -12,26 +12,35 @@ describe 'Promotion Adjustments', type: :feature, js: true do
       fill_in 'Name', with: 'Promotion'
       fill_in 'Code', with: 'order'
       click_button 'Create'
+      wait_for_turbo
+
       promotion = Spree::Promotion.find_by(name: 'Promotion')
       expect(page).to have_content(promotion.name)
 
       select2 'Item total', from: 'Add rule of type'
       within('#rule_fields') { click_button 'Add' }
 
+      wait_for_turbo
+
       fill_in id: 'promotion_promotion_rules_attributes_1_preferred_amount_min', with: 30
       fill_in id: 'promotion_promotion_rules_attributes_1_preferred_amount_max', with: 60
       wait_for { !page.has_button?('Update') }
       within('#rule_fields') { click_button 'Update' }
+      wait_for_turbo
 
       select2 'Create whole-order adjustment', from: 'Add action of type'
       within('#action_fields') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'Flat Rate', from: 'Calculator', search: true, match: :first
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       within('.calculator-fields') { fill_in 'Amount', with: 5 }
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       expect(promotion.code).to eq('order')
 
@@ -52,17 +61,28 @@ describe 'Promotion Adjustments', type: :feature, js: true do
       fill_in 'Limit usage to', with: '1'
       fill_in 'Code', with: 'single_use'
       click_button 'Create'
+
+      wait_for_turbo
+
       promotion = Spree::Promotion.find_by(name: 'Promotion')
       expect(page).to have_content(promotion.name)
 
       select2 'Create whole-order adjustment', from: 'Add action of type'
       within('#action_fields') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'Flat Rate', from: 'Calculator', search: true, match: :first
       wait_for { !page.has_button?('Update') }
+
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
+
       within('#action_fields') { fill_in 'Amount', with: '5' }
       wait_for { !page.has_button?('Update') }
+      wait_for_turbo
+
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       expect(promotion.usage_limit).to eq(1)
       expect(promotion.code).to eq('single_use')
@@ -77,18 +97,27 @@ describe 'Promotion Adjustments', type: :feature, js: true do
     it 'allows an admin to create an automatic promo with flat percent discount' do
       fill_in 'Name', with: 'Promotion'
       click_button 'Create'
+      wait_for_turbo
+
       promotion = Spree::Promotion.find_by(name: 'Promotion')
 
       expect(page).to have_content(promotion.name)
 
       select2 'Create whole-order adjustment', from: 'Add action of type'
       within('#action_fields') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'Flat Percent', from: 'Calculator'
       wait_for { !page.has_button?('Update') }
+
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
+
       within('.calculator-fields') { fill_in 'Flat Percent', with: '10' }
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+
+      wait_for_turbo
 
       expect(promotion.code).to be_blank
 
@@ -104,24 +133,36 @@ describe 'Promotion Adjustments', type: :feature, js: true do
 
       fill_in 'Name', with: 'Promotion'
       click_button 'Create'
+      wait_for_turbo
+
       promotion = Spree::Promotion.find_by(name: 'Promotion')
 
       expect(page).to have_content(promotion.name)
 
       select2 'Product(s)', from: 'Add rule of type'
       within('#rule_fields') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'RoR Mug', from: 'Choose products', search: true
       wait_for { !page.has_button?('Update') }
       within('#rule_fields') { click_button 'Update' }
+      wait_for_turbo
 
       select2 'Create per-line-item adjustment', from: 'Add action of type'
       within('#action_fields') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'Percent Per Item', from: 'Calculator'
       wait_for { !page.has_button?('Update') }
+
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
+
       within('.calculator-fields') { fill_in 'Percent', with: '10' }
       wait_for { !page.has_button?('Update') }
+
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       expect(promotion.code).to be_blank
 
@@ -139,6 +180,7 @@ describe 'Promotion Adjustments', type: :feature, js: true do
     it 'allows an admin to create an automatic promotion with free shipping (no code)' do
       fill_in 'Name', with: 'Promotion'
       click_button 'Create'
+      wait_for_turbo
 
       promotion = Spree::Promotion.find_by(name: 'Promotion')
       expect(page).to have_content(promotion.name)
@@ -157,18 +199,25 @@ describe 'Promotion Adjustments', type: :feature, js: true do
       fill_in 'Name', with: 'Promotion'
       fill_in 'Path', with: 'content/cvv'
       click_button 'Create'
+      wait_for_turbo
+
       promotion = Spree::Promotion.find_by(name: 'Promotion')
 
       expect(page).to have_content(promotion.name)
 
       select2 'Create whole-order adjustment', from: 'Add action of type'
       within('#action_fields') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'Flat Rate', from: 'Calculator', search: true, match: :first
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
+
       within('.calculator-fields') { fill_in 'Amount', with: '4' }
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       expect(promotion.path).to eq('content/cvv')
       expect(promotion.code).to be_blank
@@ -186,13 +235,14 @@ describe 'Promotion Adjustments', type: :feature, js: true do
       fill_in 'Name', with: 'Promotion'
       fill_in 'Code', with: 'complex'
       click_button 'Create'
-      promotion = Spree::Promotion.find_by(name: 'Promotion')
+      wait_for_turbo
 
+      promotion = Spree::Promotion.find_by(name: 'Promotion')
       expect(page).to have_content(promotion.name)
 
       select2 'Create line items', from: 'Add action of type'
-
       within('#action_fields') { click_button 'Add' }
+      wait_for_turbo
 
       select2_open label: 'Variant'
       select2_search 'RoR Mug', label: 'Variant'
@@ -200,15 +250,21 @@ describe 'Promotion Adjustments', type: :feature, js: true do
 
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       select2 'Create whole-order adjustment', from: 'Add action of type'
       within('#new_promotion_action_form') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'Flat Rate', from: 'Calculator', search: true, match: :first
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
+
       within('.create_adjustment .calculator-fields') { fill_in 'Amount', with: '40.00' }
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       expect(promotion.code).to eq('complex')
 
@@ -220,25 +276,34 @@ describe 'Promotion Adjustments', type: :feature, js: true do
     it 'ceasing to be eligible for a promotion with item total rule then becoming eligible again' do
       fill_in 'Name', with: 'Promotion'
       click_button 'Create'
-      promotion = Spree::Promotion.find_by(name: 'Promotion')
+      wait_for_turbo
 
+      promotion = Spree::Promotion.find_by(name: 'Promotion')
       expect(page).to have_content(promotion.name)
 
       select2 'Item total', from: 'Add rule of type'
       within('#rule_fields') { click_button 'Add' }
+      wait_for_turbo
+
       fill_in id: 'promotion_promotion_rules_attributes_1_preferred_amount_min', with: '50'
       fill_in id: 'promotion_promotion_rules_attributes_1_preferred_amount_max', with: '150'
       wait_for { !page.has_button?('Update') }
       within('#rule_fields') { click_button 'Update' }
+      wait_for_turbo
 
       select2 'Create whole-order adjustment', from: 'Add action of type'
       within('#action_fields') { click_button 'Add' }
+      wait_for_turbo
+
       select2 'Flat Rate', from: 'Calculator', search: true, match: :first
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
+
       within('.calculator-fields') { fill_in 'Amount', with: '5' }
       wait_for { !page.has_button?('Update') }
       within('#actions_container') { click_button 'Update' }
+      wait_for_turbo
 
       first_rule = promotion.rules.first
       expect(first_rule.class).to eq(Spree::Promotion::Rules::ItemTotal)

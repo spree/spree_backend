@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-  // eslint-disable-next-line no-undef
+document.addEventListener("spree:load", function() {
+  tinymce.remove() // Required for spree:load
+
   tinymce.init({
     selector: '.spree-rte',
     plugins: [

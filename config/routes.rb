@@ -46,6 +46,7 @@ Spree::Core::Engine.add_routes do
       end
       resources :variants_including_master, only: [:update]
       resources :prices, only: [:index, :create]
+      resources :digitals
     end
 
     resources :option_types do
@@ -86,6 +87,7 @@ Spree::Core::Engine.add_routes do
         put :resume
         get :channel
         put :set_channel
+        get :reset_digitals
       end
 
       resources :state_changes, only: [:index]
@@ -178,8 +180,6 @@ Spree::Core::Engine.add_routes do
       member do
         get :addresses
         put :addresses
-        put :clear_api_key
-        put :generate_api_key
         get :items
         get :orders
       end

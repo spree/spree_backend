@@ -38,7 +38,7 @@ en:
         toggle_page_visibility: Toggle page visibility
         meta_title: Meta Title
         meta_description: Meta Description
-        preview_page: Preview Page
+        page: Page
         full_screen_mode: '<span class="exit">Exit </span>Full Screen Mode'
         hero:
           aspect_ratio: Please use an image with the aspect ratio of 12:5 (2400px x 1000px)
@@ -68,6 +68,15 @@ en:
           layout_style: Layout Style
           square_image: Please use an image with an aspect ratio of 18:13 (1080px x 780px).
           tall_image: Please use an image with an aspect ratio of 27:40 (1080px x 1600px).
+      digitals:
+        digital: Digital
+        add_new_file: Add a new digital asset.
+        digital_assets: Digital Assets
+        reset_download_links: Reset Digital Download Links
+        downloads_reset: Digital Download Links Reset
+        no_digital_assets_added: No digital assets.
+        delete_file_confirmation: "Are you sure you want to delete: %{filename}"
+        upload: Upload
       linkable:
         search_for_a_page: Search for a page
         search_for_a_taxon: Search for a Taxon
@@ -91,6 +100,15 @@ en:
         users: Users
         return_authorizations: Return Authorizations
         customer_returns: Customer Returns
+      taxon:
+        nested_under_info: Nest this Taxon within the Taxonomy tree.
+      taxonomies:
+        edit_root_taxonomy: Edit %{name} Taxonomy
+        taxonomies: Taxonomies
+        taxons_belonging_to: "Taxons Belonging To %{taxonomy_name}"
+        submenu: Submenu
+        add_new_taxon: Add a new Taxon
+        no_taxons: '<b>%{taxonomy}</b> has no Taxons. Click the <b>Add a new Taxon</b> button, to begin adding Taxons.'
       order:
         changing_store_warning: If you change the store this order belongs to, the order will be reset.
         once_an_order_is_complete_you_can_not_change_store: 'Sorry, once an order is complete, you can no longer change the store that the order belongs to.'
@@ -167,3 +185,5 @@ en:
         used_in: Used In
         you_have_no_menus: You have no Menus, click the Add New Menu button to create your first Menu.
         this_link_takes_you_to_your_stores_home_page: This link takes you to your stores home page.
+      utilities:
+        preview: Preview %{name}

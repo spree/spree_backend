@@ -24,7 +24,7 @@ $.fn.optionTypeAutocomplete = function () {
   })
 }
 
-$(document).ready(function () {
+document.addEventListener("spree:load", function() {
   var productOptionTypeSelector = document.getElementById('product_option_type_ids')
   if (productOptionTypeSelector == null) return
   if (productOptionTypeSelector.hasAttribute('data-autocomplete-url-value')) return

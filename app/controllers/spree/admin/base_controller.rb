@@ -17,7 +17,6 @@ module Spree
       layout 'spree/layouts/admin'
 
       before_action :authorize_admin
-      before_action :generate_admin_api_key
       before_action :load_stores
 
       helper_method :admin_oauth_token
@@ -53,14 +52,6 @@ module Spree
           else
             redirect_to main_app.respond_to?(:root_path) ? main_app.root_path : '/'
           end
-        end
-      end
-
-      # Need to generate an API key for a user due to some backend actions
-      # requiring authentication to the Spree API
-      def generate_admin_api_key
-        if (user = try_spree_current_user) && user.spree_api_key.blank?
-          user.generate_spree_api_key!
         end
       end
 

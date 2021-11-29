@@ -22,12 +22,12 @@ group :test do
   gem 'capybara', '~> 3.24'
   gem 'capybara-screenshot', '~> 1.0'
   gem 'capybara-select-2'
-  gem 'database_cleaner', '~> 1.3'
+  gem 'database_cleaner', '~> 2.0'
   gem 'email_spec'
   gem 'factory_bot_rails', '~> 6.0'
   gem 'multi_json'
   gem 'rspec-activemodel-mocks', '~> 1.0'
-  gem 'rspec-rails', '~> 4.0'
+  gem 'rspec-rails', '~> 5.0'
   gem 'rspec-retry'
   gem 'rspec_junit_formatter'
   gem 'rswag-specs'
@@ -42,7 +42,7 @@ group :test, :development do
   gem 'awesome_print'
   gem 'gem-release'
   gem 'redis'
-  gem 'rubocop', '~> 1.0.0', require: false # bumped
+  gem 'rubocop', '~> 1.22.3', require: false # bumped
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
   gem 'webdrivers', '~> 4.1'

@@ -16,6 +16,7 @@ describe 'Create New Promotion', type: :feature, js: true do
       check 'Generate coupon code'
 
       click_button 'Create'
+      wait_for_turbo
 
       promotion = store.promotions.find_by!(name: 'Promotion 1')
       expect(page).to have_field(id: 'promotion_code', with: promotion.code)
@@ -31,6 +32,7 @@ describe 'Create New Promotion', type: :feature, js: true do
       fill_in 'Code', with: 'Random 2323'
 
       click_button 'Create'
+      wait_for_turbo
 
       promotion = store.promotions.last
       expect(promotion.starts_at).to eq(DateTime.new(2012, 1, 18, 16, 45))
@@ -42,6 +44,7 @@ describe 'Create New Promotion', type: :feature, js: true do
       select2 store_2.unique_name, from: 'Stores'
 
       click_button 'Create'
+      wait_for_turbo
 
       expect(page).to have_content('successfully created')
 

@@ -1,37 +1,42 @@
-<%= render partial: 'js_head' %>
-
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:taxonomies), spree.admin_taxonomies_url %> /
-  <%= @taxonomy.name %>
+  <%= link_to Spree.t('admin.taxonomies.taxonomies'), spree.admin_taxonomies_path %> / <%= @taxonomy.name %>
 <% end %>
 
-<div id="ajax_error" class="errorExplanation" style="display:none;"></div>
+<div id="sortableTreeArea">
+  <div class="row">
+    <div class="col-12">
 
-<%= form_for [:admin, @taxonomy] do |f| %>
-  <fieldset>
-    <%= render partial: 'form', locals: { f: f } %>
-    <div class="form-group">
-      <%= label_tag nil, Spree.t(:tree) %>
-      <script>
-        Spree.routes.taxonomy_taxons_path = "<%= spree.api_v1_taxonomy_taxons_path(@taxonomy) %>";
-        Spree.routes.admin_taxonomy_taxons_path = "<%= spree.admin_taxonomy_taxons_path(@taxonomy) %>";
-        Spree.routes.jstree_theme_path = "<%= stylesheet_path("jquery.jstree/themes/spree/style.css") %>";
-      </script>
-      <div id="taxonomy_tree" class="tree">
-        <div class="alert alert-warning">
-          <%= Spree.t(:loading_tree) %>
+      <div class="card mb-3">
+        <div class="card-header">
+          <div class="row pb-0">
+            <div class="col d-flex my-1">
+              <%= button_link_to Spree.t('admin.taxonomies.edit_root_taxonomy', name: @taxonomy.root.name ), spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxonomy.root.id), icon: 'edit.svg', class: 'no-wrap btn-outline-secondary align-self-center' %>
+            </div>
+            <div class="col d-flex my-1 justify-content-end">
+              <%= button_link_to Spree.t('admin.taxonomies.add_new_taxon'), spree.new_admin_taxonomy_taxon_path(@taxonomy.id), icon: 'add.svg', class: 'no-wrap btn btn-success align-self-center' %>
+            </div>
+          </div>
         </div>
+
+        <% if @taxonomy.root.present? %>
+          <div class="card-body p-0 bg-light" data-controller="sortable-tree" data-sortable-tree-handle-value=".move-handle">
+            <div data-sortable-tree-parent-id-value="<%= @taxonomy.root.id %>">
+
+              <% if @taxonomy.root.children.present? %>
+                <% @taxonomy.root.children.each do |root_children| %>
+                  <%= build_sortable_tree(@taxonomy, root_children) %>
+                <% end %>
+              <% else %>
+                <div class="alert alert-info no-objects-found m-5">
+                  <%= raw Spree.t('admin.taxonomies.no_taxons', taxonomy: @taxonomy.root.name ) %>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
 
-    <div class="alert alert-info">
-      <%= Spree.t(:taxonomy_tree_instruction) %>
     </div>
-
-    <div class="form-actions">
-      <%= button Spree.t('actions.update'), 'save.svg', 'submit', { class: 'btn-success' } %>
-      <span class="or"><%= Spree.t(:or) %></span>
-      <%= button_link_to Spree.t('actions.cancel'), admin_taxonomies_path, icon: 'cancel.svg' %>
-    </div>
-  </fieldset>
-<% end %>
+  </div>
+</div>

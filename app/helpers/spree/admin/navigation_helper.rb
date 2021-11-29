@@ -199,11 +199,13 @@ module Spree
                  end
           text = "#{icon} #{text}"
         end
+
+        css_classes = options[:class] || 'btn-primary'
         button_tag(
           text.html_safe,
           options.merge(
             type: button_type,
-            class: "btn btn-primary #{options[:class]}",
+            class: "btn #{css_classes}",
             'data-disable-with' => "#{Spree.t(:saving)}..."
           )
         )
@@ -262,6 +264,9 @@ module Spree
       end
 
       def main_part_classes
+        ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
+          Admin::NavigationHelper#main_part_classes is deprecated and will be removed in Spree 5.0.
+        DEPRECATION
         if cookies['sidebar-minimized'] == 'true'
           'col-12 sidebar-collapsed'
         else
@@ -271,7 +276,7 @@ module Spree
 
       def main_sidebar_classes
         ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
-          Admin::NavigationsHelper#main_sidebar_classes is deprecated and will be removed in Spree 5.0.
+          Admin::NavigationHelper#main_sidebar_classes is deprecated and will be removed in Spree 5.0.
         DEPRECATION
         if cookies['sidebar-minimized'] == 'true'
           'col-3 col-md-2 sidebar'
@@ -282,7 +287,7 @@ module Spree
 
       def wrapper_classes
         ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
-          Admin::NavigationsHelper#wrapper_classes is deprecated and will be removed in Spree 5.0.
+          Admin::NavigationHelper#wrapper_classes is deprecated and will be removed in Spree 5.0.
         DEPRECATION
         'sidebar-minimized' if cookies['sidebar-minimized'] == 'true'
       end

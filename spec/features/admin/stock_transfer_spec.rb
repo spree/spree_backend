@@ -56,6 +56,7 @@ describe 'Stock Transfers', type: :feature, js: true do
 
     visit spree.admin_stock_transfers_path
     click_on 'New Stock Transfer'
+
     fill_in 'reference', with: 'PO 666'
 
     select2_open label: 'Variant'
@@ -63,6 +64,7 @@ describe 'Stock Transfers', type: :feature, js: true do
     select2_select product.master.name, from: 'Variant', match: :first
 
     click_button 'Add'
+
     click_button 'Transfer Stock'
 
     expect(page).to have_content('Some variants are not available')

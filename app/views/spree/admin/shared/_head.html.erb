@@ -21,15 +21,8 @@
   <%== "var ADDRESS_FIELDS = #{Spree::Address::ADDRESS_FIELDS}" %>
 </script>
 <%= render 'spree/admin/shared/paths' %>
-<%= javascript_include_tag "spree-dashboard", defer: true %>
-<%= javascript_include_tag 'spree/backend/all' %>
+<%= javascript_include_tag "spree-dashboard", defer: true, data: { turbo_track: "reload" } %>
+<%= javascript_include_tag 'spree/backend/all', data: { turbo_track: "reload" } %>
 <%= render "spree/admin/shared/translations" %>
-
-<script>
-  <%== "Spree.api_key = '#{try_spree_current_user.spree_api_key}';" if try_spree_current_user&.respond_to?(:spree_api_key) %>
-  <% if Rails.env.test? %>
-  jQuery.fx.off = false
-  <% end %>
-</script>
 
 <%= yield :head %>

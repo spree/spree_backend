@@ -4,7 +4,7 @@
     <%= render partial: 'spree/admin/shared/head' %>
   </head>
 
-  <body class="admin">
+  <body class="admin" data-controller="spree">
     <%#-------------------------------------------------%>
     <%# Header navbar                                   %>
     <%#-------------------------------------------------%>
@@ -76,16 +76,6 @@
     <%#-------------------------------------------------%>
     <div id="FlashAlertsContainer" class="d-none">
       <%= flash_alert(flash) %>
-    </div>
-
-    <%#-------------------------------------------------%>
-    <%# Loading progress bars                           %>
-    <%#-------------------------------------------------%>
-    <div id="progress">
-      <div class="alert alert-info alert-progress">
-        <div class="spinner"><%= Spree.t(:loading) %>...</div>
-        <div class="progress-message"><%= Spree.t(:loading) %>...</div>
-      </div>
     </div>
   </body>
 </html>

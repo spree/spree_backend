@@ -1,0 +1,25 @@
+<%= render partial: 'spree/admin/shared/product_tabs', locals: { current: :digitals } %>
+
+<div class="row">
+  <% if @product.has_variants? %>
+    <% @product.variants.each do |variant| %>
+      <div class="col-12 mb-5 ">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title mb-0"><%= variant.options_text %></h5>
+          </div>
+          <div class="card-body">
+            <div class="col-12 p-0">
+              <%= render 'form', variant: variant %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="col-12">
+      <%= render 'form', variant: @product.master %>
+    </div>
+  <% end %>
+</div>
+

@@ -3,8 +3,9 @@ require 'spec_helper'
 describe 'Promotion with option value rule', type: :feature do
   stub_authorization!
 
-  let(:variant) { create :variant }
-  let!(:product) { variant.product }
+  let(:store) { Spree::Store.default }
+  let(:product) { create(:product, stores: [store]) }
+  let!(:variant) { create(:variant, product: product) }
   let!(:option_value) { variant.option_values.first }
 
   let(:promotion) { create :promotion }
@@ -32,14 +33,16 @@ describe 'Promotion with option value rule', type: :feature do
     wait_for { !page.has_button?('Update') }
     within('#rules_container') { click_button 'Update' }
 
+    wait_for_turbo
+
     first_rule = promotion.rules.reload.first
     expect(first_rule.class).to eq Spree::Promotion::Rules::OptionValue
     expect(first_rule.preferred_eligible_values).to eq Hash[product.id => [option_value.id]]
   end
 
   context 'with an existing option value rule' do
-    let(:variant1) { create :variant }
-    let(:variant2) { create :variant }
+    let(:variant1) { create(:variant, product: create(:product, stores: [store])) }
+    let(:variant2) { create(:variant, product: create(:product, stores: [store])) }
 
     before do
       rule = Spree::Promotion::Rules::OptionValue.new
@@ -60,6 +63,8 @@ describe 'Promotion with option value rule', type: :feature do
 
       wait_for { !page.has_button?('Update') }
       within('#rule_fields') { click_button 'Update' }
+
+      wait_for_turbo
 
       first_rule = promotion.rules.reload.first
       expect(first_rule.preferred_eligible_values).to eq(

@@ -1,20 +1,13 @@
 //= require purify
 //= require sortable
-//= require flatpickr
 //= require jquery3
-//= require popper
-//= require bootstrap-sprockets
 //= require handlebars
 //= require cleave
-//= require js.cookie
-//= require jquery.jstree/jquery.jstree
 //= require jquery_ujs
 //= require jquery-ui/widgets/autocomplete
 //= require select2-full
 //= require sweetalert2
 //= require tinymce
-//= require spree/backend/global/tinymce
-
 //= require underscore-min.js
 //= require jsonapi-serializer.min
 
@@ -52,9 +45,6 @@
 //= require spree/backend/stock_movement
 //= require spree/backend/stock_transfer
 //= require spree/backend/taxon_autocomplete
-//= require spree/backend/taxon_permalink_preview
-//= require spree/backend/taxon_tree_menu
-//= require spree/backend/taxonomy
 //= require spree/backend/taxons
 //= require spree/backend/users/edit
 //= require spree/backend/user_picker
@@ -63,47 +53,38 @@
 //= require spree/backend/zone
 
 Spree.routes.clear_cache = Spree.adminPathFor('general_settings/clear_cache')
-Spree.routes.checkouts_api = Spree.pathFor('api/v1/checkouts')
-Spree.routes.classifications_api = Spree.pathFor('api/v1/classifications')
-Spree.routes.option_types_api = Spree.pathFor('api/v1/option_types')
-Spree.routes.option_values_api = Spree.pathFor('api/v1/option_values')
-Spree.routes.orders_api = Spree.pathFor('api/v1/orders')
-Spree.routes.products_api = Spree.pathFor('api/v1/products')
-Spree.routes.shipments_api = Spree.pathFor('api/v1/shipments')
-Spree.routes.checkouts_api = Spree.pathFor('api/v1/checkouts')
-Spree.routes.stock_locations_api = Spree.pathFor('api/v1/stock_locations')
-Spree.routes.taxon_products_api = Spree.pathFor('api/v1/taxons/products')
-Spree.routes.taxons_api = Spree.pathFor('api/v1/taxons')
-Spree.routes.users_api = Spree.pathFor('api/v1/users')
-Spree.routes.variants_api = Spree.pathFor('api/v1/variants')
 
 Spree.routes.edit_product = function (productId) {
   return Spree.adminPathFor('products/' + productId + '/edit')
 }
-
-Spree.routes.payments_api = function (orderId) {
-  return Spree.pathFor('api/v1/orders/' + orderId + '/payments')
-}
-
-Spree.routes.stock_items_api = function (stockLocationId) {
-  return Spree.pathFor('api/v1/stock_locations/' + stockLocationId + '/stock_items')
+Spree.routes.apply_coupon_code = function (orderId) {
+  return Spree.pathFor('api/v2/platform/orders/' + orderId + '/apply_coupon_code')
 }
 
 // API v2
 Spree.routes.countries_api_v2 = Spree.pathFor('api/v2/platform/countries')
 Spree.routes.classifications_api_v2 = Spree.pathFor('api/v2/platform/classifications')
+Spree.routes.line_items_api_v2 = Spree.pathFor('api/v2/platform/line_items')
 Spree.routes.menus_api_v2 = Spree.pathFor('api/v2/platform/menus')
 Spree.routes.menus_items_api_v2 = Spree.pathFor('api/v2/platform/menu_items')
 Spree.routes.option_types_api_v2 = Spree.pathFor('api/v2/platform/option_types')
 Spree.routes.option_values_api_v2 = Spree.pathFor('api/v2/platform/option_values')
+Spree.routes.orders_api_v2 = Spree.pathFor('api/v2/platform/orders')
 Spree.routes.pages_api_v2 = Spree.pathFor('api/v2/platform/cms_pages')
+Spree.routes.payments_api_v2 = Spree.pathFor('/api/v2/platform/payments')
 Spree.routes.products_api_v2 = Spree.pathFor('/api/v2/platform/products')
 Spree.routes.sections_api_v2 = Spree.pathFor('/api/v2/platform/cms_sections')
+Spree.routes.shipments_api_v2 = Spree.pathFor('/api/v2/platform/shipments')
+Spree.routes.stock_items_api_v2 = Spree.pathFor('/api/v2/platform/stock_items')
+Spree.routes.stock_locations_api_v2 = Spree.pathFor('/api/v2/platform/stock_locations')
 Spree.routes.taxons_api_v2 = Spree.pathFor('/api/v2/platform/taxons')
 Spree.routes.users_api_v2 = Spree.pathFor('api/v2/platform/users')
+Spree.routes.variants_api_v2 = Spree.pathFor('api/v2/platform/variants')
 
 Spree.apiV2Authentication = function() {
-  return {
-    'Authorization': 'Bearer ' + OAUTH_TOKEN
+  if (typeof(OAUTH_TOKEN) !== 'undefined') {
+    return {
+      'Authorization': 'Bearer ' + OAUTH_TOKEN
+    }
   }
 }

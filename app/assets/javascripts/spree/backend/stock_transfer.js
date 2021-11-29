@@ -1,4 +1,4 @@
-$(function () {
+document.addEventListener("spree:load", function() {
   function TransferVariant (variant1) {
     // refactor variant1
     this.variant = variant1
@@ -16,13 +16,26 @@ $(function () {
     this.destination = $('#transfer_destination_location_id')
     this.source.change(this.populate_destination.bind(this))
     $('#transfer_receive_stock').change(this.receive_stock_change.bind(this))
-    $.getJSON(Spree.url(Spree.routes.stock_locations_api) + '?token=' + Spree.api_key + '&per_page=1000', function (data) {
+
+    $.ajax({
+      url: Spree.routes.stock_locations_api_v2 + '?per_page=1000',
+      type: 'GET',
+      data: {
+        fields: {
+          stock_location: 'name'
+        }
+      },
+      headers: Spree.apiV2Authentication()
+    }).then(function (json) {
       this.locations = (function () {
-        var ref = data.stock_locations
+        var ref = json.data
         var results = []
         var i, len
         for (i = 0, len = ref.length; i < len; i++) {
-          results.push(ref[i])
+          results.push({
+            id: ref[i].id,
+            name: ref[i].attributes.name
+          })
         }
         return results
       })()
@@ -73,7 +86,7 @@ $(function () {
     if (this.is_source_location_hidden()) {
       return this.populate_select(this.destination)
     } else {
-      return this.populate_select(this.destination, parseInt(this.source.val()))
+      return this.populate_select(this.destination, this.source.val())
     }
   }
 
@@ -110,12 +123,12 @@ $(function () {
   }
 
   TransferVariants.prototype._search_transfer_variants = function () {
-    return this.build_select(Spree.url(Spree.routes.variants_api), 'product_name_or_sku_cont')
+    return this.build_select(Spree.url(Spree.routes.variants_api_v2), 'product_name_or_sku_cont')
   }
 
   TransferVariants.prototype._search_transfer_stock_items = function () {
     var stockLocationId = $('#transfer_source_location_id').val()
-    return this.build_select(Spree.url(Spree.routes.stock_locations_api + ('/' + stockLocationId + '/stock_items')), 'variant_product_name_or_variant_sku_cont')
+    return this.build_select(Spree.routes.stock_items_api_v2 + '?filter[stock_location_id_eq]=' + stockLocationId + '&include=variant', 'variant_product_name_or_variant_sku_cont')
   }
 
   TransferVariants.prototype.format_variant_result = function (result) {
@@ -128,11 +141,14 @@ $(function () {
   }
 
   function formattedVariantList(obj) {
-   return { id: obj.id, text: obj.name, name: obj.name, sku: obj.sku, options_text: obj.options_text, variant: obj }
-  }
-
-  function formattedStockItemsList(obj) {
-    return { id: obj.variant.id, text: obj.variant.name, name: obj.variant.name, sku: obj.variant.sku, options_text: obj.variant.options_text, variant: obj.variant }
+    return {
+     id: obj.id,
+     text: obj.name,
+     name: obj.name,
+     sku: obj.sku,
+     options_text: obj.options_text,
+     variant: obj
+    }
   }
 
   TransferVariants.prototype.build_select = function (url, query) {
@@ -142,27 +158,40 @@ $(function () {
         url: url,
         datatype: 'json',
         data: function (params) {
-          var q = {}
-          q[query] = params.term
-          return {
-            q: q,
-            token: Spree.api_key
-          }
-        },
-        processResults: function (data) {
-          var result = data.variants || data.stock_items
-          if (data.variants != null) {
-            var res = (result).map(function (variant) {
-              return formattedVariantList(variant)
-            })
-          } else {
-            var res = (result).map(function (variant) {
-              return formattedStockItemsList(variant)
-            })
-          }
+          var filter = {}
+          filter[query] = params.term
 
           return {
-            results: res
+            filter: filter,
+            fields: {
+              'variant': 'name,sku,options_text'
+            }
+          }
+        },
+        headers: Spree.apiV2Authentication(),
+        success: function(data) {
+          var JSONAPIDeserializer = require('jsonapi-serializer').Deserializer
+          new JSONAPIDeserializer({ keyForAttribute: 'snake_case' }).deserialize(data, function (_err, variants) {
+            jsonApiVariants = variants
+          })
+        },
+        processResults: function (json) {
+          if (json && json.data && jsonApiVariants) {
+            var res = {}
+
+            if (json.links.self.match(/platform\/variants/)) {
+              res = jsonApiVariants.map(function (variant) {
+                return formattedVariantList(variant)
+              })
+            } else {
+              res = jsonApiVariants.map(function (variant) {
+                return formattedVariantList(variant.variant)
+              })
+            }
+
+            return {
+              results: res
+            }
           }
         }
       },
@@ -218,7 +247,7 @@ $(function () {
 
   TransferAddVariants.prototype.find_or_add = function (variant) {
     var existing = _.find(this.variants, function (v) {
-      return v.id === variant.id
+      return v.id.toString() === variant[0].id
     })
     if (existing) {
       return existing
@@ -231,14 +260,15 @@ $(function () {
 
   TransferAddVariants.prototype.remove_variant = function (target) {
     var v
-    var variantId = parseInt(target.data('variantId'))
+    var variantId = target.data('variantId').toString()
+
     this.variants = (function () {
       var ref = this.variants
       var results = []
       var i, len
       for (i = 0, len = ref.length; i < len; i++) {
         v = ref[i]
-        if (v.id !== variantId) {
+        if (v.id.toString() !== variantId) {
           results.push(v)
         }
       }

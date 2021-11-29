@@ -24,6 +24,7 @@ describe 'Promotion with taxon rule', type: :feature do
       end
 
       within('#rules_container') { click_button 'Update' }
+      wait_for_turbo
 
       first_rule = promotion.rules.reload.first
       expect(first_rule.class).to eq Spree::Promotion::Rules::Taxon

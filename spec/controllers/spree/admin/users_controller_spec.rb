@@ -32,20 +32,6 @@ describe Spree::Admin::UsersController, type: :controller do
       expect(response).to render_template :index
     end
 
-    it "allows admins to update a user's API key" do
-      user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
-      expect(mock_user).to receive(:generate_spree_api_key!).and_return(true)
-      put :generate_api_key, params: { id: mock_user.id }
-      expect(response).to redirect_to(spree.edit_admin_user_path(mock_user))
-    end
-
-    it "allows admins to clear a user's API key" do
-      user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
-      expect(mock_user).to receive(:clear_spree_api_key!).and_return(true)
-      put :clear_api_key, params: { id: mock_user.id }
-      expect(response).to redirect_to(spree.edit_admin_user_path(mock_user))
-    end
-
     it 'deny access to users without an admin role' do
       allow(user).to receive_messages has_spree_role?: false
       post :index
@@ -80,6 +66,11 @@ describe Spree::Admin::UsersController, type: :controller do
       user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
     end
 
+    let(:permitted_user_attrs) do
+      (permitted_user_attributes.reject { |attr| attr.is_a? Hash } +
+        permitted_user_attributes.select { |attr| attr.is_a? Hash }.map(&:keys)).flatten
+    end
+
     it 'can create a shipping_address' do
       expect(Spree.user_class).to receive(:new).with(ActionController::Parameters.new(
         'ship_address_attributes' => { 'city' => 'New York' }
@@ -95,7 +86,7 @@ describe Spree::Admin::UsersController, type: :controller do
     end
 
     it 'redirects to user edit page' do
-      post :create, params: { user: user.slice(*permitted_user_attributes) }
+      post :create, params: { user: user.slice(permitted_user_attrs) }
       expect(response).to redirect_to(spree.edit_admin_user_path(assigns[:user]))
     end
   end

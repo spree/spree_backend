@@ -33,6 +33,6 @@ $.fn.userAutocomplete = function () {
   })
 }
 
-$(document).ready(function () {
+document.addEventListener("spree:load", function() {
   $('.user_picker').userAutocomplete()
 })

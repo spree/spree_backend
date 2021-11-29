@@ -1,4 +1,4 @@
-$(document).ready(function () {
+document.addEventListener("spree:load", function() {
   'use strict'
 
   if ($('#new_state_link').length) {

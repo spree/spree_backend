@@ -28,10 +28,10 @@ module Spree
               flash[:success] = Spree.t('customer_details_updated')
               redirect_to spree.edit_admin_order_url(@order)
             else
-              render action: :edit
+              render action: :edit, status: :unprocessable_entity
             end
           else
-            render action: :edit
+            render action: :edit, status: :unprocessable_entity
           end
         end
 

@@ -59,6 +59,8 @@ describe 'Payments', type: :feature, js: true do
 
     it 'lists and create payments for an order' do
       within_row(1) do
+        wait_for_turbo
+
         expect(column_text(3)).to eq('$150.00')
         expect(column_text(4)).to eq('Credit Card')
         expect(column_text(6)).to eq('CHECKOUT')
@@ -104,9 +106,15 @@ describe 'Payments', type: :feature, js: true do
 
         it 'allows the amount to be edited by clicking on the edit button then saving' do
           within_row(1) do
+            wait_for_turbo
+
             click_icon(:edit)
+            wait_for_turbo
+
             fill_in('amount', with: '$1')
             click_icon(:save)
+            wait_for_turbo
+
             expect(page).to have_selector('td.amount span', text: '$1.00')
             expect(payment.reload.amount).to eq(1.00)
           end
@@ -114,9 +122,13 @@ describe 'Payments', type: :feature, js: true do
 
         it 'allows the amount to be edited by clicking on the amount then saving' do
           within_row(1) do
+            wait_for_turbo
+
             find('td.amount span').click
             fill_in('amount', with: '$1.01')
             click_icon(:save)
+            wait_for_turbo
+
             expect(page).to have_selector('td.amount span', text: '$1.01')
             expect(payment.reload.amount).to eq(1.01)
           end
@@ -124,11 +136,16 @@ describe 'Payments', type: :feature, js: true do
 
         it 'allows the amount change to be cancelled by clicking on the cancel button' do
           within_row(1) do
+            wait_for_turbo
+
             click_icon(:edit)
+            wait_for_turbo
 
             find('td.amount input').send_keys([:backspace] * 6, '$1')
 
             click_icon(:cancel)
+            wait_for_turbo
+
             expect(page).to have_selector('td.amount span', text: '$150.00')
             expect(payment.reload.amount).to eq(150.00)
           end
@@ -136,13 +153,17 @@ describe 'Payments', type: :feature, js: true do
 
         it 'displays an error when the amount is invalid' do
           within_row(1) do
+            wait_for_turbo
+
             click_icon(:edit)
+            wait_for_turbo
+
             fill_in('amount', with: 'invalid')
             click_icon(:save)
+            wait_for_turbo
           end
 
-          assert_admin_flash_alert_error('Invalid resource. Please fix errors and try again.')
-          expect(page).to have_field('amount', with: 'invalid')
+          assert_admin_flash_alert_error('Amount is not a number')
           expect(payment.reload.amount).to eq(150.00)
         end
       end
@@ -153,6 +174,8 @@ describe 'Payments', type: :feature, js: true do
 
       it 'does not allow the amount to be edited' do
         within_row(1) do
+          wait_for_turbo
+
           expect(page).not_to have_selector('td.amount span')
         end
       end

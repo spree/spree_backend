@@ -124,8 +124,11 @@ describe 'Users', type: :feature do
     end
 
     context 'filtering users', js: true do
+      before { visit current_path } # For Rails turbo JavaScript testing.
+
       it 'renders selected filters' do
         click_on 'Filter'
+        wait_for { !page.has_text?('Search') }
 
         within('#table-filter') do
           fill_in 'q_email_cont', with: 'a@example.com'
@@ -135,6 +138,7 @@ describe 'Users', type: :feature do
         end
 
         click_on 'Search'
+        wait_for_turbo
 
         within('.table-active-filters') do
           expect(page).to have_content('Email: a@example.com')

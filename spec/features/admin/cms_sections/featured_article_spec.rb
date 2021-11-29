@@ -28,6 +28,7 @@ describe 'Featured Article section', type: :feature do
     it 'saves WYSIWYG content to database' do
       rte_content = 'Ipsum blanditiis labore voluptates vero asperiores ullam excepturi'
 
+      wait_for_turbo
       page.execute_script("$(tinymce.editors[0].setContent('#{rte_content}'))")
 
       click_on 'Update'

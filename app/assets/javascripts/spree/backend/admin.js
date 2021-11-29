@@ -1,6 +1,6 @@
 /* global order_number, show_flash */
 
-$(document).ready(function() {
+document.addEventListener("spree:load", function() {
   /**
     OBSERVE FIELD:
   **/
@@ -130,12 +130,10 @@ $(document).ready(function() {
   **/
   window.Spree.advanceOrder = function() {
     $.ajax({
-      type: 'PUT',
+      type: 'PATCH',
       async: false,
-      data: {
-        token: Spree.api_key
-      },
-      url: Spree.url(Spree.routes.checkouts_api + '/' + order_number + '/advance')
+      headers: Spree.apiV2Authentication(),
+      url: Spree.url(Spree.routes.orders_api_v2 + '/' + order_number + '/advance')
     }).done(function() {
       window.location.reload()
     })
