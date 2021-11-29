@@ -43,15 +43,15 @@ describe 'Webhooks::Subscriber#new', type: :feature do
       check 'webhooks_subscriber_active'
       choose 'subscribe_to_all_events_false'
 
-      check 'webhooks_subscriber_subscriptions_address_createaddress_updateaddress_delete'
-      check 'webhooks_subscriber_subscriptions_digital_createdigital_updatedigital_delete'
+      check 'webhooks_subscriber_subscriptions_address_createaddress_deleteaddress_update'
+      check 'webhooks_subscriber_subscriptions_digital_createdigital_deletedigital_update'
 
       click_on 'Create'
 
       expect(page).to have_current_path('/admin/webhooks_subscribers')
       expect(page).to have_content 'created'
 
-      within_row(1) { expect(page).to have_content('address.create, address.update, address.delete, digital.create, digital.update, digital.delete') }
+      within_row(1) { expect(page).to have_content('address.create, address.delete, address.update, digital.create, digital.delete, digital.update') }
       within_row(1) { expect(page).to have_content('https://imgur.com/path') }
       within_row(1) { expect(page).to have_content(Spree.t(:active)) }
     end
