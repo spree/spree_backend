@@ -22,16 +22,16 @@ describe 'Webhooks::Subscriber#edit', type: :feature do
       fill_in 'webhooks_subscriber_url', with: 'https://facebook.com/path'
       uncheck 'webhooks_subscriber_active'
       choose 'subscribe_to_all_events_false'
-      check 'webhooks_subscriber_subscriptions_address_createaddress_updateaddress_delete'
-      check 'webhooks_subscriber_subscriptions_line_item_createline_item_updateline_item_delete'
+      check 'webhooks_subscriber_subscriptions_address_createaddress_deleteaddress_update'
+      check 'webhooks_subscriber_subscriptions_line_item_createline_item_deleteline_item_update'
 
       click_on 'Update'
 
       expect(page).to have_content('successfully updated')
       within_row(1) { expect(page).to have_content('https://facebook.com/path') }
       within_row(1) { expect(page).to have_content(Spree.t(:inactive)) }
-      within_row(1) { expect(page).to have_content('address.create, address.update, address.delete') }
-      within_row(1) { expect(page).to have_content('line_item.create, line_item.update, line_item.delete') }
+      within_row(1) { expect(page).to have_content('address.create, address.delete, address.update') }
+      within_row(1) { expect(page).to have_content('line_item.create, line_item.delete, line_item.update') }
     end
   end
 
