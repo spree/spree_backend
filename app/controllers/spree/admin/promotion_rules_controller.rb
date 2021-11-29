@@ -49,6 +49,6 @@ class Spree::Admin::PromotionRulesController < Spree::Admin::BaseController
   end
 
   def promotion_rule_params
-    params[:promotion_rule].permit!
+    params[:promotion_rule].permit(:type)
   end
 end
