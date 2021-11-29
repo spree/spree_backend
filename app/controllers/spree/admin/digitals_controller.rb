@@ -3,11 +3,23 @@ module Spree
     class DigitalsController < ResourceController
       belongs_to 'spree/product', find_by: :slug
 
-      private
+      def create
+        invoke_callbacks(:create, :before)
+        @object.attributes = permitted_resource_params
 
-      def collection_url
-        spree.admin_product_digitals_path(@product)
+        if @object.valid?
+          super
+        else
+          invoke_callbacks(:create, :fails)
+          flash[:error] = @object.errors.full_messages.join(', ')
+          respond_with(@object) do |format|
+            format.html { render action: :index, status: :unprocessable_entity }
+            format.js { render layout: false, status: :unprocessable_entity }
+          end
+        end
       end
+
+      private
 
       def permitted_resource_params
         params.require(:digital).permit(permitted_digital_attributes)

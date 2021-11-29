@@ -56,6 +56,19 @@ RSpec.describe Spree::Admin::DigitalsController do
         end.to change(Spree::Digital, :count).by(1)
       end
     end
+
+    context 'when no asset is attached' do
+      it 'redirects to the index page' do
+        expect do
+          post :create, params: {
+            product_id: product.slug,
+            digital: { variant_id: product.master.id }
+          } # fail validation by not passing attachment
+          expect(flash[:error]).to eq("Attachment can't be blank")
+          expect(response).to have_http_status(:unprocessable_entity)
+        end.to change(Spree::Digital, :count).by(0)
+      end
+    end
   end
 
   describe '#destroy' do
