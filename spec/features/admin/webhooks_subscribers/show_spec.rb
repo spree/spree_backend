@@ -19,7 +19,6 @@ describe 'Webhooks::Subscriber#show', type: :feature do
       expect(page).to have_content('*')
 
       within_row(1) { expect(page).to have_content(event.name) }
-      within_row(1) { expect(page).to have_content('True') }
       within_row(1) { expect(page).to have_content(event.created_at) }
       within_row(1) { expect(page).to have_content(event.response_code) }
     end

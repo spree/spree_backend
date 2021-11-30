@@ -29,7 +29,6 @@ describe 'Webhooks::Subscriber#edit', type: :feature do
 
       expect(page).to have_content('successfully updated')
       within_row(1) { expect(page).to have_content('https://facebook.com/path') }
-      within_row(1) { expect(page).to have_content(Spree.t(:inactive)) }
       within_row(1) { expect(page).to have_content('address.create, address.delete, address.update') }
       within_row(1) { expect(page).to have_content('line_item.create, line_item.delete, line_item.update') }
     end

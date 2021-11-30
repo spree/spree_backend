@@ -33,7 +33,6 @@ describe 'Webhooks::Subscriber#new', type: :feature do
 
       within_row(1) { expect(page).to have_content('*') }
       within_row(1) { expect(page).to have_content('https://imgur.com/path') }
-      within_row(1) { expect(page).to have_content(Spree.t(:active)) }
     end
 
     it 'submitting with Subscribe To Selected Events' do
@@ -53,7 +52,6 @@ describe 'Webhooks::Subscriber#new', type: :feature do
 
       within_row(1) { expect(page).to have_content('address.create, address.delete, address.update, digital.create, digital.delete, digital.update') }
       within_row(1) { expect(page).to have_content('https://imgur.com/path') }
-      within_row(1) { expect(page).to have_content(Spree.t(:active)) }
     end
   end
 end
