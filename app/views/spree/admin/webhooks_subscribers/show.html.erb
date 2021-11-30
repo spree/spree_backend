@@ -39,12 +39,12 @@
       <tbody>
       <% @events.each do |event| %>
         <tr id="<%= spree_dom_id event %>">
-          <td><%= event.name %></td>
+          <td><%= event.name.html_safe %></td>
           <td><%= active_badge(event.success) %></td>
-          <td><%= event.created_at %></td>
-          <td><%= event.response_code %></td>
-          <td><%= event.execution_time %></td>
-          <td><%= event.request_errors.gsub('[SPREE WEBHOOKS]', '') %></td>
+          <td><%= event.created_at.html_safe %></td>
+          <td><%= event.response_code.html_safe %></td>
+          <td><%= event.execution_time.html_safe %></td>
+          <td><%= event.request_errors.gsub('[SPREE WEBHOOKS]', '').html_safe %></td>
         </tr>
       <% end %>
       </tbody>
