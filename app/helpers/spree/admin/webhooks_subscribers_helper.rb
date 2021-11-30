@@ -24,7 +24,8 @@ module Spree
         {
           multiple: true,
           class: 'events-checkbox',
-          checked: subscribed_to_resource?(resource_name)
+          checked: subscribed_to_resource?(resource_name),
+          'data-webhooks_subscriber_events-target' => 'eventsCheckbox'
         }
       end
 

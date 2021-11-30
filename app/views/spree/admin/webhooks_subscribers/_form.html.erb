@@ -19,15 +19,16 @@
     Events
   </div>
 
-  <div>
+  <div data-controller="webhooks_subscriber_events">
     <%= f.field_container :subscriptions, class: ['form-group'] do %>
-      <div data-controller="webhooks_subscriber_events">
+      <div>
         <div class="radio my-2">
           <%= radio_button_tag :subscribe_to_all_events, true,
                                @webhooks_subscriber.subscriptions == ['*'],
                                { id: 'subscribe-to-all',
                                  'data-action' => 'webhooks_subscriber_events#disableCheckboxes',
-                                 class: 'events' } %>
+                                 'data-webhooks_subscriber_events-target' => 'subscribeToAll',
+                                  class: 'events' } %>
           <%= f.label :subscribe_to_all_events, Spree.t(:subscribe_to_all_events) %>
         </div>
         <div class="radio my-2">

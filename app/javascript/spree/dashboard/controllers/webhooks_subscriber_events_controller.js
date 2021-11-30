@@ -1,23 +1,22 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  eventsCheckboxes = document.getElementsByName("webhooks_subscriber[subscriptions][]")
+  static targets = [ "eventsCheckbox", "subscribeToAll" ]
 
   disableCheckboxes() {
-    for (let cb of this.eventsCheckboxes) {
+    for (let cb of this.eventsCheckboxTargets) {
       cb.disabled = true
     }
   }
 
   enableCheckboxes() {
-    for (let cb of this.eventsCheckboxes) {
+    for (let cb of this.eventsCheckboxTargets) {
       cb.disabled = false
     }
   }
 
   initialize() {
-    let subscribe_to_all = document.getElementById("subscribe-to-all")
-    if (subscribe_to_all.checked) {
+    if (this.subscribeToAllTarget.checked) {
       this.disableCheckboxes()
     }
   }
