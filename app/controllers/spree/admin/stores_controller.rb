@@ -10,37 +10,12 @@ module Spree
       before_action :load_all_countries, only: [:new, :edit, :update, :create]
       before_action :load_all_zones, only: [:new, :edit, :update, :create]
 
-      def index
-        if params[:ids]
-          load_stores_by_ids
-        elsif params[:q]
-          load_stores_by_query
-        end
-
-        respond_with(@stores) do |format|
-          format.json { render layout: false }
-        end
-      end
-
-      def load_stores_by_ids
-        @stores = stores_scope.where(id: params[:ids].split(','))
-      end
-
-      def load_stores_by_query
-        @stores = if defined?(SpreeGlobalize)
-                    stores_scope.joins(:translations).where("LOWER(#{Store::Translation.table_name}.name) LIKE LOWER(:query)",
-                                                            query: "%#{params[:q]}%")
-                  else
-                    stores_scope.where('LOWER(name) LIKE LOWER(:query)', query: "%#{params[:q]}%")
-                  end
-      end
-
       def create
         @store = stores_scope.new(permitted_store_params)
 
         if @store.save
           flash[:success] = flash_message_for(@store, :successfully_created)
-          redirect_to @store.formatted_url + spree.admin_stores_path, allow_other_host: true
+          redirect_to spree.admin_url(domain: @store.url), allow_other_host: true
         else
           flash[:error] = "#{Spree.t('store_errors.unable_to_create')}: #{@store.errors.full_messages.join(', ')}"
           render :new, status: :unprocessable_entity
@@ -52,11 +27,11 @@ module Spree
 
         if @store.save
           flash[:success] = flash_message_for(@store, :successfully_updated)
-          redirect_to spree.admin_stores_path
         else
           flash[:error] = "#{Spree.t('store_errors.unable_to_update')}: #{@store.errors.full_messages.join(', ')}"
-          redirect_to spree.edit_admin_store_path(@store)
         end
+
+        redirect_to spree.edit_admin_store_path(@store)
       end
 
       def destroy
@@ -64,31 +39,10 @@ module Spree
 
         if @store.destroy
           flash[:success] = flash_message_for(@store, :successfully_removed)
-          respond_with(@store) do |format|
-            format.html { redirect_to spree.admin_stores_path }
-            format.js { render_js_for_destroy }
-          end
+          redirect_to spree.admin_url(domain: Spree::Store.default.url), allow_other_host: true
         else
           render plain: "#{Spree.t('store_errors.unable_to_delete')}: #{@store.errors.full_messages.join(', ')}", status: :unprocessable_entity
         end
-      end
-
-      def set_default
-        store = stores_scope.find(params[:id])
-        stores = stores_scope.where.not(id: params[:id])
-
-        ApplicationRecord.transaction do
-          store.update(default: true)
-          stores.update_all(default: false)
-        end
-
-        if store.errors.empty?
-          flash[:success] = Spree.t(:store_set_as_default, store: store.name)
-        else
-          flash[:error] = "#{Spree.t(:store_not_set_as_default, store: store.name)} #{store.errors.full_messages.join(', ')}"
-        end
-
-        redirect_to spree.admin_stores_path
       end
 
       protected
@@ -104,7 +58,7 @@ module Spree
       end
 
       def load_all_countries
-        @countries = Spree::Country.all
+        @countries = Spree::Country.pluck(:name, :id)
       end
 
       def load_all_zones

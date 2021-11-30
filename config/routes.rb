@@ -12,11 +12,7 @@ Spree::Core::Engine.add_routes do
 
     resources :zones
 
-    resources :stores do
-      member do
-        put :set_default
-      end
-    end
+    resources :stores, except: %i[index show]
 
     resources :countries do
       resources :states
@@ -197,6 +193,7 @@ Spree::Core::Engine.add_routes do
     resources :webhooks_subscribers
 
     get '/forbidden', to: 'errors#forbidden', as: :forbidden
+    root to: "dashboard#show"
   end
 
   get Spree.admin_path, to: 'admin/dashboard#show', as: :admin
