@@ -2,7 +2,7 @@ module Spree
   module Admin
     module WebhooksSubscribersHelper
       def event_list_for(resource_name)
-        Spree::Webhooks::Subscriber.supported_events[resource_name].join(',')
+        supported_events[resource_name].join(',')
       end
 
       def event_checkbox_for(resource_name, form)
@@ -15,6 +15,10 @@ module Spree
       end
 
       private
+
+      def supported_events
+        @supported_events ||= Spree::Webhooks::Subscriber.supported_events
+      end
 
       def event_checkbox_opts(resource_name)
         {
