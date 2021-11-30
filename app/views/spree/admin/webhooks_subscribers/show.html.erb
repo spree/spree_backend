@@ -39,7 +39,7 @@
       <tbody>
       <% @events.each do |event| %>
         <tr id="<%= spree_dom_id event %>">
-          <td><%= sanitize event.name %></td>
+          <td><%= event.name %></td>
           <td><%= active_badge(event.success) %></td>
           <td><%= event.created_at %></td>
           <td><%= event.response_code %></td>

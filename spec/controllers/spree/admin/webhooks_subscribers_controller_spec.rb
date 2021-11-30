@@ -34,7 +34,7 @@ module Spree
       describe '#create' do
         let(:request) { post :create, params: { webhooks_subscriber: { url: 'https://google.com/path' } } }
 
-        it 'should create a webhooks subscriber' do
+        it 'creates a webhooks subscriber' do
           expect { request }.to change(Spree::Webhooks::Subscriber, :count).by(1)
           expect(response).to be_redirect
         end
@@ -56,7 +56,7 @@ module Spree
         it 'deletes the subscriber' do
           expect(assigns(:object)).to eq(webhooks_subscriber)
           expect(response).to have_http_status(:found)
-          expect(flash[:success]).to include("successfully removed")
+          expect(flash[:success]).to include('successfully removed')
         end
       end
     end

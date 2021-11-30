@@ -8,9 +8,7 @@ module Spree
         params[:q] ||= {}
         params[:q][:s] ||= 'created_at desc'
 
-        @webhooks_subscribers = Webhooks::Subscriber.all
-
-        search = @webhooks_subscribers.ransack(params[:q])
+        search = Webhooks::Subscriber.ransack(params[:q])
         @webhooks_subscribers = search.result.
                                 includes(:events).
                                 page(params[:page]).
