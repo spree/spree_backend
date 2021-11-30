@@ -187,3 +187,8 @@ en:
         this_link_takes_you_to_your_stores_home_page: This link takes you to your stores home page.
       utilities:
         preview: Preview %{name}
+      webhooks_subscribers:
+        webhooks_subscribers: Webhooks Subscribers
+        webhooks_events: Webhooks Events
+        subscribe_to_all_events: Subscribe to all events
+        select_events: Select events

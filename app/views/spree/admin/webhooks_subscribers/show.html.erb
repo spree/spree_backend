@@ -1,6 +1,6 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:webhooks_subscribers), spree.admin_webhooks_subscribers_path %> /
-  <%= Spree.t(:webhook_events) %>
+  <%= link_to Spree.t('admin.webhooks_subscribers.webhooks_subscribers'), spree.admin_webhooks_subscribers_path %> /
+  <%= Spree.t('admin.webhooks_subscribers.webhooks_events') %>
 <% end %>
 
 <fieldset>
@@ -11,8 +11,8 @@
         <td><%= @webhooks_subscriber.url %></td>
       </tr>
       <tr>
-        <td><strong><%= Spree.t(:status) %></strong></td>
-        <td><%= @webhooks_subscriber.active ? Spree.t(:active) : Spree.t(:inactive) %></td>
+        <td><strong><%= Spree.t(:active) %></strong></td>
+        <td><%= active_badge(@webhooks_subscriber.active) %></td>
       </tr>
       <tr>
         <td><strong><%= Spree.t(:subscriptions) %></strong></td>

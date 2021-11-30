@@ -8,10 +8,12 @@ module Spree
       def event_checkbox_for(resource_name, form)
         content_tag :div, class: 'col-xs-12 col-sm-6 col-md-4 col-lg-4' do
           (form.check_box :subscriptions, event_checkbox_opts(resource_name), event_list_for(resource_name), nil) + ' ' +
-            Spree.t(resource_name.to_s.pluralize) +
-            tag(:br) +
-            '(' + event_list_for(resource_name).gsub(',', ', ') + ')'
+            Spree.t(resource_name.to_s.pluralize)
         end
+      end
+
+      def subscribe_to_all_events?
+        @webhooks_subscriber.new_record? || @webhooks_subscriber.subscriptions == ['*']
       end
 
       private
@@ -24,8 +26,7 @@ module Spree
         {
           multiple: true,
           class: 'events-checkbox',
-          checked: subscribed_to_resource?(resource_name),
-          'data-webhooks_subscriber_events-target' => 'eventsCheckbox'
+          checked: subscribed_to_resource?(resource_name)
         }
       end
 
