@@ -19,6 +19,7 @@ module Spree
 
       def show
         @webhooks_subscriber = Webhooks::Subscriber.find(params[:id])
+        @events = @webhooks_subscriber.events.order(created_at: :desc).page(params[:page]).per(params[:per_page])
       end
 
       private

@@ -12,7 +12,7 @@
       <thead>
       <tr>
         <th><%= Spree.t(:url) %></th>
-        <th><%= Spree.t(:status) %></th>
+        <th><%= Spree.t(:active) %></th>
         <th><%= Spree.t(:subscriptions) %></th>
         <th><%= Spree.t(:time_of_last_event) %></th>
         <th><%= Spree.t(:all_events) %></th>
@@ -23,7 +23,7 @@
       <% @webhooks_subscribers.each do |webhooks_subscriber| %>
         <tr id="<%= spree_dom_id webhooks_subscriber %>">
           <td><%= webhooks_subscriber.url %></td>
-          <td><%= webhooks_subscriber.active ? Spree.t(:active) : Spree.t(:inactive) %></td>
+          <td><%= active_badge(webhooks_subscriber.active) %></td>
           <td><%= webhooks_subscriber.subscriptions&.join(', ') %></td>
           <td><%= webhooks_subscriber.events.pluck(:created_at).sort.last %></td>
           <td><%= link_to Spree.t(:view), admin_webhooks_subscriber_path(webhooks_subscriber) %></td>

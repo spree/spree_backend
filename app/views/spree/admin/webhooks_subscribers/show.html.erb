@@ -22,9 +22,7 @@
   </div>
 </fieldset>
 
-<% events = @webhooks_subscriber.events.order(created_at: :desc).page(params[:page]).per(params[:per_page]) %>
-
-<% if events.any? %>
+<% if @events.any? %>
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -39,10 +37,10 @@
       </tr>
       </thead>
       <tbody>
-      <% events.each do |event| %>
+      <% @events.each do |event| %>
         <tr id="<%= spree_dom_id event %>">
           <td><%= event.name %></td>
-          <td><%= event.success ? Spree.t(:true) : Spree.t(:false) %></td>
+          <td><%= active_badge(event.success) %></td>
           <td><%= event.created_at %></td>
           <td><%= event.response_code %></td>
           <td><%= event.execution_time %></td>
@@ -52,7 +50,7 @@
       </tbody>
     </table>
   </div>
-  <%= render 'spree/admin/shared/index_table_options', collection: events, simple: true %>
+  <%= render 'spree/admin/shared/index_table_options', collection: @events, simple: true %>
 
 <% else %>
   <div class="alert alert-info no-objects-found">
