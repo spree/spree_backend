@@ -272,7 +272,7 @@ describe 'Products', type: :feature do
         fill_in 'product_name', with: 'Baseball Cap'
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
-        select nil, from: 'product_shipping_category_id'
+        select 'None', from: 'product_shipping_category_id'
         click_button 'Create'
         expect(page).to have_content("Shipping Category can't be blank")
       end
