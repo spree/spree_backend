@@ -248,11 +248,13 @@ describe 'Products', type: :feature do
       let(:product) { Spree::Product.last }
 
       it 'allows an admin to create a new product' do
+        expect(page).to have_field('product_available_on', with: I18n.localize(Time.current, format: '%Y/%m/%d'))
+        expect(page).to have_select('product_shipping_category_id', selected: @shipping_category.name)
+
         fill_in 'product_name', with: 'Baseball Cap'
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
         fill_in 'product_available_on', with: '2012/01/24'
-        select @shipping_category.name, from: 'product_shipping_category_id'
         click_button 'Create'
 
         expect(page).to have_content('successfully created!')
@@ -270,6 +272,7 @@ describe 'Products', type: :feature do
         fill_in 'product_name', with: 'Baseball Cap'
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
+        select nil, from: 'product_shipping_category_id'
         click_button 'Create'
         expect(page).to have_content("Shipping Category can't be blank")
       end
