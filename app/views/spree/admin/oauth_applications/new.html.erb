@@ -1,0 +1,15 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t('admin.oauth_applications.list'), spree.admin_oauth_applications_url %> /
+  <%= Spree.t('admin.oauth_applications.new') %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @oauth_application } %>
+
+<%= turbo_frame_tag 'new_oauth_application' do %>
+  <%= form_for [:admin, @oauth_application] do |f| %>
+    <fieldset>
+      <%= render partial: 'form', locals: { f: f } %>
+      <%= render partial: 'spree/admin/shared/new_resource_links' %>
+    </fieldset>
+  <% end %>
+<% end %>

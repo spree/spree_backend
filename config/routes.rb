@@ -58,6 +58,8 @@ Spree::Core::Engine.add_routes do
 
     delete '/option_values/:id', to: 'option_values#destroy', as: :option_value
 
+    resources :oauth_applications
+
     resources :properties do
       collection do
         get :filtered

@@ -628,10 +628,12 @@ describe 'Order Details', type: :feature, js: true do
       can [:admin, :manage, :read, :ship], Spree::Shipment
     end
 
-    let(:admin_token) { Spree::OauthAccessToken.create!(scopes: 'admin read write').token }
+    let(:admin_app) { Spree::OauthApplication.create(name: 'Admin Panel', scopes: 'admin') }
+    let(:admin_token) { Spree::OauthAccessToken.create!(application: admin_app, scopes: 'admin').token }
 
     before do
       allow(Spree.user_class).to receive(:find_by).and_return(Spree.user_class.new)
+      allow_any_instance_of(Spree::Admin::BaseController).to receive(:admin_oauth_application).and_return(admin_app)
       allow_any_instance_of(Spree::Admin::BaseController).to receive(:admin_oauth_token).and_return(admin_token)
     end
 
