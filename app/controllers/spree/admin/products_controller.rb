@@ -11,6 +11,12 @@ module Spree
       update.before :update_before
       helper_method :clone_object_url
 
+      def new
+        @product.available_on ||= Time.current
+        @product.shipping_category ||= @shipping_categories&.first
+        super
+      end
+
       def show
         session[:return_to] ||= request.referer
         redirect_to action: :edit
