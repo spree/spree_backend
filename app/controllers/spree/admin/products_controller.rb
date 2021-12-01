@@ -6,16 +6,11 @@ module Spree
       helper 'spree/products'
 
       before_action :load_data, except: :index
+      before_action :set_product_defaults, only: :new
 
       create.before :create_before
       update.before :update_before
       helper_method :clone_object_url
-
-      def new
-        @product.available_on ||= Time.current
-        @product.shipping_category ||= @shipping_categories&.first
-        super
-      end
 
       def show
         session[:return_to] ||= request.referer
@@ -115,6 +110,11 @@ module Spree
         @option_types = OptionType.order(:name)
         @tax_categories = TaxCategory.order(:name)
         @shipping_categories = ShippingCategory.order(:name)
+      end
+
+      def set_product_defaults
+        @product.available_on ||= Time.current
+        @product.shipping_category ||= @shipping_categories&.first
       end
 
       def collection
