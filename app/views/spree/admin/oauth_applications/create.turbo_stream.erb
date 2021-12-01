@@ -1,0 +1,38 @@
+<%= turbo_stream.replace "new_oauth_application" do %>
+  <div data-controller="clipboard" class="mb-3 p-3 col-lg-7">
+    <div class="form-group">
+      <%= label_tag :client_id, 'Client ID' %>
+      <div class="input-group">
+        <%= text_area_tag :client_id, @object.uid, class: 'form-control bg-transparent p-0 mt-4 mr-4 border-0', rows: 2, data: { clipboard_target: 'source', action: 'clipboard#copy' }, readonly: true %>
+        <div class="input-append">
+          <button data-action="clipboard#copy" class="btn m-0 mt-4">
+            <%= svg_icon name: 'clone.svg', width: 18, height: 18 %>
+            <%= Spree.t(:copy_to_clipboard, scope: :admin ) %>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-controller="clipboard" class="mb-3 p-3 col-lg-7">
+    <div class="form-group">
+      <%= label_tag :client_secret, 'Client Secret' %>
+      <div class="input-group">
+        <%= text_area_tag :client_secret, @object.plaintext_secret, class: 'form-control bg-transparent p-0 mt-4 mr-4 border-0', rows: 2, data: { clipboard_target: 'source', action: 'clipboard#copy' }, readonly: true %>
+        <div class="input-append">
+          <button data-action="clipboard#copy" class="btn m-0 mt-4">
+            <%= svg_icon name: 'clone.svg', width: 18, height: 18 %>
+            <%= Spree.t(:copy_to_clipboard, scope: :admin ) %>
+          </button>
+        </div>
+      </div>
+      <small class="form-text text-muted mt-4">
+        This is your application's secret token, copy it now and keep it safe. It won't be shown again.
+      </small>
+    </div>
+  </div>
+
+  <hr />
+
+  <%= link_to 'Back to list', spree.admin_oauth_applications_url %>
+<% end %>

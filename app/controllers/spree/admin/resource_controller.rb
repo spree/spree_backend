@@ -53,6 +53,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
       flash[:success] = flash_message_for(@object, :successfully_created)
       respond_with(@object) do |format|
         format.html { redirect_to location_after_save }
+        format.turbo_stream if turbo_enabled?
         format.js   { render layout: false }
       end
     else
@@ -277,5 +278,9 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
 
   def new_actions
     [:new, :create]
+  end
+
+  def turbo_enabled?
+    false
   end
 end
