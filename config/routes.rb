@@ -46,7 +46,7 @@ Spree::Core::Engine.add_routes do
       end
       resources :variants_including_master, only: [:update]
       resources :prices, only: [:index, :create]
-      resources :digitals
+      resources :digitals, only: [:index, :create, :destroy]
     end
 
     resources :option_types do
@@ -57,6 +57,8 @@ Spree::Core::Engine.add_routes do
     end
 
     delete '/option_values/:id', to: 'option_values#destroy', as: :option_value
+
+    resources :oauth_applications
 
     resources :properties do
       collection do

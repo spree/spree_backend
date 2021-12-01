@@ -22,13 +22,18 @@ module Spree
         options = { label: args.first.to_s }
 
         # Return if resource is found and user is not allowed to :admin
-        return '' if (klass = klass_for(options[:label])) && cannot?(:admin, klass)
+        return '' if (klass = klass_for(args.first.to_s)) && cannot?(:admin, klass)
 
         options = options.merge(args.pop) if args.last.is_a?(Hash)
         options[:route] ||= "admin_#{args.first}"
 
         destination_url = options[:url] || spree.send("#{options[:route]}_path")
-        titleized_label = Spree.t(options[:label], default: options[:label], scope: [:admin, :tab]).titleize
+
+        if options[:do_not_titleize] == true
+          titleized_label = options[:label]
+        else
+          titleized_label = Spree.t(options[:label], default: options[:label], scope: [:admin, :tab]).titleize
+        end
 
         css_classes = ['sidebar-menu-item d-block w-100 position-relative']
 

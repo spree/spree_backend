@@ -48,6 +48,8 @@ require 'spree/testing_support/rspec_retry_config'
 require 'spree/testing_support/image_helpers'
 require 'spree/backend/testing_support/flatpickr_capybara'
 
+require 'spree/api/testing_support/factories'
+
 require 'spree/core/controller_helpers/strong_parameters'
 require 'webdrivers'
 
