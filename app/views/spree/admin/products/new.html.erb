@@ -53,7 +53,7 @@
                data-wrap="true"
                data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>">
             <%= f.text_field :available_on,
-                             value: datepicker_field_value(@product.available_on || Time.current),
+                             value: datepicker_field_value(@product.available_on),
                              placeholder: Spree.t(:select_a_date),
                              class: 'form-control shadow-none',
                              'data-input':'' %>
@@ -66,7 +66,7 @@
       <div data-hook="new_product_shipping_category" class="col-12 col-md-4">
         <%= f.field_container :shipping_category do %>
           <%= f.label :shipping_category_id, Spree.t(:shipping_categories) %><span class="required">*</span>
-          <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { selected: @shipping_categories&.first&.id, include_blank: Spree.t('match_choices.none') }, { class: 'select2 w-100' }) %>
+          <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { selected: @product.shipping_category&.id, include_blank: Spree.t('match_choices.none') }, { class: 'select2 w-100' }) %>
           <%= f.error_message_on :shipping_category_id %>
         <% end %>
       </div>
