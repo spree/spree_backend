@@ -85,7 +85,7 @@ module Spree
       end
 
       def set_parent(parent_id)
-        @taxon.parent = current_store.taxons.find(parent_id.to_i) if parent_id
+        @taxon.parent = current_store.taxons.find(parent_id) if parent_id
       end
 
       def set_permalink_params
