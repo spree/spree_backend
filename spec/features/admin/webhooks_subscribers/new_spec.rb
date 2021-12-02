@@ -15,8 +15,7 @@ describe 'Webhooks::Subscriber#new', type: :feature do
       end
       expect(page).to have_field(id: 'webhooks_subscriber_url', disabled: false)
       expect(page).to have_field(id: 'webhooks_subscriber_active', disabled: false)
-      expect(page).to have_field(id: 'subscribe-to-all', disabled: false)
-      expect(page).to have_field(name: 'webhooks_subscriber[subscriptions][]')
+      expect(page).to have_field(name: 'subscribe_to_all_events', checked: true)
     end
 
     it 'submitting with Subscribe To All Events' do
@@ -24,7 +23,6 @@ describe 'Webhooks::Subscriber#new', type: :feature do
 
       fill_in 'webhooks_subscriber_url', with: 'https://imgur.com/path'
       check 'webhooks_subscriber_active'
-      choose 'subscribe-to-all'
 
       click_on 'Create'
 
@@ -42,8 +40,8 @@ describe 'Webhooks::Subscriber#new', type: :feature do
       check 'webhooks_subscriber_active'
       choose 'subscribe_to_all_events_false'
 
-      check 'webhooks_subscriber_subscriptions_address_createaddress_deleteaddress_update'
-      check 'webhooks_subscriber_subscriptions_digital_createdigital_deletedigital_update'
+      check 'webhooks_subscriber_address'
+      check 'webhooks_subscriber_digital'
 
       click_on 'Create'
 

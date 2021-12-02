@@ -1,14 +1,12 @@
 module Spree
   module Admin
     module WebhooksSubscribersHelper
-      def event_list_for(resource_name)
-        supported_events[resource_name].join(',')
-      end
-
       def event_checkbox_for(resource_name, form)
-        content_tag :div, class: 'col-xs-12 col-sm-6 col-md-4 col-lg-4' do
-          (form.check_box :subscriptions, event_checkbox_opts(resource_name), event_list_for(resource_name), nil) + ' ' +
-            form.label(:subscriptions, Spree.t("spree.admin.webhooks_subscribers.#{resource_name.to_s.pluralize}"))
+        content_tag :div, class: 'col-xs-12 col-sm-6 col-md-4 col-lg-4 form-group' do
+          content_tag :div, class: 'custom-control custom-switch' do
+            (form.check_box resource_name, event_checkbox_opts(resource_name), true, nil) + ' ' +
+              form.label(resource_name, Spree.t("admin.webhooks_subscribers.#{resource_name.to_s.pluralize}"), class: 'custom-control-label')
+          end
         end
       end
 
@@ -18,14 +16,9 @@ module Spree
 
       private
 
-      def supported_events
-        @supported_events ||= Spree::Webhooks::Subscriber.supported_events
-      end
-
       def event_checkbox_opts(resource_name)
         {
-          multiple: true,
-          class: 'events-checkbox',
+          class: 'events-checkbox custom-control-input',
           checked: subscribed_to_resource?(resource_name)
         }
       end

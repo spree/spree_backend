@@ -27,12 +27,21 @@ module Spree
       end
 
       def process_subscriptions
-        if params[:subscribe_to_all_events] == 'true'
-          params[:webhooks_subscriber][:subscriptions] = ['*']
-        else
-          params[:webhooks_subscriber][:subscriptions] ||= []
-          params[:webhooks_subscriber][:subscriptions] = params[:webhooks_subscriber][:subscriptions].flat_map { |events| events.split(',') }
-        end
+        params[:webhooks_subscriber][:subscriptions] = if params[:subscribe_to_all_events] == 'true'
+                                                         ['*']
+                                                       else
+                                                         selected_events
+                                                       end
+
+        params[:webhooks_subscriber] = params[:webhooks_subscriber].except(*supported_events.keys)
+      end
+
+      def selected_events
+        supported_events.select { |resource, events| params[:webhooks_subscriber][resource] == 'true' }.values.flatten
+      end
+
+      def supported_events
+        @supported_events ||= Spree::Webhooks::Subscriber.supported_events
       end
     end
   end

@@ -1,6 +1,6 @@
 <div data-hook="admin_webhooks_subscriber_form_fields">
   <%= f.field_container :url, class: ['form-group'] do %>
-    <%= f.label :url, Spree.t(:url) %>
+    <%= f.label :url, Spree.t('admin.url') %>
     <%= f.text_field :url, class: 'form-control', placeholder: 'https://example.com/endpoint' %>
     <%= f.error_message_on :url %>
   <% end %>
@@ -10,6 +10,7 @@
       <%= f.label :active, class: 'custom-control-label' %>
     </div>
   </div>
+
   Events
 
   <div data-controller="webhooks_subscriber_events">

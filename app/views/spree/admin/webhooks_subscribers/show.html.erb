@@ -7,15 +7,15 @@
   <div class="table-responsive">
     <table class="table table-bordered">
       <tr>
-        <td><strong><%= Spree.t(:url) %></strong></td>
+        <td><strong><%= Spree.t('admin.url') %></strong></td>
         <td><%= @webhooks_subscriber.url %></td>
       </tr>
       <tr>
-        <td><strong><%= Spree.t(:active) %></strong></td>
+        <td><strong><%= Spree.t('admin.active') %></strong></td>
         <td><%= active_badge(@webhooks_subscriber.active) %></td>
       </tr>
       <tr>
-        <td><strong><%= Spree.t(:subscriptions) %></strong></td>
+        <td><strong><%= Spree.t('admin.webhooks_subscribers.subscriptions') %></strong></td>
         <td><%= @webhooks_subscriber.subscriptions&.join(', ') %></td>
       </tr>
     </table>
@@ -27,12 +27,12 @@
     <table class="table">
       <thead>
       <tr>
-        <th><%= Spree.t(:name) %></th>
-        <th><%= Spree.t(:successful) %></th>
-        <th><%= Spree.t(:created_at) %></th>
-        <th><%= Spree.t(:response_code) %></th>
-        <th><%= Spree.t(:execution_time) %></th>
-        <th><%= Spree.t(:request_errors) %></th>
+        <th><%= Spree.t('admin.name') %></th>
+        <th><%= Spree.t('admin.successful') %></th>
+        <th><%= Spree.t('admin.created_at') %></th>
+        <th><%= Spree.t('admin.response_code') %></th>
+        <th><%= Spree.t('admin.execution_time') %></th>
+        <th><%= Spree.t('admin.request_errors') %></th>
         <th></th>
       </tr>
       </thead>
@@ -54,6 +54,6 @@
 
 <% else %>
   <div class="alert alert-info no-objects-found">
-    <%= Spree.t(:no_events) %>
+    <%= Spree.t('admin.webhooks_subscribers.no_events') %>
   </div>
 <% end %>
