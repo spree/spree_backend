@@ -37,7 +37,7 @@ module Spree
       end
 
       def selected_events
-        supported_events.select { |resource, events| params[:webhooks_subscriber][resource] == 'true' }.values.flatten
+        supported_events.select { |resource, _events| params[:webhooks_subscriber][resource] == 'true' }.values.flatten
       end
 
       def supported_events
