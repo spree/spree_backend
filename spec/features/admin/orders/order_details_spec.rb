@@ -620,7 +620,7 @@ describe 'Order Details', type: :feature, js: true do
     end
   end
 
-  context 'as Fakedispatch' do
+  context 'as Fakedispatch', js: true do
     custom_authorization! do |_user|
       # allow dispatch to :admin, :index, and :edit on Spree::Order
       can [:admin, :edit, :index, :read], Spree::Order
@@ -654,10 +654,7 @@ describe 'Order Details', type: :feature, js: true do
         click_icon :edit
       end
       fill_in 'tracking', with: 'FOOBAR'
-
-      accept_alert do
-        click_icon :save
-      end
+      click_icon :save
 
       expect(page).not_to have_css('input[name=tracking]')
       expect(page).to have_content('Tracking: FOOBAR')
@@ -670,10 +667,7 @@ describe 'Order Details', type: :feature, js: true do
         click_icon :edit
       end
       select2 'Default', from: 'Shipping Method'
-
-      accept_alert do
-        click_icon :save
-      end
+      click_icon :save
 
       expect(page).not_to have_css('#selected_shipping_rate_id')
       expect(page).to have_content('Default')
@@ -683,9 +677,7 @@ describe 'Order Details', type: :feature, js: true do
       order = create(:order_ready_to_ship, store: store)
       order.refresh_shipment_rates
       visit spree.edit_admin_order_path(order)
-      accept_alert do
-        click_on 'Ship'
-      end
+      click_on 'Ship'
       expect(page).to have_css('.shipment-state', text: 'shipped')
     end
   end
