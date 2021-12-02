@@ -26,6 +26,8 @@
     "flatpickr": "^4.6.9",
     "jquery": "3.5.1",
     "popper.js": "1.16.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sortablejs": "^1.14.0",
     "stimulus-sortable": "^3.1.0"
   },

@@ -42,6 +42,8 @@ application.register("password-toggle", PasswordToggleController)
 import ClipboardController from "./controllers/clipboard_controller"
 application.register("clipboard", ClipboardController)
 
+import React, { Component } from 'react'
+
 //
 // Export
 export { Dashboard, application, flatpickr, Turbo }
