@@ -3,6 +3,7 @@
 class Dashboard {
   constructor() {
     console.log("Spree Dashboard Initialized")
+    console.log("yarn link works")
   }
 }
 
