@@ -61,6 +61,12 @@
     </ul>
   <% end %>
 
+  <% if can? :admin, Spree::Webhooks::Subscriber %>
+    <ul class="nav nav-sidebar border-bottom" id="sidebarIntegrations">
+      <%= main_menu_tree Spree.t('admin.tab.integrations'), icon: "enter.svg", sub_menu: "integrations", url: "#sidebar-integrations" %>
+    </ul>
+  <% end %>
+
   <% if can? :admin, Spree::OauthApplication %>
     <ul class="nav nav-sidebar border-bottom" id="sidebarApps">
       <%= main_menu_tree Spree.t('admin.tab.apps'), icon: "extensions.svg", sub_menu: "apps", url: "#sidebar-apps" %>

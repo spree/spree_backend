@@ -125,6 +125,7 @@ en:
         customer_returns: Customer Returns
         apps: Apps
         applications: Applications
+        integrations: Integrations
       taxon:
         nested_under_info: Nest this Taxon within the Taxonomy tree.
       taxonomies:
