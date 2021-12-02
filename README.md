@@ -6,7 +6,7 @@
 
 This is the default Spree Admin Dashboard. 
 
-## Sponsored by
+## Maintained by
 
 [![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
 
