@@ -27,7 +27,7 @@ module Spree
         else
           load_categories
           flash[:error] = Spree.t('store_credit.errors.unable_to_create')
-          render :new
+          render :new, status: :unprocessable_entity
         end
       end
 
@@ -41,7 +41,7 @@ module Spree
         else
           load_categories
           flash[:error] = Spree.t('store_credit.errors.unable_to_update')
-          render :edit
+          render :edit, status: :unprocessable_entity
         end
       end
 
