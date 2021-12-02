@@ -656,7 +656,10 @@ describe 'Order Details', type: :feature, js: true do
         click_icon :edit
       end
       fill_in 'tracking', with: 'FOOBAR'
-      click_icon :save
+
+      accept_alert do
+        click_icon :save
+      end
 
       expect(page).not_to have_css('input[name=tracking]')
       expect(page).to have_content('Tracking: FOOBAR')
@@ -669,7 +672,10 @@ describe 'Order Details', type: :feature, js: true do
         click_icon :edit
       end
       select2 'Default', from: 'Shipping Method'
-      click_icon :save
+
+      accept_alert do
+        click_icon :save
+      end
 
       expect(page).not_to have_css('#selected_shipping_rate_id')
       expect(page).to have_content('Default')
@@ -679,7 +685,9 @@ describe 'Order Details', type: :feature, js: true do
       order = create(:order_ready_to_ship, store: store)
       order.refresh_shipment_rates
       visit spree.edit_admin_order_path(order)
-      click_on 'Ship'
+      accept_alert do
+        click_on 'Ship'
+      end
       expect(page).to have_css('.shipment-state', text: 'shipped')
     end
   end
