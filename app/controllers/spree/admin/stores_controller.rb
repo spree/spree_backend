@@ -43,7 +43,7 @@ module Spree
           redirect_to @store.formatted_url + spree.admin_stores_path
         else
           flash[:error] = "#{Spree.t('store_errors.unable_to_create')}: #{@store.errors.full_messages.join(', ')}"
-          render :new
+          render :new, status: :unprocessable_entity
         end
       end
 
