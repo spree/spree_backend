@@ -1,0 +1,101 @@
+<div data-hook="admin_webhooks_subscriber_form_fields">
+  <%= f.field_container :url, class: ['form-group'] do %>
+    <%= f.label :url, Spree.t('admin.url') %>
+    <%= f.text_field :url, class: 'form-control', placeholder: 'https://example.com/endpoint' %>
+    <%= f.error_message_on :url %>
+  <% end %>
+  <div class="form-group">
+    <div class="custom-control custom-switch">
+      <%= f.check_box :active, class: 'custom-control-input' %>
+      <%= f.label :active, class: 'custom-control-label' %>
+    </div>
+  </div>
+
+  Events
+
+  <div data-controller="webhooks_subscriber_events">
+    <%= f.field_container :subscriptions, class: ['form-group'] do %>
+      <div>
+        <div class="radio my-2">
+          <%= radio_button_tag :subscribe_to_all_events, true,
+                               subscribe_to_all_events?,
+                               {
+                                 'data-action' => 'webhooks_subscriber_events#hideCheckboxes',
+                                 'data-webhooks_subscriber_events-target' => 'subscribeToAll',
+                                  class: 'events' } %>
+          <%= label_tag :subscribe_to_all_events_true, Spree.t('admin.webhooks_subscribers.subscribe_to_all_events') %>
+        </div>
+        <div class="radio my-2">
+          <%= radio_button_tag :subscribe_to_all_events, false,
+                               !subscribe_to_all_events?,
+                               { 'data-action' => 'webhooks_subscriber_events#showCheckboxes',
+                                 class: 'events' } %>
+          <%= label_tag :subscribe_to_all_events_false, Spree.t('admin.webhooks_subscribers.select_events') %>
+        </div>
+      </div>
+      <br/>
+
+      <div data-webhooks_subscriber_events-target="eventsCheckboxesContainer">
+        <div class="row">
+          <%= event_checkbox_for(:address, f) %>
+          <%= event_checkbox_for(:asset, f) %>
+          <%= event_checkbox_for(:cms_page, f) %>
+          <%= event_checkbox_for(:credit_card, f) %>
+          <%= event_checkbox_for(:customer_return, f) %>
+          <%= event_checkbox_for(:digital_link, f) %>
+        </div>
+        <div class="row">
+          <%= event_checkbox_for(:digital, f) %>
+          <%= event_checkbox_for(:inventory_unit, f) %>
+          <%= event_checkbox_for(:line_item, f) %>
+          <%= event_checkbox_for(:menu_item, f) %>
+          <%= event_checkbox_for(:menu, f) %>
+          <%= event_checkbox_for(:option_type, f) %>
+        </div>
+        <div class="row">
+          <%= event_checkbox_for(:option_value, f) %>
+          <%= event_checkbox_for(:order, f) %>
+          <%= event_checkbox_for(:payment, f) %>
+          <%= event_checkbox_for(:payment_capture_event, f) %>
+          <%= event_checkbox_for(:price, f) %>
+          <%= event_checkbox_for(:product, f) %>
+        </div>
+        <div class="row">
+          <%= event_checkbox_for(:promotion, f) %>
+          <%= event_checkbox_for(:property, f) %>
+          <%= event_checkbox_for(:prototype, f) %>
+          <%= event_checkbox_for(:refund, f) %>
+          <%= event_checkbox_for(:reimbursement, f) %>
+          <%= event_checkbox_for(:return_authorization, f) %>
+        </div>
+        <div class="row">
+          <%= event_checkbox_for(:return_item, f) %>
+          <%= event_checkbox_for(:role, f) %>
+          <%= event_checkbox_for(:shipment, f) %>
+          <%= event_checkbox_for(:shipping_category, f) %>
+          <%= event_checkbox_for(:shipping_method, f) %>
+          <%= event_checkbox_for(:shipping_rate, f) %>
+        </div>
+        <div class="row">
+          <%= event_checkbox_for(:stock_item, f) %>
+          <%= event_checkbox_for(:stock_location, f) %>
+          <%= event_checkbox_for(:stock_movement, f) %>
+          <%= event_checkbox_for(:stock_transfer, f) %>
+          <%= event_checkbox_for(:store_credit, f) %>
+          <%= event_checkbox_for(:store, f) %>
+        </div>
+        <div class="row">
+          <%= event_checkbox_for(:tax_rate, f) %>
+          <%= event_checkbox_for(:taxonomy, f) %>
+          <%= event_checkbox_for(:taxon, f) %>
+          <%= event_checkbox_for(:variant, f) %>
+          <%= event_checkbox_for(:wished_item, f) %>
+          <%= event_checkbox_for(:wishlist, f) %>
+        </div>
+        <div class="row">
+          <%= event_checkbox_for(:zone, f) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,6 +1,14 @@
 en:
   spree:
     admin:
+      url: URL
+      active: Active
+      name: Name
+      successful: Successful
+      created_at: Created At
+      response_code: Response Code
+      execution_time: Execution Time
+      request_errors: Request Errors
       cms:
         all_pages: All Pages
         add_new_page: Add New Page
@@ -209,3 +217,56 @@ en:
         this_link_takes_you_to_your_stores_home_page: This link takes you to your stores home page.
       utilities:
         preview: Preview %{name}
+      webhooks_subscribers:
+        webhooks_subscribers: Webhooks Subscribers
+        new_webhooks_subscriber: New Webhooks Subscriber
+        webhooks_events: Webhooks Events
+        subscriptions: Subscriptions
+        time_of_last_event: Time of Last Event
+        all_events: All Events
+        no_events: No Events
+        subscribe_to_all_events: Subscribe to all events
+        select_events: Select events
+        addresses: Addresses
+        assets: Assets
+        cms_pages: Cms Pages
+        credit_cards: Credit Cards
+        customer_returns: Customer Returns
+        digital_links: Digital Links
+        digitals: Digitals
+        inventory_units: Inventory Units
+        line_items: Line Items
+        menu_items: Menu Items
+        menus: Menus
+        option_types: Option Types
+        option_values: Option Values
+        orders: Orders
+        payments: Payments
+        payment_capture_events: Payment Capture Events
+        prices: Prices
+        products: Products
+        promotions: Promotions
+        properties: Properties
+        prototypes: Prototypes
+        refunds: Refunds
+        reimbursements: Reimbursements
+        return_authorizations: Return Authorizations
+        return_items: Return Items
+        roles: Roles
+        shipments: Shipments
+        shipping_categories: Shipping Categories
+        shipping_methods: Shipping Methods
+        shipping_rates: Shipping Rates
+        stock_items: Stock Items
+        stock_locations: Stock Locations
+        stock_movements: Stock Movements
+        stock_transfers: Stock Transfers
+        store_credits: Store Credits
+        stores: Stores
+        tax_rates: Tax Rates
+        taxonomies: Taxonomies
+        taxons: Taxons
+        variants: Variants
+        wished_items: Wished Items
+        wishlists: Wishlists
+        zones: Zones

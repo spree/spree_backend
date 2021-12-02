@@ -35,6 +35,9 @@ application.register("spree", SpreeController)
 import SortableTreeController from "./controllers/sortable_tree_controller"
 application.register("sortable-tree", SortableTreeController)
 
+import WebhooksSubscriberEventsController from "./controllers/webhooks_subscriber_events_controller"
+application.register("webhooks_subscriber_events", WebhooksSubscriberEventsController)
+
 import PasswordToggleController from "./controllers/password_toggle_controller"
 application.register("password-toggle", PasswordToggleController)
 

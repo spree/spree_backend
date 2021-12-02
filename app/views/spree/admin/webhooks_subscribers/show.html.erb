@@ -1,0 +1,59 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t('admin.webhooks_subscribers.webhooks_subscribers'), spree.admin_webhooks_subscribers_path %> /
+  <%= Spree.t('admin.webhooks_subscribers.webhooks_events') %>
+<% end %>
+
+<fieldset>
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <tr>
+        <td><strong><%= Spree.t('admin.url') %></strong></td>
+        <td><%= @webhooks_subscriber.url %></td>
+      </tr>
+      <tr>
+        <td><strong><%= Spree.t('admin.active') %></strong></td>
+        <td><%= active_badge(@webhooks_subscriber.active) %></td>
+      </tr>
+      <tr>
+        <td><strong><%= Spree.t('admin.webhooks_subscribers.subscriptions') %></strong></td>
+        <td><%= @webhooks_subscriber.subscriptions&.join(', ') %></td>
+      </tr>
+    </table>
+  </div>
+</fieldset>
+
+<% if @events.any? %>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th><%= Spree.t('admin.name') %></th>
+        <th><%= Spree.t('admin.successful') %></th>
+        <th><%= Spree.t('admin.created_at') %></th>
+        <th><%= Spree.t('admin.response_code') %></th>
+        <th><%= Spree.t('admin.execution_time') %></th>
+        <th><%= Spree.t('admin.request_errors') %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @events.each do |event| %>
+        <tr id="<%= spree_dom_id event %>">
+          <td><%= event.name %></td>
+          <td><%= active_badge(event.success) %></td>
+          <td><%= event.created_at %></td>
+          <td><%= event.response_code %></td>
+          <td><%= event.execution_time %></td>
+          <td><%= sanitize event.request_errors.gsub('[SPREE WEBHOOKS]', '') %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <%= render 'spree/admin/shared/index_table_options', collection: @events, simple: true %>
+
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t('admin.webhooks_subscribers.no_events') %>
+  </div>
+<% end %>
