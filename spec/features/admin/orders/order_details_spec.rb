@@ -628,7 +628,7 @@ describe 'Order Details', type: :feature, js: true do
       can [:admin, :manage, :read, :ship], Spree::Shipment
     end
 
-    let(:admin_app) { Spree::OauthApplication.create(name: 'Admin Panel', scopes: 'admin', redirect_uri: current_url) }
+    let(:admin_app) { Spree::OauthApplication.create(name: 'Admin Panel', scopes: 'admin', redirect_uri: 'urn:ietf:wg:oauth:2.0:oob') }
     let(:admin_token) { Spree::OauthAccessToken.create!(application: admin_app, scopes: 'admin').token }
 
     before do
