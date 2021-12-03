@@ -15,7 +15,7 @@ module Spree
           flash[:success] = flash_message_for(@user, :successfully_created)
           redirect_to spree.edit_admin_user_path(@user)
         else
-          render :new
+          render :new, status: :unprocessable_entity
         end
       end
 
@@ -29,7 +29,7 @@ module Spree
           flash[:success] = Spree.t(:account_updated)
           redirect_to spree.edit_admin_user_path(@user)
         else
-          render :edit
+          render :edit, status: :unprocessable_entity
         end
       end
 
@@ -39,9 +39,10 @@ module Spree
           params[:user][:ship_address_attributes][:user_id] = @user.id if params[:user][:ship_address_attributes].present?
           if @user.update(user_params)
             flash.now[:success] = Spree.t(:account_updated)
+            redirect_to spree.addresses_admin_user_path(@user)
+          else
+            render :addresses, status: :unprocessable_entity
           end
-
-          render :addresses
         end
       end
 

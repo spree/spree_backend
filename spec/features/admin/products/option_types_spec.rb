@@ -42,11 +42,12 @@ describe 'Option Types', type: :feature, js: true do
 
   context 'editing an existing option type' do
     it 'allows an admin to update an existing option type' do
-      create(:option_type, name: 'tshirt-color', presentation: 'Color')
-      create(:option_type, name: 'tshirt-size', presentation: 'Size')
+      option_type = create(:option_type, name: 'tshirt-size', presentation: 'Size')
+      create(:option_value, option_type: option_type)
       click_link 'Option Types'
       within('table#listing_option_types') { click_icon :edit }
       fill_in 'option_type_name', with: 'foo-size 99'
+      fill_in 'option_type_presentation', with: 'Foo Size 99'
       click_button 'Update'
       expect(page).to have_content('successfully updated!')
       expect(page).to have_content('foo-size 99')
