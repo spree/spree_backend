@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'Option Type edit spec', type: :feature, js: true do
   stub_authorization!
 
-  let(:option_type) { create(:option_type, filterable: false) }
+  let!(:option_type) { create(:option_type, filterable: false) }
+  let!(:option_value) { create(:option_value, option_type: option_type) }
 
   context 'editing option type' do
     before do
