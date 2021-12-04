@@ -61,3 +61,4 @@ node_modules
 app/assets/javascripts/spree-dashboard.js
 app/assets/javascripts/spree-dashboard.*.js
 src
+*.gem
