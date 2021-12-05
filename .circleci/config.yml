@@ -25,8 +25,11 @@ run_tests: &run_tests
     - checkout
     - restore_cache:
         keys:
-          - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
-          - spree-dashboard-bundle-v9-ruby-2-7
+          - spree-dashboard-bundle-v10-ruby-2-7-{{ .Branch }}
+          - spree-dashboard-bundle-v10-ruby-2-7
+    - run:
+        name: Install libvips
+        command: sudo apt-get install libvips
     - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
@@ -62,8 +65,11 @@ run_tests_3_0: &run_tests_3_0
     - checkout
     - restore_cache:
         keys:
-          - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
-          - spree-dashboard-bundle-v9-ruby-3-0
+          - spree-dashboard-bundle-v10-ruby-3-0-{{ .Branch }}
+          - spree-dashboard-bundle-v10-ruby-3-0
+    - run:
+        name: Install libvips
+        command: sudo apt-get install libvips
     - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
@@ -99,8 +105,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - spree-dashboard-bundle-v9-ruby-2-7-{{ .Branch }}
-            - spree-dashboard-bundle-v9-ruby-2-7
+            - spree-dashboard-bundle-v10-ruby-2-7-{{ .Branch }}
+            - spree-dashboard-bundle-v10-ruby-2-7
+      - run:
+          name: Install libvips
+          command: sudo apt-get install libvips
       - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
@@ -111,7 +120,7 @@ jobs:
       - save_cache:
           paths:
             - vendor/bundle
-          key: spree-dashboard-bundle-v9-ruby-2-7-{{ checksum "Gemfile.lock" }}
+          key: spree-dashboard-bundle-v10-ruby-2-7-{{ checksum "Gemfile.lock" }}
 
   bundle_ruby_3_0:
     <<: *defaults_3_0
@@ -119,8 +128,11 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - spree-dashboard-bundle-v9-ruby-3-0-{{ .Branch }}
-            - spree-dashboard-bundle-v9-ruby-3-0
+            - spree-dashboard-bundle-v10-ruby-3-0-{{ .Branch }}
+            - spree-dashboard-bundle-v10-ruby-3-0
+      - run:
+          name: Install libvips
+          command: sudo apt-get install libvips
       - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
@@ -131,7 +143,7 @@ jobs:
       - save_cache:
           paths:
             - vendor/bundle
-          key: spree-dashboard-bundle-v9-ruby-3-0-{{ checksum "Gemfile.lock" }}
+          key: spree-dashboard-bundle-v10-ruby-3-0-{{ checksum "Gemfile.lock" }}
 
   tests_postgres: &tests_postgres
     <<: *run_tests
@@ -169,41 +181,6 @@ jobs:
       - image: *ruby_image
       - image: *redis_image
       - image: &mysql_image circleci/mysql:8-ram
-
-  update_staging_repository:
-    docker:
-      - image: circleci/ruby:2.7.2
-      - image: postgres:13-alpine
-        environment:
-          POSTGRES_HOST_AUTH_METHOD: trust
-    steps:
-      - add_ssh_keys:
-          fingerprints:
-            - 54:50:5e:4e:80:6d:2e:26:43:c6:99:bd:39:b2:71:dc
-      - run: mkdir -p ~/.ssh
-      - run: ssh-keyscan -H github.com >> ~/.ssh/known_hosts
-      - run: ssh-add -D
-      - run: ssh-add ~/.ssh/id_rsa_54505e4e806d2e2643c699bd39b271dc
-      - run: git clone -b master git@github.com:spark-solutions/spree-designs.git
-      - run:
-          command: bundle update spree_backend
-          working_directory: ~/project/spree-designs
-      - run:
-          command: bundle exec rake railties:install:migrations
-          working_directory: ~/project/spree-designs
-      - run:
-          command: |
-            git config user.name 'AutoDeploy'
-            git config user.email 'autodeploy@sparksolutions.co'
-          working_directory: ~/project/spree-designs
-      - run:
-          command: |
-            git add -A
-            git commit -m "Auto-commit v#${CIRCLE_BUILD_NUM}"
-          working_directory: ~/project/spree-designs
-      - run:
-          command: git push -f origin master
-          working_directory: ~/project/spree-designs
 
 workflows:
   version: 2
