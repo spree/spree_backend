@@ -6,7 +6,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
   actionmailer actionpack actionview activejob activemodel activerecord
   activestorage activesupport railties
 ].each do |rails_gem|
-  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 6.1.0'), require: false
+  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 7.0.0.alpha2'), require: false
 end
 
 platforms :jruby do
@@ -14,8 +14,11 @@ platforms :jruby do
 end
 
 platforms :ruby do
-  gem 'mysql2'
-  gem 'pg', '~> 1.1'
+  if ENV['DB'] == 'mysql'
+    gem 'mysql2'
+  else
+    gem 'pg', '~> 1.1'
+  end
 end
 
 group :test do
@@ -53,6 +56,12 @@ end
 group :development do
   gem 'github_fast_changelog'
   gem 'solargraph'
+end
+
+if ENV['RAILS_VERSION']&.match(/7\.0\.0/) || !ENV['RAILS_VERSION']
+  gem 'paranoia', github: 'payrollhero/paranoia', branch: 'rails7'
+  gem 'awesome_nested_set', github: 'damianlegawiec/awesome_nested_set', branch: 'master'
+  gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'master'
 end
 
 spree_opts = { github: 'spree/spree', branch: 'rails7' }
