@@ -8,7 +8,6 @@ describe Spree::Admin::ShippingMethodsController, type: :controller do
     shipping_method = stub_model(Spree::ShippingMethod)
     allow(Spree::ShippingMethod).to receive_messages find: shipping_method
     expect(shipping_method.deleted_at).to be_nil
-    delete :destroy, params: { id: 1 }
-    expect(shipping_method.reload.deleted_at).not_to be_nil
+    expect { delete :destroy, params: { id: 1 } }.to change { shipping_method.deleted_at }.from(nil)
   end
 end
