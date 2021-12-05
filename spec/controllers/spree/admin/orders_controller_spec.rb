@@ -186,12 +186,12 @@ describe Spree::Admin::OrdersController, type: :controller do
 
       context 'when referer' do
         before do
-          request.env['HTTP_REFERER'] = '/'
+          request.env['HTTP_REFERER'] = spree.admin_url(host: 'http://test.host')
         end
 
         it 'redirects back' do
           post :open_adjustments, params: { id: order.number }
-          expect(response).to redirect_to('/')
+          expect(response).to redirect_to(spree.admin_url(host: 'http://test.host'))
         end
       end
 
@@ -234,12 +234,12 @@ describe Spree::Admin::OrdersController, type: :controller do
 
       context 'when referer' do
         before do
-          request.env['HTTP_REFERER'] = '/'
+          request.env['HTTP_REFERER'] = spree.admin_url(host: 'http://test.host')
         end
 
         it 'redirects back' do
           post :close_adjustments, params: { id: order.number }
-          expect(response).to redirect_to('/')
+          expect(response).to redirect_to(spree.admin_url(host: 'http://test.host'))
         end
       end
 
