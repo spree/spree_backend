@@ -6,7 +6,6 @@ module Spree
       private
 
       def scope
-        123
         current_store.menus
       end
 
