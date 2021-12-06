@@ -6,7 +6,8 @@ module Spree
       private
 
       def scope
-        current_store.menus
+        123
+        current_store.menuu
       end
 
       def find_resource
