@@ -31,7 +31,7 @@ describe 'Taxonomies', type: :feature, js: true do
       click_button 'Create'
       wait_for_turbo
 
-      expect(page).to have_content ('sports has no Taxons. Click the Add a new Taxon button, to begin adding Taxons.')
+      expect(page).to have_content('sports has no Taxons. Click the Add a new Taxon button, to begin adding Taxons.')
       expect(page).to have_content('successfully created!')
     end
 
