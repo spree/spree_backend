@@ -236,22 +236,6 @@ module Spree
         content_tag(:span, ' *', class: 'required font-weight-bold text-danger')
       end
 
-      def product_preview_link(product)
-       ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
-         Admin::BaseHelper#product_preview_link is deprecated and will be removed in Spree 5.0. - Use Admin::BaseHelper#external_page_preview_link
-       DEPRECATION
-
-        external_page_preview_link(product)
-      end
-
-      def taxon_preview_link(taxon)
-        ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
-          Admin::BaseHelper#taxon_preview_link is deprecated and will be removed in Spree 5.0. - Use Admin::BaseHelper#external_page_preview_link
-        DEPRECATION
-
-        external_page_preview_link(taxon)
-      end
-
       def external_page_preview_link(resource, options = {})
         resource_name = options[:name] || resource.class.name.demodulize
 
