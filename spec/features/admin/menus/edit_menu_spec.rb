@@ -27,7 +27,7 @@ describe 'Menu Edit', type: :feature do
     end
 
     it 'allows you to switch to home page link' do
-      select2 'Home Page', from: 'Link To'
+      select2 'Homepage', from: 'Link To'
       expect(page).to have_text 'Click the Update button below to change the link field.'
       click_on 'Update'
 

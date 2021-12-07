@@ -4,7 +4,7 @@ module Spree
       private
 
       def location_after_save
-        if @taxonomy.created_at == @taxonomy.updated_at
+        if @taxonomy.previously_new_record?
           edit_admin_taxonomy_url(@taxonomy)
         else
           admin_taxonomies_url

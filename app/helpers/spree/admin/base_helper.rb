@@ -240,7 +240,7 @@ module Spree
         resource_name = options[:name] || resource.class.name.demodulize
 
         button_link_to(
-          Spree.t('admin.utilities.preview', name: resource_name ),
+          Spree.t('admin.utilities.preview', name: resource_name),
           spree_storefront_resource_url(resource),
           class: 'btn-outline-secondary', icon: 'view.svg', id: "adminPreview#{resource_name}", target: :blank, data: { turbo: false }
         )
