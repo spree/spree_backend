@@ -1,3 +1,8 @@
+<script>
+  $('.flatpickr-alt-input').not(':first-child').remove()
+  $('.select2-container').not(':first-child').remove()
+</script>
+
 <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @product } %>
 
 <% content_for :page_title do %>
