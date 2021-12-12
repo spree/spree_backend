@@ -42,7 +42,7 @@
           </td>
           <td class="image">
             <div class="admin-product-image-container small-img">
-              <%= link_to image_tag(main_app.url_for(image.url(:product))), main_app.rails_blob_url(image.attachment) %>
+              <%= link_to image_tag(main_app.cdn_image_url(image.url(:product))), main_app.cdn_image_url(image.attachment), target: :blank %>
             </div>
           </td>
           <% if has_variants %>
