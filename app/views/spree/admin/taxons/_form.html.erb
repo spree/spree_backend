@@ -66,7 +66,7 @@
     <div class="col-12 col-md-4">
       <%= f.field_container :icon do %>
         <%= f.label :icon, Spree.t(:header_banner), class: 'mb-3' %>
-        <%= image_tag(main_app.url_for(@taxon.icon.try(:attachment)), class: 'w-100') if @taxon.icon %>
+        <%= image_tag(main_app.cdn_image_url(@taxon.icon.try(:attachment)), class: 'w-100') if @taxon.icon %>
         <%= f.file_field :icon, class: 'mt-3' %>
         <% if @taxon.icon.present? %>
           <%= link_to Spree.t(:remove_image), remove_icon_admin_taxonomy_taxon_url(@taxonomy.id, @taxon.id), method: :delete %>

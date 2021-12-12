@@ -8,9 +8,9 @@
     <div class="card-body">
       <%= f.field_container :logo do %>
         <% if @store.logo.attached? && @store.logo.variable? %>
-          <%= image_tag main_app.url_for(@store.logo.variant(resize_to_limit: [244, 104])) %>
+          <%= image_tag main_app.cdn_image_url(@store.logo.variant(resize_to_limit: [244, 104])) %>
         <% elsif @store.logo.attached? && @store.logo.image? %>
-          <%= image_tag main_app.url_for(@store.logo) %>
+          <%= image_tag main_app.cdn_image_url(@store.logo) %>
         <% end %>
         <%= f.field_container :logo do %>
           <%= f.label :logo, Spree.t(:logo) %><br>
@@ -20,7 +20,7 @@
       <% end %>
       <%= f.field_container :mailer_logo do %>
         <% if @store.mailer_logo.attached? && @store.mailer_logo.variable? %>
-          <%= image_tag main_app.url_for(@store.mailer_logo.variant(resize_to_limit: [244, 104])) %>
+          <%= image_tag main_app.cdn_image_url(@store.mailer_logo.variant(resize_to_limit: [244, 104])) %>
         <% end %>
         <%= f.field_container :mailer_logo do %>
           <%= f.label :mailer_logo, Spree.t(:mailer_logo) %><br>
@@ -30,7 +30,7 @@
       <% end %>
       <%= f.field_container :favicon_image do %>
         <% if @store.favicon_image.attached? && @store.favicon_image.variable? %>
-          <%= image_tag main_app.url_for(@store.favicon_image.variant(resize_to_limit: [104, 104])) %>
+          <%= image_tag main_app.cdn_image_url(@store.favicon_image.variant(resize_to_limit: [104, 104])) %>
         <% end %>
         <%= f.field_container :favicon_image do %>
           <%= f.label :favicon_image, "#{Spree.t(:favicon)} (#{Spree.t(:favicon_upload_info)})" %><br>

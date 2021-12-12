@@ -28,11 +28,11 @@
         <%= f.field_container :image_one do %>
           <% if @cms_section.image_one.attached? && @cms_section.image_one.variable? %>
             <figure class="admin-img-holder">
-              <%= image_tag main_app.url_for(@cms_section.image_one.variant(resize_to_limit: [244, 104])) %>
+              <%= image_tag main_app.cdn_image_url(@cms_section.image_one.variant(resize_to_limit: [244, 104])) %>
             </figure>
           <% elsif @cms_section.image_one.attached? && @cms_section.image_one.image? %>
             <figure class="admin-img-holder">
-              <%= image_tag main_app.url_for(@cms_section.image_one) %>
+              <%= image_tag main_app.cdn_image_url(@cms_section.image_one) %>
             </figure>
           <% end %>
 
@@ -72,11 +72,11 @@
         <%= f.field_container :image_two do %>
           <% if @cms_section.image_two.attached? && @cms_section.image_two.variable? %>
             <figure class="admin-img-holder">
-              <%= image_tag main_app.url_for(@cms_section.image_two.variant(resize_to_limit: [244, 104])) %>
+              <%= image_tag main_app.cdn_image_url(@cms_section.image_two.variant(resize_to_limit: [244, 104])) %>
             </figure>
           <% elsif @cms_section.image_two.attached? && @cms_section.image_two.image? %>
             <figure class="admin-img-holder">
-              <%= image_tag main_app.url_for(@cms_section.image_two) %>
+              <%= image_tag main_app.cdn_image_url(@cms_section.image_two) %>
             </figure>
           <% end %>
 
@@ -116,11 +116,11 @@
         <%= f.field_container :image_three do %>
           <% if @cms_section.image_three.attached? && @cms_section.image_three.variable? %>
             <figure class="admin-img-holder">
-              <%= image_tag main_app.url_for(@cms_section.image_three.variant(resize_to_limit: [244, 104])) %>
+              <%= image_tag main_app.cdn_image_url(@cms_section.image_three.variant(resize_to_limit: [244, 104])) %>
             </figure>
           <% elsif @cms_section.image_three.attached? && @cms_section.image_three.image? %>
             <figure class="admin-img-holder">
-              <%= image_tag main_app.url_for(@cms_section.image_three) %>
+              <%= image_tag main_app.cdn_image_url(@cms_section.image_three) %>
             </figure>
           <% end %>
 
