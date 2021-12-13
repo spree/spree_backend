@@ -21,3 +21,9 @@ document.addEventListener("spree:load", function() {
   flatpickr('.datepicker', {})
 })
 
+document.addEventListener("turbo:before-cache", function() {
+  document.querySelectorAll('.datePickerFrom, .datePickerTo, .datepicker').forEach(function(element) {
+    element._flatpickr.destroy()
+  })
+})
+
