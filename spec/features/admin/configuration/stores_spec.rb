@@ -21,7 +21,6 @@ describe 'Stores admin', type: :feature do
       page.fill_in 'store_url', with: 'test.localhost'
       page.fill_in 'store_code', with: 'spree'
       page.fill_in 'store_mail_from_address', with: 'no-reply@example.com'
-      page.fill_in 'store_customer_support_email', with: 'support@example.com'
       select 'EUR', from: 'Default currency'
       select 'GBP', from: 'Supported Currencies'
       unselect 'USD', from: 'Supported Currencies'
@@ -55,18 +54,6 @@ describe 'Stores admin', type: :feature do
       store.reload
       expect(store.default_currency).to eq 'EUR'
       expect(store.name).to eq 'New Store Name'
-    end
-
-    it 'lets me enable new order notifications by setting a notification email address' do
-      store_owner_email = 'new-order-notifications@example.com'
-      visit spree.edit_admin_store_path(store)
-
-      page.fill_in 'store_new_order_notifications_email', with: store_owner_email
-      click_button 'Update'
-      wait_for_turbo
-
-      store.reload
-      expect(store.new_order_notifications_email).to eq(store_owner_email)
     end
 
     describe 'uploading a favicon' do
