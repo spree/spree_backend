@@ -1,0 +1,32 @@
+<div class="card mb-4">
+  <div class="card-header">
+    <h1 class="card-title mb-0 h5">
+      <%= Spree.t(:basic_information) %>
+    </h1>
+  </div>
+  <div class="card-body">
+    <%= f.field_container :name do %>
+      <%= f.label :name, raw(Spree.t(:name) + required_span_tag) %>
+      <%= f.text_field :name, class: 'form-control', required: true %>
+      <%= f.error_message_on :name %>
+    <% end %>
+    <%= f.field_container :code, data: { hook: 'stores_form_code' } do %>
+      <%= f.label :code, raw(Spree.t(:code) + required_span_tag) %>
+      <%= f.text_field :code, class: 'form-control', required: true %>
+      <small class="form-text text-muted">
+        <%= Spree.t('admin.store_form.code_help') %>
+      </small>
+      <%= f.error_message_on :code %>
+    <% end %>
+    <%= f.field_container :url, data: { hook: 'stores_form_url' } do %>
+      <%= f.label :url, raw(Spree.t(:url) + required_span_tag) %>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">https://</span>
+        </div>
+        <%= f.text_field :url, class: 'form-control', required: true %>
+      </div>
+      <%= f.error_message_on :url %>
+    <% end %>
+  </div>
+</div>
