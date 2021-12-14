@@ -1,0 +1,53 @@
+<div class="card mb-4">
+  <div class="card-header">
+    <h1 class="card-title mb-0 h5">
+      <%= Spree.t('admin.store.digital_settings.digital_asset_settings') %>
+    </h1>
+  </div>
+  <div class="card-body">
+    <div class="row pb-0">
+      <div class="col-12 col-md-4">
+        <%= f.field_container :digital_asset_authorized_clicks do %>
+          <%= f.label :digital_asset_authorized_clicks, (raw Spree.t('admin.store.digital_settings.digital_asset_authorized_clicks.authorized_clicks') + required_span_tag) %>
+          <%= f.text_field :digital_asset_authorized_clicks, class: 'form-control', required: true %>
+          <%= f.error_message_on :digital_asset_authorized_clicks %>
+        <% end %>
+        <small class="form-text text-muted">
+          <%= Spree.t('admin.store.digital_settings.digital_asset_authorized_clicks.info') %>
+        </small>
+        <%= f.field_container :limit_digital_download_count, class: ['custom-control', 'custom-checkbox', 'my-4'] do %>
+          <%= f.check_box :limit_digital_download_count, class: 'custom-control-input' %>
+          <%= f.label :limit_digital_download_count, Spree.t('admin.store.digital_settings.limit_digital_download_count'), class: 'custom-control-label' %>
+          <%= f.error_message_on :limit_digital_download_count %>
+        <% end %>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <%= f.field_container :digital_asset_authorized_days do %>
+          <%= f.label :digital_asset_authorized_days, (raw Spree.t('admin.store.digital_settings.digital_asset_authorized_days.authorized_days') + required_span_tag) %>
+          <%= f.text_field :digital_asset_authorized_days, class: 'form-control', required: true %>
+          <%= f.error_message_on :digital_asset_authorized_days %>
+        <% end %>
+        <small class="form-text text-muted">
+          <%= Spree.t('admin.store.digital_settings.digital_asset_authorized_days.info') %>
+        </small>
+        <%= f.field_container :limit_digital_download_days, class: ['custom-control', 'custom-checkbox', 'my-4'] do %>
+          <%= f.check_box :limit_digital_download_days, class: 'custom-control-input' %>
+          <%= f.label :limit_digital_download_days, Spree.t('admin.store.digital_settings.limit_digital_download_days'), class: 'custom-control-label' %>
+          <%= f.error_message_on :limit_digital_download_days %>
+        <% end %>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <%= f.field_container :digital_asset_link_expire_time do %>
+          <%= f.label :digital_asset_link_expire_time, (raw Spree.t('admin.store.digital_settings.digital_asset_link_expire_time.download_link_expire_time') + required_span_tag) %>
+          <%= f.text_field :digital_asset_link_expire_time, class: 'form-control', required: true %>
+          <%= f.error_message_on :digital_asset_link_expire_time %>
+        <% end %>
+        <small class="form-text text-muted">
+          <%= Spree.t('admin.store.digital_settings.digital_asset_link_expire_time.link_expire_time') %>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
