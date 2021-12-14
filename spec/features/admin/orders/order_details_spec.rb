@@ -620,7 +620,7 @@ describe 'Order Details', type: :feature, js: true do
     end
   end
 
-  context 'as Fakedispatch' do
+  context 'as Fakedispatch', js: true do
     custom_authorization! do |_user|
       # allow dispatch to :admin, :index, and :edit on Spree::Order
       can [:admin, :edit, :index, :read], Spree::Order
@@ -628,7 +628,7 @@ describe 'Order Details', type: :feature, js: true do
       can [:admin, :manage, :read, :ship], Spree::Shipment
     end
 
-    let(:admin_app) { Spree::OauthApplication.create(name: 'Admin Panel', scopes: 'admin') }
+    let(:admin_app) { Spree::OauthApplication.create(name: 'Admin Panel', scopes: 'admin', redirect_uri: '') }
     let(:admin_token) { Spree::OauthAccessToken.create!(application: admin_app, scopes: 'admin').token }
 
     before do
