@@ -12,11 +12,7 @@ Spree::Core::Engine.add_routes do
 
     resources :zones
 
-    resources :stores do
-      member do
-        put :set_default
-      end
-    end
+    resources :stores, except: %i[index show]
 
     resources :countries do
       resources :states
@@ -126,12 +122,6 @@ Spree::Core::Engine.add_routes do
     get '/return_authorizations', to: 'return_index#return_authorizations', as: :return_authorizations
     get '/customer_returns', to: 'return_index#customer_returns', as: :customer_returns
 
-    resource :general_settings do
-      collection do
-        post :clear_cache
-      end
-    end
-
     resources :return_items, only: [:update]
 
     resources :taxonomies do
@@ -203,8 +193,8 @@ Spree::Core::Engine.add_routes do
     resources :webhooks_subscribers
 
     get '/forbidden', to: 'errors#forbidden', as: :forbidden
+    root to: "dashboard#show"
   end
 
-  spree_path = Rails.application.routes.url_helpers.try(:spree_path, trailing_slash: true) || '/'
-  get Spree.admin_path, to: redirect((spree_path + Spree.admin_path + '/orders').gsub('//', '/')), as: :admin
+  get Spree.admin_path, to: 'admin/dashboard#show', as: :admin
 end
