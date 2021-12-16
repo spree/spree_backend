@@ -84,21 +84,20 @@ describe 'Stores admin', type: :feature do
   end
 
   describe 'deleting store', js: true do
-    let!(:second_store) { create(:store, url: 'another-store.lvh.me') }
+    let!(:second_store) { create(:store, url: 'another-store.lvh.me', code: 'another-store') }
 
     before { Capybara.app_host = second_store.formatted_url }
 
     after { Capybara.app_host = nil }
 
     it 'deletes store' do
-      visit spree.edit_admin_store_path(second_store)
+      visit spree.edit_admin_store_url(second_store, host: second_store.formatted_url)
 
       accept_confirm do
         page.find('.icon-delete').click
       end
-      expect(page).to have_current_path(spree.admin_path)
 
-      expect(Spree::Store.find_by_id(second_store.id)).to be_nil
+      expect(second_store.reload).to be_deleted
     end
   end
 end

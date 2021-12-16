@@ -39,7 +39,7 @@ module Spree
 
         if @store.destroy
           flash[:success] = flash_message_for(@store, :successfully_removed)
-          redirect_to spree.admin_url(domain: Spree::Store.default.url), allow_other_host: true
+          redirect_to spree.admin_url(host: Spree::Store.default.url), allow_other_host: true
         else
           render plain: "#{Spree.t('store_errors.unable_to_delete')}: #{@store.errors.full_messages.join(', ')}", status: :unprocessable_entity
         end
