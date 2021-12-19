@@ -22,7 +22,7 @@ module Spree
           icon = svg_icon name: 'circle.svg', width: '18', height: '18'
         end
 
-        link_to icon + store.unique_name, url_for(host: store.formatted_url),
+        link_to icon + store.unique_name, spree.admin_url(host: store.formatted_url),
                 class: "#{classes} py-2 px-4 my-1 dropdown-item", id: store.code, data: { turbo: false }
       end
     end
