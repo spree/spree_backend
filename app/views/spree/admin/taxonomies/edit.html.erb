@@ -27,7 +27,7 @@
                   <%= build_sortable_tree(@taxonomy, root_children) %>
                 <% end %>
               <% else %>
-                <div class="alert alert-info no-objects-found m-5">
+                <div class="text-center no-objects-found m-5 m-5">
                   <%= raw Spree.t('admin.taxonomies.no_taxons', taxonomy: @taxonomy.root.name ) %>
                 </div>
               <% end %>

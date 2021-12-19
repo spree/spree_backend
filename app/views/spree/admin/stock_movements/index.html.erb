@@ -36,7 +36,7 @@
   </table>
 </div>
 <% else %>
-  <div class="alert alert-info no-objects-found">
+  <div class="text-center no-objects-found m-5">
     <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::StockMovement)) %>,
     <%= link_to Spree.t(:add_one), spree.new_admin_stock_location_stock_movement_path(@stock_location) %>!
   </div>

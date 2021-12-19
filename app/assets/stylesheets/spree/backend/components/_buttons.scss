@@ -1,5 +1,5 @@
 .payment-action-save {
-  @include button-variant($success, $success, $success );
+  @include button-variant(theme-color('success'), theme-color('success'), theme-color('success') );
 }
 
 .btn,

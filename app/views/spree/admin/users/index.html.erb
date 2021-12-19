@@ -71,7 +71,7 @@
     </table>
   </div>
 <% else %>
-  <div class="alert alert-info no-objects-found">
+  <div class="text-center no-objects-found m-5">
     <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree.user_class)) %>,
     <%= link_to Spree.t(:add_one), new_object_url %>!
   </div>

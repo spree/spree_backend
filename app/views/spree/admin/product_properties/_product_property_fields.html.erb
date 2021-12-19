@@ -11,10 +11,10 @@
   </td>
   <% end %>
   <td class='property_name'>
-    <%= f.text_field :property_name, class: 'autocomplete form-control' %>
+    <%= f.text_field :property_name, class: 'autocomplete form-control', required: true %>
   </td>
   <td class='value'>
-    <%= f.text_field :value, class: 'form-control' %>
+    <%= f.text_field :value, class: 'form-control', required: true %>
   </td>
   <td class="show_property">
     <%= f.check_box :show_property %>
