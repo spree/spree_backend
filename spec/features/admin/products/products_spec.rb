@@ -198,15 +198,15 @@ describe 'Products', type: :feature do
 
       context 'with html5 validations' do
         it 'keeps option values selected if validation fails' do
-          fill_in 'product_name', with: 'Baseball Cap'
+          fill_in 'product_name', with: ''
           fill_in 'product_sku', with: 'B100'
           fill_in 'product_price', with: '100'
           select2 'Size', from: 'Prototype'
           check 'Large'
           click_button 'Create'
 
-          expect(page).to have_css('#product_shipping_category_field') do |el|
-            el['validationMessage'] == 'Please select an item in the list.'
+          expect(page).to have_css('#product_name_field') do |el|
+            el['validationMessage'] == 'Please fill in this field.'
           end
           expect(page).to have_checked_field('Size')
           expect(page).to have_checked_field('Large')
@@ -217,13 +217,13 @@ describe 'Products', type: :feature do
       context 'without html5 validations' do
         it 'keeps option values selected if validation fails' do
           disable_html5_validation
-          fill_in 'product_name', with: 'Baseball Cap'
+          fill_in 'product_name', with: ''
           fill_in 'product_sku', with: 'B100'
           fill_in 'product_price', with: '100'
           select2 'Size', from: 'Prototype'
           check 'Large'
           click_button 'Create'
-          expect(page).to have_content("Shipping Category can't be blank")
+          expect(page).to have_content("Name can't be blank")
           expect(page).to have_checked_field('Size')
           expect(page).to have_checked_field('Large')
           expect(page).to have_unchecked_field('Small')
@@ -248,11 +248,13 @@ describe 'Products', type: :feature do
       let(:product) { Spree::Product.last }
 
       it 'allows an admin to create a new product' do
+        expect(page).to have_field('product_available_on', with: I18n.localize(Time.current, format: '%Y/%m/%d'))
+        expect(page).to have_select('product_shipping_category_id', selected: @shipping_category.name)
+
         fill_in 'product_name', with: 'Baseball Cap'
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
         fill_in 'product_available_on', with: '2012/01/24'
-        select @shipping_category.name, from: 'product_shipping_category_id'
         click_button 'Create'
 
         expect(page).to have_content('successfully created!')
@@ -267,11 +269,11 @@ describe 'Products', type: :feature do
       end
 
       it 'shows validation errors' do
-        fill_in 'product_name', with: 'Baseball Cap'
+        fill_in 'product_name', with: ''
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
         click_button 'Create'
-        expect(page).to have_content("Shipping Category can't be blank")
+        expect(page).to have_content("Name can't be blank")
       end
 
       context 'using a locale with a different decimal format ' do
