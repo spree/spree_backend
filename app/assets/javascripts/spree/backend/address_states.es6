@@ -4,6 +4,8 @@ function updateAddressState(region, successCallback) {
   const stateSelect = $('#' + region + 'state select')
   const stateInput = $('#' + region + 'state input.state_name')
 
+  if (!countryId) { return }
+
   fetch(Spree.routes.countries_api_v2 + '/' + countryId + '?include=states', {
     headers: Spree.apiV2Authentication()
   }).then((response) => {
