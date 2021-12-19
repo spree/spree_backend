@@ -52,7 +52,7 @@
                     <% variant.stock_items.each do |item| %>
                       <% next unless @stock_locations.include?(item.stock_location) %>
                       <tr id="stock-item-<%= item.id %>">
-                        <td><%= item.stock_location.name %></td>
+                        <td><%= link_to item.stock_location.name, spree.edit_admin_stock_location_path(item.stock_location) %></td>
                         <td class="text-center"><%= item.count_on_hand %></td>
                         <td class="text-center">
                           <%= form_tag admin_stock_item_path(item), method: :put, class: 'toggle_stock_item_backorderable' do %>
