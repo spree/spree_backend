@@ -231,7 +231,6 @@
       <%= f.select :option_type_ids, options_from_collection_for_select(@product.option_types, :id, :name, @product.option_type_ids),
                                       { include_hidden: true },
                                         multiple: true,
-                                        class: 'select2-hidden-accessible',
                                         data: { autocomplete_url_value: 'option_types_api_v2',
                                                 autocomplete_return_attr_value: 'name',
                                                 autocomplete_multiple_value: true } %>
