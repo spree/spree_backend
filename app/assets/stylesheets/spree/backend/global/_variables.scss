@@ -3,3 +3,9 @@ $theme-colors: (
 );
 
 $enable-shadows: true;
+
+// https://github.com/twbs/bootstrap/issues/32019
+// we need this hotfix for sassc
+$custom-control-indicator-checked-box-shadow:   none !default;
+$custom-control-indicator-active-box-shadow:    none !default;
+$custom-checkbox-indicator-indeterminate-box-shadow:   none !default;
