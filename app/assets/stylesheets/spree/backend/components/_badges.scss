@@ -11,7 +11,7 @@
 .badge-sold,
 .badge-open,
 .badge-authorized {
-  @include badge-variant($success);
+  @include badge-variant(theme-color('success'));
 }
 
 // Red
@@ -20,7 +20,7 @@
 .badge-error,
 .badge-invalid,
 .badge-closed {
-  @include badge-variant($danger);
+  @include badge-variant(theme-color('danger'));
 }
 
 // Orange

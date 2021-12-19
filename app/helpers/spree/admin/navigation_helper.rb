@@ -135,7 +135,7 @@ module Spree
 
       def link_to_clone(resource, options = {})
         options[:data] = { action: 'clone', 'original-title': Spree.t(:clone) }
-        options[:class] = 'btn btn-warning btn-sm with-tip'
+        options[:class] = 'btn btn-light btn-sm with-tip'
         options[:method] = :post
         options[:icon] = 'clone.svg'
         button_link_to '', clone_object_url(resource), options
@@ -143,7 +143,7 @@ module Spree
 
       def link_to_clone_promotion(promotion, options = {})
         options[:data] = { action: 'clone', 'original-title': Spree.t(:clone) }
-        options[:class] = 'btn btn-warning btn-sm with-tip'
+        options[:class] = 'btn btn-light btn-sm with-tip'
         options[:method] = :post
         options[:icon] = 'clone.svg'
         button_link_to '', clone_admin_promotion_path(promotion), options
@@ -152,13 +152,13 @@ module Spree
       def link_to_edit(resource, options = {})
         url = options[:url] || edit_object_url(resource)
         options[:data] = { action: 'edit' }
-        options[:class] = 'btn btn-primary btn-sm'
+        options[:class] = 'btn btn-light btn-sm'
         link_to_with_icon('edit.svg', Spree.t(:edit), url, options)
       end
 
       def link_to_edit_url(url, options = {})
         options[:data] = { action: 'edit' }
-        options[:class] = 'btn btn-primary btn-sm'
+        options[:class] = 'btn btn-light btn-sm'
         link_to_with_icon('edit.svg', Spree.t(:edit), url, options)
       end
 

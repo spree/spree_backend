@@ -15,12 +15,12 @@ span.or {
 .form-group {
   &.withError {
     label, .formError, .required {
-      color: $danger;
+      color: theme-color('danger');
     }
 
     input,
     .select2-choice {
-      border-color: $danger;
+      border-color: theme-color('danger');
     }
   }
 }

@@ -37,7 +37,7 @@
 
   .flatpickr-months .flatpickr-prev-month:hover svg,
   .flatpickr-months .flatpickr-next-month:hover svg {
-    fill: $primary;
+    fill: theme-color('primary');
   }
 
   .flatpickr-time {
