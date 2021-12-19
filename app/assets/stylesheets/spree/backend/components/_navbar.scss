@@ -28,7 +28,7 @@
         max-width: 90vw;
         max-height: 70vh;
         overflow-y: scroll !important;
-        top: 110%;
+        top: $navbar-brand-height + 1.5rem;
         left: 50%;
         right: 50%;
         transform: translate(-50%, 0%);
