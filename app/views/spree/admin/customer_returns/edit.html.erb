@@ -37,7 +37,7 @@
   <% if @customer_return.reimbursements.any? %>
     <%= render partial: 'reimbursements_table', locals: {reimbursements: @customer_return.reimbursements} %>
   <% else %>
-    <div class="alert alert-info no-objects-found">
+    <div class="text-center no-objects-found m-3">
       <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Reimbursement)) %>
     </div>
   <% end %>
@@ -53,7 +53,7 @@
         <% end %>
       <% end %>
     <% else %>
-      <div class="alert alert-info no-objects-found">
+      <div class="text-center no-objects-found m-3">
         <%= Spree.t(:unable_to_create_reimbursements) %>
       </div>
     <% end %>

@@ -31,7 +31,7 @@ i.js-delete-filter {
     letter-spacing: 2px;
     font-weight: bold;
     font-size: $small-font-size;
-    border-color: $input-border-color;
+    border-color: $border-color;
     border-right: none;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -57,7 +57,7 @@ i.js-delete-filter {
     height: 0.8rem;
 
   }
-  
+
   svg.default-filter-arrow {
     opacity: 0.1;
   }

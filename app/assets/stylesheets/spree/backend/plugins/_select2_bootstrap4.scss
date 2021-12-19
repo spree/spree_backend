@@ -4,7 +4,7 @@ $s2bs-border-radius-base: $border-radius !default;
 $s2bs-border-radius-large: $border-radius-lg !default;
 $s2bs-border-radius-small: $border-radius-sm !default;
 $s2bs-btn-default-bg: transparent !default;
-$s2bs-btn-default-border: $dark !default;
+$s2bs-btn-default-border: $border-color !default;
 $s2bs-btn-default-color: $dark !default;
 $s2bs-caret-padding: $custom-select-indicator-padding !default;
 $s2bs-caret-width-base: 0.25rem !default;
@@ -31,7 +31,7 @@ $s2bs-input-bg: $input-bg !default;
 $s2bs-input-bg-disabled: $input-disabled-bg !default;
 $s2bs-input-color: $input-color !default;
 $s2bs-input-color-placeholder: $input-placeholder-color !default;
-$s2bs-input-border: $input-border-color !default;
+$s2bs-input-border: $border-color !default;
 $s2bs-input-border-width: $input-border-width !default;
 $s2bs-input-border-focus: $input-focus-border-color !default;
 $s2bs-input-border-radius: $input-border-radius !default;
@@ -557,15 +557,15 @@ $s2bs-form-control-transition: border-color ease-in-out .15s, box-shadow ease-in
 }
 
 .has-warning {
-  @include validation-state-focus($warning);
+  @include validation-state-focus(theme-color('warning'));
 }
 
 .has-error {
-  @include validation-state-focus($danger);
+  @include validation-state-focus(theme-color('danger'));
 }
 
 .has-success {
-  @include validation-state-focus($success);
+  @include validation-state-focus(theme-color('success'));
 }
 
 .input-group > .select2-container--bootstrap4 {

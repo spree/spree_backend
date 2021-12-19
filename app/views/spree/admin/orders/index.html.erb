@@ -113,7 +113,7 @@
   </button>
 </div>
 <% else %>
-  <div class="alert alert-info no-objects-found">
+  <div class="text-center no-objects-found m-3">
     <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Order)) %>,
     <%= link_to(Spree.t(:add_one), new_admin_order_url) if can? :create, Spree::Order %>!
   </div>
