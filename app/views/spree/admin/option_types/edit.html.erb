@@ -25,8 +25,8 @@
       <table class="table table-condensed sortable" data-hook data-sortable-link="<%= update_values_positions_admin_option_types_url %>">
         <thead data-hook="option_header">
           <tr>
-            <th colspan="2"><%= Spree.t(:name) %> <span class="required">*</span></th>
-            <th><%= Spree.t(:display) %> <span class="required">*</span></th>
+            <th colspan="2"><%= raw(Spree.t(:name) + required_span_tag) %></th>
+            <th><%= raw(Spree.t(:display) + required_span_tag) %></th>
             <th class="actions"></th>
           </tr>
         </thead>

@@ -1,6 +1,6 @@
 <div data-hook="admin_inside_taxonomy_form" class="form-group">
   <%= f.field_container :name do %>
-    <%= f.label :name, Spree.t(:name) %> <span class="required">*</span>
+    <%= f.label :name, raw(Spree.t(:name) + required_span_tag) %>
     <%= f.text_field :name, class: 'form-control', required: true %>
     <%= f.error_message_on :name, class: 'error-message' %>
   <% end %>
