@@ -8,7 +8,7 @@
 <%= form_for [:admin, @product], html: { multipart: true } do |f| %>
   <fieldset data-hook="new_product">
     <%= f.field_container :name do %>
-      <%= f.label :name, Spree.t(:name) %> <span class="required">*</span>
+      <%= f.label :name, raw(Spree.t(:name) + required_span_tag) %>
       <%= f.text_field :name, class: 'form-control title', required: :required %>
       <%= f.error_message_on :name %>
     <% end %>
@@ -33,7 +33,7 @@
 
       <div data-hook="new_product_price" class="col-12 col-md-4">
         <%= f.field_container :price do %>
-        <%= f.label :price, Spree.t(:master_price) %> <span class="required">*</span>
+        <%= f.label :price, raw(Spree.t(:master_price) + required_span_tag) %>
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text"><%= currency_symbol(current_currency) %></span>
@@ -65,7 +65,7 @@
 
       <div data-hook="new_product_shipping_category" class="col-12 col-md-4">
         <%= f.field_container :shipping_category do %>
-          <%= f.label :shipping_category_id, Spree.t(:shipping_categories) %><span class="required">*</span>
+          <%= f.label :shipping_category_id, raw(Spree.t(:shipping_categories) + required_span_tag) %>
           <%= f.collection_select(:shipping_category_id, @shipping_categories, :id, :name, { selected: @product.shipping_category_id }, { class: 'select2 w-100' }) %>
           <%= f.error_message_on :shipping_category_id %>
         <% end %>
