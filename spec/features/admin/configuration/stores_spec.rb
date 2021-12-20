@@ -96,6 +96,7 @@ describe 'Stores admin', type: :feature do
       accept_confirm do
         page.find('.icon-delete').click
       end
+      expect(page).to have_current_path(spree.admin_path)
 
       expect(second_store.reload).to be_deleted
     end
