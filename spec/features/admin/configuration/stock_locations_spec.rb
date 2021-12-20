@@ -13,7 +13,7 @@ describe 'Stock Locations', type: :feature do
       click_link 'New Stock Location'
     end
 
-    fill_in 'Name', with: 'London'
+    fill_in 'stock_location_name', with: 'London'
     check 'Active'
     click_button 'Create'
 
