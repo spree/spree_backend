@@ -11,11 +11,17 @@ module Spree
         end
 
         let(:return_authorization) { create(:return_authorization) }
+        let(:order_other_store) { create(:shipped_order, store: create(:store)) }
+        let(:return_authorization_other_store) { create(:return_authorization, order: order_other_store) }
 
         before { subject }
 
         it 'loads return authorizations' do
           expect(assigns(:collection)).to include(return_authorization)
+        end
+
+        it 'does not include other store return authorization' do
+          expect(assigns(:collection)).not_to include(return_authorization_other_store)
         end
       end
 
