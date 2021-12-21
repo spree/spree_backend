@@ -17,7 +17,7 @@ document.addEventListener("spree:load", function() {
         var itemEl = evt.item
         var positions = { authenticity_token: AUTH_TOKEN }
         $.each($('tr', element), function(position, obj) {
-          var reg = /spree_(\w+_?)+_(\d+)/
+          var reg = /spree_(\w+_?)+_(.*)/
           var parts = reg.exec($(obj).prop('id'))
           if (parts) {
             positions['positions[' + parts[2] + ']'] = position + 1
