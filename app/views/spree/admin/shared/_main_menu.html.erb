@@ -61,7 +61,7 @@
     </ul>
   <% end %>
 
-  <% if can? :admin, Spree::Webhooks::Subscriber %>
+  <% if can?(:admin, Spree::Webhooks::Subscriber) || can?(:admin, Spree::PaymentMethod) %>
     <ul class="nav nav-sidebar border-bottom" id="sidebarIntegrations">
       <%= main_menu_tree Spree.t('admin.tab.integrations'), icon: "enter.svg", sub_menu: "integrations", url: "#sidebar-integrations" %>
     </ul>
