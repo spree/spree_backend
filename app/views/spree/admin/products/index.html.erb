@@ -58,7 +58,7 @@
         <th scope="col"><%= Spree.t('admin.digitals.digital') %></th>
         <th scope="col"><%= Spree.t(:status) %></th>
         <th scope="col" class="text-center">
-          <%= sort_link @search, :master_default_price_amount, Spree.t(:master_price), {}, {title: 'admin_products_listing_price_title'} %>
+          <%= sort_link @search, :master_default_price_amount, Spree.t(:price), {}, {title: 'admin_products_listing_price_title'} %>
         </th>
         <th scope="col" data-hook="admin_products_index_header_actions" class="actions"></th>
       </tr>

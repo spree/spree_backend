@@ -22,10 +22,10 @@
               <td class="panel-title"><%= variant.sku %></td>
               <td><%= label_tag "vp[#{variant.id}][#{code}]", code %></td>
               <td>
-                <%= text_field_tag "vp[#{variant.id}][#{code}][price]", (price && price.price ? price.display_amount.money : ''), class: 'form-control' %>
+                <%= number_field_tag "vp[#{variant.id}][#{code}][price]", (price && price.price ? price.display_amount.money : ''), step: 0.01, min: 0, class: 'form-control' %>
               </td>
               <td>
-                <%= text_field_tag "vp[#{variant.id}][#{code}][compare_at_price]", (price && price.compare_at_price ? price.display_compare_at_amount.money : ''), class: 'form-control' %>
+                <%= number_field_tag "vp[#{variant.id}][#{code}][compare_at_price]", (price && price.compare_at_price ? price.display_compare_at_amount.money : ''), step: 0.01, min: 0, class: 'form-control' %>
               </td>
             </tr>
           <% end %>
