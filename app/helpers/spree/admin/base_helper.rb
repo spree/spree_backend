@@ -303,6 +303,10 @@ module Spree
       def taxon_wysiwyg_editor_enabled?
         Spree::Backend::Config[:taxon_wysiwyg_editor_enabled]
       end
+
+      def number_validation_pattern
+        '^[0-9]*([.,][0-9]*)*$'
+      end
     end
   end
 end
