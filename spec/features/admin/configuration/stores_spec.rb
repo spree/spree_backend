@@ -13,6 +13,7 @@ describe 'Stores admin', type: :feature do
     it 'sets default currency value', js: true do
       visit spree.new_admin_store_path
       expect(page).to have_selector(:id, 'select2-store_default_currency-container', text: 'United States Dollar (USD)')
+      expect(page).to have_field('store_checkout_zone_id', text: 'No Limits')
     end
 
     it 'saving store' do
