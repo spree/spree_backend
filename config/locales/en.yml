@@ -9,6 +9,7 @@ en:
       response_code: Response Code
       execution_time: Execution Time
       request_errors: Request Errors
+      kind: Kind
       cms:
         all_pages: All Pages
         add_new_page: Add New Page
@@ -78,7 +79,6 @@ en:
           tall_image: Please use an image with an aspect ratio of 27:40 (1080px x 1600px).
       copy_to_clipboard: Copy to clipboard
       digitals:
-        digital: Digital
         add_new_file: Add a new digital asset.
         digital_assets: Digital Assets
         reset_download_links: Reset Digital Download Links
@@ -150,6 +150,9 @@ en:
         new: New oAuth application
         uid: UID
         scopes: Scopes
+      product_kinds:
+        digital: Digital
+        physical: Physical
       reports:
         for: For %{store_name}
       return_authorization:
