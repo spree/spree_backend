@@ -19,6 +19,8 @@ describe 'Option Type edit spec', type: :feature, js: true do
 
       expect(page).to have_content 'successfully updated!'
 
+      visit spree.admin_option_types_path
+
       within("#spree_option_type_#{option_type.id}") { click_icon(:edit) }
       expect(page).to have_checked_field('option_type_filterable')
     end
