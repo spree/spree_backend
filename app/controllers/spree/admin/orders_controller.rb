@@ -161,7 +161,7 @@ module Spree
 
       def order_params
         params[:created_by_id] = try_spree_current_user.try(:id)
-        params.permit(:created_by_id, :user_id, :store_id, :channel)
+        params.permit(:created_by_id, :user_id, :store_id, :channel_id)
       end
 
       def load_order
