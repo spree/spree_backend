@@ -1,10 +1,10 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:products), admin_products_path %> /
+  <%= page_header_back_button spree.admin_products_path %>
   <%= @product.name %>
 <% end %>
 
-<% content_for :sidebar do %>
-  <ul class="nav flex-column nav-pills" data-hook="admin_product_tabs">
+<% content_for(:tabs) do %>
+  <ul class="nav nav-pills w-100 flex-column flex-sm-row mb-4 border-bottom pb-3" data-hook="admin_product_tabs">
     <%= content_tag :li do %>
       <%= link_to_with_icon 'edit.svg',
         Spree.t(:details),

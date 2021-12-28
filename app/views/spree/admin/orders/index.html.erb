@@ -16,8 +16,8 @@
 
 <div data-nav-x-wrapper>
   <div data-nav-x-container>
-    <table class="table" id="listing_orders" data-hook data-nav-x-content>
-      <thead>
+    <table class="table border rounded" id="listing_orders" data-hook data-nav-x-content>
+      <thead class="bg-light text-muted">
         <tr data-hook="admin_orders_index_headers">
           <th><%= sort_link @search, :number,           I18n.t(:number, scope: 'activerecord.attributes.spree/order') %></th>
           <% if @show_only_completed %>

@@ -1,13 +1,9 @@
 <%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :state_changes } %>
 
-<% content_for :page_title do %>
-  / <%= plural_resource_name(Spree::StateChange) %>
-<% end %>
-
 <% if @state_changes.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id="listing_order_state_changes" data-hook>
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="admin_orders_state_changes_headers">
         <th><%= Spree::StateChange.human_attribute_name(:type) %></th>
         <th><%= Spree::StateChange.human_attribute_name(:state_from) %></th>
@@ -46,3 +42,5 @@
     <%= Spree.t(:no_state_changes) %>
   </div>
 <% end %>
+
+<%= render partial: 'spree/admin/shared/order_summary' %>

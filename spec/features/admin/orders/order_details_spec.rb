@@ -31,7 +31,9 @@ describe 'Order Details', type: :feature, js: true do
           click_icon :edit
           fill_in 'quantity', with: '1'
         end
-        click_icon :save
+        within '.table' do
+          click_icon :save
+        end
 
         within('#order_total') do
           expect(page).to have_content('$20.00')
@@ -85,7 +87,9 @@ describe 'Order Details', type: :feature, js: true do
           click_icon :edit
         end
         fill_in 'tracking', with: 'FOOBAR'
-        click_icon :save
+        within '.table' do
+          click_icon :save
+        end
 
         expect(page).not_to have_css('input[name=tracking]')
         expect(page).to have_content('Tracking: FOOBAR')
@@ -98,7 +102,9 @@ describe 'Order Details', type: :feature, js: true do
           click_icon :edit
         end
         select2 'Default', from: 'Shipping Method'
-        click_icon :save
+        within '.table' do
+          click_icon :save
+        end
 
         expect(page).not_to have_css('#selected_shipping_rate_id')
         expect(page).to have_content('Default')
@@ -115,7 +121,9 @@ describe 'Order Details', type: :feature, js: true do
           click_icon :edit
         end
         select2 'Backdoor', from: 'Shipping Method'
-        click_icon :save
+        within '.table' do
+          click_icon :save
+        end
 
         expect(page).not_to have_css('#selected_shipping_rate_id')
         expect(page).to have_content('Backdoor')
@@ -222,7 +230,9 @@ describe 'Order Details', type: :feature, js: true do
         it 'should warn you if you have not selected a location or shipment' do
           within_row(1) { click_icon :split }
           accept_alert 'Please select the split destination' do
-            click_icon :save
+            within '.table' do
+              click_icon :save
+            end
           end
         end
 
@@ -233,7 +243,9 @@ describe 'Order Details', type: :feature, js: true do
 
             within_row(1) { click_icon 'split' }
             select2 stock_location2.name, css: '.stock-item-split', search: true, match: :first
-            click_icon :save
+            within '.table' do
+              click_icon :save
+            end
 
             expect(page).to have_css('#order-form-wrapper div', id: /^shipment_\d$/).exactly(2).times
 
@@ -251,7 +263,9 @@ describe 'Order Details', type: :feature, js: true do
             within_row(1) { click_icon 'split' }
             select2 stock_location2.name, css: '.stock-item-split', search: true, match: :first
             fill_in 'item_quantity', with: 2
-            click_icon :save
+            within '.table' do
+              click_icon :save
+            end
 
             expect(page).not_to have_css('tr.stock-item-split')
             order.reload
@@ -268,7 +282,9 @@ describe 'Order Details', type: :feature, js: true do
             within_row(1) { click_icon 'split' }
             select2 stock_location2.name, css: '.stock-item-split', search: true, match: :first
             fill_in 'item_quantity', with: 5
-            click_icon :save
+            within '.table' do
+              click_icon :save
+            end
 
             expect(page).not_to have_css('tr.stock-item-split')
             order.reload
@@ -287,7 +303,9 @@ describe 'Order Details', type: :feature, js: true do
             fill_in 'item_quantity', with: 'ff'
 
             page.accept_confirm 'quantity is negative' do
-              click_icon :save
+              within '.table' do
+                click_icon :save
+              end
             end
 
             expect(order.shipments.count).to eq(1)
@@ -303,7 +321,9 @@ describe 'Order Details', type: :feature, js: true do
             fill_in 'item_quantity', with: 0
 
             page.accept_confirm 'quantity is negative' do
-              click_icon :save
+              within '.table' do
+                click_icon :save
+              end
             end
 
             expect(order.shipments.count).to eq(1)
@@ -313,7 +333,9 @@ describe 'Order Details', type: :feature, js: true do
             fill_in 'item_quantity', with: -1
 
             page.accept_confirm 'quantity is negative' do
-              click_icon :save
+              within '.table' do
+                click_icon :save
+              end
             end
 
             expect(order.shipments.count).to eq(1)
@@ -344,7 +366,9 @@ describe 'Order Details', type: :feature, js: true do
               select2 stock_location2.name, css: '.stock-item-split', search: true, match: :first
               fill_in 'item_quantity', with: 2
 
-              click_icon :save
+              within '.table' do
+                click_icon :save
+              end
               alert_text = page.driver.browser.switch_to.alert.text
               expect(alert_text).to eq('Desired shipment has not enough stock in desired stock location')
               accept_alert { order.reload }
@@ -364,7 +388,9 @@ describe 'Order Details', type: :feature, js: true do
               select2 stock_location2.name, css: '.stock-item-split', search: true, match: :first
               fill_in 'item_quantity', with: 2
 
-              click_icon :save
+              within '.table' do
+                click_icon :save
+              end
               expect(page).not_to have_css('tr.stock-item-split')
 
               order.reload
@@ -383,7 +409,9 @@ describe 'Order Details', type: :feature, js: true do
 
             within_row(1) { click_icon 'split' }
             select2 stock_location2.name, css: '.stock-item-split', search: true, match: :first
-            click_icon :save
+            within '.table' do
+              click_icon :save
+            end
 
             expect(page).to have_css('#order-form-wrapper div', id: /^shipment_\d$/).exactly(2).times
 
@@ -473,8 +501,7 @@ describe 'Order Details', type: :feature, js: true do
           within_row(1) { click_icon 'split' }
           select2 @shipment2.number, css: '.stock-item-split', search: true, match: :first
           fill_in 'item_quantity', with: 2
-
-          click_icon :save
+          within_row(2) { click_icon :save }
 
           expect(page).to have_css('#order-form-wrapper div', id: /^shipment_\d$/).once
           order.reload
@@ -492,14 +519,14 @@ describe 'Order Details', type: :feature, js: true do
             select2 @shipment2.number, css: '.stock-item-split', search: true, match: :first
             fill_in 'item_quantity', with: 1
 
-            click_icon :save
+            within_row(2) { click_icon :save }
             expect(page).not_to have_css('tr.stock-item-split')
 
             within_row(1) { click_icon 'split' }
             select2 @shipment2.number, css: '.stock-item-split', search: true, match: :first
             fill_in 'item_quantity', with: 200
 
-            click_icon :save
+            within_row(2) { click_icon :save }
             alert_text = page.driver.browser.switch_to.alert.text
             expect(alert_text).to eq('Desired shipment has not enough stock in desired stock location')
             accept_alert { order.reload }
@@ -515,7 +542,7 @@ describe 'Order Details', type: :feature, js: true do
             fill_in 'item_quantity', with: 1
 
             page.accept_confirm 'target shipment is the same as original shipment' do
-              click_icon :save
+              within_row(2) { click_icon :save }
             end
 
             order.reload
@@ -530,7 +557,7 @@ describe 'Order Details', type: :feature, js: true do
             within_row(1) { click_icon 'split' }
             select2 @shipment2.number, css: '.stock-item-split', search: true, match: :first
             fill_in 'item_quantity', with: 1
-            click_icon :save
+            within_row(2) { click_icon :save }
 
             expect(page).to have_css("#shipment_#{@shipment2.id} tr.stock-item").twice
 
@@ -552,7 +579,7 @@ describe 'Order Details', type: :feature, js: true do
             select2 @shipment2.number, css: '.stock-item-split', search: true, match: :first
             fill_in 'item_quantity', with: 1
 
-            click_icon :save
+            within_row(2) { click_icon :save }
             expect(page).not_to have_css('tr.stock-item-split')
 
             expect(@shipment2.reload.backordered?).to eq(true)
@@ -560,7 +587,7 @@ describe 'Order Details', type: :feature, js: true do
             within_row(1) { click_icon 'split' }
             select2 @shipment2.number, css: '.stock-item-split', search: true, match: :first
             fill_in 'item_quantity', with: 1
-            click_icon :save
+            within_row(2) { click_icon :save }
 
             expect(page).to have_css('#order-form-wrapper div', id: /^shipment_\d$/).once
 
@@ -577,7 +604,7 @@ describe 'Order Details', type: :feature, js: true do
         end
 
         it 'contains elements' do
-          within('.additional-info') do
+          within('#order_tab_summary') do
             expect(page).to have_content('complete')
             expect(page).to have_content('spree')
             expect(page).to have_content('backorder')
@@ -656,7 +683,9 @@ describe 'Order Details', type: :feature, js: true do
         click_icon :edit
       end
       fill_in 'tracking', with: 'FOOBAR'
-      click_icon :save
+      within '.table' do
+        click_icon :save
+      end
 
       expect(page).not_to have_css('input[name=tracking]')
       expect(page).to have_content('Tracking: FOOBAR')
@@ -669,7 +698,9 @@ describe 'Order Details', type: :feature, js: true do
         click_icon :edit
       end
       select2 'Default', from: 'Shipping Method'
-      click_icon :save
+      within '.table' do
+        click_icon :save
+      end
 
       expect(page).not_to have_css('#selected_shipping_rate_id')
       expect(page).to have_content('Default')

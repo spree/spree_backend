@@ -15,7 +15,7 @@
     <%= search_form_for [:admin, @search], url: spree.admin_users_url do |f| %>
       <div class="form-group">
         <%= f.label :email_cont, Spree.t(:email) %>
-        <%= f.text_field :email_cont, class: "form-control js-quick-search-target js-filterable" %>
+        <%= f.email_field :email_cont, class: "form-control js-quick-search-target js-filterable" %>
       </div>
       <div class="row">
         <div class="col-12 col-lg-6">
@@ -45,9 +45,9 @@
 <% end %>
 
 <% if @users.any? %>
-  <div class="table-responsive">
+  <div class="table-responsive border rounded bg-white">
     <table class="table" id="listing_users" data-hook>
-      <thead>
+      <thead class="bg-light text-muted">
         <tr data-hook="admin_users_index_headers">
           <th>
             <%= sort_link @search,:email, Spree.t(:user), {}, {title: 'users_email_title'} %>

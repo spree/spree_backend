@@ -30,7 +30,7 @@ describe 'Properties', type: :feature, js: true do
 
     context 'searching properties' do
       it 'lists properties matching search query' do
-        click_on 'Filter'
+        click_on 'More Filters'
         fill_in 'q_name_cont', with: 'size'
         click_on 'Search'
 
@@ -39,7 +39,7 @@ describe 'Properties', type: :feature, js: true do
       end
 
       it 'search by filterable status' do
-        click_on 'Filter'
+        click_on 'More Filters'
         select 'Filterable', from: 'Filterable Status'
 
         click_on 'Search'
@@ -49,7 +49,7 @@ describe 'Properties', type: :feature, js: true do
       end
 
       it 'renders selected filters' do
-        click_on 'Filter'
+        click_on 'More Filters'
 
         within('#table-filter') do
           fill_in 'q_name_cont', with: 'color'
@@ -102,12 +102,8 @@ describe 'Properties', type: :feature, js: true do
 
   context 'linking a property to a product' do
     before do
-      create(:product, stores: Spree::Store.all)
-      visit spree.admin_products_path
-      click_icon :edit
-      within('#sidebar') do
-        click_link 'Properties'
-      end
+      product = create(:product, stores: Spree::Store.all)
+      visit spree.admin_product_product_properties_path(product)
     end
 
     # Regression test for #2279
@@ -146,7 +142,7 @@ describe 'Properties', type: :feature, js: true do
       fill_in 'product_product_properties_attributes_0_property_name', with: 'A Property'
       fill_in 'product_product_properties_attributes_0_value', with: 'A Value'
       click_button 'Update'
-      within('#sidebar') do
+      within('#tabs') do
         click_link 'Properties'
       end
     end
@@ -160,7 +156,7 @@ describe 'Properties', type: :feature, js: true do
     end
 
     def check_property_row_count(expected_row_count)
-      within('#sidebar') do
+      within('#tabs') do
         click_link 'Properties'
       end
       expect(page).to have_css('tbody#sortVert tr', count: expected_row_count)

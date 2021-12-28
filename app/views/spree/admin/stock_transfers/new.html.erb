@@ -24,7 +24,7 @@
 <%= form_tag admin_stock_transfers_path, method: :post do %>
   <div class="card mb-3">
     <div class="card-header">
-      <h1 class="card-title mb-0 h5">
+      <h1 class="card-title mb-0 h6">
         <%= Spree.t(:transfer_stock) %>
       </h1>
     </div>
@@ -57,7 +57,7 @@
 
   <div class="card mb-3" id="add-variant-to-transfer">
     <div class="card-header">
-      <h1 class="card-title mb-0 h5">
+      <h1 class="card-title mb-0 h6">
         <%= Spree.t(:add_variant) %>
       </h1>
     </div>
@@ -93,7 +93,7 @@
   </div>
 
   <div id="transfer-variants-table" style="display:none" class="table-responsive">
-    <table class="table table-bordered sortable">
+    <table class="table border rounded sortable">
       <thead data-hook="transfer_variants_header">
         <th><%= Spree.t(:name) %></th>
         <th class="text-center"><%= Spree.t(:quantity) %></th>

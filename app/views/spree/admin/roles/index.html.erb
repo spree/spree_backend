@@ -7,9 +7,9 @@
 <% end if can? :create, Spree::Role %>
 
 <% if @roles.any? %>
-  <div class="table-responsive">
+  <div class="table-responsive border rounded bg-white">
     <table class="table">
-      <thead>
+      <thead class="bg-light text-muted">
         <tr data-hook="admin_roles_index_headers">
           <th><%= Spree.t(:role_id) %></th>
           <th class="actions"></th>

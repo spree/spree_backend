@@ -3,26 +3,6 @@ require 'spec_helper'
 describe 'New Menu', type: :feature do
   stub_authorization!
 
-  context 'when user visits new menu page' do
-    before do
-      visit spree.new_admin_menu_path
-    end
-
-    it 'shows in the contextual header bar the user is creating a new menu' do
-      within('h1') do
-        expect(page).to have_text Spree.t('admin.navigation.new_menu')
-      end
-    end
-
-    it 'shows the breadcrumb link back to all menus' do
-      expect(page).to have_text Spree.t('admin.navigation.all_menus')
-    end
-
-    it 'has no missing translations' do
-      expect(page).not_to have_css('.translation_missing', visible: :all)
-    end
-  end
-
   context 'when a user tries to create a menu with no name' do
     before do
       visit spree.new_admin_menu_path

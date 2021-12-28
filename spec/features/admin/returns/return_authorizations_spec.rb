@@ -43,14 +43,14 @@ describe 'Return Authorizations', type: :feature do
     end
 
     it 'searches on number' do
-      click_on 'Filter'
+      click_on 'More Filters'
       fill_in 'q_number_cont', with: return_authorization.number
       click_on 'Search'
 
       expect(page).to have_content(return_authorization.number)
       expect(page).not_to have_content(return_authorization_2.number)
 
-      click_on 'Filter'
+      click_on 'More Filters'
       fill_in 'q_number_cont', with: return_authorization_2.number
       click_on 'Search'
 
@@ -59,14 +59,14 @@ describe 'Return Authorizations', type: :feature do
     end
 
     it 'searches on status' do
-      click_on 'Filter'
+      click_on 'More Filters'
       select Spree.t("return_authorization_states.#{return_authorization.state}"), from: 'Status'
       click_on 'Search'
 
       expect(page).to have_content(return_authorization.number)
       expect(page).not_to have_content(return_authorization_2.number)
 
-      click_on 'Filter'
+      click_on 'More Filters'
       select Spree.t("return_authorization_states.#{return_authorization_2.state}"), from: 'Status'
       click_on 'Search'
 
@@ -75,7 +75,7 @@ describe 'Return Authorizations', type: :feature do
     end
 
     it 'renders selected filters', js: true do
-      click_on 'Filter'
+      click_on 'More Filters'
 
       within('#table-filter') do
         fill_in 'q_number_cont', with: 'RX001-01'
@@ -93,22 +93,6 @@ describe 'Return Authorizations', type: :feature do
 
   describe 'link' do
     let!(:return_authorization) { create(:return_authorization) }
-
-    describe 'order number' do
-      it 'opens orders edit page' do
-        visit spree.admin_return_authorizations_path
-        click_link return_authorization.order.number
-        expect(page).to have_content("Orders / #{return_authorization.order.number}")
-      end
-    end
-
-    describe 'return authorization number' do
-      it 'opens return authorization edit page' do
-        visit spree.admin_return_authorizations_path
-        click_link return_authorization.number
-        expect(page).to have_content(return_authorization.number)
-      end
-    end
 
     describe 'authorized' do
       let!(:return_authorization) { create(:return_authorization, state: 'authorized') }

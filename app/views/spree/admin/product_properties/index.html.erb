@@ -2,7 +2,7 @@
 <%= render 'spree/admin/shared/error_messages', target: @product %>
 
 <% content_for :page_actions do %>
-  <%= product_preview_link(@product) %>
+  <%= external_page_preview_link(@product) %>
 
   <%= button_link_to(
     Spree.t(:add_product_properties),
@@ -19,13 +19,14 @@
 <%= form_for @product, url: spree.admin_product_url(@product), method: :put do |f| %>
   <fieldset>
     <div id="prototypes" data-hook></div>
-    <div class=" table-responsive mb-3">
+    <div class="table-responsive border rounded mb-3">
       <table id="product_properties" class="table sortable" data-hook data-sortable-link="<%= update_positions_admin_product_product_properties_url %>">
-        <thead>
+        <thead class="bg-light text-muted">
           <tr data-hook="product_properties_header">
-            <th colspan="2"><%= Spree.t(:property) %></th>
+            <th></th>
+            <th><%= Spree.t(:property) %></th>
             <th><%= Spree.t(:value) %></th>
-            <th><%= Spree.t(:show_property) %></th>
+            <th class="text-center"><%= Spree.t(:show_property) %></th>
             <th class="actions"></th>
           </tr>
         </thead>

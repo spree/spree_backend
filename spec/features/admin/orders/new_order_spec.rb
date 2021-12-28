@@ -151,6 +151,7 @@ describe 'New Order', type: :feature do
       click_on 'Update'
 
       click_on 'Shipments'
+      expect(page).to have_content('Add Product')
       select2 product.name, from: Spree.t(:name_or_sku), search: true
 
       expect(page).to have_content(product.name)
@@ -162,7 +163,7 @@ describe 'New Order', type: :feature do
       click_on 'Payments'
       click_on 'Continue'
 
-      expect(page).to have_css('.additional-info .state', text: 'COMPLETE')
+      expect(page).to have_css('#order_tab_summary .state', text: 'COMPLETE')
     end
   end
 

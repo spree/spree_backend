@@ -10,10 +10,10 @@
 <% content_for :page_actions do %>
   <%= button_link_to Spree.t(:logs), spree.admin_order_payment_log_entries_url(@order, @payment), icon: 'file.svg' %>
 <% end %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
 <table class="table" id='listing_log_entries'>
   <% @log_entries.each do |entry| %>
-      <thead>
+      <thead class="bg-light text-muted">
         <tr class="log_entry <%= entry.parsed_details.success? ? 'success' : 'fail' %>">
           <td colspan="2">
             <h4>

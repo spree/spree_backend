@@ -7,16 +7,16 @@
 <% end %>
 
 <% if @stores.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table">
-    <thead>
+    <thead class="bg-light text-muted">
       <th><%= Spree.t(:name) %></th>
       <th><%= Spree.t(:url) %></th>
       <th><%= Spree.t(:supported_currencies) %></th>
       <th><%= Spree.t(:supported_locales) %></th>
       <th><%= Spree.t(:default) %>?</th>
       <th data-hook="admin_stores_index_header_actions" class="actions"></th>
-    <thead>
+    <thead class="bg-light text-muted">
     <tbody>
       <% @stores.each do |store| %>
         <tr>

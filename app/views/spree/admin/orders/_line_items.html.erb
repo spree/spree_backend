@@ -1,13 +1,13 @@
 <% if order.line_items.exists? %>
   <div class="card mb-3">
     <div class="card-header">
-      <h1 class="card-title mb-0 h5">
+      <h1 class="card-title mb-0 h6">
         <%= Spree.t(:order_line_items) %>
       </h1>
     </div>
-    <div class="table-responsive">
-      <table class="table table-bordered line-items" data-hook="line-items">
-        <thead>
+    <div class="table-responsive border-0 rounded bg-white">
+      <table class="table line-items" data-hook="line-items">
+        <thead class="bg-light text-muted">
           <tr>
             <th colspan="2"><%= Spree.t(:name) %></th>
             <th class="text-center"><%= Spree.t(:price) %></th>
