@@ -224,8 +224,7 @@ describe 'Users', type: :feature do
   context 'order history with sorting' do
     before do
       orders
-      click_link user_a.email
-      within('#sidebar') { click_link Spree.t(:"admin.user.orders") }
+      visit spree.orders_admin_user_path(user_a)
     end
 
     it_behaves_like 'a user page'
@@ -254,8 +253,7 @@ describe 'Users', type: :feature do
   context 'items purchased with sorting' do
     before do
       orders
-      click_link user_a.email
-      within('#sidebar') { click_link Spree.t(:"admin.user.items") }
+      visit spree.items_admin_user_path(user_a)
     end
 
     it_behaves_like 'a user page'
