@@ -9,10 +9,6 @@ describe 'Homepage', type: :feature do
         visit spree.admin_path
       end
 
-      it "has header text 'Orders'" do
-        within('h1') { expect(page).to have_content('Orders') }
-      end
-
       it 'has a link to orders' do
         expect(page).to have_link('Orders', href: '/admin/orders')
       end
