@@ -14,73 +14,73 @@
   </div>
 
   <% if can? :admin, Spree::Order %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarOrder">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarOrder">
       <%= tab *Spree::Backend::Configuration::ORDER_TABS, url: admin_orders_path, icon: 'cart.svg' %>
     </ul>
   <% end %>
 
   <% if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn) %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarReturn">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarReturn">
       <%= main_menu_tree Spree.t(:returns), icon: "returns.svg", sub_menu: "returns", url: "#sidebar-returns" %>
     </ul>
   <% end %>
 
   <% if can? :admin, Spree::Product %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarProduct">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarProduct">
       <%= main_menu_tree Spree.t(:products), icon: "products.svg", sub_menu: "product", url: "#sidebar-product" %>
     </ul>
   <% end %>
 
   <% if can?(:admin, Spree::StockLocation) || can?(:admin, Spree::StockTransfer) %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarStock">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarStock">
       <%= main_menu_tree Spree.t(:stock), icon: "box.svg", sub_menu: "stock", url: "#sidebar-stock" %>
     </ul>
   <% end %>
 
   <% if can? :admin, Spree::Admin::ReportsController %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarReport">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarReport">
       <%= tab *Spree::Backend::Configuration::REPORT_TABS, icon: 'report.svg' %>
     </ul>
   <% end %>
 
   <% if can? :admin, Spree::Promotion %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarPromotion">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarPromotion">
       <%= main_menu_tree Spree.t(:promotions), icon: "promotion.svg", sub_menu: "promotion", url: "#sidebar-promotions" %>
     </ul>
   <% end %>
 
   <% if defined?(Spree::Vendor) && can?(:read, Spree::Vendor) %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarOrganizations">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarOrganizations">
       <%= main_menu_tree Spree.t(:organizations), icon: "promotion.svg", sub_menu: "organizations", url: "#sidebar-organizations" %>
     </ul>
   <% end %>
 
   <% if Spree.user_class && can?(:admin, Spree.user_class) %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarUser">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarUser">
       <%= tab *Spree::Backend::Configuration::USER_TABS, url: spree.admin_users_path, icon: 'users.svg' %>
     </ul>
   <% end %>
 
   <% if can? :admin, Spree::Menu %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarMenu">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarMenu">
       <%= main_menu_tree Spree.t('admin.tab.content'), icon: "window-sidebar.svg", sub_menu: "content", url: "#sidebar-content" %>
     </ul>
   <% end %>
 
   <% if can?(:admin, Spree::Webhooks::Subscriber) || can?(:admin, Spree::PaymentMethod) %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarIntegrations">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarIntegrations">
       <%= main_menu_tree Spree.t('admin.tab.integrations'), icon: "enter.svg", sub_menu: "integrations", url: "#sidebar-integrations" %>
     </ul>
   <% end %>
 
   <% if can? :admin, Spree::OauthApplication %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarApps">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarApps">
       <%= main_menu_tree Spree.t('admin.tab.apps'), icon: "extensions.svg", sub_menu: "apps", url: "#sidebar-apps" %>
     </ul>
   <% end %>
 
   <% if can? :admin, current_store %>
-    <ul class="nav nav-sidebar border-bottom" id="sidebarConfiguration">
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarConfiguration">
       <%= main_menu_tree Spree.t(:configurations), icon: "settings.svg", sub_menu: "configuration", url: "#sidebar-configuration" %>
     </ul>
   <% end %>

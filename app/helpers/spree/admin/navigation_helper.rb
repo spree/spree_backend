@@ -301,8 +301,8 @@ module Spree
       end
 
       def page_header_back_button(url)
-        link_to url, class: 'btn btn-outline-info mr-2' do
-          svg_icon name: 'chevron-left.svg', width: 18, height: 18
+        link_to url, class: 'btn btn-outline-info mr-3' do
+          svg_icon name: 'chevron-left.svg', width: 15, height: 15
         end
       end
     end
