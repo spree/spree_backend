@@ -16,7 +16,7 @@ module Spree
       #   # Link to /admin/orders, also highlight tab for ProductsController and ShipmentsController
       #   tab :orders, :products, :shipments
 
-      ICON_SIZE = 16
+      ICON_SIZE = 18
 
       def tab(*args)
         options = { label: args.first.to_s }
@@ -50,13 +50,13 @@ module Spree
                    options[:icon],
                    titleized_label,
                    destination_url,
-                   class: 'w-100 p-3 d-flex align-items-center'
+                   class: 'w-100 px-3 py-2 d-flex align-items-center'
                  )
                else
                  link_to(
                    titleized_label,
                    destination_url,
-                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-3 d-block #{'text-success' if selected}"
+                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block #{'bg-info text-white' if selected}"
                  )
                end
 
@@ -68,15 +68,15 @@ module Spree
 
       # Single main menu item
       def main_menu_item(text, url: nil, icon: nil)
-        link_to url, 'data-toggle': 'collapse', class: 'd-flex w-100 p-3 position-relative align-items-center' do
+        link_to url, 'data-toggle': 'collapse', class: 'd-flex w-100 px-3 py-2 position-relative align-items-center' do
           if icon.ends_with?('.svg')
-            svg_icon(name: icon, classes: 'mr-2', width: ICON_SIZE, height: ICON_SIZE) +
+            svg_icon(name: icon, classes: 'mr-2 text-muted', width: ICON_SIZE, height: ICON_SIZE) +
               content_tag(:span, " #{text}", class: 'text') +
-              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator position-absolute', width: (ICON_SIZE - 4), height: (ICON_SIZE - 4))
+              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (ICON_SIZE - 4), height: (ICON_SIZE - 4))
           else
-            content_tag(:span, nil, class: "icon icon-#{icon} mr-2") +
+            content_tag(:span, nil, class: "icon text-muted icon-#{icon} mr-2") +
               content_tag(:span, " #{text}", class: 'text') +
-              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator position-absolute', width: (ICON_SIZE - 4), height: (ICON_SIZE - 4))
+              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (ICON_SIZE - 4), height: (ICON_SIZE - 4))
           end
         end
       end
@@ -257,7 +257,7 @@ module Spree
         options[:class] = 'sidebar-menu-item d-block w-100'
         options[:class] << ' selected' if options[:is_selected]
         content_tag(:li, options) do
-          link_to(link_text, url, class: "#{'text-success' if options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 pl-3 d-block")
+          link_to(link_text, url, class: "#{'bg-info text-white' if options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block")
         end
       end
 
@@ -298,6 +298,12 @@ module Spree
           Admin::NavigationHelper#wrapper_classes is deprecated and will be removed in Spree 5.0.
         DEPRECATION
         'sidebar-minimized' if cookies['sidebar-minimized'] == 'true'
+      end
+
+      def page_header_back_button(url)
+        link_to url, class: 'btn btn-outline-info mr-2' do
+          svg_icon name: 'chevron-left.svg', width: 18, height: 18
+        end
       end
     end
   end

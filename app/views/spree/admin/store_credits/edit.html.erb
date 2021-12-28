@@ -1,4 +1,4 @@
-<%= render partial: 'spree/admin/users/sidebar', locals: { current: :store_credits } %>
+<%= render partial: 'spree/admin/users/tabs', locals: { current: :store_credits } %>
 
 <% content_for :page_title do %>
   <%= link_to @user.email, spree.edit_admin_user_url(@user) %> /

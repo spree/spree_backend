@@ -1,9 +1,5 @@
 <%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :customer_returns } %>
 
-<% content_for :page_title do %>
-  / <%= Spree.t(:customer_return) %> #<%= @customer_return.number %>
-<% end %>
-
 <% if @manual_intervention_return_items.any? %>
   <fieldset data-hook="manual_intervention_return_items">
     <legend><%= Spree.t(:manual_intervention_required) %></legend>

@@ -1,6 +1,5 @@
 #table-filter {
   display: none;
-  margin-top: 7.5px;
 }
 
 .index-filter-button .icon-chevron-right {
@@ -22,43 +21,15 @@ i.js-delete-filter {
   margin-bottom: 0;
 }
 
-.index-filter-button {
-  font-size: $font-size-sm;
-
-  button {
-    height: 100%;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    font-size: $small-font-size;
-    border-color: $border-color;
-    border-right: none;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    background-color: $white;
-
-    &:hover, &:focus {
-      background-color: $gray-100;
-    }
-  }
-
-  .js-quick-search {
-    font-size: $font-size-sm;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-}
-
 .sort_link {
   .icon, svg {
     margin-left: 5px;
     margin-bottom: 2px;
     width: 0.8rem;
     height: 0.8rem;
-
   }
 
   svg.default-filter-arrow {
-    opacity: 0.1;
+    opacity: 0.5;
   }
 }

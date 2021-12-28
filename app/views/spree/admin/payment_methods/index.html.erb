@@ -24,9 +24,9 @@
 <% end %>
 
 <% if @payment_methods.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table sortable" id='listing_payment_methods' data-hook data-sortable-link="<%= update_positions_admin_payment_methods_url %>">
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="admin_payment_methods_index_headers">
         <th></th>
         <th><%= Spree.t(:name) %></th>

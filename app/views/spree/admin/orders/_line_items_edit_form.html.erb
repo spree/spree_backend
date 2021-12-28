@@ -18,7 +18,7 @@
           title: Spree.t(:order_adjustments) %>
 
   <% if order.line_items.exists? %>
-    <div class="alert alert-success" id="order-total" data-hook="order_details_total">
+    <div class="alert alert-info" id="order-total" data-hook="order_details_total">
       <%= Spree.t(:order_total) %>: <strong class="order-total"><%= order.display_total %></strong>
     </div>
   <% end %>

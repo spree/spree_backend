@@ -7,9 +7,9 @@
 <% end if can? :create, Spree::Zone %>
 
 <% if @zones.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_zones' data-hook>
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="zones_header">
         <th><%= sort_link @search,:name, Spree.t(:name), title: 'zones_order_by_name_title' %></th>
         <th>

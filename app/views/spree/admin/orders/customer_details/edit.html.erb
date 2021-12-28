@@ -1,13 +1,9 @@
 <%= render 'spree/admin/shared/order_tabs', current: :customer_details %>
 
-<% content_for :page_title do %>
-  / <%= Spree.t(:customer_details) %>
-<% end %>
-
 <% if can? :edit, @order.user %>
   <div id="select-customer" class="card mb-3" data-hook>
     <div class="card-header">
-      <h1 class="card-title mb-0 h5">
+      <h1 class="card-title mb-0 h6">
         <%= Spree.t(:customer_search) %>
       </h1>
     </div>

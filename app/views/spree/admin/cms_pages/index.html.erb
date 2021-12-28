@@ -41,14 +41,14 @@
 <% end %>
 
 <% if @cms_pages.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id="pagesTable">
-    <thead>
-      <th scope="col"><%= Spree.t('admin.cms.title') %></th>
-      <th scope="col"><%= Spree.t('admin.cms.visible') %></th>
-      <th scope="col"><%= Spree.t('admin.cms.page_type') %></th>
-      <th scope="col"><%= Spree.t('language') %></th>
-      <th scope="col"></th>
+    <thead class="bg-light text-muted">
+      <th scope="col" class="text-center"><%= Spree.t('admin.cms.title') %></th>
+      <th scope="col" class="text-center"><%= Spree.t('admin.cms.visible') %></th>
+      <th scope="col" class="text-center"><%= Spree.t('admin.cms.page_type') %></th>
+      <th scope="col" class="text-center"><%= Spree.t('language') %></th>
+      <th scope="col" class="text-center"></th>
     </thead>
     <tbody>
       <% @cms_pages.each do |page| %>

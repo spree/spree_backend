@@ -14,7 +14,7 @@
                    data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
                    data-max-date="<%= params[:q][:created_at_lt] %>">
                 <%= f.text_field :created_at_gt,
-                  class: 'form-control js-filterable shadow-none',
+                  class: 'form-control js-filterable',
                     value: params[:q][:created_at_gt],
                     placeholder: Spree.t(:starting_from),
                     'data-input':'' %>
@@ -28,7 +28,7 @@
                    data-min-date="<%= params[:q][:created_at_gt] %>">
 
                 <%= f.text_field :created_at_lt,
-                  class: 'form-control js-filterable shadow-none',
+                  class: 'form-control js-filterable',
                     value: params[:q][:created_at_lt],
                     placeholder: Spree.t(:ending_at),
                     'data-input':'' %>
@@ -94,7 +94,7 @@
       <div class="col-12 col-lg-4">
         <div class="form-group">
           <%= label_tag :q_email_cont, Spree.t(:email) %>
-          <%= f.text_field :email_cont, class: 'form-control js-filterable' %>
+          <%= f.email_field :email_cont, class: 'form-control js-filterable' %>
         </div>
       </div>
 

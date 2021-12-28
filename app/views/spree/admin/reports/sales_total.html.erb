@@ -8,9 +8,9 @@
     <%= render partial: 'spree/admin/shared/report_order_criteria' %>
   </div>
 </div>
-<div class="table-responsive">
-  <table class="table table-bordered admin-report" data-hook="sales_total">
-    <thead>
+<div class="table-responsive border rounded bg-white">
+  <table class="table admin-report" data-hook="sales_total">
+    <thead class="bg-light text-muted">
       <tr>
         <th><%= Spree.t(:currency) %></th>
         <th><%= Spree.t(:item_total) %></th>

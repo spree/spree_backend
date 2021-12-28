@@ -7,9 +7,9 @@
 <% end if can?(:create, Spree::Webhooks::Subscriber) %>
 
 <% if @webhooks_subscribers.any? %>
-  <div class="table-responsive">
+  <div class="table-responsive border rounded bg-white">
     <table class="table">
-      <thead>
+      <thead class="bg-light text-muted">
       <tr>
         <th><%= Spree.t('admin.url') %></th>
         <th><%= Spree.t('admin.active') %></th>

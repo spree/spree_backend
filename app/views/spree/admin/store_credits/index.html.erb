@@ -1,4 +1,4 @@
-<%= render partial: 'spree/admin/users/sidebar', locals: { current: :store_credits } %>
+<%= render partial: 'spree/admin/users/tabs', locals: { current: :store_credits } %>
 
 <% content_for :page_title do %>
   <%= link_to @user.email, spree.edit_admin_user_url(@user) %> /
@@ -14,16 +14,16 @@
 <% end %>
 
 <% if @store_credits.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table">
-    <thead>
+    <thead class="bg-light text-muted">
       <th><%= Spree.t(:credited) %></th>
       <th><%= Spree.t(:used) %></th>
       <th><%= Spree.t(:category) %></th>
       <th><%= Spree.t(:created_by) %></th>
       <th><%= Spree.t(:issued_on) %></th>
       <th data-hook="admin_store_credits_index_header_actions" class="actions"></th>
-    <thead>
+    <thead class="bg-light text-muted">
     <tbody>
       <% @store_credits.each do |store_credit| %>
         <tr>

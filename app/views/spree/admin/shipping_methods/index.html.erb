@@ -7,9 +7,9 @@
 <% end if can? :create, Spree::ShippingMethod %>
 
 <% if @shipping_methods.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_shipping_methods'>
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="admin_shipping_methods_index_headers">
         <th><%= Spree.t(:name) %></th>
         <th><%= Spree.t(:zone) %></th>

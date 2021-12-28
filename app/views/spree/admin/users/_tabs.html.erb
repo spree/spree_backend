@@ -1,9 +1,9 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:users), spree.admin_users_path %> /
+  <%= page_header_back_button spree.admin_users_path %>
 <% end %>
 
-<% content_for :sidebar do %>
-  <ul class="nav flex-column nav-pills" data-hook="admin_user_tab_options">
+<% content_for :tabs do %>
+  <ul class="nav nav-pills w-100 flex-column flex-sm-row mb-4 border-bottom pb-3" data-hook="admin_user_tab_options">
     <li>
       <%= link_to_with_icon 'user.svg',
         Spree.t(:"admin.user.account"),

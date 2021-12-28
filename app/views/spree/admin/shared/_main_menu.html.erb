@@ -15,7 +15,7 @@
 
   <% if can? :admin, Spree::Order %>
     <ul class="nav nav-sidebar border-bottom" id="sidebarOrder">
-      <%= tab *Spree::Backend::Configuration::ORDER_TABS, url: admin_orders_path, icon: 'list.svg' %>
+      <%= tab *Spree::Backend::Configuration::ORDER_TABS, url: admin_orders_path, icon: 'cart.svg' %>
     </ul>
   <% end %>
 
@@ -46,6 +46,12 @@
   <% if can? :admin, Spree::Promotion %>
     <ul class="nav nav-sidebar border-bottom" id="sidebarPromotion">
       <%= main_menu_tree Spree.t(:promotions), icon: "promotion.svg", sub_menu: "promotion", url: "#sidebar-promotions" %>
+    </ul>
+  <% end %>
+
+  <% if defined?(Spree::Vendor) && can?(:read, Spree::Vendor) %>
+    <ul class="nav nav-sidebar border-bottom" id="sidebarOrganizations">
+      <%= main_menu_tree Spree.t(:organizations), icon: "promotion.svg", sub_menu: "organizations", url: "#sidebar-organizations" %>
     </ul>
   <% end %>
 

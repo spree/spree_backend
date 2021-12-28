@@ -1,19 +1,18 @@
 <% if content_for?(:table_filter) %>
-  <div class="filter-wrap pb-1">
+  <div class="filter-wrap mb-4">
     <div class="col-12 px-0">
       <div class="input-group index-filter-button flex-nowrap">
-        <span class="input-group-btn">
-          <button class="btn js-show-index-filters m-0" type="button">
-            <%= svg_icon name: "chevron-right.svg", width: '12', height: '12' %>
-            <span class="d-none d-sm-inline"><%= Spree.t(:filter) %></span>
-          </button>
-        </span>
-        <%= form_tag request.fullpath, id: "quick-search", class: 'flex-grow-1' do %>
-          <%= text_field_tag :quick_search, nil, class: "form-control js-quick-search", placeholder: Spree.t(:search_by) %>
+        <%= form_tag request.fullpath, id: "quick-search", class: 'flex-grow-1 mr-3' do %>
+          <%= text_field_tag :quick_search, nil, class: "form-control", placeholder: Spree.t(:search_by) %>
         <% end %>
+
+        <button class="btn btn-outline-secondary js-show-index-filters m-0 rounded-sm" type="button">
+          <%= svg_icon name: "filter.svg", width: '16', height: '16' %>
+          <span class="d-none d-sm-inline"><%= Spree.t(:more_filters) %></span>
+        </button>
       </div>
       <% unless defined?(simple) %>
-        <div id="table-filter" data-hook class="card bg-light filter-well">
+        <div id="table-filter" data-hook class="card bg-light filter-well mt-4">
           <div class="card-body">
             <%= yield :table_filter %>
           </div>
