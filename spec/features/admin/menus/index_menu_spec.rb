@@ -81,22 +81,4 @@ describe 'Menus Index', type: :feature do
       end
     end
   end
-
-  context 'when a user clicks Add New Menu' do
-    before do
-      visit spree.admin_menus_path
-      within('div#contentHeader') do
-        click_on 'Add New Menu'
-      end
-    end
-
-    it 'they are taken to the new menu page' do
-      within('h1') do
-        expect(page).to have_text Spree.t('admin.navigation.new_menu')
-      end
-
-      expect(page).to have_text Spree.t('admin.navigation.new_menu')
-      fill_in 'Name', with: 'My Super Menu'
-    end
-  end
 end
