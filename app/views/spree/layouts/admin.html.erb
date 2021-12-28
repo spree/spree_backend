@@ -41,7 +41,7 @@
             <%#-------------------------------------------------%>
             <%= render partial: 'spree/admin/shared/content_header' %>
             <% if content_for?(:tabs) %>
-              <div class="row mb-0 pb-0">
+              <div class="row mb-0 pb-0" id="tabs">
                   <%= yield :tabs %>
               </div>
             <% end %>

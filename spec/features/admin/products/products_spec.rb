@@ -381,10 +381,7 @@ describe 'Products', type: :feature do
       end
 
       it 'adds option_types when selecting a prototype', js: true do
-        visit spree.admin_product_path(product)
-        within('#sidebar') do
-          click_link 'Properties'
-        end
+        visit spree.admin_product_product_properties_path(product)
         click_link 'Select From Prototype'
 
         within("#prototypes tr#row_#{prototype.id}") do
