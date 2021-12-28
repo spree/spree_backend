@@ -1,11 +1,11 @@
 <% content_for(:sidebar) do %>
-  <div class="card mb-3">
+  <div class="card mb-3" id="order_tab_summary">
     <div class="card-header">
       <h3 class="card-title mb-0 h6"><%= Spree.t(:summary) %></h3>
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        <small id="order_tab_summary"><%= Spree.t(:status) %></small>
+        <small><%= Spree.t(:status) %></small>
         <span class="state badge badge-<%= @order.state %> badge-pill text-uppercase" id="order_status">
           <%= Spree.t(@order.state, scope: :order_state) %>
         </span>
