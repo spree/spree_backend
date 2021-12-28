@@ -74,22 +74,4 @@ describe 'Customer Returns', type: :feature do
       end
     end
   end
-
-  describe 'link' do
-    describe 'order number' do
-      it 'opens orders edit page' do
-        visit spree.admin_customer_returns_path
-        click_link customer_return.order.number
-        expect(page).to have_content(customer_return.order.number)
-      end
-    end
-
-    describe 'customer return number' do
-      it 'opens customer return edit page' do
-        visit spree.admin_customer_returns_path
-        click_link customer_return.number
-        expect(page).to have_content(customer_return.number)
-      end
-    end
-  end
 end

@@ -53,7 +53,7 @@ describe 'Shipments', type: :feature do
       # Non existing shipment
       within_row(1) { click_icon :split }
       select2 'LA', css: '.stock-item-split', search: true, match: :first
-      click_icon :save
+      within_row(2) { click_icon :save }
       wait_for_ajax
 
       expect(page).to have_css('#order-form-wrapper div', id: /^shipment_\d$/).exactly(2).times

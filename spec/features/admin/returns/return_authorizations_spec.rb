@@ -94,22 +94,6 @@ describe 'Return Authorizations', type: :feature do
   describe 'link' do
     let!(:return_authorization) { create(:return_authorization) }
 
-    describe 'order number' do
-      it 'opens orders edit page' do
-        visit spree.admin_return_authorizations_path
-        click_link return_authorization.order.number
-        expect(page).to have_content("Orders / #{return_authorization.order.number}")
-      end
-    end
-
-    describe 'return authorization number' do
-      it 'opens return authorization edit page' do
-        visit spree.admin_return_authorizations_path
-        click_link return_authorization.number
-        expect(page).to have_content(return_authorization.number)
-      end
-    end
-
     describe 'authorized' do
       let!(:return_authorization) { create(:return_authorization, state: 'authorized') }
       let!(:return_authorization_2) { create(:return_authorization, state: 'canceled') }

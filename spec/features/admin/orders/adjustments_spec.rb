@@ -98,7 +98,7 @@ describe 'Adjustments', type: :feature do
           expect(page).to have_content('$99.00')
         end
 
-        expect(page).to have_content('Total $159.00')
+        expect(page).to have_content('$159.00')
       end
     end
 
