@@ -9,7 +9,7 @@
     <%= render partial: 'adjustments_table' %>
   </div>
 <% else %>
-  <div class="alert alert-warning">
+  <div class="text-center m-5">
     <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Adjustment)) %>
   </div>
 <% end %>

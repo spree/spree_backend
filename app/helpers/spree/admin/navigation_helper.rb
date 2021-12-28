@@ -16,7 +16,8 @@ module Spree
       #   # Link to /admin/orders, also highlight tab for ProductsController and ShipmentsController
       #   tab :orders, :products, :shipments
 
-      ICON_SIZE = 18
+      ICON_SIZE = 16
+      MENU_ICON_SIZE = 18
 
       def tab(*args)
         options = { label: args.first.to_s }
@@ -50,7 +51,9 @@ module Spree
                    options[:icon],
                    titleized_label,
                    destination_url,
-                   class: 'w-100 px-3 py-2 d-flex align-items-center'
+                   class: 'w-100 px-3 py-2 d-flex align-items-center',
+                   width: MENU_ICON_SIZE,
+                   height: MENU_ICON_SIZE
                  )
                else
                  link_to(
@@ -70,13 +73,13 @@ module Spree
       def main_menu_item(text, url: nil, icon: nil)
         link_to url, 'data-toggle': 'collapse', class: 'd-flex w-100 px-3 py-2 position-relative align-items-center' do
           if icon.ends_with?('.svg')
-            svg_icon(name: icon, classes: 'mr-2 text-muted', width: ICON_SIZE, height: ICON_SIZE) +
+            svg_icon(name: icon, classes: 'mr-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
               content_tag(:span, " #{text}", class: 'text') +
-              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (ICON_SIZE - 4), height: (ICON_SIZE - 4))
+              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 4), height: (MENU_ICON_SIZE - 4))
           else
             content_tag(:span, nil, class: "icon text-muted icon-#{icon} mr-2") +
               content_tag(:span, " #{text}", class: 'text') +
-              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (ICON_SIZE - 4), height: (ICON_SIZE - 4))
+              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 4), height: (MENU_ICON_SIZE - 4))
           end
         end
       end
@@ -175,9 +178,11 @@ module Spree
         options[:title] = text if options[:no_text]
         text = options[:no_text] ? '' : content_tag(:span, text, class: 'text')
         options.delete(:no_text)
+        options[:width] ||= ICON_SIZE
+        options[:height] ||= ICON_SIZE
         if icon_name
           icon = if icon_name.ends_with?('.svg')
-                   svg_icon(name: icon_name, classes: "#{'mr-2' unless text.empty?} icon icon-#{icon_name}", width: ICON_SIZE, height: ICON_SIZE)
+                   svg_icon(name: icon_name, classes: "#{'mr-2' unless text.empty?} icon icon-#{icon_name}", width: options[:width], height: options[:height])
                  else
                    content_tag(:span, '', class: "#{'mr-2' unless text.empty?} icon icon-#{icon_name}")
                  end
@@ -188,7 +193,7 @@ module Spree
 
       def spree_icon(icon_name)
         if icon_name.ends_with?('.svg')
-          icon_name ? svg_icon(name: icon_name, classes: icon_name, width: ICON_SIZE, height: ICON_SIZE) : ''
+          icon_name ? svg_icon(name: icon_name, classes: icon_name, width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) : ''
         else
           icon_name ? content_tag(:span, '', class: icon_name) : ''
         end
