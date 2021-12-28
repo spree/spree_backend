@@ -1,10 +1,6 @@
 <%= render partial: 'spree/admin/users/tabs', locals: { current: :account } %>
 <%= render partial: 'spree/admin/users/user_page_actions' %>
 
-<% content_for :page_title do %>
-  <%= @user.email %>
-<% end %>
-
 <div data-hook="admin_user_edit_general_settings" class="card mb-3">
   <div class="card-header">
     <h1 class="card-title mb-0 h6">

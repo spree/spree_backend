@@ -1,10 +1,5 @@
 <%= render partial: 'spree/admin/users/tabs', locals: { current: :store_credits } %>
 
-<% content_for :page_title do %>
-  <%= link_to @user.email, spree.edit_admin_user_url(@user) %> /
-  <%= Spree.t(:"admin.user.store_credits") %>
-<% end %>
-
 <% content_for :title do %>
   <%= "Spree #{Spree.t('administration')}: #{Spree.t(:"admin.user.store_credits")}" %>
 <% end %>

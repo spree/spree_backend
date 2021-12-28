@@ -1,17 +1,12 @@
 <%= render partial: 'spree/admin/users/tabs', locals: { current: :items } %>
 <%= render partial: 'spree/admin/users/user_page_actions' %>
 
-<% content_for :page_title do %>
-  <%= link_to @user.email, spree.edit_admin_user_url(@user) %> /
-  <%= Spree.t(:"admin.user.items_purchased") %>
-<% end %>
-
 <fieldset data-hook="admin_user_items_purchased">
 
   <% if @orders.any? %>
     <%# TODO add search interface %>
     <div class="table-responsive border rounded bg-white">
-    <table class="table table-condensed border rounded stock-contents" id="listing_items" data-hook="stock-contents">
+    <table class="table table-condensed stock-contents" id="listing_items" data-hook="stock-contents">
       <thead class="bg-light text-muted">
         <th><%= sort_link @search, :completed_at, I18n.t(:completed_at, scope: 'activerecord.attributes.spree/order'), {}, {title: 'orders_completed_at_title'} %></th>
         <th colspan=2><%= Spree.t(:description) %></th>
