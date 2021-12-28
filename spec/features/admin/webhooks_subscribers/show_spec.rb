@@ -10,10 +10,6 @@ describe 'Webhooks::Subscriber#show', type: :feature do
     it 'lists the events' do
       visit spree.admin_webhooks_subscriber_path(subscriber)
 
-      within('h1') do
-        expect(page).to have_text 'Webhooks Events'
-      end
-
       expect(page).to have_content(subscriber.url)
       expect(page).to have_content('*')
 

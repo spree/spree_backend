@@ -40,13 +40,13 @@
 <% end %>
 
 <% if @menus.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id="menusTable">
-    <thead>
-      <th scope="col"><%= Spree.t(:name) %></th>
-      <th scope="col"><%= Spree.t('location') %></th>
-      <th scope="col"><%= Spree.t('language') %></th>
-      <th class="text-center" scope="col"><%= Spree.t('default') %>
+    <thead class="bg-light text-muted">
+      <th scope="col" class="text-center"><%= Spree.t(:name) %></th>
+      <th scope="col" class="text-center"><%= Spree.t('location') %></th>
+      <th scope="col" class="text-center"><%= Spree.t('language') %></th>
+      <th class="text-center" scope="col" class="text-center"><%= Spree.t('default') %>
         <span data-show-info
               data-alert-kind="info"
               data-alert-title="<%= Spree.t('admin.navigation.default_menus_info.title') %>"
@@ -54,7 +54,7 @@
           <%= svg_icon name: "info.svg", width: '15', height: '15' %>
         </span>
       </th>
-      <th scope="col"></th>
+      <th scope="col" class="text-center"></th>
     </thead>
     <tbody>
       <% @menus.each do |menu| %>

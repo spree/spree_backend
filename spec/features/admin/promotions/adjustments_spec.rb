@@ -323,7 +323,7 @@ describe 'Promotion Adjustments', type: :feature, js: true do
     it 'renders selected filters' do
       visit spree.admin_promotions_path
 
-      click_on 'Filter'
+      click_on 'More Filters'
 
       within('#table-filter') do
         fill_in 'q_name_cont', with: 'welcome'

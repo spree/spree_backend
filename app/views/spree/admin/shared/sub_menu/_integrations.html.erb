@@ -1,4 +1,4 @@
-<ul id="sidebar-integrations" class="border-top bg-white collapse nav nav-pills nav-stacked" data-hook="admin_integrations">
+<ul id="sidebar-integrations" class="bg-white collapse nav nav-pills nav-stacked" data-hook="admin_integrations">
   <%= tab :webhooks_subscribers, match_path: '/webhooks_subscribers', label: 'Webhooks' %>
   <%= tab :payment_methods, match_path: '/payment_methods', label: 'Payment Methods' if can? :manage, Spree::PaymentMethod %>
 </ul>

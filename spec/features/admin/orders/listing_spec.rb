@@ -122,7 +122,7 @@ describe 'Orders Listing', type: :feature do
 
     it 'returns both complete and incomplete orders when only complete orders is not checked' do
       Spree::Order.create! email: 'incomplete@example.com', completed_at: nil, state: 'cart'
-      click_on 'Filter'
+      click_on 'More Filters'
       uncheck 'q_completed_at_not_null'
       click_on 'Filter Results'
 
@@ -146,7 +146,7 @@ describe 'Orders Listing', type: :feature do
     end
 
     it 'is able to filter on variant_sku' do
-      click_on 'Filter'
+      click_on 'More Filters'
       fill_in 'q_line_items_variant_sku_eq', with: order1.line_items.first.variant.sku
       click_on 'Filter Results'
 
@@ -171,7 +171,7 @@ describe 'Orders Listing', type: :feature do
       it 'is able to go from page to page for incomplete orders' do
         Spree::Order.destroy_all
         2.times { Spree::Order.create! email: 'incomplete@example.com', completed_at: nil, state: 'cart' }
-        click_on 'Filter'
+        click_on 'More Filters'
         uncheck 'q_completed_at_not_null'
         click_on 'Filter Results'
         within('.pagination', match: :first) do
@@ -255,7 +255,7 @@ describe 'Orders Listing', type: :feature do
       end
 
       it 'can be used with search filtering' do
-        click_on 'Filter'
+        click_on 'More Filters'
         fill_in 'q_number_cont', with: 'R200'
         click_on 'Filter Results'
         expect(page).not_to have_content('R100')
@@ -283,7 +283,7 @@ describe 'Orders Listing', type: :feature do
       end
 
       it 'renders selected filters' do
-        click_on 'Filter'
+        click_on 'More Filters'
 
         within('#table-filter') do
           select2 'cart', from: 'Status'

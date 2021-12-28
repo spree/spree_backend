@@ -9,7 +9,7 @@
 <% if @oauth_applications.any? %>
   <div class="table-responsive mt-4">
     <table class="table">
-      <thead>
+      <thead class="bg-light text-muted">
         <tr data-hook="admin_roles_index_headers">
           <th><%= Spree.t(:name) %></th>
           <th><%= Spree.t('admin.oauth_applications.uid') %></th>

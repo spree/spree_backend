@@ -339,7 +339,7 @@ describe 'Products', type: :feature do
           create(:product, name: 'apache baseball cap')
 
           visit spree.admin_products_path
-          click_on 'Filter'
+          click_on 'More Filters'
           wait_for_turbo
 
           find('label', text: 'Show Deleted').click
@@ -381,10 +381,7 @@ describe 'Products', type: :feature do
       end
 
       it 'adds option_types when selecting a prototype', js: true do
-        visit spree.admin_product_path(product)
-        within('#sidebar') do
-          click_link 'Properties'
-        end
+        visit spree.admin_product_product_properties_path(product)
         click_link 'Select From Prototype'
 
         within("#prototypes tr#row_#{prototype.id}") do
@@ -456,7 +453,7 @@ describe 'Products', type: :feature do
         end
         expect(page).to have_content('Product has been deleted')
 
-        click_on 'Filter'
+        click_on 'More Filters'
         # This will show our deleted product
         find('label', text: 'Show Deleted').click
         click_on 'Search'
@@ -471,7 +468,7 @@ describe 'Products', type: :feature do
       it 'renders selected filters' do
         visit spree.admin_products_path
 
-        click_on 'Filter'
+        click_on 'More Filters'
 
         within('#table-filter') do
           fill_in 'q_search_by_name', with: 'Backpack'

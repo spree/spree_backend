@@ -26,7 +26,7 @@ describe 'Product Details', type: :feature, js: true do
     end
 
     it 'displays the product details with a WYSIWYG editor for the product description input' do
-      expect(page).to have_css('.content-header h1', text: 'Products / Bún thịt nướng')
+      expect(page).to have_css('.content-header', text: 'Bún thịt nướng')
       expect(page).to have_field(id: 'product_name', with: 'Bún thịt nướng')
       expect(page).to have_field(id: 'product_slug', with: 'bun-th-t-n-ng')
       expect(page).not_to have_field(id: 'product_description')

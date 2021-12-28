@@ -20,7 +20,7 @@ describe 'Cancelling + Resuming', type: :feature do
       click_button 'Cancel'
     end
 
-    expect(page).to have_css('.additional-info .state', text: 'canceled')
+    expect(page).to have_css('.state', text: 'canceled')
   end
 
   context 'with a cancelled order' do
@@ -33,8 +33,8 @@ describe 'Cancelling + Resuming', type: :feature do
       within find('#contentHeader') do
         click_button 'Resume'
       end
-      
-      expect(page).to have_css('.additional-info .state', text: 'resumed')
+
+      expect(page).to have_css('.state', text: 'resumed')
     end
   end
 end

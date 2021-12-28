@@ -48,18 +48,18 @@
 <% end %>
 
 <% if @collection.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id="listing_products">
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="admin_products_index_headers">
-        <th scope="col" colspan="2"><%= sort_link @search,:name, Spree.t(:name), { default_order: "desc" }, {title: 'admin_products_listing_name_title'} %></th>
-        <th scope="col"><%= Spree.t(:sku) %></th>
-        <th scope="col"><%= Spree.t('admin.digitals.digital') %></th>
-        <th scope="col"><%= Spree.t(:status) %></th>
-        <th scope="col" class="text-center">
+        <th scope="col" class="pl-5" colspan="2"><%= sort_link @search,:name, Spree.t(:name), { default_order: "desc" }, {title: 'admin_products_listing_name_title'} %></th>
+        <th scope="col" class="text-center"><%= Spree.t(:sku) %></th>
+        <th scope="col" class="text-center"><%= Spree.t('admin.digitals.digital') %></th>
+        <th scope="col" class="text-center"><%= Spree.t(:status) %></th>
+        <th scope="col" class="text-center" class="text-center">
           <%= sort_link @search, :master_default_price_amount, Spree.t(:master_price), {}, {title: 'admin_products_listing_price_title'} %>
         </th>
-        <th scope="col" data-hook="admin_products_index_header_actions" class="actions"></th>
+        <th scope="col" class="text-center" data-hook="admin_products_index_header_actions" class="actions"></th>
       </tr>
     </thead>
     <tbody>
@@ -72,9 +72,9 @@
               <% end %>
             </td>
             <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
-            <td class="sku"><%= product.sku rescue '' %></td>
+            <td class="sku text-center"><%= product.sku rescue '' %></td>
             <td class="text-center"><%= active_badge(product.digitals.any?) %></td>
-            <td class="status"><%= active_badge(available_status == Spree.t(:available), label: available_status) %></td>
+            <td class="status text-center"><%= active_badge(available_status == Spree.t(:available), label: available_status) %></td>
             <td class="text-center"><%= display_price(product) %></td>
 
             <td class="actions " data-hook="admin_products_index_row_actions">

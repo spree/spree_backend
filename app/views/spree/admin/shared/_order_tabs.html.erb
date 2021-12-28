@@ -1,10 +1,10 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:orders), spree.admin_orders_path %> /
-  <%= link_to @order.number, spree.edit_admin_order_path(@order) %>
+  <%= page_header_back_button spree.admin_orders_path %>
+  <%= @order.number %>
 <% end %>
 
-<% content_for :sidebar do %>
-  <ul class="nav flex-column nav-pills" data-hook="admin_order_tabs">
+<% content_for :tabs do %>
+  <ul class="nav nav-pills w-100 flex-column flex-sm-row mb-4 border-bottom pb-3" data-hook="admin_order_tabs">
     <% if ((can? :update, @order) && (@order.shipments.size.zero? || @order.shipments.shipped.size.zero?)) %>
       <li data-hook='admin_order_tabs_cart_details'>
         <%= link_to_with_icon 'cart.svg',

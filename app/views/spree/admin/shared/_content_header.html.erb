@@ -1,15 +1,15 @@
-<div id="contentHeader" class="row mb-0 pb-0">
+<div id="contentHeader" class="row mb-0 pb-0 mt-2">
   <% if content_for?(:page_title) || content_for?(:page_actions) %>
     <div class="content-header col <%= "with-page-tabs" if content_for?(:page_tabs) %> page-header">
       <div id="contentHeaderRow" class="row align-items-center  <%= if content_for?(:page_tabs) then "border-bottom pb-2" else "border-bottom pb-2 mb-3" end %>">
 
         <% if content_for?(:page_title) %>
-          <h1 class="contextual-title px-0 mb-0 col">
+          <h4 class="px-0 mb-0 col">
             <%= yield :page_title %>
             <% if content_for?(:page_title_small) %>
               <small><%= yield :page_title_small %></small>
             <% end %>
-          </h1>
+          </h4>
         <% end %>
 
         <% if content_for?(:page_actions) %>
@@ -18,11 +18,11 @@
           </div>
         <% end %>
 
-        <% if content_for?(:page_actions) || content_for?(:sidebar) %>
+        <% if content_for?(:page_actions) %>
           <div class="d-flex d-lg-none justify-content-end m-0 p-0">
             <button type="button"
                     id="contextual-menu-toggle"
-                    class="btn btn-outline-secondary shadow-none">
+                    class="btn btn-outline-secondary">
                     <span class="d-none d-sm-inline">
                       <%= Spree.t('more') %>
                     </span>

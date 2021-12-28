@@ -45,14 +45,14 @@ describe 'Customer Returns', type: :feature do
     end
 
     it 'searches on number' do
-      click_on 'Filter'
+      click_on 'More Filters'
       fill_in 'q_number_cont', with: customer_return.number
       click_on 'Search'
 
       expect(page).to have_content(customer_return.number)
       expect(page).not_to have_content(customer_return_2.number)
 
-      click_on 'Filter'
+      click_on 'More Filters'
       fill_in 'q_number_cont', with: customer_return_2.number
       click_on 'Search'
 
@@ -61,7 +61,7 @@ describe 'Customer Returns', type: :feature do
     end
 
     it 'renders selected filters', js: true do
-      click_on 'Filter'
+      click_on 'More Filters'
 
       within('#table-filter') do
         fill_in 'q_number_cont', with: 'RX001-01'
@@ -71,24 +71,6 @@ describe 'Customer Returns', type: :feature do
 
       within('.table-active-filters') do
         expect(page).to have_content('Number: RX001-01')
-      end
-    end
-  end
-
-  describe 'link' do
-    describe 'order number' do
-      it 'opens orders edit page' do
-        visit spree.admin_customer_returns_path
-        click_link customer_return.order.number
-        expect(page).to have_content("Orders / #{customer_return.order.number}")
-      end
-    end
-
-    describe 'customer return number' do
-      it 'opens customer return edit page' do
-        visit spree.admin_customer_returns_path
-        click_link customer_return.number
-        expect(page).to have_content("Customer Return ##{customer_return.number}")
       end
     end
   end

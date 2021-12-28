@@ -7,9 +7,9 @@
 <% end if can? :create, Spree::TaxRate %>
 
 <% if @tax_rates.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table">
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="rate_header">
         <th><%= Spree.t(:zone) %></th>
         <th><%= Spree.t(:name) %></th>

@@ -9,19 +9,20 @@
 <% has_variants = @product.has_variants? %>
 
 <% unless @product.variant_images.any? %>
-  <div class="alert alert-info">
+  <div class="text-center no-objects-found m-5">
     <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Image)) %>.
   </div>
 <% else %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table sortable" data-hook="images_table" data-sortable-link="<%= update_positions_admin_product_images_url(@product) %>">
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="images_header">
-        <th colspan="2">
+        <th></th>
+        <th class="text-center">
           <%= Spree.t(:thumbnail) %>
         </th>
         <% if has_variants %>
-          <th>
+          <th class="text-center">
             <%= Spree::Variant.model_name.human %>
           </th>
         <% end %>
@@ -40,13 +41,13 @@
               <%= svg_icon name: "sort.svg", width: '18', height: '18' %>
             <% end %>
           </td>
-          <td class="image">
+          <td class="image text-center">
             <div class="admin-product-image-container small-img">
               <%= link_to image_tag(main_app.cdn_image_url(image.url(:product))), main_app.cdn_image_url(image.attachment), target: :blank %>
             </div>
           </td>
           <% if has_variants %>
-            <td><%= options_text_for(image) %></td>
+            <td class="text-center"><%= options_text_for(image) %></td>
           <% end %>
           <td><%= image.alt %></td>
           <td class="actions">

@@ -1,4 +1,4 @@
-<ul data-hook="admin_configurations_sidebar_menu" class="border-top bg-white collapse nav nav-pills nav-stacked" id="sidebar-configuration">
+<ul data-hook="admin_configurations_sidebar_menu" class="bg-white collapse nav nav-pills nav-stacked" id="sidebar-configuration">
   <%= configurations_sidebar_menu_item(Spree.t(:store), spree.edit_admin_store_path(current_store), { is_selected: controller_name == 'stores' }) if can? :manage, current_store %>
   <%= configurations_sidebar_menu_item(Spree.t(:tax_categories), spree.admin_tax_categories_path) if can? :manage, Spree::TaxCategory %>
   <%= configurations_sidebar_menu_item(Spree.t(:tax_rates), spree.admin_tax_rates_path) if can? :manage, Spree::TaxRate %>
