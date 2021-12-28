@@ -6,7 +6,7 @@
 <% if @variants.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table sortable" data-sortable-link="<%= update_positions_admin_product_variants_path(@product) %>">
-    <thead data-hook="variants_header">
+    <thead data-hook="variants_header" class="bg-light text-muted">
       <tr>
         <th></th>
         <th><%= sort_link @search, :sku, Spree.t(:sku) %></th>
