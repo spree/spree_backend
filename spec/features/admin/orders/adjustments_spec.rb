@@ -63,7 +63,7 @@ describe 'Adjustments', type: :feature do
         fill_in 'adjustment_label', with: 'rebate'
         click_button 'Continue'
         expect(page).to have_content('successfully created!')
-        expect(page).to have_content('Total: $80.00')
+        expect(page).to have_content('Total $80.00')
       end
     end
 
@@ -98,7 +98,7 @@ describe 'Adjustments', type: :feature do
           expect(page).to have_content('$99.00')
         end
 
-        expect(page).to have_content('Total: $159.00')
+        expect(page).to have_content('Total $159.00')
       end
     end
 

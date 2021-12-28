@@ -48,13 +48,9 @@ describe 'Menus Index', type: :feature do
       expect(page).not_to have_text Spree.t('admin.navigation.you_have_no_menus')
     end
 
-    it 'has no missing translations' do
-      expect(page).not_to have_css('.translation_missing', visible: :all)
-    end
-
     describe 'when filtering', js: true do
       it 'is able to filter by name' do
-        click_on 'Filter'
+        click_on 'More Filters'
         fill_in 'Name', with: 'Main Menu FR'
         click_on 'Search'
 
@@ -63,7 +59,7 @@ describe 'Menus Index', type: :feature do
       end
 
       it 'is able to filter by language' do
-        click_on 'Filter'
+        click_on 'More Filters'
         select2 'Français (FR)', from: 'Language'
         click_on 'Search'
 
@@ -72,7 +68,7 @@ describe 'Menus Index', type: :feature do
       end
 
       it 'is able to filter by location' do
-        click_on 'Filter'
+        click_on 'More Filters'
         select2 'Footer', from: 'Location'
         click_on 'Search'
 

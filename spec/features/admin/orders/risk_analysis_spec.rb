@@ -36,7 +36,7 @@ describe 'Order Risk Analysis', type: :feature do
 
       expect(page).to have_content 'Approver'
       expect(page).to have_content 'Approved at'
-      expect(page).to have_content 'Status: complete'
+      expect(page).to have_content 'Status complete'
     end
   end
 

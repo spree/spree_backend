@@ -127,7 +127,7 @@ describe 'Users', type: :feature do
       before { visit current_path } # For Rails turbo JavaScript testing.
 
       it 'renders selected filters' do
-        click_on 'Filter'
+        click_on 'More Filters'
         wait_for { !page.has_text?('Search') }
 
         within('#table-filter') do

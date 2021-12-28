@@ -43,14 +43,14 @@ describe 'Return Authorizations', type: :feature do
     end
 
     it 'searches on number' do
-      click_on 'Filter'
+      click_on 'More Filters'
       fill_in 'q_number_cont', with: return_authorization.number
       click_on 'Search'
 
       expect(page).to have_content(return_authorization.number)
       expect(page).not_to have_content(return_authorization_2.number)
 
-      click_on 'Filter'
+      click_on 'More Filters'
       fill_in 'q_number_cont', with: return_authorization_2.number
       click_on 'Search'
 
@@ -59,14 +59,14 @@ describe 'Return Authorizations', type: :feature do
     end
 
     it 'searches on status' do
-      click_on 'Filter'
+      click_on 'More Filters'
       select Spree.t("return_authorization_states.#{return_authorization.state}"), from: 'Status'
       click_on 'Search'
 
       expect(page).to have_content(return_authorization.number)
       expect(page).not_to have_content(return_authorization_2.number)
 
-      click_on 'Filter'
+      click_on 'More Filters'
       select Spree.t("return_authorization_states.#{return_authorization_2.state}"), from: 'Status'
       click_on 'Search'
 
@@ -75,7 +75,7 @@ describe 'Return Authorizations', type: :feature do
     end
 
     it 'renders selected filters', js: true do
-      click_on 'Filter'
+      click_on 'More Filters'
 
       within('#table-filter') do
         fill_in 'q_number_cont', with: 'RX001-01'
