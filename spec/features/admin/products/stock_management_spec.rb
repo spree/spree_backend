@@ -49,6 +49,7 @@ describe 'Stock Management', type: :feature, js: true do
     # assert that the redirect is *not* happening.
     it 'can toggle backorderable for the second variant stock item' do
       new_location = create(:stock_location, name: 'Another Location')
+      new_location.propagate_variant(variant)
       refresh
 
       new_location_backorderable = find_field(id: "stock_item_backorderable_#{new_location.id}", checked: true)
