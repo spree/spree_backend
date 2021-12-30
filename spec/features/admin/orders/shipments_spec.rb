@@ -39,7 +39,7 @@ describe 'Shipments', type: :feature do
 
   context 'moving variants between shipments', js: true do
     before do
-      create(:stock_location, name: 'LA', propagate_all_variants: true) # we need to make sure all order variants are avaiable in this stock location
+      create(:stock_location, name: 'LA', propagate_all_variants: true) # we need to make sure all order variants are available in this stock location
       visit spree.admin_orders_path
       within_row(1) do
         click_link 'R100'
