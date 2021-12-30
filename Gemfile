@@ -64,7 +64,7 @@ if ENV['RAILS_VERSION']&.match(/7\.0\.0/) || !ENV['RAILS_VERSION']
   gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'master'
 end
 
-spree_opts = { github: 'spree/spree', branch: 'feature/disable-propagate-all-variants-by-default' }
+spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
 
