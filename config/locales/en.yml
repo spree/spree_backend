@@ -9,6 +9,8 @@ en:
       response_code: Response Code
       execution_time: Execution Time
       request_errors: Request Errors
+      more_filters: More Filters
+      kind: Kind
       cms:
         all_pages: All Pages
         add_new_page: Add New Page
@@ -104,6 +106,9 @@ en:
           digital_asset_link_expire_time:
             download_link_expire_time: Download Link Expire Time
             link_expire_time: Set the expire time of each download link. (seconds).
+      product_kinds:
+        physical: Physical
+        digital: Digital
       tab:
         configuration: Configuration
         content: Content
