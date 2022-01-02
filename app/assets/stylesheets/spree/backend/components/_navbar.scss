@@ -20,39 +20,33 @@
         line-height: 1rem;
       }
     }
+  }
+}
 
-    #storeSwitcherDropdown {
-      .dropdown-menu.show {
-        min-width: 250px;
-        width: fit-content;
-        max-width: 90vw;
-        max-height: 70vh;
-        overflow-y: scroll !important;
-        top: $navbar-brand-height + 1.5rem;
-        left: 50%;
-        right: 50%;
-        transform: translate(-50%, 0%);
+#storeSwitcherDropdown,
+#storeSwitcherDropdownMobile
+ {
+  .dropdown-menu.show {
+    min-width: 250px;
+    width: fit-content;
+    max-width: 90vw;
+    max-height: 70vh;
+    overflow-y: scroll !important;
+    top: $navbar-brand-height + 1rem;
+    left: 0%;
 
-        @include media-breakpoint-up(lg) {
-          left: 0%;
-          right: 0%;
-          transform: translate(0%, 0%);
-        }
+    a {
+      white-space: nowrap;
+      overflow-x: hidden;
+      text-overflow: ellipsis;
 
-        a {
-          white-space: nowrap;
-          overflow-x: hidden;
-          text-overflow: ellipsis;
+      svg {
+        vertical-align: text-top;
+        margin-right: 1em;
+      }
 
-          svg {
-            vertical-align: text-top;
-            margin-right: 1em;
-          }
-
-          &.disabled svg {
-            color: theme-color('success');
-          }
-        }
+      &.disabled svg {
+        color: theme-color('success');
       }
     }
   }

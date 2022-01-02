@@ -1,14 +1,21 @@
 <nav>
   <div class="text-right d-lg-none pl-3 py-2 border-bottom d-flex align-items-center">
-    <div class="d-flex flex-grow-1 text-primary">
-      <%= svg_icon name: "spree-logo.svg", width: '70', height: '30' %>
+    <div class="d-flex flex-grow-1">
+      <div class="d-none d-md-flex flex-grow-1 text-primary">
+        <%= svg_icon name: "spree-logo.svg", width: '70', height: '30'%>
+      </div>
+
+      <div id="storeSwitcherDropdownMobile" class="d-flex d-md-none col-auto text-center text-lg-left px-0 px-lg-2 align-items-center dropdown">
+        <%= render partial: 'spree/admin/shared/store_switcher' %>
+      </div>
     </div>
+
     <button
       id="sidebar-close"
       class="btn btn-link d-flex"
       type="button"
       aria-expanded="false"
-      aria-label="Toggle navigation">
+      aria-label="Toggle Navigation">
       <%= svg_icon name: "cancel.svg", width: '20', height: '20', classes: 'p-0 m-0' %>
     </button>
   </div>

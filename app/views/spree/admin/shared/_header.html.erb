@@ -3,7 +3,7 @@
     <div class="col p-0 d-lg-none">
       <button
         id="sidebar-open"
-        class="navbar-toggler h-100 text-light px-3"
+        class="btn btn-primary m-2"
         type="button"
         aria-expanded="false"
         aria-label="Toggle navigation">
@@ -11,8 +11,12 @@
       </button>
     </div>
 
-    <div id="storeSwitcherDropdown" class="col-auto text-center text-lg-left px-0 px-lg-2 align-items-center dropdown">
+    <div id="storeSwitcherDropdown" class="d-none d-md-flex col-auto text-center text-lg-left text-light px-0 px-lg-2 align-items-center dropdown">
       <%= render partial: 'spree/admin/shared/store_switcher' %>
+    </div>
+
+    <div data-controller="search" class="m-2 w-100">
+      <input id="autoComplete" class="form-control">
     </div>
 
     <div class="col text-right p-0">

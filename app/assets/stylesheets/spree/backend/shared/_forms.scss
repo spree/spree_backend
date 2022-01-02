@@ -49,3 +49,10 @@ input[type="file"] {
   background: $input-bg url(asset-path("backend-chevron-down.svg")) no-repeat right 0.5rem center/8px 10px;
   background-size: 0.7em;
 }
+
+span.global-search-result-sub {
+  font-size: 13px;
+  font-weight: 100;
+  text-transform: uppercase;
+  color: rgba(0,0,0,.8);
+}

@@ -44,6 +44,9 @@ application.register("password-toggle", PasswordToggleController)
 import ClipboardController from "./controllers/clipboard_controller"
 application.register("clipboard", ClipboardController)
 
+import SearchController from "./controllers/search_controller"
+application.register("search", SearchController)
+
 //
 // Export
 export { Dashboard, application, flatpickr, Turbo }
