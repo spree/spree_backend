@@ -107,7 +107,7 @@ export default class extends Controller {
       taxons.data.forEach(function (taxon) {
         response_array.push({
           "taxon": taxon.attributes.name,
-          "uri": `${Spree.adminPath}taxonomies/${taxon.relationships.taxonomy.data.id}/taxons/${taxon.id}/edit`,
+          "uri": `/${Spree.adminPath()}taxonomies/${taxon.relationships.taxonomy.data.id}/taxons/${taxon.id}/edit`,
           "pretty_name": taxon.attributes.pretty_name,
           "permalink": taxon.attributes.permalink,
 
