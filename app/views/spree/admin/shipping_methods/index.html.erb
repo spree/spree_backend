@@ -35,7 +35,7 @@
             <% end %>
           </td>
           <td><%= shipping_method.calculator.description %></td>
-          <td class="text-center"><%= shipping_method.display_on.blank? ? Spree.t(:none) : Spree.t(shipping_method.display_on) %></td>
+          <td class="text-center"><%= shipping_method.display_on.blank? ? Spree.t(:none) : Spree.t("admin.display_on.#{shipping_method.display_on}") %></td>
           <td class="actions" data-hook="admin_shipping_methods_index_row_actions">
             <span class="d-flex justify-content-end">
               <%= link_to_edit(shipping_method, no_text: true) if can? :edit, shipping_method %>
