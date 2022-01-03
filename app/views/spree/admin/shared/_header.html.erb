@@ -11,13 +11,15 @@
       </button>
     </div>
 
-    <div id="storeSwitcherDropdown" class="d-none d-md-flex col-auto text-center text-lg-left text-light px-0 px-lg-2 align-items-center dropdown">
+    <div id="storeSwitcherDropdown" class="d-none d-md-flex col-auto text-center text-lg-left text-light align-items-center dropdown">
       <%= render partial: 'spree/admin/shared/store_switcher' %>
     </div>
 
-    <div data-controller="search" class="m-2 w-100">
-      <input id="autoComplete" class="form-control">
-    </div>
+    <% if can?(:admin, current_store) %>
+      <div data-controller="search" class="m-2 w-100">
+        <input id="storeSearch" class="form-control">
+      </div>
+    <% end %>
 
     <div class="col text-right p-0">
       <%= render partial: 'spree/admin/shared/account_nav' %>
