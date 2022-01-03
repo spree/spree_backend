@@ -110,7 +110,7 @@ describe 'Homepage', type: :feature do
       expect(page).not_to have_link('Products')
       expect(page).not_to have_link('Promotions')
       expect(page).not_to have_link('Reports')
-      expect(page).not_to have_link('Configurations')
+      expect(page).not_to have_link('Settings')
     end
   end
 end

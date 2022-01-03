@@ -235,6 +235,7 @@ en:
         used_in: Used In
         you_have_no_menus: You have no Menus, click the Add New Menu button to create your first Menu.
         this_link_takes_you_to_your_stores_home_page: This link takes you to your stores home page.
+      settings: Settings
       utilities:
         preview: Preview %{name}
       webhooks_subscribers:
