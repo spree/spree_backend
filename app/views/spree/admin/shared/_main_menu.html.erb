@@ -83,5 +83,9 @@
     <ul class="nav nav-sidebar border-bottom border-light" id="sidebarConfiguration">
       <%= main_menu_tree Spree.t(:configurations), icon: "settings.svg", sub_menu: "configuration", url: "#sidebar-configuration" %>
     </ul>
+  <% elsif defined?(current_spree_vendor) && current_spree_vendor.present? %>
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarConfiguration">
+      <%= main_menu_tree Spree.t(:configurations), icon: "settings.svg", sub_menu: "vendor_configuration", url: "#sidebar-configuration" %>
+    </ul>
   <% end %>
 </nav>
