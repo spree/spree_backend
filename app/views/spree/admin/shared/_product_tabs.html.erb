@@ -38,7 +38,7 @@
     <% end if can?(:admin, Spree::ProductProperty) && !@product.deleted? %>
 
     <%= content_tag :li do %>
-      <%= link_to_with_icon 'items.svg',
+      <%= link_to_with_icon 'box.svg',
         Spree.t(:stock),
         stock_admin_product_url(@product),
         class: "nav-link #{'active' if current == :stock}" %>
