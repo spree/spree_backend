@@ -49,7 +49,7 @@
     </ul>
   <% end %>
 
-  <% if defined?(Spree::Vendor) && can?(:read, Spree::Vendor) %>
+  <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) %>
     <ul class="nav nav-sidebar border-bottom border-light" id="sidebarOrganizations">
       <%= main_menu_tree Spree.t(:organizations), icon: "store.svg", sub_menu: "organizations", url: "#sidebar-organizations" %>
     </ul>
@@ -81,7 +81,11 @@
 
   <% if can? :admin, current_store %>
     <ul class="nav nav-sidebar border-bottom border-light" id="sidebarConfiguration">
-      <%= main_menu_tree Spree.t(:configurations), icon: "settings.svg", sub_menu: "configuration", url: "#sidebar-configuration" %>
+      <%= main_menu_tree Spree.t('admin.settings'), icon: "settings.svg", sub_menu: "configuration", url: "#sidebar-configuration" %>
+    </ul>
+  <% elsif defined?(current_spree_vendor) && current_spree_vendor.present? %>
+    <ul class="nav nav-sidebar border-bottom border-light" id="sidebarConfiguration">
+      <%= main_menu_tree Spree.t('admin.settings'), icon: "settings.svg", sub_menu: "vendor_configuration", url: "#sidebar-configuration" %>
     </ul>
   <% end %>
 </nav>

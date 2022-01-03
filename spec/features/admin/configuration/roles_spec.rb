@@ -7,7 +7,7 @@ describe 'Roles', type: :feature do
     create(:role, name: 'admin')
     create(:role, name: 'user')
     visit spree.admin_path
-    click_link 'Configuration'
+    click_link 'Settings'
     # Crap workaround for animation to finish expanding so click doesn't hit ReimbursementTypes.
     sleep 1
     click_link 'Roles'
@@ -25,7 +25,7 @@ describe 'Roles', type: :feature do
       within find('#contentHeader') do
         click_link 'admin_new_role_link'
       end
-      
+
       expect(page).to have_content('New Role')
       fill_in 'role_name', with: 'blogger'
       click_button 'Create'

@@ -53,11 +53,13 @@
     <thead class="bg-light text-muted">
       <tr data-hook="admin_products_index_headers">
         <th scope="col" class="pl-5" colspan="2"><%= sort_link @search,:name, Spree.t(:name), { default_order: "desc" }, {title: 'admin_products_listing_name_title'} %></th>
-        <th scope="col" class="text-center"><%= Spree.t(:sku) %></th>
-        <th scope="col" class="text-center"><%= Spree.t('admin.digitals.digital') %></th>
+        <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) %>
+          <th scope="col" class="text-center"><%= Spree.t(:vendor) %></th>
+        <% end %>
+        <th scope="col" class="text-center"><%= Spree.t('admin.kind') %></th>
         <th scope="col" class="text-center"><%= Spree.t(:status) %></th>
         <th scope="col" class="text-center" class="text-center">
-          <%= sort_link @search, :master_default_price_amount, Spree.t(:master_price), {}, {title: 'admin_products_listing_price_title'} %>
+          <%= sort_link @search, :master_default_price_amount, Spree.t(:price), {}, {title: 'admin_products_listing_price_title'} %>
         </th>
         <th scope="col" class="text-center" data-hook="admin_products_index_header_actions" class="actions"></th>
       </tr>
@@ -71,9 +73,25 @@
                 <%= small_image product %>
               <% end %>
             </td>
-            <td><%= link_to product.try(:name), edit_admin_product_path(product) %></td>
-            <td class="sku text-center"><%= product.sku rescue '' %></td>
-            <td class="text-center"><%= active_badge(product.digitals.any?) %></td>
+            <td>
+              <%= link_to product.name, edit_admin_product_path(product) %>
+              <br />
+              <small><%= product.sku rescue '' %></small>
+            </td>
+            <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) %>
+              <td class="text-center">
+                <%= link_to product.vendor.name, spree.admin_vendor_path(product.vendor_id) if product.vendor.present? %>
+              </td>
+            <% end %>
+            <td class="text-center">
+              <span class="badge badge-light">
+                <% if product.digital? %>
+                  <%= Spree.t('admin.product_kinds.digital') %>
+                <% else %>
+                  <%= Spree.t('admin.product_kinds.physical') %>
+                <% end %>
+              </span>
+            </td>
             <td class="status text-center"><%= active_badge(available_status == Spree.t(:available), label: available_status) %></td>
             <td class="text-center"><%= display_price(product) %></td>
 

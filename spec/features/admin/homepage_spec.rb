@@ -25,8 +25,8 @@ describe 'Homepage', type: :feature do
         expect(page).to have_link('Reports', href: '/admin/reports')
       end
 
-      it 'has a link to configuration' do
-        expect(page).to have_link('Configuration', href: '#sidebar-configuration')
+      it 'has a link to settings' do
+        expect(page).to have_link('Settings', href: '#sidebar-configuration')
       end
 
       it 'has a link to return authorizations' do
@@ -110,7 +110,7 @@ describe 'Homepage', type: :feature do
       expect(page).not_to have_link('Products')
       expect(page).not_to have_link('Promotions')
       expect(page).not_to have_link('Reports')
-      expect(page).not_to have_link('Configurations')
+      expect(page).not_to have_link('Settings')
     end
   end
 end

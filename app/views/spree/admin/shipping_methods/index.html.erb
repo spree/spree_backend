@@ -12,8 +12,11 @@
     <thead class="bg-light text-muted">
       <tr data-hook="admin_shipping_methods_index_headers">
         <th><%= Spree.t(:name) %></th>
-        <th><%= Spree.t(:zone) %></th>
-        <th><%= Spree.t(:calculator) %></th>
+        <% if defined?(Spree::Vendor) %>
+          <th class="text-center"><%= Spree.t(:vendor) %></th>
+        <% end %>
+        <th class="text-center"><%= Spree.t(:zone) %></th>
+        <th class="text-center"><%= Spree.t(:calculator) %></th>
         <th class="text-center"><%= Spree.t(:display) %></th>
         <th data-hook="admin_shipping_methods_index_header_actions" class="actions"></th>
       </tr>
@@ -29,13 +32,29 @@
               </small>
             <% end %>
           </td>
-          <td>
+          <% if defined?(Spree::Vendor) %>
+             <td class="text-center">
+              <% if shipping_method.vendor.present? %>
+                <%= link_to shipping_method.vendor.name, spree.admin_vendor_path(shipping_method.vendor_id) %>
+              <% end %>
+             </td>
+          <% end %>
+          <td class="text-center text-uppercase">
             <% shipping_method.zones.each do |zone| %>
-              <%= link_to zone.name, spree.edit_admin_zone_path(zone) %>
+              <%= link_to zone.name, spree.edit_admin_zone_path(zone), class: 'badge badge-secondary' %>
             <% end %>
           </td>
-          <td><%= shipping_method.calculator.description %></td>
-          <td class="text-center"><%= shipping_method.display_on.blank? ? Spree.t(:none) : Spree.t("admin.display_on.#{shipping_method.display_on}") %></td>
+          <td class="text-center"><%= shipping_method.calculator.description %></td>
+          <td class="text-center">
+            <% if shipping_method.display_on.blank? %>
+              <span class="badge badge-danger">
+                <%= Spree.t(:none) %>
+              </span>
+            <% else %>
+              <span class="badge badge-success">
+                <%= Spree.t("admin.display_on.#{shipping_method.display_on}") %>
+              </span>
+            <% end %>
           <td class="actions" data-hook="admin_shipping_methods_index_row_actions">
             <span class="d-flex justify-content-end">
               <%= link_to_edit(shipping_method, no_text: true) if can? :edit, shipping_method %>
@@ -50,6 +69,6 @@
 <% else %>
   <div class="text-center no-objects-found m-5">
     <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::ShippingMethod)) %>,
-    <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, Spree::PaymentMethod %>!
+    <%= link_to(Spree.t(:add_one), new_object_url) if can? :create, Spree::ShippingMethod %>!
   </div>
 <% end %>

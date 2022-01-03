@@ -84,7 +84,11 @@
             <div class="checkbox">
               <%= label_tag do %>
                 <%= check_box_tag('shipping_method[zones][]', zone.id, shipping_method_zones.include?(zone)) %>
-                <%= zone.name %>
+                <span class="text-uppercase"><%= zone.name %></span>
+                <br />
+                <% zone.zone_members.each do |zone_member| %>
+                  <small class="badge badge-info"><%= zone_member.zoneable.name %></small>
+                <% end %>
               <% end %>
             </div>
           <% end %>
