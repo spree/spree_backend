@@ -102,7 +102,11 @@ module Spree
       end
 
       def location_after_save
-        spree.edit_admin_product_url(@product)
+        if params[:product][:product_properties_attributes].present?
+          spree.admin_product_product_properties_path(@product)
+        else
+          spree.edit_admin_product_url(@product)
+        end
       end
 
       def load_data
