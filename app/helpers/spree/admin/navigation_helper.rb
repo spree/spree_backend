@@ -51,7 +51,7 @@ module Spree
                    options[:icon],
                    titleized_label,
                    destination_url,
-                   class: 'w-100 px-3 py-2 d-flex align-items-center',
+                   class: 'w-100 px-3 py-2 d-flex align-items-center text-muted',
                    width: MENU_ICON_SIZE,
                    height: MENU_ICON_SIZE
                  )
@@ -59,7 +59,7 @@ module Spree
                  link_to(
                    titleized_label,
                    destination_url,
-                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block #{'bg-info text-white' if selected}"
+                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block #{selected ? 'bg-info text-white' : 'text-muted'}"
                  )
                end
 
@@ -74,11 +74,11 @@ module Spree
         link_to url, 'data-toggle': 'collapse', class: 'd-flex w-100 px-3 py-2 position-relative align-items-center' do
           if icon.ends_with?('.svg')
             svg_icon(name: icon, classes: 'mr-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
-              content_tag(:span, " #{text}", class: 'text') +
+              content_tag(:span, " #{text}", class: 'text-muted') +
               svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 4), height: (MENU_ICON_SIZE - 4))
           else
             content_tag(:span, nil, class: "icon text-muted icon-#{icon} mr-2") +
-              content_tag(:span, " #{text}", class: 'text') +
+              content_tag(:span, " #{text}", class: 'text-muted') +
               svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 4), height: (MENU_ICON_SIZE - 4))
           end
         end
@@ -86,7 +86,7 @@ module Spree
 
       # Main menu tree menu
       def main_menu_tree(text, icon: nil, sub_menu: nil, url: '#')
-        content_tag :li, class: 'sidebar-menu-item d-block w-100' do
+        content_tag :li, class: 'sidebar-menu-item d-block w-100 text-muted' do
           main_menu_item(text, url: url, icon: icon) +
             render(partial: "spree/admin/shared/sub_menu/#{sub_menu}")
         end
@@ -138,7 +138,7 @@ module Spree
 
       def link_to_clone(resource, options = {})
         options[:data] = { action: 'clone', 'original-title': Spree.t(:clone) }
-        options[:class] = 'btn btn-light btn-sm with-tip'
+        options[:class] = 'btn btn-light btn-sm with-tip icon-link'
         options[:method] = :post
         options[:icon] = 'clone.svg'
         button_link_to '', clone_object_url(resource), options
@@ -176,7 +176,7 @@ module Spree
       def link_to_with_icon(icon_name, text, url, options = {})
         options[:class] = (options[:class].to_s + " icon-link with-tip action-#{icon_name}").strip
         options[:title] = text if options[:no_text]
-        text = options[:no_text] ? '' : content_tag(:span, text, class: 'text')
+        text = options[:no_text] ? '' : content_tag(:span, text)
         options.delete(:no_text)
         options[:width] ||= ICON_SIZE
         options[:height] ||= ICON_SIZE
@@ -262,7 +262,7 @@ module Spree
         options[:class] = 'sidebar-menu-item d-block w-100'
         options[:class] << ' selected' if options[:is_selected]
         content_tag(:li, options) do
-          link_to(link_text, url, class: "#{'bg-info text-white' if options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block")
+          link_to(link_text, url, class: "#{options[:is_selected] ? 'bg-info text-white': 'text-muted'} sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block")
         end
       end
 

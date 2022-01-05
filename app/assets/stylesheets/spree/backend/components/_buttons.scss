@@ -16,7 +16,11 @@
   }
   svg,
   i.icon {
-   margin-bottom: 3px;
+    margin-right: 0.5rem;
+    margin-bottom: 3px;
+  }
+  &.icon-link svg{
+    margin-right: 0;
   }
 }
 

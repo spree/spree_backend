@@ -8,6 +8,10 @@ aside#main-sidebar {
   height: 100%;
   transition: 0.3s ease;
   z-index: 1041;
+
+  .text-muted {
+    color: #5C5F62 !important;
+  }
 }
 
 body.sidebar-open {
