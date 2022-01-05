@@ -393,6 +393,13 @@ describe 'Products', type: :feature do
         end
       end
 
+      it 'redirects to edit product page' do
+        visit spree.admin_product_path(product)
+        click_button 'Update'
+
+        expect(page).to have_current_path(spree.edit_admin_product_path(product))
+      end
+
       context 'using a locale with a different decimal format' do
         before do
           # change English locale's separator and delimiter to match 19,99 format
