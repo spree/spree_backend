@@ -5,8 +5,8 @@ module Spree
 
       before_action :initialize_order_events
       before_action :load_order, only: %i[
-        edit update cancel resume approve resend open_adjustments
-        close_adjustments cart channel set_channel
+        edit update cancel note resume approve resend open_adjustments
+        close_adjustments cart channel set_channel set_note
       ]
 
       respond_to :html
@@ -153,6 +153,16 @@ module Spree
         redirect_to channel_admin_order_url(@order)
       end
 
+      def set_note
+        if @order.update(order_params)
+          flash[:success] = flash_message_for(@order, :successfully_updated)
+        else
+          flash[:error] = @order.errors.full_messages.join(', ')
+        end
+
+        redirect_to note_admin_order_url(@order)
+      end
+
       private
 
       def scope
@@ -161,7 +171,7 @@ module Spree
 
       def order_params
         params[:created_by_id] = try_spree_current_user.try(:id)
-        params.permit(:created_by_id, :user_id, :store_id, :channel)
+        params.permit(:created_by_id, :user_id, :store_id, :channel, :note)
       end
 
       def load_order

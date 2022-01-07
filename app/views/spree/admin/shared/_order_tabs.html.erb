@@ -89,5 +89,14 @@
           class: "#{'active' if current == :state_changes} nav-link" %>
       </li>
     <% end %>
+
+    <% if can? :update, @order %>
+      <li data-hook='admin_order_tabs_notes'>
+        <%= link_to_with_icon 'pen.svg',
+          Spree.t(:notes),
+          spree.note_admin_order_path(@order),
+          class: "#{'active' if current == :notes} nav-link" %>
+      </li>
+    <% end %>
   </ul>
 <% end %>
