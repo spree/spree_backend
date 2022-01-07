@@ -91,11 +91,11 @@
     <% end %>
 
     <% if can? :update, @order %>
-      <li data-hook='admin_order_tabs_notes'>
+      <li data-hook='admin_order_tabs_internal_note'>
         <%= link_to_with_icon 'pen.svg',
-          Spree.t('admin.notes'),
-          spree.note_admin_order_path(@order),
-          class: "#{'active' if current == :notes} nav-link" %>
+          Spree.t('admin.internal_notes'),
+          spree.internal_note_admin_order_path(@order),
+          class: "#{'active' if current == :internal_note} nav-link" %>
       </li>
     <% end %>
   </ul>
