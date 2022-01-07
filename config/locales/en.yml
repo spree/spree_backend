@@ -92,6 +92,7 @@ en:
         search_for_a_page: Search for a page
         search_for_a_taxon: Search for a Taxon
         search_for_a_product: Search for a Product
+      notes: Notes
       store:
         digital_settings:
           digital_asset_settings: Digital Asset Settings
@@ -150,6 +151,7 @@ en:
           resend: Resend
       orders:
         cart: Cart
+      order_notes: Order Notes
       oauth_applications:
         list: oAuth applications
         new: New oAuth application
