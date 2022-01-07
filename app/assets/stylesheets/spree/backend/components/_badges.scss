@@ -10,7 +10,8 @@
 .badge-success,
 .badge-sold,
 .badge-open,
-.badge-authorized {
+.badge-authorized,
+.badge-approved {
   @include badge-variant(theme-color('success'));
 }
 
