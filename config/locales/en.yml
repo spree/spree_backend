@@ -291,3 +291,7 @@ en:
         wished_items: Wished Items
         wishlists: Wishlists
         zones: Zones
+      display_on:
+        both: All
+        front_end: Storefront
+        back_end: Admin Panel

@@ -19,7 +19,7 @@ describe 'Shipping Methods', type: :feature do
         expect(column_text(1)).to eq(shipping_method.name)
         expect(column_text(2)).to eq(zone.name)
         expect(column_text(3)).to eq('Flat rate')
-        expect(column_text(4)).to eq('Both')
+        expect(column_text(4)).to eq('All')
       end
     end
   end
@@ -31,7 +31,7 @@ describe 'Shipping Methods', type: :feature do
       end
 
       fill_in 'shipping_method_name', with: 'bullock cart'
-      select 'Both', from: 'Display'
+      select 'All', from: 'Display'
 
       within('#shipping_method_categories_field', match: :first) do
         check first("input[type='checkbox']")['name']
