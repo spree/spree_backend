@@ -131,9 +131,13 @@ describe 'Image Gallery section', type: :feature do
           fill_in 'Title', with: 'Trendy Styles'
         end
 
+        wait_for_turbo
+
         select2('Shirts', css: '#cms_section_link_two_field', search: true)
 
         click_on 'Update'
+
+        wait_for_turbo
 
         within 'div#image_b_details' do
           expect(page).to have_field('Title', with: 'Trendy Styles')
