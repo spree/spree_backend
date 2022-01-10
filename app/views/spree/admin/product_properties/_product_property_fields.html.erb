@@ -4,9 +4,8 @@
       <%= render "spree/admin/shared/grab_handle" %>
     </td>
   <% else %>
-  <td style="opacity:0.2;">
-    <%= svg_icon name: "grip-vertical.svg", width: '18', height: '18' %>
-    <%= f.hidden_field :id %>
+  <td class="dummy-move-handle">
+    <%= render "spree/admin/shared/grab_handle" %>
   </td>
   <% end %>
   <td class='property_name'>
