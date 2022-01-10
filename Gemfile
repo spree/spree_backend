@@ -55,7 +55,7 @@ group :development do
   gem 'solargraph'
 end
 
-spree_opts = { github: 'spree/spree', branch: 'main' }
+spree_opts = { github: 'spree/spree', branch: '4-4-stable' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
 
