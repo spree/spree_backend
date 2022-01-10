@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Product Details', type: :feature, js: true do
   stub_authorization!
 
-  let!(:product) { create(:product, name: 'Bún thịt nướng', sku: 'A100', description: 'lorem ipsum', available_on: '2013-08-14 01:02:03')}
+  let!(:product) { create(:product, name: 'Bún thịt nướng', sku: 'A100', description: 'lorem ipsum') }
 
   context 'editing a product with WYSIWYG disabled' do
     before do
@@ -33,7 +33,6 @@ describe 'Product Details', type: :feature, js: true do
       expect(page).to have_css('#product_description_ifr')
       expect(page).to have_field(id: 'product_price', with: '19.99')
       expect(page).to have_field(id: 'product_cost_price', with: '17.00')
-      expect(page).to have_field(id: 'product_available_on', type: :hidden, with: '2013-08-14')
       expect(page).to have_field(id: 'product_sku', with: 'A100')
     end
 
@@ -55,6 +54,33 @@ describe 'Product Details', type: :feature, js: true do
 
       expect(page).to have_css('#adminPreviewProduct')
       expect(page).to have_link Spree.t(:preview_product), href: "http://www.example.com/products/bun-th-t-n-ng"
+    end
+  end
+
+  describe 'status related fields behavior' do
+    before do
+      visit spree.admin_product_path(product)
+    end
+
+    it 'hides make available_on' do
+      expect(page).to have_field(id: 'product_status', with: 'active')
+      expect(page).to have_content('Available On')
+      expect(page).not_to have_content('Make Active At')
+      expect(page).to have_content('Discontinue On')
+    end
+
+    it 'hides discontinue_on' do
+      select 'draft', from: 'Status'
+      expect(page).to have_content('Available On')
+      expect(page).to have_content('Make Active At')
+      expect(page).to have_content('Discontinue On')
+    end
+
+    it 'hides all fields' do
+      select 'archived', from: 'Status'
+      expect(page).not_to have_content('Available On')
+      expect(page).not_to have_content('Make Active At')
+      expect(page).to have_content('Discontinue On')
     end
   end
 end

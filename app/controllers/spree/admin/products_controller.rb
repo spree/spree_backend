@@ -117,7 +117,6 @@ module Spree
       end
 
       def set_product_defaults
-        @product.available_on ||= Time.current
         @product.shipping_category ||= @shipping_categories&.first
       end
 
