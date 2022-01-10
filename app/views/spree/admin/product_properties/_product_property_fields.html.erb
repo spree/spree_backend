@@ -1,27 +1,35 @@
-<% if f.object.persisted? && can?(:edit, f.object) %>
-  <tr class="product_property fields" id="spree_<%= dom_id(f.object) %>" data-hook="product_property">
+<tr class="product_property fields" <% if f.object.persisted? && can?(:edit, f.object) %>id="spree_<%= dom_id(f.object) %>"<% end %> data-hook="product_property">
+  <% if f.object.persisted? && can?(:edit, f.object) %>
     <td class="move-handle">
       <%= render "spree/admin/shared/grab_handle" %>
     </td>
-    <td class='property_name'>
-      <%= f.text_field :property_name, class: 'autocomplete form-control', required: true %>
-    </td>
-    <td class='value'>
-      <%= f.text_field :value, class: 'form-control', required: true %>
-    </td>
-    <td class="show_property text-center">
-      <div class="custom-control custom-checkbox">
-        <%= f.check_box :show_property, { class: 'custom-control-input' } %>
-        <%= f.label :show_property, '<span></span>'.html_safe , class: 'custom-control-label' %>
-      </div>
-    </td>
-
-    <td class="actions">
-      <span class="d-flex justify-content-end">
-        <% if f.object.persisted? && can?(:destroy, f.object) %>
-          <%= link_to_delete f.object, no_text: true %>
-        <% end %>
+  <% else %>
+  <td style="opacity:0.2;">
+    <%= svg_icon name: "grip-vertical.svg", width: '18', height: '18' %>
+    <%= f.hidden_field :id %>
+  </td>
+  <% end %>
+  <td class='property_name'>
+    <%= f.text_field :property_name, class: 'autocomplete form-control', required: f.object.persisted? && can?(:edit, f.object) %>
+  </td>
+  <td class='value'>
+    <%= f.text_field :value, class: 'form-control', required: f.object.persisted? && can?(:edit, f.object) %>
+  </td>
+  <td class="show_property text-center">
+    <div class="custom-control custom-checkbox">
+      <%= f.check_box :show_property, { class: 'custom-control-input' } %>
+      <%= f.label :show_property, '<span></span>'.html_safe , class: 'custom-control-label' %>
+    </div>
+  </td>
+  <td class="actions">
+    <span class="d-flex justify-content-end">
+      <% if f.object.persisted? && can?(:destroy, f.object) %>
+        <%= link_to_delete f.object, no_text: true %>
+      <% else %>
+      <span class="btn btn-danger btn-sm icon-link disabled" style="opacity:0.2;">
+        <%= svg_icon name: "delete.svg", width: '18', height: '18' %>
       </span>
-    </td>
-  </tr>
-<% end %>
+      <% end %>
+    </span>
+  </td>
+</tr>
