@@ -86,6 +86,7 @@ Spree::Core::Engine.add_routes do
         get :channel
         put :set_channel
         get :reset_digitals
+        get :special_instructions
       end
 
       resources :state_changes, only: [:index]
