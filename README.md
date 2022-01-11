@@ -20,6 +20,7 @@ This is the default Spree Admin Dashboard.
 * Built-in CMS for Pages and Navigation
 * Easily add 3rd party integrations such as Payments, Tax calculation services and Shipping couriers
 * Easy customization to suit your needs
+* Modern tech-stack based on [Hotwire](https://hotwired.dev/) (Stimulus & Turbo)
 
 ## Demo
 
