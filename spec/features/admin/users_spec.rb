@@ -127,7 +127,7 @@ describe 'Users', type: :feature do
       before { visit current_path } # For Rails turbo JavaScript testing.
 
       it 'renders selected filters' do
-        click_on 'Filter'
+        click_on 'More Filters'
         wait_for { !page.has_text?('Search') }
 
         within('#table-filter') do
@@ -224,8 +224,7 @@ describe 'Users', type: :feature do
   context 'order history with sorting' do
     before do
       orders
-      click_link user_a.email
-      within('#sidebar') { click_link Spree.t(:"admin.user.orders") }
+      visit spree.orders_admin_user_path(user_a)
     end
 
     it_behaves_like 'a user page'
@@ -254,8 +253,7 @@ describe 'Users', type: :feature do
   context 'items purchased with sorting' do
     before do
       orders
-      click_link user_a.email
-      within('#sidebar') { click_link Spree.t(:"admin.user.items") }
+      visit spree.items_admin_user_path(user_a)
     end
 
     it_behaves_like 'a user page'

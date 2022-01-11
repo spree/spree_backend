@@ -4,8 +4,8 @@
 <% end %>
 
 <fieldset>
-  <div class="table-responsive">
-    <table class="table table-bordered">
+  <div class="table-responsive border rounded bg-white">
+    <table class="table border rounded">
       <tr>
         <td><strong><%= Spree.t('admin.url') %></strong></td>
         <td><%= @webhooks_subscriber.url %></td>
@@ -23,9 +23,9 @@
 </fieldset>
 
 <% if @events.any? %>
-  <div class="table-responsive">
+  <div class="table-responsive border rounded bg-white">
     <table class="table">
-      <thead>
+      <thead class="bg-light text-muted">
       <tr>
         <th><%= Spree.t('admin.name') %></th>
         <th><%= Spree.t('admin.successful') %></th>

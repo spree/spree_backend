@@ -9,10 +9,6 @@ describe 'Webhooks::Subscriber#edit', type: :feature do
     let!(:subscriber) { create(:webhook_subscriber, :active, subscriptions: ['*']) }
 
     it 'has the correct values populated in the fields' do
-      within('h1') do
-        expect(page).to have_text subscriber.url
-      end
-
       expect(page).to have_field(id: 'webhooks_subscriber_url', with: subscriber.url)
       expect(page).to have_field(id: 'webhooks_subscriber_active', checked: true)
       expect(page).to have_field(name: 'subscribe_to_all_events', checked: true)

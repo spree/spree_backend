@@ -8,6 +8,10 @@ aside#main-sidebar {
   height: 100%;
   transition: 0.3s ease;
   z-index: 1041;
+
+  .text-muted {
+    color: #5C5F62 !important;
+  }
 }
 
 body.sidebar-open {
@@ -20,7 +24,9 @@ body.sidebar-open {
     z-index: 1040 !important;
   }
 }
-
+.sidebar-submenu-item.pl-5 {
+  padding-left: 2.6rem !important;
+}
 a.sidebar-submenu-item:hover {
     text-decoration: none;
     background-color: $gray-200;

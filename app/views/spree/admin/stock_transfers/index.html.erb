@@ -44,9 +44,9 @@
 <% end %>
 
 <% if @stock_transfers.any? %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_stock_transfers' data-hook>
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook='stock_transfers_header'>
         <th><%= Spree.t(:number) %></th>
         <th><%= Spree.t(:reference) %></th>

@@ -1,8 +1,10 @@
 table.table {
   font-size: $font-size-sm;
+  margin-bottom: 0;
 
   th {
     padding: 0.5rem;
+    border-bottom: 0;
 
     &.handel-head {
       width: 50px;
@@ -10,10 +12,6 @@ table.table {
     a.sort_link {
       white-space: nowrap;
     }
-  }
-
-  td {
-    padding: 0.5rem;
   }
 
   td.move-handle {
@@ -38,7 +36,6 @@ table.table {
 
   tbody {
     tr {
-      background: white;
       td {
         vertical-align: middle;
         .filterable {
@@ -117,10 +114,6 @@ table.table {
   .card-header + .table-responsive > .table {
     border-top: 0;
 	}
-}
-
-div.table-responsive table.table-bordered {
-  border-top: 1px solid $border-color !important;
 }
 
 .sortable-drag-v {

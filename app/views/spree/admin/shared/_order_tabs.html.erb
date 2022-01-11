@@ -1,13 +1,13 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:orders), spree.admin_orders_path %> /
-  <%= link_to @order.number, spree.edit_admin_order_path(@order) %>
+  <%= page_header_back_button spree.admin_orders_path %>
+  <%= @order.number %>
 <% end %>
 
-<% content_for :sidebar do %>
-  <ul class="nav flex-column nav-pills" data-hook="admin_order_tabs">
+<% content_for :tabs do %>
+  <ul class="nav nav-pills w-100 flex-column flex-sm-row mb-4 border-bottom pb-3" data-hook="admin_order_tabs">
     <% if ((can? :update, @order) && (@order.shipments.size.zero? || @order.shipments.shipped.size.zero?)) %>
       <li data-hook='admin_order_tabs_cart_details'>
-        <%= link_to_with_icon 'cart.svg',
+        <%= link_to_with_icon 'cart-check.svg',
           Spree.t(:cart),
           cart_admin_order_url(@order),
           class: "#{'active' if current == :cart} nav-link" %>
@@ -16,7 +16,7 @@
 
     <% if can? :update, @order %>
       <li data-hook='admin_order_tabs_channel_details'>
-        <%= link_to_with_icon 'split.svg',
+        <%= link_to_with_icon 'funnel.svg',
           Spree.t(:channel),
           channel_admin_order_url(@order),
           class: "#{'active' if current == :channel} nav-link" %>
@@ -25,7 +25,7 @@
 
     <% if can?(:update, @order) && @order.checkout_steps.include?("address") %>
       <li data-hook='admin_order_tabs_customer_details'>
-        <%= link_to_with_icon 'user.svg',
+        <%= link_to_with_icon 'person-lines-fill.svg',
           Spree.t(:customer),
           spree.admin_order_customer_url(@order),
           class: "#{'active' if current == :customer_details} nav-link" %>
@@ -34,7 +34,7 @@
 
     <% if can? :update, @order %>
       <li data-hook='admin_order_tabs_shipment_details'>
-        <%= link_to_with_icon 'shipping.svg',
+        <%= link_to_with_icon 'truck.svg',
           Spree.t(:shipments),
           edit_admin_order_url(@order),
           class: "#{'active' if current == :shipments} nav-link" %>
@@ -52,7 +52,7 @@
 
     <% if can?(:index, Spree::Payment) %>
       <li data-hook='admin_order_tabs_payments'>
-        <%= link_to_with_icon 'payments.svg',
+        <%= link_to_with_icon 'credit-card.svg',
           Spree.t(:payments),
           spree.admin_order_payments_url(@order),
           class: "#{'active' if current == :payments} nav-link" %>
@@ -83,7 +83,7 @@
 
     <% if can? :update, @order %>
       <li data-hook='admin_order_tabs_state_changes'>
-        <%= link_to_with_icon 'save.svg',
+        <%= link_to_with_icon 'calendar3.svg',
           Spree::StateChange.human_attribute_name(:state_changes),
           spree.admin_order_state_changes_url(@order),
           class: "#{'active' if current == :state_changes} nav-link" %>

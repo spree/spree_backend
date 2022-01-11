@@ -5,9 +5,9 @@
 <% content_for :page_actions do %>
   <%= button_link_to Spree.t(:new_country), new_object_url, { class: "btn-success", icon: 'add.svg', id: 'admin_new_country' } %>
 <% end if can? :create, Spree::Country %>
-<div class="table-responsive">
+<div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_countries' data-hook>
-    <thead>
+    <thead class="bg-light text-muted">
       <tr data-hook="tax_header">
         <th><%= Spree.t(:country_name) %></th>
         <th class="text-center"><%= Spree.t(:iso3) %></th>

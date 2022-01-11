@@ -1,6 +1,6 @@
-<div class="table-responsive">
-  <table class="table table-bordered" id='payments' data-order-id='<%= @order.number %>'>
-    <thead>
+<div class="table-responsive border rounded bg-white">
+  <table class="table border rounded" id='payments' data-order-id='<%= @order.number %>'>
+    <thead class="bg-light text-muted">
       <tr data-hook="payments_header">
         <th><%= Spree::Payment.human_attribute_name(:number) %></th>
         <th><%= "#{Spree.t('date')}/#{Spree.t('time')}" %></th>

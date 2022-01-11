@@ -8,9 +8,9 @@
 
 <fieldset class='no-border-bottom'>
   <legend><%= Spree.t(:items_reimbursed) %></legend>
-  <div class="table-responsive">
-    <table class="table table-condensed table-bordered reimbursement-reimbursement-items-table">
-      <thead>
+  <div class="table-responsive border rounded bg-white">
+    <table class="table table-condensed border rounded reimbursement-reimbursement-items-table">
+      <thead class="bg-light text-muted">
         <tr>
           <th><%= Spree.t(:product) %></th>
           <th><%= Spree.t(:preferred_reimbursement_type) %></th>
@@ -53,8 +53,8 @@
 
 <fieldset>
   <legend><%= Spree.t(:refunds) %></legend>
-  <div class="table-responsive">
-    <table class="table table-condensed table-bordered">
+  <div class="table-responsive border rounded bg-white">
+    <table class="table table-condensed border rounded">
       <thead data-hook="customer_return_header">
         <tr>
           <th><%= Spree.t(:description) %></th>
@@ -76,8 +76,8 @@
 <% if @reimbursement.credits.any? %>
   <fieldset>
     <legend><%= Spree.t(:credits) %></legend>
-    <div class="table-responsive">
-      <table class="table table-condensed table-bordered">
+    <div class="table-responsive border rounded bg-white">
+      <table class="table table-condensed border rounded">
         <thead data-hook="customer_return_header">
           <tr>
             <th><%= Spree.t(:description) %></th>

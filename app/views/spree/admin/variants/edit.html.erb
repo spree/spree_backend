@@ -3,11 +3,15 @@
 <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @variant } %>
 
 <%= form_for [:admin, @product, @variant] do |f| %>
-  <fieldset>
-    <div data-hook="admin_variant_edit_form">
+  <div class="card mb-0">
+    <div class="card-header">
+      <h5 class="mb-0"><%= @variant.sku || @variant.options_text %></h5>
+    </div>
+    <div class="card-body" data-hook="admin_variant_edit_form">
       <%= render partial: 'form', locals: { f: f } %>
     </div>
-
-    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
-  </fieldset>
+    <div class="card-body">
+      <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+    </div>
+  </div>
 <% end %>

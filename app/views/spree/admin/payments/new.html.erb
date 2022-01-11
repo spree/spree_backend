@@ -1,9 +1,5 @@
 <%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :payments } %>
 
-<% content_for :page_title do %>
-  / <%= Spree.t(:new_payment) %>
-<% end %>
-
 <% if @payment_methods.any? %>
   <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @payment } %>
 
@@ -18,8 +14,9 @@
   <% end %>
 
 <% else %>
-  <div class="alert alert-info">
+  <div class="text-center m-5">
     <%= Spree.t(:cannot_create_payment_without_payment_methods) %>
+    <br />
     <%= link_to Spree.t(:please_define_payment_methods), spree.admin_payment_methods_url %>
   </div>
 <% end %>

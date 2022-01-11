@@ -72,7 +72,7 @@
            data-alt-format="<%= Spree.t(:fpr_human_friendly_date_time_format, scope: 'date_picker', default: 'M j, Y H:i') %>"
            data-max-date="<%= @promotion.expires_at %>">
         <%= f.datetime_field :starts_at,
-                             class: 'form-control shadow-none',
+                             class: 'form-control',
                              placeholder: Spree.t('starting_from'),
                              'data-input':'' %>
 
@@ -89,7 +89,7 @@
            data-min-date="<%= @promotion.starts_at %>">
         <%= f.datetime_field :expires_at,
                               placeholder:Spree.t('ends_at'),
-                              class: 'form-control shadow-none',
+                              class: 'form-control',
                               'data-input':'' %>
 
         <%= render partial: 'spree/admin/shared/cal_close' %>

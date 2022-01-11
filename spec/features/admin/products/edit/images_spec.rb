@@ -27,7 +27,9 @@ describe 'Product Images', type: :feature, js: true do
       click_button 'Create'
       expect(page).to have_content('successfully created!')
 
-      click_icon(:edit)
+      within '.table' do
+        click_icon(:edit)
+      end
       fill_in 'image_alt', with: 'ruby on rails t-shirt'
       click_button 'Update'
       expect(page).to have_content('successfully updated!')
@@ -80,9 +82,6 @@ describe 'Product Images', type: :feature, js: true do
       within('thead') do
         expect(page).not_to have_content('Variant')
       end
-
-      # ensure correct cell count
-      expect(page).to have_css('thead th', count: 3)
     end
   end
 end

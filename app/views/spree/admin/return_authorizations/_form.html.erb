@@ -1,9 +1,9 @@
 <% allow_return_item_changes = !@return_authorization.customer_returned_items? %>
 
 <div data-hook="admin_return_authorization_form_fields">
-<div class="table-responsive">
-  <table class="table table-condensed table-bordered return-items-table">
-    <thead>
+<div class="table-responsive border rounded bg-white">
+  <table class="table table-condensed border rounded return-items-table">
+    <thead class="bg-light text-muted">
       <tr data-hook="rma_header">
         <th>
           <% if allow_return_item_changes %>

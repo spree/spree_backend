@@ -3,8 +3,9 @@ require 'spec_helper'
 describe 'Product Properties', type: :feature, js: true do
   stub_authorization!
 
+  let!(:product) { create(:product, stores: Spree::Store.all) }
+
   before do
-    create(:product, stores: Spree::Store.all)
     visit spree.admin_products_path
   end
 
@@ -12,12 +13,12 @@ describe 'Product Properties', type: :feature, js: true do
     it 'allows admin to create a new property' do
       within_row(1) { click_icon :edit }
 
-      within('#sidebar') { click_link 'Properties' }
+      within('#tabs') { click_link 'Properties' }
       fill_in 'product_product_properties_attributes_0_property_name', with: 'Material'
       fill_in 'product_product_properties_attributes_0_value', with: 'Leather'
       click_button 'Update'
 
-      within('#sidebar') { click_link 'Properties' }
+      expect(page).to have_current_path(spree.admin_product_product_properties_path(product))
       expect(page).to have_content('Add Product Properties')
       expect(page).to have_content('SHOW PROPERTY')
       expect(page).to have_selector("input[value='Material']")
@@ -28,13 +29,13 @@ describe 'Product Properties', type: :feature, js: true do
     it 'allows admin to create a new property and not show the property on the storefront' do
       within_row(1) { click_icon :edit }
 
-      within('#sidebar') { click_link 'Properties' }
+      within('#tabs') { click_link 'Properties' }
       fill_in 'product_product_properties_attributes_0_property_name', with: 'gtin'
       fill_in 'product_product_properties_attributes_0_value', with: '9020188287332'
       find(:css, "#product_product_properties_attributes_0_show_property").set(false)
       click_button 'Update'
 
-      within('#sidebar') { click_link 'Properties' }
+      expect(page).to have_current_path(spree.admin_product_product_properties_path(product))
       expect(page).to have_selector("input[value='gtin']")
       expect(page).to have_selector("input[value='9020188287332']")
       expect(page).to have_field('product_product_properties_attributes_0_show_property', checked: false)

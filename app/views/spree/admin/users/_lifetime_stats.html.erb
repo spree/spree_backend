@@ -1,10 +1,11 @@
+<%= content_for(:sidebar) do %>
 <div data-hook="admin_user_lifetime_stats" class="card mb-3">
   <div class="card-header">
-    <h1 class="card-title mb-0 h5">
+    <h1 class="card-title mb-0 h6">
       <%= Spree.t(:lifetime_stats) %>
     </h1>
   </div>
-  <div class="table-responsive">
+  <div class="table-responsive border-0 rounded bg-white">
     <table class="table" id="user-lifetime-stats" data-hook>
       <tr>
         <td width="30%"><%= Spree.t(:total_sales) %>:</td>
@@ -41,3 +42,4 @@
     </table>
   </div>
 </div>
+<% end %>

@@ -39,7 +39,7 @@ describe 'Shipments', type: :feature do
 
   context 'moving variants between shipments', js: true do
     before do
-      create(:stock_location, name: 'LA')
+      create(:stock_location, name: 'LA', propagate_all_variants: true) # we need to make sure all order variants are available in this stock location
       visit spree.admin_orders_path
       within_row(1) do
         click_link 'R100'
@@ -53,7 +53,7 @@ describe 'Shipments', type: :feature do
       # Non existing shipment
       within_row(1) { click_icon :split }
       select2 'LA', css: '.stock-item-split', search: true, match: :first
-      click_icon :save
+      within_row(2) { click_icon :save }
       wait_for_ajax
 
       expect(page).to have_css('#order-form-wrapper div', id: /^shipment_\d$/).exactly(2).times

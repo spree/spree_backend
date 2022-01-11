@@ -43,20 +43,23 @@ module Spree
       private
 
       def load_stock_locations
-        @stock_locations = Spree::StockLocation.active.order_default
+        @stock_locations = stock_locations_scope.active.order_default
       end
 
       def source_location
-        @source_location ||= params.key?(:transfer_receive_stock) ? nil :
-                               StockLocation.find(params[:transfer_source_location_id])
+        @source_location ||= params.key?(:transfer_receive_stock) ? nil : stock_locations_scope.find(params[:transfer_source_location_id])
       end
 
       def destination_location
-        @destination_location ||= StockLocation.find(params[:transfer_destination_location_id])
+        @destination_location ||= stock_locations_scope.find(params[:transfer_destination_location_id])
       end
 
       def any_missing_variants?(variant_ids)
         source_location&.stock_items&.where(variant_id: variant_ids, count_on_hand: 0)&.any?
+      end
+
+      def stock_locations_scope
+        Spree::StockLocation.accessible_by(current_ability, :update)
       end
     end
   end

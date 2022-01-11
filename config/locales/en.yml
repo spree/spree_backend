@@ -9,6 +9,8 @@ en:
       response_code: Response Code
       execution_time: Execution Time
       request_errors: Request Errors
+      more_filters: More Filters
+      kind: Kind
       cms:
         all_pages: All Pages
         add_new_page: Add New Page
@@ -104,6 +106,9 @@ en:
           digital_asset_link_expire_time:
             download_link_expire_time: Download Link Expire Time
             link_expire_time: Set the expire time of each download link. (seconds).
+      product_kinds:
+        physical: Physical
+        digital: Digital
       tab:
         configuration: Configuration
         content: Content
@@ -230,6 +235,7 @@ en:
         used_in: Used In
         you_have_no_menus: You have no Menus, click the Add New Menu button to create your first Menu.
         this_link_takes_you_to_your_stores_home_page: This link takes you to your stores home page.
+      settings: Settings
       utilities:
         preview: Preview %{name}
       webhooks_subscribers:
@@ -285,3 +291,7 @@ en:
         wished_items: Wished Items
         wishlists: Wishlists
         zones: Zones
+      display_on:
+        both: All
+        front_end: Storefront
+        back_end: Admin Panel

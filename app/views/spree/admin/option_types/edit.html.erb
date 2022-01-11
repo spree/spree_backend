@@ -14,14 +14,14 @@
 <%= form_for [:admin, @option_type] do |f| %>
   <div class="card mb-3">
     <div class="card-header">
-      <h1 class="card-title mb-0 h5">
+      <h1 class="card-title mb-0 h6">
         <%= Spree.t(:option_values) %>
       </h1>
     </div>
     <div class="card-body">
       <%= render partial: 'form', locals: { f: f } %>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive border rounded bg-white">
       <table class="table table-condensed sortable" data-hook data-sortable-link="<%= update_values_positions_admin_option_types_url %>">
         <thead data-hook="option_header">
           <tr>

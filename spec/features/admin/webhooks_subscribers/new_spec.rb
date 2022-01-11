@@ -10,9 +10,6 @@ describe 'Webhooks::Subscriber#new', type: :feature do
         click_on 'New Webhooks Subscriber'
       end
 
-      within('h1') do
-        expect(page).to have_text 'New Webhooks Subscriber'
-      end
       expect(page).to have_field(id: 'webhooks_subscriber_url', disabled: false)
       expect(page).to have_field(id: 'webhooks_subscriber_active', disabled: false)
       expect(page).to have_field(name: 'subscribe_to_all_events', checked: true)

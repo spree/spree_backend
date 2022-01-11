@@ -6,10 +6,10 @@
     <%= render 'add_stock_form' %>
   </div>
 <% end %>
-<div class="card mb-3">
-  <div class="table-responsive">
+<div class="mb-3">
+  <div class="table-responsive border rounded bg-white">
     <table class="table" id="listing_product_stock">
-      <thead>
+      <thead class="bg-light text-muted">
         <tr data-hook="admin_product_stock_management_index_headers">
           <th colspan="2"><%= Spree.t(:variant) %></th>
           <th colspan="3"><%= Spree.t(:stock_location_info) %></th>
@@ -41,8 +41,8 @@
               </td>
 
               <td colspan="3" class="stock_location_info">
-                <table class="table table-bordered mb-0">
-                  <thead>
+                <table class="table border rounded mb-0">
+                  <thead class="bg-light text-muted">
                     <th><%= Spree.t(:stock_location) %></th>
                     <th class="text-center"><%= Spree.t(:count_on_hand) %></th>
                     <th class="text-center"><%= Spree.t(:backorderable) %></th>

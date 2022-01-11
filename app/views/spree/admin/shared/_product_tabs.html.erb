@@ -1,10 +1,10 @@
 <% content_for :page_title do %>
-  <%= link_to Spree.t(:products), admin_products_path %> /
+  <%= page_header_back_button spree.admin_products_path %>
   <%= @product.name %>
 <% end %>
 
-<% content_for :sidebar do %>
-  <ul class="nav flex-column nav-pills" data-hook="admin_product_tabs">
+<% content_for(:tabs) do %>
+  <ul class="nav nav-pills w-100 flex-column flex-sm-row mb-4 border-bottom pb-3" data-hook="admin_product_tabs">
     <%= content_tag :li do %>
       <%= link_to_with_icon 'edit.svg',
         Spree.t(:details),
@@ -38,7 +38,7 @@
     <% end if can?(:admin, Spree::ProductProperty) && !@product.deleted? %>
 
     <%= content_tag :li do %>
-      <%= link_to_with_icon 'items.svg',
+      <%= link_to_with_icon 'box-seam.svg',
         Spree.t(:stock),
         stock_admin_product_url(@product),
         class: "nav-link #{'active' if current == :stock}" %>
@@ -46,7 +46,7 @@
     <% end if can?(:admin, Spree::StockItem) && !@product.deleted? %>
 
     <%= content_tag :li do %>
-      <%= link_to_with_icon 'money.svg',
+      <%= link_to_with_icon 'currency-exchange.svg',
         Spree.t(:prices),
         admin_product_prices_path(@product),
         class: "nav-link #{'active' if current == :prices}" %>
@@ -54,7 +54,7 @@
     <% end if can?(:admin, Spree::Price) && !@product.deleted? %>
 
     <%= content_tag :li do %>
-      <%= link_to_with_icon 'hdd.svg',
+      <%= link_to_with_icon 'download.svg',
         Spree.t('admin.digitals.digital_assets'),
         admin_product_digitals_path(@product),
         class: "nav-link #{'active' if current == :digitals} #{current}" %>

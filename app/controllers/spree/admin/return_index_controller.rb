@@ -2,12 +2,12 @@ module Spree
   module Admin
     class ReturnIndexController < BaseController
       def return_authorizations
-        collection(Spree::ReturnAuthorization.for_store(current_store))
+        collection(Spree::ReturnAuthorization.for_store(current_store).accessible_by(current_ability, :index))
         respond_with(@collection)
       end
 
       def customer_returns
-        collection(current_store.customer_returns)
+        collection(current_store.customer_returns.accessible_by(current_ability, :index))
         respond_with(@collection)
       end
 
@@ -22,6 +22,11 @@ module Spree
         @search = resource.ransack(params[:q])
         per_page = params[:per_page] || Spree::Backend::Config[:admin_customer_returns_per_page]
         @collection = @search.result.order(created_at: :desc).page(params[:page]).per(per_page)
+      end
+
+      # this is needed for proper permissions checking
+      def model_class
+        action == :customer_returns ? Spree::CustomerReturn : Spree::ReturnAuthorization
       end
     end
   end

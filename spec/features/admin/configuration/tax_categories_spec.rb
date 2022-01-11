@@ -5,14 +5,13 @@ describe 'Tax Categories', type: :feature do
 
   before do
     visit spree.admin_path
-    click_link 'Configuration'
+    click_link 'Settings'
   end
 
   context 'admin visiting tax categories list' do
     it 'displays the existing tax categories' do
       create(:tax_category, name: 'Clothing', tax_code: 'CL001', description: 'For Clothing')
       click_link 'Tax Categories'
-      within('h1') { expect(page).to have_content('Tax Categories') }
       within_row(1) do
         expect(column_text(1)).to eq('Clothing')
         expect(column_text(2)).to eq('CL001')
