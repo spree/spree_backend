@@ -1,6 +1,5 @@
 aside#main-sidebar {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  background-color: $gray-100;
   border-right: 1px solid $gray-200;
   width: 100%;
   left: -100%;
@@ -27,16 +26,17 @@ body.sidebar-open {
 .sidebar-submenu-item.pl-5 {
   padding-left: 2.6rem !important;
 }
-a.sidebar-submenu-item:hover {
+a.sidebar-submenu-item:hover, a.sidebar-submenu-item:focus {
     text-decoration: none;
-    background-color: $gray-200;
-    cursor: pointer
+    color: theme-color('primary') !important;
+    cursor: pointer;
 }
 
 ul.active-option {
-  background-color: $gray-200;
+  background-color: $gray-100;
+  border-radius: $border-radius;
   .drop-menu-indicator {
-    transform: rotate(-90deg);
+    transform: rotate(90deg);
   }
 }
 
@@ -56,7 +56,7 @@ ul.nav-sidebar {
 
       &[aria-expanded="true"] {
         .drop-menu-indicator {
-          transform: rotate(-90deg);
+          transform: rotate(90deg);
           transition: .3s ease-in-out;
         }
       }

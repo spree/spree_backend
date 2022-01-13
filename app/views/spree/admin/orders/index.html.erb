@@ -119,4 +119,4 @@
   </div>
 <% end %>
 
-<%= render 'spree/admin/shared/index_table_options', collection: @orders, simple: true %>
+<%= render 'spree/admin/shared/index_table_options', collection: @orders, simple: true if @orders.any? %>
