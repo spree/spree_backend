@@ -6,7 +6,7 @@ module Spree
       before_action :initialize_order_events
       before_action :load_order, only: %i[
         edit update cancel resume approve resend open_adjustments
-        close_adjustments cart channel set_channel
+        close_adjustments cart channel set_channel special_instructions
       ]
 
       respond_to :html
@@ -152,6 +152,8 @@ module Spree
 
         redirect_to channel_admin_order_url(@order)
       end
+
+      def special_instructions; end
 
       private
 

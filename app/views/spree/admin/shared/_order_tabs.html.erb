@@ -89,5 +89,14 @@
           class: "#{'active' if current == :state_changes} nav-link" %>
       </li>
     <% end %>
+
+    <% if @order.special_instructions.present? %>
+      <li data-hook='admin_order_tabs_state_changes'>
+        <%= link_to_with_icon 'info-circle.svg',
+            Spree.t(:special_instructions),
+            spree.special_instructions_admin_order_url(@order),
+            class: "#{'active' if current == :special_instructions} nav-link" %>
+      </li>
+    <% end %>
   </ul>
 <% end %>

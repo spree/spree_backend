@@ -148,6 +148,8 @@ en:
           cancel: cancel
           resume: resume
           resend: Resend
+        special_instructions_provided: 'Special instructions provided by the customer'
+        no_special_instructions: 'There are no special instructions provided by the customer.'
       orders:
         cart: Cart
       oauth_applications:

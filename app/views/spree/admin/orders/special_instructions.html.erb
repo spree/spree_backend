@@ -1,0 +1,16 @@
+<%= render 'spree/admin/shared/order_tabs', current: :special_instructions %>
+
+<% if @order.special_instructions.present? %>
+  <div class="card bg-light mb-3">
+    <div class="card-header">
+      <%= spree_icon 'info-circle-fill.svg' %> <%= Spree.t('admin.order.special_instructions_provided') %>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= @order.special_instructions %></p>
+    </div>
+  </div>
+<% else %>
+ <p><%= Spree.t('admin.order.no_special_instructions') %></p>
+<% end %>
+
+<%= render 'spree/admin/shared/order_summary' %>
