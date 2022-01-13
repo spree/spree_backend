@@ -10,10 +10,42 @@ describe 'Stores admin', type: :feature do
   before { store.update!(checkout_zone: zone) }
 
   describe 'creating store' do
-    it 'sets default currency value', js: true do
-      visit spree.new_admin_store_path
-      expect(page).to have_selector(:id, 'select2-store_default_currency-container', text: 'United States Dollar (USD)')
-      expect(page).to have_field('store_checkout_zone_id', text: 'No Limits')
+    context 'setting default values', js: true do
+      it 'sets default currency value' do
+        visit spree.new_admin_store_path
+        expect(page).to have_selector(:id, 'select2-store_default_currency-container', text: 'United States Dollar (USD)')
+      end
+
+      it 'sets default checkout zone' do
+        visit spree.new_admin_store_path
+        expect(page).to have_field('store_checkout_zone_id', text: 'No Limits')
+      end
+
+      context 'default country' do
+        let!(:default_country) { create(:country) }
+
+        context 'when default store has default_country_id' do
+          before do
+            Spree::Store.default.update(default_country_id: default_country.id)
+            visit spree.new_admin_store_path
+          end
+
+          it 'sets default country of new Store to the default store\'s default country' do
+            expect(page).to have_field('store_default_country_id', text: default_country.to_s)
+          end
+        end
+
+        context 'when default store does not have default_country_id' do
+          before do
+            Spree::Store.default.update(default_country_id: nil)
+            visit spree.new_admin_store_path
+          end
+
+          it 'sets default country of new Store to the default store\'s default country' do
+            expect(page).to have_field('store_default_country_id', text: 'United States')
+          end
+        end
+      end
     end
 
     it 'saving store' do

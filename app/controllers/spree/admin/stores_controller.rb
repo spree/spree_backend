@@ -86,7 +86,7 @@ module Spree
       end
 
       def set_default_country_id
-        @store.default_country_id = Spree::Config[:default_country_id]
+        @store.default_country_id ||= Spree::Store.default.default_country_id || Spree::Country.find_by(iso: "US")&.id
       end
     end
   end
