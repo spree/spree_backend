@@ -13,6 +13,10 @@
     </button>
   </div>
 
+  <ul class="nav nav-sidebar" id="sidebarDashboard">
+    <%= tab Spree.t('admin.home'), url: spree.admin_dashboard_path, match_path: '/dashboard', icon: 'house-door-fill.svg' %>
+  </ul>
+
   <% if can? :admin, Spree::Order %>
     <ul class="nav nav-sidebar" id="sidebarOrder">
       <%= tab *Spree::Backend::Configuration::ORDER_TABS, url: admin_orders_path, icon: 'inbox-fill.svg' %>

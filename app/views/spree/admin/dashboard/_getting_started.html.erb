@@ -1,0 +1,101 @@
+<h5 class="mb-3">Let's get you started</h5>
+
+<div class="row mb-3">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action <% if @products_added %>list-group-item-info<% elsif @active_tab == 'products' %>active<% end %>" id="list-products-list" data-toggle="list" href="#list-products" role="tab" aria-controls="products">
+        <% if @products_added %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+        <% else %>
+          <%= svg_icon name: 'tags', width: 20, height: 20, classes: "mr-3" %>
+        <% end %>
+        Add products
+      </a>
+      <a class="list-group-item list-group-item-action <% if @shipping_methods_added %>list-group-item-info<% elsif @active_tab == 'shipping' %>active<% end %>" id="list-shipping-list" data-toggle="list" href="#list-shipping" role="tab" aria-controls="shipping">
+        <% if @shipping_methods_added %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+        <% else %>
+          <%= svg_icon name: 'truck', width: 20, height: 20, classes: "mr-3" %>
+        <% end %>
+        Setup shipping
+      </a>
+      <a class="list-group-item list-group-item-action <% if @payment_methods_added %>list-group-item-info<% elsif @active_tab == 'payments' %>active<% end %>" id="list-payments-list" data-toggle="list" href="#list-payments" role="tab" aria-controls="payments">
+        <% if @payment_methods_added %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+        <% else %>
+          <%= svg_icon name: 'cash-coin', width: 20, height: 20, classes: "mr-3" %>
+        <% end %>
+        Setup payment methods
+      </a>
+      <a class="list-group-item list-group-item-action <% if @taxes_added %>list-group-item-info<% elsif @active_tab == 'taxes' %>active<% end %>" id="list-taxes-list" data-toggle="list" href="#list-taxes" role="tab" aria-controls="taxes">
+        <% if @taxes_added %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+        <% else %>
+          <%= svg_icon name: 'receipt', width: 20, height: 20, classes: "mr-3" %>
+        <% end %>
+        Setup taxes
+      </a>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade <% if @active_tab == 'products'%>show active<% end %>" id="list-products" role="tabpanel" aria-labelledby="list-products-list">
+        <% if @products_added %>
+          <p>
+            You have added <strong><%= current_store.products.count %> products</strong> so far - good job!</p>
+        <% else %>
+          <p>
+            You can add products manully through API or import from a CSV file.
+          </p>
+          <%= link_to_with_icon 'add.svg', 'Add products', spree.admin_products_path, class: 'btn btn-success btn-sm mb-2' %>
+        <% end %>
+      </div>
+      <div class="tab-pane fade <% if @active_tab == 'shipping'%>show active<% end %>" id="list-shipping" role="tabpanel" aria-labelledby="list-shipping-list">
+        <% if @shipping_methods_added %>
+          <p>
+            You have setup shipping for:
+            <% @shippable_countries.each do |country| %>
+              <strong class="mr-2">
+                <%= country.name %>
+                <%= flag_icon(country.iso, class: 'border border-gray rounded') %>
+              </strong>
+            <% end %>
+          </p>
+        <% else %>
+          <p>
+            You can add multiple shipping methods, different for each country, continent or region.
+          </p>
+          <%= link_to_with_icon 'settings.svg', 'Setup shipping', spree.admin_shipping_methods_path, class: 'btn btn-primary btn-sm mb-2' %>
+        <% end %>
+      </div>
+      <div class="tab-pane fade <% if @active_tab == 'payments'%>show active<% end %>" id="list-payments" role="tabpanel" aria-labelledby="list-payments-list">
+        <% if @payment_methods_added %>
+          <p>
+            You're ready to accept payments!
+          </p>
+        <% else %>
+          <p>
+            You can setup multiple payment methods such as Stripe, PayPal, ApplePay, etc.
+          </p>
+          <%= link_to_with_icon 'settings.svg', 'Setup payment methods', spree.admin_payment_methods_path, class: 'btn btn-primary btn-sm mb-2' %>
+        <% end %>
+      </div>
+      <div class="tab-pane fade <% if @active_tab == 'taxes' %>show active<% end %>" id="list-taxes" role="tabpanel" aria-labelledby="list-taxes-list">
+        <% if @taxes_added %>
+          <p>
+            You're tax calculation is setup!
+          </p>
+        <% else %>
+          <p>
+            You can use tax services such as TaxJar or setup tax calculation manually
+          </p>
+          <%= link_to_with_icon 'settings.svg', 'Setup tax calculation', spree.admin_payment_methods_path, class: 'btn btn-primary btn-sm mb-2' %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
