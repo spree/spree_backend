@@ -142,7 +142,7 @@ describe 'Properties', type: :feature, js: true do
       fill_in 'product_product_properties_attributes_0_property_name', with: 'A Property'
       fill_in 'product_product_properties_attributes_0_value', with: 'A Value'
       click_button 'Update'
-      within('#tabs') do
+      within('#spreePageTabs') do
         click_link 'Properties'
       end
     end
@@ -156,7 +156,7 @@ describe 'Properties', type: :feature, js: true do
     end
 
     def check_property_row_count(expected_row_count)
-      within('#tabs') do
+      within('#spreePageTabs') do
         click_link 'Properties'
       end
       expect(page).to have_css('tbody#sortVert tr', count: expected_row_count)

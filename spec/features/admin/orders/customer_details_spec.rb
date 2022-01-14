@@ -69,8 +69,7 @@ describe 'Customer Details', type: :feature, js: true do
       end
 
       allow(Spree.user_class).to receive(:find_by).and_return(user)
-      visit spree.admin_orders_path
-      within('table#listing_orders') { click_icon(:edit) }
+      visit spree.edit_admin_order_path(order)
     end
 
     context 'selected country has no state' do

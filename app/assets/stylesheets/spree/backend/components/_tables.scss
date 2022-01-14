@@ -1,9 +1,8 @@
 table.table {
-  font-size: $font-size-sm;
   margin-bottom: 0;
 
   th {
-    padding: 0.5rem;
+    padding: 0.75rem !important;
     border-bottom: 0;
 
     &.handel-head {

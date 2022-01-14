@@ -11,6 +11,7 @@ en:
       request_errors: Request Errors
       more_filters: More Filters
       kind: Kind
+      home: Home
       cms:
         all_pages: All Pages
         add_new_page: Add New Page
