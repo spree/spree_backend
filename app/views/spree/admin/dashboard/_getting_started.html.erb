@@ -45,7 +45,7 @@
             You have added <strong><%= current_store.products.count %> products</strong> so far - good job!</p>
         <% else %>
           <p>
-            You can add products manully through API or import from a CSV file.
+            You can add products manually through API or import from a CSV file.
           </p>
           <%= link_to_with_icon 'add.svg', 'Add products', spree.admin_products_path, class: 'btn btn-success btn-sm mb-2' %>
         <% end %>
