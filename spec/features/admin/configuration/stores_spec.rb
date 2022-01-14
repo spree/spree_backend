@@ -63,7 +63,7 @@ describe 'Stores admin', type: :feature do
 
       click_button 'Create'
 
-      expect(page).to have_current_path spree.admin_orders_path
+      expect(page).to have_current_path spree.admin_path
       expect(page).to have_content('Spree Example Test (spree)')
       expect(Spree::Store.count).to eq 2
       store = Spree::Store.last
