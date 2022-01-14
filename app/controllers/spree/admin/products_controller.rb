@@ -3,7 +3,7 @@ module Spree
     class ProductsController < ResourceController
       include Spree::Admin::ProductConcern
 
-      helper 'spree/products'
+      helper 'spree/admin/products'
 
       before_action :load_data, except: :index
       before_action :set_product_defaults, only: :new
