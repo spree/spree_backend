@@ -1,12 +1,14 @@
 require 'spec_helper'
 
 describe Spree::Admin::DashboardController do
+  render_views
+
   stub_authorization!
 
   describe '#show' do
-    it 'redirect to orders list' do
+    it 'renders welcome page' do
       get :show
-      expect(response).to redirect_to('/admin/orders')
+      expect(response).to have_http_status(200)
     end
   end
 end

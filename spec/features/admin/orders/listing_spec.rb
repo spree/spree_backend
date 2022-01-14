@@ -98,6 +98,8 @@ describe 'Orders Listing', type: :feature do
 
       expect(current_url).to match('another-store.lvh.me')
 
+      visit spree.admin_orders_path
+
       expect(page).to have_content('R300')
       expect(page).to have_content('R400')
 
