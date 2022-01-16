@@ -23,7 +23,7 @@ describe 'Product Properties', type: :feature, js: true do
       expect(page).to have_content('SHOW PROPERTY')
       expect(page).to have_selector("input[value='Material']")
       expect(page).to have_selector("input[value='Leather']")
-      expect(page).to have_field('product_product_properties_attributes_0_show_property', checked: true)
+      expect(page).to have_field('product_product_properties_attributes_0_show_property', checked: true, visible: :all)
     end
 
     it 'allows admin to create a new property and not show the property on the storefront' do
@@ -32,13 +32,13 @@ describe 'Product Properties', type: :feature, js: true do
       within('#spreePageTabs') { click_link 'Properties' }
       fill_in 'product_product_properties_attributes_0_property_name', with: 'gtin'
       fill_in 'product_product_properties_attributes_0_value', with: '9020188287332'
-      find(:css, "#product_product_properties_attributes_0_show_property").set(false)
+      find(:css, '#product_product_properties_attributes_0_show_property', visible: :all).set(false)
       click_button 'Update'
 
       expect(page).to have_current_path(spree.admin_product_product_properties_path(product))
       expect(page).to have_selector("input[value='gtin']")
       expect(page).to have_selector("input[value='9020188287332']")
-      expect(page).to have_field('product_product_properties_attributes_0_show_property', checked: false)
+      expect(page).to have_field('product_product_properties_attributes_0_show_property', checked: false, visible: :all)
     end
   end
 end
