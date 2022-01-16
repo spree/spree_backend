@@ -5,10 +5,10 @@
       <%= f.hidden_field :id %>
     </td>
   <% else %>
-  <td class="dummy-move-handle">
-    <%= render "spree/admin/shared/grab_handle" %>
-    <%= f.hidden_field :id %>
-  </td>
+    <td class="dummy-move-handle">
+      <%= render "spree/admin/shared/grab_handle" %>
+      <%= f.hidden_field :id %>
+    </td>
   <% end %>
   <td class='property_name'>
     <%= f.text_field :property_name, class: 'autocomplete form-control', required: f.object.persisted? %>
