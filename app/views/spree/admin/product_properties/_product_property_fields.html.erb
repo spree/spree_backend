@@ -11,10 +11,10 @@
   </td>
   <% end %>
   <td class='property_name'>
-    <%= f.text_field :property_name, class: 'autocomplete form-control', required: f.object.persisted? && can?(:edit, f.object) %>
+    <%= f.text_field :property_name, class: 'autocomplete form-control', required: f.object.persisted? %>
   </td>
   <td class='value'>
-    <%= f.text_field :value, class: 'form-control', required: f.object.persisted? && can?(:edit, f.object) %>
+    <%= f.text_field :value, class: 'form-control', required: f.object.persisted? %>
   </td>
   <td class="show_property text-center">
     <div class="custom-control custom-checkbox">
