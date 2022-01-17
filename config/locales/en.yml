@@ -9,7 +9,7 @@ en:
       response_code: Response Code
       execution_time: Execution Time
       request_errors: Request Errors
-      more_filters: More Filters
+      filters: Filters
       kind: Kind
       home: Home
       cms:
