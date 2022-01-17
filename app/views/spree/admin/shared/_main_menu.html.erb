@@ -53,7 +53,7 @@
     </ul>
   <% end %>
 
-  <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) %>
+  <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) && can?(:index, Spree::Vendor) %>
     <ul class="nav nav-sidebar" id="sidebarOrganizations">
       <%= main_menu_tree Spree.t(:organizations), icon: "building.svg", sub_menu: "organizations", url: "#sidebar-organizations" %>
     </ul>
