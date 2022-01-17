@@ -51,7 +51,7 @@ describe 'Orders Listing', type: :feature do
       within_row(1) do
         expect(column_text(1)).to eq 'R100'
         expect(find('td:nth-child(3)')).to have_css '.badge-considered_risky'
-        expect(column_text(4)).to eq 'cart'
+        expect(column_text(4)).to eq 'balance due'
       end
 
       within_row(2) do
@@ -63,24 +63,6 @@ describe 'Orders Listing', type: :feature do
     it 'does not show the order that belongs to the other_store' do
       expect(page).not_to have_content('R300')
       expect(page).not_to have_content('R400')
-    end
-
-    it 'is able to sort the orders listing' do
-      # default is completed_at desc
-      within_row(1) { expect(page).to have_content('R100') }
-      within_row(2) { expect(page).to have_content('R200') }
-
-      click_link 'Completed At'
-
-      # Completed at desc
-      within_row(1) { expect(page).to have_content('R200') }
-      within_row(2) { expect(page).to have_content('R100') }
-
-      within('table#listing_orders thead') { click_link 'Number' }
-
-      # number asc
-      within_row(1) { expect(page).to have_content('R100') }
-      within_row(2) { expect(page).to have_content('R200') }
     end
   end
 
@@ -124,7 +106,7 @@ describe 'Orders Listing', type: :feature do
 
     it 'returns both complete and incomplete orders when only complete orders is not checked' do
       Spree::Order.create! email: 'incomplete@example.com', completed_at: nil, state: 'cart'
-      click_on 'More Filters'
+      click_on 'Filters'
       uncheck 'q_completed_at_not_null'
       click_on 'Filter Results'
 
@@ -132,23 +114,8 @@ describe 'Orders Listing', type: :feature do
       expect(page).to have_content('incomplete@example.com')
     end
 
-    it 'is able to filter risky orders' do
-      # Check risky and filter
-      check 'q_considered_risky_eq'
-      click_on 'Filter Results'
-
-      # Insure checkbox still checked
-      expect(page).to have_checked_field(id: 'q_considered_risky_eq')
-      # Insure we have the risky order, R100
-      within_row(1) do
-        expect(page).to have_content('R100')
-      end
-      # Insure the non risky order is not present
-      expect(page).not_to have_content('R200')
-    end
-
     it 'is able to filter on variant_sku' do
-      click_on 'More Filters'
+      click_on 'Filters'
       fill_in 'q_line_items_variant_sku_eq', with: order1.line_items.first.variant.sku
       click_on 'Filter Results'
 
@@ -173,7 +140,7 @@ describe 'Orders Listing', type: :feature do
       it 'is able to go from page to page for incomplete orders' do
         Spree::Order.destroy_all
         2.times { Spree::Order.create! email: 'incomplete@example.com', completed_at: nil, state: 'cart' }
-        click_on 'More Filters'
+        click_on 'Filters'
         uncheck 'q_completed_at_not_null'
         click_on 'Filter Results'
         within('.pagination', match: :first) do
@@ -257,7 +224,7 @@ describe 'Orders Listing', type: :feature do
       end
 
       it 'can be used with search filtering' do
-        click_on 'More Filters'
+        click_on 'Filters'
         fill_in 'q_number_cont', with: 'R200'
         click_on 'Filter Results'
         expect(page).not_to have_content('R100')
@@ -285,18 +252,18 @@ describe 'Orders Listing', type: :feature do
       end
 
       it 'renders selected filters' do
-        click_on 'More Filters'
+        click_on 'Filters'
 
         within('#table-filter') do
           select2 'cart', from: 'Status'
           select2 'paid', from: 'Payment State'
           select2 'pending', from: 'Shipment State'
           fill_in 'q_number_cont', with: 'R100'
-          fill_in 'q_email_cont', with: 'john_smith@example.com'
+          fill_in 'q_email_eq', with: 'john_smith@example.com'
           fill_in 'q_line_items_variant_sku_eq', with: 'BAG-00001'
           select2 'Promo', from: 'Promotion'
-          fill_in 'q_bill_address_firstname_start', with: 'John'
-          fill_in 'q_bill_address_lastname_start', with: 'Smith'
+          fill_in 'q_bill_address_firstname_eq', with: 'John'
+          fill_in 'q_bill_address_lastname_eq', with: 'Smith'
           select2 'spree', from: 'Channel'
         end
 
@@ -312,8 +279,8 @@ describe 'Orders Listing', type: :feature do
           expect(page).to have_content('Status: cart')
           expect(page).to have_content('Payment State: paid')
           expect(page).to have_content('Shipment State: pending')
-          expect(page).to have_content('First Name Begins With: John')
-          expect(page).to have_content('Last Name Begins With: Smith')
+          expect(page).to have_content('First Name: John')
+          expect(page).to have_content('Last Name: Smith')
           expect(page).to have_content('Promotion: Promo')
           expect(page).to have_content('Email: john_smith@example.com')
           expect(page).to have_content('SKU: BAG-00001')

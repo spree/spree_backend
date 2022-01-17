@@ -151,6 +151,9 @@ en:
           resend: Resend
       orders:
         cart: Cart
+        all_orders: All Orders
+        draft_orders: Draft Orders
+        abandoned_checkouts: Abandoned Checkouts
       oauth_applications:
         list: oAuth applications
         new: New oAuth application

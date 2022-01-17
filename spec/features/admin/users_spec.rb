@@ -127,14 +127,13 @@ describe 'Users', type: :feature do
       before { visit current_path } # For Rails turbo JavaScript testing.
 
       it 'renders selected filters' do
-        click_on 'More Filters'
+        click_on 'Filters'
         wait_for { !page.has_text?('Search') }
 
         within('#table-filter') do
-          fill_in 'q_email_cont', with: 'a@example.com'
-          fill_in 'q_bill_address_firstname_cont', with: 'John'
-          fill_in 'q_bill_address_lastname_cont', with: 'Doe'
-          fill_in 'q_bill_address_company_cont', with: 'Company'
+          fill_in 'q_email_eq', with: 'a@example.com'
+          fill_in 'q_bill_address_firstname_eq', with: 'John'
+          fill_in 'q_bill_address_lastname_eq', with: 'Doe'
         end
 
         click_on 'Search'
@@ -144,7 +143,6 @@ describe 'Users', type: :feature do
           expect(page).to have_content('Email: a@example.com')
           expect(page).to have_content('First Name: John')
           expect(page).to have_content('Last Name: Doe')
-          expect(page).to have_content('Company: Company')
         end
       end
     end

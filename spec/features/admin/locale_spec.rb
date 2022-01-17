@@ -11,7 +11,7 @@ describe 'setting locale', type: :feature do
                                     },
                                     spree: {
                                       admin: {
-                                        tab: { orders: 'Ordres' }
+                                        orders: { all_orders: 'Tous les Ordres' }
                                       },
                                       listing_orders: 'Ordres'
                                     })
@@ -25,7 +25,7 @@ describe 'setting locale', type: :feature do
 
   it 'is in french' do
     visit spree.admin_path
-    click_link 'Ordres'
-    expect(page).to have_content('Ordres')
+    click_link 'Tous les Ordres'
+    expect(page).to have_content('Tous les Ordres')
   end
 end

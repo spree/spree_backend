@@ -9,10 +9,6 @@ describe 'Homepage', type: :feature do
         visit spree.admin_path
       end
 
-      it 'has a link to orders' do
-        expect(page).to have_link('Orders', href: '/admin/orders')
-      end
-
       it 'has a link to products' do
         expect(page).to have_link('Products', href: '/admin/products')
       end
@@ -50,6 +46,24 @@ describe 'Homepage', type: :feature do
             within('.sidebar') { expect(page).not_to have_content(Spree.version) }
           end
         end
+      end
+    end
+
+    context 'visiting the orders tab' do
+      before do
+        visit spree.admin_orders_path(q: { completed_at_not_null: '1' })
+      end
+
+      it 'has a link to all orders' do
+        within('.sidebar') { expect(page).to have_link('All Orders', href: '/admin/orders?q%5Bcompleted_at_not_null%5D=1') }
+      end
+
+      it 'has a link to draft orders' do
+        within('.sidebar') { expect(page).to have_link('Draft Orders', href: '/admin/orders?q%5Bcompleted_at_not_null%5D=false&q%5Bstate_eq%5D=cart') }
+      end
+
+      it 'has a link to abandoned checkouts' do
+        within('.sidebar') { expect(page).to have_link('Abandoned Checkouts', href: '/admin/orders?q%5Bcompleted_at_not_null%5D=false&q%5Bstate_in%5D%5B%5D=address&q%5Bstate_in%5D%5B%5D=delivery&q%5Bstate_in%5D%5B%5D=payment&q%5Bstate_in%5D%5B%5D=confirm') }
       end
     end
 
