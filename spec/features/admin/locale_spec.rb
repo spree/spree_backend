@@ -11,9 +11,8 @@ describe 'setting locale', type: :feature do
                                     },
                                     spree: {
                                       admin: {
-                                        orders: { all_orders: 'Tous les Ordres' }
-                                      },
-                                      listing_orders: 'Ordres'
+                                        orders: { all_orders: 'Tous Les Ordres' }
+                                      }
                                     })
     Spree::Backend::Config[:locale] = 'fr'
   end
@@ -25,7 +24,6 @@ describe 'setting locale', type: :feature do
 
   it 'is in french' do
     visit spree.admin_path
-    click_link 'Tous les Ordres'
-    expect(page).to have_content('Tous les Ordres')
+    expect(page.body).to have_content('Tous Les Ordres')
   end
 end

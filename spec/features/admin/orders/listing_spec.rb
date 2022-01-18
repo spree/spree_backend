@@ -104,14 +104,11 @@ describe 'Orders Listing', type: :feature do
       within('table#listing_orders') { expect(page).not_to have_content('R100') }
     end
 
-    it 'returns both complete and incomplete orders when only complete orders is not checked' do
+    it 'returns complete orders only' do
       Spree::Order.create! email: 'incomplete@example.com', completed_at: nil, state: 'cart'
       click_on 'Filters'
-      uncheck 'q_completed_at_not_null'
-      click_on 'Filter Results'
-
       expect(page).to have_content('R200')
-      expect(page).to have_content('incomplete@example.com')
+      expect(page).not_to have_content('incomplete@example.com')
     end
 
     it 'is able to filter on variant_sku' do
@@ -140,14 +137,14 @@ describe 'Orders Listing', type: :feature do
       it 'is able to go from page to page for incomplete orders' do
         Spree::Order.destroy_all
         2.times { Spree::Order.create! email: 'incomplete@example.com', completed_at: nil, state: 'cart' }
-        click_on 'Filters'
-        uncheck 'q_completed_at_not_null'
-        click_on 'Filter Results'
+        within('#main-sidebar') do
+          click_link 'Orders'
+          click_link 'Draft Orders'
+        end
         within('.pagination', match: :first) do
           click_link '2'
         end
         expect(page).to have_content('incomplete@example.com')
-        expect(page).to have_unchecked_field(id: 'q_completed_at_not_null')
       end
     end
 
@@ -259,11 +256,11 @@ describe 'Orders Listing', type: :feature do
           select2 'paid', from: 'Payment State'
           select2 'pending', from: 'Shipment State'
           fill_in 'q_number_cont', with: 'R100'
-          fill_in 'q_email_eq', with: 'john_smith@example.com'
+          fill_in 'q_email_cont', with: 'john_smith@example.com'
           fill_in 'q_line_items_variant_sku_eq', with: 'BAG-00001'
           select2 'Promo', from: 'Promotion'
-          fill_in 'q_bill_address_firstname_eq', with: 'John'
-          fill_in 'q_bill_address_lastname_eq', with: 'Smith'
+          fill_in 'q_bill_address_firstname_start', with: 'John'
+          fill_in 'q_bill_address_lastname_start', with: 'Smith'
           select2 'spree', from: 'Channel'
         end
 
@@ -279,13 +276,98 @@ describe 'Orders Listing', type: :feature do
           expect(page).to have_content('Status: cart')
           expect(page).to have_content('Payment State: paid')
           expect(page).to have_content('Shipment State: pending')
-          expect(page).to have_content('First Name: John')
-          expect(page).to have_content('Last Name: Smith')
+          expect(page).to have_content('First Name Begins With: John')
+          expect(page).to have_content('Last Name Begins With: Smith')
           expect(page).to have_content('Promotion: Promo')
           expect(page).to have_content('Email: john_smith@example.com')
           expect(page).to have_content('SKU: BAG-00001')
           expect(page).to have_content('Channel: spree')
         end
+      end
+    end
+  end
+
+  describe 'Orders index tabs' do
+    context 'all orders' do
+      let!(:incomplete_order) { create(:order, store: order1.store, number: 'R500') }
+
+      before do
+        within('#spreePageTabs') do
+          click_link 'All'
+        end
+      end
+
+      it 'shows all the complete orders for the store' do
+        expect(page).to have_content('R100')
+        expect(page).to have_content('R200')
+        expect(page).not_to have_content('R500')
+      end
+    end
+
+    context 'unpaid orders' do
+      let!(:paid_order) { create(:order_ready_to_ship, store: order1.store, number: 'R500') }
+
+      before do
+        order2.update(payment_state: 'void')
+        within('#spreePageTabs') do
+          click_link 'Unpaid'
+        end
+      end
+
+      it 'shows all orders that are completed and not paid' do
+        expect(page).to have_content('R100')
+        expect(page).to have_content('R200')
+        expect(page).not_to have_content('R500')
+      end
+    end
+
+    context 'unfulfilled orders' do
+      let!(:shipped_order) { create(:shipped_order, store: order1.store, number: 'R500') }
+
+      before do
+        order2.update(shipment_state: 'ready')
+        within('#spreePageTabs') do
+          click_link 'Unfulfilled'
+        end
+      end
+
+      it 'shows all orders that are completed and not shipped' do
+        expect(page).to have_content('R100')
+        expect(page).to have_content('R200')
+        expect(page).not_to have_content('R500')
+      end
+    end
+  end
+
+  describe 'from main menu' do
+    let!(:complete_order) { create(:order, store: order1.store, completed_at: 1.day.ago) }
+    let!(:draft_order) { create(:order, store: order1.store, completed_at: nil, state: 'cart') }
+    let!(:abandoned_checkout) { create(:order, store: order1.store, completed_at: nil, state: 'delivery') }
+
+    before do
+      within('#main-sidebar') do
+        click_link 'Orders'
+      end
+    end
+
+    context 'when on All Orders page' do
+      it 'shows all complete orders' do
+        click_link 'All Orders'
+        expect(page).to have_content(complete_order.number)
+      end
+    end
+
+    context 'when on Draft Orders page' do
+      it 'shows all orders that are not complete with state=cart' do
+        click_link 'Draft Orders'
+        expect(page).to have_content(draft_order.number)
+      end
+    end
+
+    context 'when on Abandoned Checkouts page' do
+      it 'shows all complete orders' do
+        click_link 'Abandoned Checkouts'
+        expect(page).to have_content(abandoned_checkout.number)
       end
     end
   end

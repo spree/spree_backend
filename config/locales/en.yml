@@ -150,6 +150,9 @@ en:
           resume: resume
           resend: Resend
       orders:
+        all: All
+        unpaid: Unpaid
+        unfulfilled: Unfulfilled
         cart: Cart
         all_orders: All Orders
         draft_orders: Draft Orders
