@@ -10,6 +10,24 @@
       id: 'admin_new_order' %>
 <% end if can? :create, Spree::Order %>
 
+<% content_for :page_tabs do %>
+  <li class="nav-item">
+    <%= link_to Spree.t('admin.orders.all'),
+      spree.admin_orders_path(q: { completed_at_not_null: 1 }),
+      class: "nav-link #{'active' if params[:q][:payment_state_not_eq].blank? && params[:q][:shipment_state_not_eq].blank?}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to Spree.t('admin.orders.unpaid'),
+      params.merge({q: {payment_state_not_eq: :paid, completed_at_not_null: 1}}).permit!,
+      class: "nav-link #{'active' if params[:q][:payment_state_not_eq] == 'paid'}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to Spree.t('admin.orders.unfulfilled'),
+      params.merge({q: {shipment_state_not_eq: :shipped, completed_at_not_null: 1}}).permit!,
+      class: "nav-link #{'active' if params[:q][:shipment_state_not_eq] == 'shipped'}" %>
+  </li>
+<% end if @show_only_completed %>
+
 <%= render "search" if @orders.any? || params[:q].present? %>
 
 <% if @orders.any? %>
@@ -19,19 +37,18 @@
     <table class="table border rounded" id="listing_orders" data-hook data-nav-x-content>
       <thead class="bg-light text-muted">
         <tr data-hook="admin_orders_index_headers">
-          <th><%= sort_link @search, :number,           I18n.t(:number, scope: 'activerecord.attributes.spree/order') %></th>
+          <th><%= I18n.t(:number, scope: 'activerecord.attributes.spree/order') %></th>
           <% if @show_only_completed %>
             <th><%= sort_link @search, :completed_at,   I18n.t(:completed_at, scope: 'activerecord.attributes.spree/order') %></th>
           <% else %>
             <th><%= sort_link @search, :created_at,     I18n.t(:created_at, scope: 'activerecord.attributes.spree/order') %></th>
           <% end %>
-          <th><%= sort_link @search, :considered_risky, I18n.t(:considered_risky, scope: 'activerecord.attributes.spree/order') %></th>
-          <th><%= sort_link @search, :state,            I18n.t(:state, scope: 'activerecord.attributes.spree/order') %></th>
-          <th><%= sort_link @search, :payment_state,    I18n.t(:payment_state, scope: 'activerecord.attributes.spree/order') %></th>
+          <th><%= I18n.t(:considered_risky, scope: 'activerecord.attributes.spree/order') %></th>
+          <th><%= I18n.t(:payment_state, scope: 'activerecord.attributes.spree/order') %></th>
            <% if Spree::Order.checkout_step_names.include?(:delivery) %>
-            <th><%= sort_link @search, :shipment_state, I18n.t(:shipment_state, scope: 'activerecord.attributes.spree/order') %></th>
+            <th><%= I18n.t(:shipment_state, scope: 'activerecord.attributes.spree/order') %></th>
            <% end %>
-          <th><%= sort_link @search, :email,            I18n.t(:email, scope: 'activerecord.attributes.spree/order') %></th>
+          <th><%= I18n.t(:email, scope: 'activerecord.attributes.spree/order') %></th>
           <th><%= sort_link @search, :total,            I18n.t(:total, scope: 'activerecord.attributes.spree/order') %></th>
           <th data-hook="admin_orders_index_header_actions" class="actions"></th>
         </tr>
@@ -46,12 +63,6 @@
           <td>
             <span class="badge badge-<%= order.considered_risky ? 'considered_risky' : 'considered_safe' %> text-uppercase">
               <%= order.considered_risky ? Spree.t("risky") : Spree.t("safe") %>
-            </span>
-          </td>
-          <td class="no-wrap">
-            <span class="badge badge-<%= order.state.downcase %> text-uppercase"><%= Spree.t("order_state.#{order.state}") %></span>
-            <span class="filterable js-add-filter" data-ransack-field="q_state_eq" data-ransack-value="<%= order.state %>">
-              <%= svg_icon name: "filter.svg", width: '14', height: '14' %>
             </span>
           </td>
           <td class="no-wrap">

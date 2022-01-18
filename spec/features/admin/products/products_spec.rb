@@ -339,7 +339,7 @@ describe 'Products', type: :feature do
           create(:product, name: 'apache baseball cap')
 
           visit spree.admin_products_path
-          click_on 'More Filters'
+          click_on 'Filters'
           wait_for_turbo
 
           find('label', text: 'Show Deleted').click
@@ -460,7 +460,7 @@ describe 'Products', type: :feature do
         end
         expect(page).to have_content('Product has been deleted')
 
-        click_on 'More Filters'
+        click_on 'Filters'
         # This will show our deleted product
         find('label', text: 'Show Deleted').click
         click_on 'Search'
@@ -475,7 +475,7 @@ describe 'Products', type: :feature do
       it 'renders selected filters' do
         visit spree.admin_products_path
 
-        click_on 'More Filters'
+        click_on 'Filters'
 
         within('#table-filter') do
           fill_in 'q_search_by_name', with: 'Backpack'
