@@ -44,3 +44,15 @@ body.modal-open #multi-backdrop {
 .rounded-top-only {
   border-radius: $border-radius $border-radius 0 0;
 }
+
+.alert {
+  border: 0 none !important;
+}
+
+.card-header {
+  background-color: transparent !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0.75rem !important;
+  margin-right: 0.75rem !important;
+}

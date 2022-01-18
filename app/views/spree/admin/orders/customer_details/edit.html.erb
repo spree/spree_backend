@@ -3,9 +3,9 @@
 <% if can? :edit, @order.user %>
   <div id="select-customer" class="card mb-3" data-hook>
     <div class="card-header">
-      <h1 class="card-title mb-0 h6">
+      <h5 class="card-title mb-0 h6">
         <%= Spree.t(:customer_search) %>
-      </h1>
+      </h5>
     </div>
     <div class="card-body" id="customer-search-field">
       <%= select_tag :customer_search, nil, class: 'd-block w-100' %>

@@ -6,9 +6,9 @@
       remote: true,
       method: :delete,
       class: 'delete order-2' %>
-    <h3 class='card-title h5 mb-0 promotion-title'>
+    <h5 class='card-title h5 mb-0 promotion-title'>
       <%= Spree.t("promotion_rule_types.#{type_name}.description") %>
-    </h3>
+    </h5>
   </div>
   <% param_prefix = "promotion[promotion_rules_attributes][#{promotion_rule.id}]" %>
   <%= hidden_field_tag "#{param_prefix}[id]", promotion_rule.id %>
