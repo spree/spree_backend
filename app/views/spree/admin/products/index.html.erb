@@ -92,7 +92,7 @@
                 <% end %>
               </span>
             </td>
-            <td class="status text-center"><%= active_badge(available_status == Spree.t(:available), label: available_status) %></td>
+            <td class="status text-center"><%= active_badge(available_status == Spree.t('admin.product.active'), label: available_status) %></td>
             <td class="text-center"><%= display_price(product) %></td>
 
             <td class="actions " data-hook="admin_products_index_row_actions">

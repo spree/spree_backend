@@ -3,7 +3,7 @@ module Spree
     class ProductsController < ResourceController
       include Spree::Admin::ProductConcern
 
-      helper 'spree/products'
+      helper 'spree/admin/products'
 
       before_action :load_data, except: :index
       before_action :set_product_defaults, only: :new
@@ -117,7 +117,6 @@ module Spree
       end
 
       def set_product_defaults
-        @product.available_on ||= Time.current
         @product.shipping_category ||= @shipping_categories&.first
       end
 
