@@ -43,7 +43,7 @@
             </td>
             <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) %>
               <td class="text-center">
-                <%= link_to product.vendor.name, spree.admin_vendor_path(product.vendor_id) if product.vendor.present? %>
+                <%= link_to product.vendor.name, spree.admin_products_path({q: { vendor_id_eq: product.vendor_id }}) if product.vendor.present? %>
               </td>
             <% end %>
             <td class="text-center">
