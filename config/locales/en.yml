@@ -303,6 +303,7 @@ en:
         front_end: Storefront
         back_end: Admin Panel
       product:
+        all: All
         active: Active
         archived: Archived
         deleted: Deleted

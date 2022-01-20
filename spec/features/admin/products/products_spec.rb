@@ -127,6 +127,82 @@ describe 'Products', type: :feature do
         expect(page).not_to have_content('apache baseball cap2')
         expect(page).not_to have_content('zomg shirt')
       end
+
+      describe 'Products index tabs' do
+        let!(:draft_product) { create(:product, status: 'draft') }
+        let!(:pre_order_product) { create(:product, status: 'draft', available_on: 1.week.from_now) }
+        let!(:active_product) { create(:product, status: 'active') }
+        let!(:archived_product) { create(:product, status: 'archived') }
+        let!(:deleted_product) { create(:product, status: 'archived', deleted_at: 1.day.ago) }
+
+        before do
+          visit spree.admin_products_path
+        end
+
+        context 'all products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'All'
+            end
+          end
+
+          it 'shows all the products without deleted' do
+            expect(page).to have_content(draft_product.name)
+            expect(page).to have_content(pre_order_product.name)
+            expect(page).to have_content(active_product.name)
+            expect(page).to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+
+        context 'active products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'Active'
+            end
+          end
+
+          it 'shows all the active products without deleted' do
+            expect(page).not_to have_content(draft_product.name)
+            expect(page).not_to have_content(pre_order_product.name)
+            expect(page).to have_content(active_product.name)
+            expect(page).not_to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+
+        context 'draft products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'Draft'
+            end
+          end
+
+          it 'shows all the draft products without deleted' do
+            expect(page).to have_content(draft_product.name)
+            expect(page).to have_content(pre_order_product.name)
+            expect(page).not_to have_content(active_product.name)
+            expect(page).not_to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+
+        context 'archived products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'Archived'
+            end
+          end
+
+          it 'shows all the archived products without deleted' do
+            expect(page).not_to have_content(draft_product.name)
+            expect(page).not_to have_content(pre_order_product.name)
+            expect(page).not_to have_content(active_product.name)
+            expect(page).to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+      end
     end
 
     context 'creating a new product from a prototype', js: true do

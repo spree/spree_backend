@@ -125,7 +125,6 @@ module Spree
 
         params[:q] ||= {}
         params[:q][:deleted_at_null] ||= '1'
-        params[:q][:not_discontinued] ||= '1'
 
         params[:q][:s] ||= 'name asc'
 
