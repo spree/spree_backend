@@ -6,6 +6,29 @@
   <%= button_link_to Spree.t(:new_product), new_object_url, { class: "btn-success", icon: 'add.svg', id: 'admin_new_product' } %>
 <% end if can?(:create, Spree::Product) %>
 
+<% content_for :page_tabs do %>
+  <li class="nav-item">
+    <%= link_to Spree.t('admin.product.all'),
+                spree.admin_products_path,
+                class: "nav-link #{'active' if params[:q][:status_eq].blank?}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to Spree.t('admin.product.active'),
+                params.merge({q: {status_eq: :active}}).permit!,
+                class: "nav-link #{'active' if params[:q][:status_eq] == 'active'}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to Spree.t('admin.product.draft'),
+                params.merge({q: {status_eq: :draft}}).permit!,
+                class: "nav-link #{'active' if params[:q][:status_eq] == 'draft'}" %>
+  </li>
+  <li class="nav-item">
+    <%= link_to Spree.t('admin.product.archived'),
+                params.merge({q: {status_eq: :archived}}).permit!,
+                class: "nav-link #{'active' if params[:q][:status_eq] == 'archived'}" %>
+  </li>
+<% end  %>
+
 <% content_for :table_filter do %>
   <%= render partial: 'filters' %>
 <% end %>

@@ -21,13 +21,6 @@
             <%= f.label :deleted_at_null, Spree.t(:show_deleted), class: 'custom-control-label' %>
           </div>
         <% end %>
-
-        <%= f.field_container :not_discontinued do %>
-          <div class="custom-control custom-checkbox">
-            <%= f.check_box :not_discontinued, {checked: params[:q][:not_discontinued] == '0', class: 'custom-control-input'}, '0', '1' %>
-            <%= f.label :not_discontinued, Spree.t(:show_discontinued ), class: 'custom-control-label' %>
-          </div>
-        <% end %>
       </div>
     </div>
     <div data-hook="admin_products_index_search_buttons" class="form-actions">
