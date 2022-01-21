@@ -521,6 +521,22 @@ describe 'Products', type: :feature do
           expect(page).to have_field(id: 'product_weight', with: weight_prev)
         end
       end
+
+      context 'with limited permissions' do
+        before do
+          allow_any_instance_of(Spree::Admin::BaseController).to receive(:spree_current_user).and_return(nil)
+        end
+
+        custom_authorization! do |_user|
+          cannot :change_status, Spree::Product
+        end
+
+        it 'As a Vendor Owner/Member I cannot change the Product state, this is reserved only to marketplace owner (spree admin)' do
+          visit spree.admin_product_path(product)
+          expect(page).to have_field('Status', disabled: true)
+          expect(page).to have_field('Make Active At', disabled: true)
+        end
+      end
     end
 
     context 'deleting a product', js: true do

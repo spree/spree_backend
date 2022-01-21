@@ -32,7 +32,9 @@
         <%= f.field_container :status do %>
           <%= f.label :status, Spree.t(:status) %>
           <% options = ['draft', 'active', 'archived'].each_slice(1) %>
-          <% select_html = { class: 'select2 w-100', data: { action: 'change->product-edit#switchAvailabilityDatesFields','product-edit-target': 'status' } } %>
+          <% select_html = { class: 'select2 w-100',
+                             data: { action: 'change->product-edit#switchAvailabilityDatesFields', 'product-edit-target': 'status' },
+                             disabled: cannot?(:change_status, @product) } %>
           <%= f.select(:status, options, { selected: @product.status }, select_html) %>
           <%= f.error_message_on :status %>
         <% end %>
@@ -59,26 +61,36 @@
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_make_active_at" data-product-edit-target="makeActiveAt">
-        <%= f.field_container :make_active_at do %>
-          <%= f.label :make_active_at, Spree.t(:make_active_at) %>
-          <%= f.error_message_on :make_active_at %>
+      <% if can?(:change_status, @product) %>
+        <div data-hook="admin_product_form_make_active_at" data-product-edit-target="makeActiveAt">
+          <%= f.field_container :make_active_at do %>
+            <%= f.label :make_active_at, Spree.t(:make_active_at) %>
+            <%= f.error_message_on :make_active_at %>
 
-          <div class="input-group datePickerFrom"
-               data-wrap="true"
-               data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
-               data-max-date="<%= @product.discontinue_on %>">
+            <div class="input-group datePickerFrom"
+                 data-wrap="true"
+                 data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
+                 data-max-date="<%= @product.discontinue_on %>">
 
-            <%= f.text_field :make_active_at,
-                             value: datepicker_field_value(@product.make_active_at),
-                             placeholder: Spree.t(:select_a_date),
-                             class: 'form-control ',
-                             'data-input':'' %>
+              <%= f.text_field :make_active_at,
+                               value: datepicker_field_value(@product.make_active_at),
+                               placeholder: Spree.t(:select_a_date),
+                               class: 'form-control ',
+                               'data-input':'' %>
 
-            <%= render partial: 'spree/admin/shared/cal_close' %>
-          </div>
-        <% end %>
-      </div>
+              <%= render partial: 'spree/admin/shared/cal_close' %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div data-hook="admin_product_form_make_active_at">
+          <%= f.field_container :make_active_at do %>
+            <%= f.label :make_active_at, Spree.t(:make_active_at) %>
+            <%= f.text_field :make_active_at, value: datepicker_field_value(@product.make_active_at), class: 'form-control', disabled: true %>
+            <%= f.error_message_on :make_active_at %>
+          <% end %>
+        </div>
+      <% end %>
 
       <div data-hook="admin_product_form_discontinue_on" data-product-edit-target="discontinueOn">
         <%= f.field_container :discontinue_on do %>
