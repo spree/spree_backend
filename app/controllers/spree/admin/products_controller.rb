@@ -173,6 +173,14 @@ module Spree
         clone_admin_product_url resource
       end
 
+      def permitted_resource_params
+        if cannot?(:change_status, @product)
+          super.except(:status, :make_active_at).permit!
+        else
+          super
+        end
+      end
+
       private
 
       def variant_stock_includes
