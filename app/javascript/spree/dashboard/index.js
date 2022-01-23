@@ -47,6 +47,8 @@ application.register("clipboard", ClipboardController)
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
 
+import * as RequestUtility from "./utilities/request_utility"
+
 //
 // Export
-export { Dashboard, application, flatpickr, Turbo }
+export { Dashboard, application, flatpickr, Turbo, RequestUtility }
