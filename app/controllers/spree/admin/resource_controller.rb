@@ -32,7 +32,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
       respond_with(@object) do |format|
         format.html do
           flash[:success] = flash_message_for(@object, :successfully_updated)
-          redirect_to location_after_save
+          redirect_to location_after_save unless request.xhr?
         end
         format.js { render layout: false }
       end
