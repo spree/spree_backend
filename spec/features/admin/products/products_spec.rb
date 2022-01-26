@@ -537,6 +537,50 @@ describe 'Products', type: :feature do
           expect(page).to have_field('Make Active At', disabled: true)
         end
       end
+
+      context 'changing the status' do
+        context 'from draft' do
+          before { product.update_column(:status, 'draft') }
+
+          it 'to active' do
+            change_status_and_update_record(to: 'active')
+          end
+
+          it 'to archived' do
+            change_status_and_update_record(to: 'archived')
+          end
+        end
+
+        context 'from active' do
+          it 'to draft' do
+            change_status_and_update_record(to: 'draft')
+          end
+
+          it 'to archived' do
+            change_status_and_update_record(to: 'archived')
+          end
+        end
+
+        context 'from archived' do
+          before { product.update_column(:status, 'archived') }
+
+          it 'to active' do
+            change_status_and_update_record(to: 'active')
+          end
+
+          it 'to draft' do
+            change_status_and_update_record(to: 'draft')
+          end
+        end
+
+        def change_status_and_update_record(to:)
+          visit spree.admin_product_path(product)
+          select to, from: 'product_status'
+          click_button 'Update'
+          expect(page).to have_content('successfully updated')
+          expect(product.reload.status).to eq(to)
+        end
+      end
     end
 
     context 'deleting a product', js: true do
