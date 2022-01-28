@@ -10,6 +10,8 @@ module Spree
 
       create.before :create_before
       update.before :update_before
+      update.before :skip_updating_status
+      update.after :update_status
       helper_method :clone_object_url
 
       def show
@@ -118,6 +120,18 @@ module Spree
 
       def set_product_defaults
         @product.shipping_category ||= @shipping_categories&.first
+      end
+
+      def skip_updating_status
+        @new_status = params[:product].delete(:status)
+      end
+
+      def update_status
+        return if @new_status == @product.status
+        return if cannot? :change_status, Spree::Product
+
+        event_to_fire = @product.status_transitions.find { |transition| transition.from == @product.status && transition.to == @new_status }&.event
+        @product.send(event_to_fire) if event_to_fire
       end
 
       def collection
