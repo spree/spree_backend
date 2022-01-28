@@ -28,7 +28,7 @@
           <td><code><%= webhooks_subscriber.url %></code></td>
           <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) && !current_spree_vendor %>
             <td>
-              <%= link_to webhooks_subscriber.vendor.name, spree.admin_vendor_path(webhooks_subscriber.vendor) if webhooks_subscriber.present? %>
+              <%= link_to webhooks_subscriber.vendor.name, spree.admin_vendor_path(webhooks_subscriber.vendor) if webhooks_subscriber.vendor.present? %>
             </td>
           <% end %>
           <td><%= active_badge(webhooks_subscriber.active) %></td>
