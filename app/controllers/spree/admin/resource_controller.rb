@@ -25,6 +25,8 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
   end
 
   def update
+    assert_metadata(@object)
+
     invoke_callbacks(:update, :before)
     if @object.update(permitted_resource_params)
       set_current_store

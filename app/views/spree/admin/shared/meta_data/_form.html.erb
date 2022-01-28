@@ -1,0 +1,39 @@
+<% resource.public_metadata.each_with_index do |(key, value), index| %>
+  <div class="row">
+    <div class="col-4">
+      <input class="form-control" type="text" value="<%= key %>" name="[public_metadata][key][]" id="product_public_metadata_key" readonly>
+    </div>
+
+    <div class="col-4">
+      <% if value.kind_of?(String) %>
+        <input class="form-control" type="text" value="<%= value %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+      <% elsif value.kind_of?(Integer) %>
+        <input class="form-control" type="number" value="<%= value %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+      <% elsif value.kind_of?(Float) %>
+        <input class="form-control" type="number" value="<%= value %>" min="0" value="0" step="any" name="[public_metadata][value][]" id="product_public_metadata_value">
+      <% end %>
+    </div>
+    <div class="col-4">
+      <input class="form-control" type="text" value="" name="[public_metadata][type][]" id="product_public_metadata_type">
+    </div>
+
+    <div class="col-1">
+      <div class="custom-control custom-checkbox">
+        <%= check_box_tag("[public_metadata][delete][#{index}]", value = "1", checked = false, options = { class: 'custom-control-input'}) %>
+        <label class="custom-control-label" for="[public_metadata][delete][<%= index %>]"><span></span></label>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="row">
+  <div class="col-6">
+    <%= f.label :public_metadata, Spree.t(:product_public_metadata_key) %>
+    <input class="form-control" type="text" value="" name="[public_metadata][key][]" id="product_public_metadata_key">
+  </div>
+  <div class="col-6">
+    <%= f.label :public_metadata, Spree.t(:product_public_metadata_value) %>
+    <input class="form-control" type="text" value="" name="[public_metadata][value][]" id="product_public_metadata_value">
+  </div>
+</div>

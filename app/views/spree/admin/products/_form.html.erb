@@ -1,4 +1,5 @@
 <div data-hook="admin_product_form_fields" data-controller="product-edit">
+
   <div class="row">
 
     <div class="col-12 col-md-8" data-hook="admin_product_form_left">
@@ -9,6 +10,8 @@
           <%= f.error_message_on :name %>
         <% end %>
       </div>
+
+      <%= render partial: 'spree/admin/shared/meta_data/form', locals: { resource: @product, f: f } %>
 
       <div data-hook="admin_product_form_slug">
         <%= f.field_container :slug do %>
@@ -322,6 +325,5 @@
     </div>
 
     <div data-hook="admin_product_form_additional_fields"></div>
-
   </div>
 </div>
