@@ -108,11 +108,11 @@
     </div>
 
     <div class="col-12 col-md-4" data-hook="admin_product_form_right">
-      <div data-hook="new_product_status" class="omega two columns">
+      <div data-hook="new_product_status">
         <%= f.field_container :status do %>
           <%= f.label :status, Spree.t(:status) %>
           <% options = ['draft', 'active', 'archived'].each_slice(1) %>
-          <% select_html = { class: 'select2 w-100',
+          <% select_html = { class: 'select2',
                              data: { action: 'change->product-edit#switchAvailabilityDatesFields', 'product-edit-target': 'status' },
                              disabled: cannot?(:change_status, @product) } %>
           <%= f.select(:status, options, { selected: @product.status }, select_html) %>
