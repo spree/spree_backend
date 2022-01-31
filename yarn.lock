@@ -96,20 +96,6 @@
     estree-walker "^1.0.1"
     picomatch "^2.2.2"
 
-"@spree/dashboard@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@spree/dashboard/-/dashboard-0.2.0.tgz#0250842c8085bc7943a18d89abbdf5692e0d67a2"
-  integrity sha512-LyKEKMIaU3+GAdgux2TZZ0Ol3p7+kW+v3SAJtfQsyhkPjiSY+WaIawo5fU6UXWai/WLLfrvmXuZKFS9VXR6ZaQ==
-  dependencies:
-    "@hotwired/stimulus" "^3.0.1"
-    "@rails/request.js" "^0.0.6"
-    bootstrap "4.6.1"
-    flatpickr "^4.6.9"
-    jquery "3.5.1"
-    popper.js "1.16.1"
-    sortablejs "^1.14.0"
-    stimulus-sortable "^3.1.0"
-
 "@types/estree@*":
   version "0.0.50"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
