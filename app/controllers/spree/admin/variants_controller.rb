@@ -2,7 +2,6 @@ module Spree
   module Admin
     class VariantsController < ResourceController
       include Spree::Admin::ProductConcern
-      include Spree::Admin::MetadataConcern
 
       belongs_to 'spree/product', find_by: :slug
       new_action.before :new_before

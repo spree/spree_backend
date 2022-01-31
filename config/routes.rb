@@ -40,7 +40,6 @@ Spree::Core::Engine.add_routes do
           post :update_positions
         end
       end
-      resources :meta_data
       resources :variants_including_master, only: [:update]
       resources :prices, only: [:index, :create]
       resources :digitals, only: [:index, :create, :destroy]
