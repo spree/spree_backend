@@ -10,24 +10,16 @@ module Spree
           params[:public_metadata][:key].each_with_index do |key, i|
             next unless key.present?
 
-            case params[:public_metadata][:type][i].downcase
-            when 'integer'
-              object.public_metadata[key.to_sym] =
-                params[:public_metadata][:key] =
-                  { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].to_i,
-                    description: params[:public_metadata][:description][i] }
-            when 'float'
-              object.public_metadata[key.to_sym] =
-                params[:public_metadata][:key] =
-                  { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].to_f,
-                    description: params[:public_metadata][:description][i] }
+            assert_type = case params[:public_metadata][:type][i].downcase
+                          when 'integer' then 'to_i'
+                          when 'float' then 'to_f'
+                          else 'to_s'
+                          end
 
-            else
-              object.public_metadata[key.to_sym] =
-                params[:public_metadata][:key] =
-                  { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].to_s,
-                    description: params[:public_metadata][:description][i] }
-            end
+            object.public_metadata[key.to_sym] =
+              params[:public_metadata][:key] =
+                { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].send(assert_type),
+                  description: params[:public_metadata][:description][i] }
 
             if params[:public_metadata][:delete].present? && params[:public_metadata][:delete][i] == '1'
               object.public_metadata.delete(key.to_sym)
