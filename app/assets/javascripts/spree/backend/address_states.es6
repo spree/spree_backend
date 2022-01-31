@@ -14,6 +14,7 @@ function updateAddressState(region, successCallback) {
         response.json().then((json) => {
           const states = json.included
           const statesRequired = json.data.attributes.states_required
+          const stateSelectValue = stateSelect.val();
           if (states.length > 0) {
             stateSelect.html('')
             $.each(states, function (_pos, state) {
@@ -23,7 +24,9 @@ function updateAddressState(region, successCallback) {
               stateSelect.append(opt).trigger('change')
             })
             stateSelect.prop('disabled', false).show()
-            stateSelect.select2()
+            if (stateSelectValue !== undefined) {
+              stateSelect.val(stateSelectValue).trigger('change')
+            }
             stateInput.hide().prop('disabled', true)
             stateContainer.show()
           } else {
