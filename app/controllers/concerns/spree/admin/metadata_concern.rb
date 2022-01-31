@@ -5,14 +5,24 @@ module Spree
 
       included do
         def assert_metadata(object)
-
-          byebug
           params[:public_metadata][:key].each_with_index do |key, i|
             if key.present?
-              if params[:public_metadata][:type][i] == 'string'
-                object.public_metadata[key.to_sym] = params[:public_metadata][:value][i]
-              elsif params[:public_metadata][:type][i] == 'integer'
-                object.public_metadata[key.to_sym] = params[:public_metadata][:value][i].to_f
+              case params[:public_metadata][:type][i].downcase
+              when 'string'
+                object.public_metadata[key.to_sym] =
+                  params[:public_metadata][:key] =
+                    { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].to_s,
+                      description: params[:public_metadata][:description][i] }
+              when 'integer'
+                object.public_metadata[key.to_sym] =
+                  params[:public_metadata][:key] =
+                    { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].to_i,
+                      description: params[:public_metadata][:description][i] }
+              when 'decimal'
+                object.public_metadata[key.to_sym] =
+                  params[:public_metadata][:key] =
+                    { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].to_f,
+                      description: params[:public_metadata][:description][i] }
               end
             end
 

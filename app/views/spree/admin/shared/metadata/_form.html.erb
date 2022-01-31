@@ -1,0 +1,64 @@
+<div class="card my-5">
+  <div class="card-header">
+    <h3 class="mb-0 h6"><%= Spree.t('admin.metadata') %></h3>
+  </div>
+  <div class="card-body">
+    <% if resource.public_metadata.present? %>
+      <% resource.public_metadata.each_with_index do |(key, data), index| %>
+       <div class="row">
+         <div class="col-6 d-flex">
+           <h5 class="mb-0 align-self-center"><%= key %></h5>
+           <input class="form-control" type="hidden" value="<%= key %>" name="[public_metadata][key][]" id="product_public_metadata_key" readonly>
+         </div>
+         <div class="col-6">
+           <% if data[:value].kind_of?(String) %>
+             <input class="form-control" type="text" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+           <% elsif data[:value].kind_of?(Integer) %>
+             <input class="form-control" type="number" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+           <% elsif data[:value].kind_of?(Float) %>
+             <input class="form-control" type="number" value="<%= data[:value] %>" min="0" value="0" step="any" name="[public_metadata][value][]" id="product_public_metadata_value">
+           <% end %>
+           <small class="form-text text-muted"><%= data[:description] %></small>
+           <input class="form-control" type="hidden" value="<%= data[:type] %>" name="[public_metadata][type][]" id="product_public_metadata_type">
+           <input class="form-control" type="hidden" value="<%= data[:description] %>" name="[public_metadata][description][]" id="product_public_metadata_description">
+         </div>
+       </div>
+      <% end %>
+    <% else %>
+      <div class="alert alert-primary" role="alert">
+        No metadata set, begin adding metadata below.
+      </div>
+    <% end %>
+  </div>
+
+  <div class="card-footer" data-controller="input-type">
+    <div class="row">
+      <div class="col-4">
+        <%= f.label :public_metadata, Spree.t('admin.metadata.type') %>
+        <%= select("[public_metadata][type]", "",[ ['String', 'string'], ['Integer', 'number'], ['Decimal', 'number'], ['Color Picker', 'color'], ['Date Picker', 'date'], ['Date-Time Picker', 'date'] ], { include_blank: false }, {class: 'custom-select', data: { action: "change->input-type#update" } }) %>
+      </div>
+      <div class="col-8 d-flex align-items-center">
+        <span class="mt-3"> Select the metadata type you want to create, be aware once your new metadata type is created it can not be changed.</span>
+      </div>
+      <div class="col-12"><hr></div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <%= f.label :public_metadata, Spree.t('admin.metadata.key') %>
+        <input class="form-control" type="text" value="" name="[public_metadata][key][]" id="product_public_metadata_key">
+      </div>
+
+      <div class="col-6">
+        <%= f.label :public_metadata, Spree.t('admin.metadata.value') %>
+        <input data-input-type-target="input" class="form-control" type="text" value="" name="[public_metadata][value][]" id="product_public_metadata_value">
+      </div>
+
+      <div class="col-12">
+        <%= f.label :public_metadata, Spree.t('admin.metadata.description') %>
+        <input class="form-control" type="text" value="" name="[public_metadata][description][]" id="product_public_metadata_description">
+      </div>
+    </div>
+  </div>
+</div>
+
+

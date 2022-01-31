@@ -11,8 +11,6 @@
         <% end %>
       </div>
 
-      <%= render partial: 'spree/admin/shared/meta_data/form', locals: { resource: @product, f: f } %>
-
       <div data-hook="admin_product_form_slug">
         <%= f.field_container :slug do %>
           <%= f.label :slug, raw(Spree.t(:slug) + required_span_tag) %>
@@ -27,6 +25,85 @@
           <%= f.text_area :description, { rows: "#{unless @product.has_variants? then '29' else '30' end}", class: "form-control #{"spree-rte" if product_wysiwyg_editor_enabled? }" } %>
           <%= f.error_message_on :description %>
         <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_taxons">
+        <%= f.field_container :taxons do %>
+          <%= f.label :taxon_ids, Spree.t(:taxons) %>
+
+          <% if can? :modify, Spree::Classification %>
+            <%= f.select :taxon_ids, options_from_collection_for_select(@product.taxons, :id, :pretty_name, @product.taxon_ids),
+                                      { include_hidden: true },
+                                        multiple: true,
+                                        data: { autocomplete_url_value: 'taxons_api_v2',
+                                                autocomplete_return_attr_value: 'pretty_name',
+                                                autocomplete_multiple_value: true } %>
+          <% elsif @product.taxons.any? %>
+            <ul class="text_list">
+              <% @product.taxons.each do |taxon| %>
+                <li><%= taxon.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div class="alert alert-info"><%= Spree.t(:no_resource_found, resource: :taxons) %></div>
+          <% end %>
+
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_option_types">
+        <%= f.field_container :option_types do %>
+          <%= f.label :option_type_ids, Spree.t(:option_types) %>
+
+          <% if can? :modify, Spree::ProductOptionType %>
+          <%= f.select :option_type_ids, options_from_collection_for_select(@product.option_types, :id, :name, @product.option_type_ids),
+                                          { include_hidden: true },
+                                            multiple: true,
+                                            data: { autocomplete_url_value: 'option_types_api_v2',
+                                                    autocomplete_return_attr_value: 'name',
+                                                    autocomplete_multiple_value: true } %>
+          <% elsif @product.option_types.any? %>
+            <ul class="text_list">
+              <% @product.option_types.each do |type| %>
+                <li><%= type.presentation %> (<%= type.name %>)</li>
+              <% end %>
+            </ul>
+          <% else %>
+            <div class="alert alert-info"><%= Spree.t(:no_resource_found, resource: :option_types) %></div>
+          <% end %>
+
+        <% end %>
+      </div>
+
+      <div class="card my-5">
+        <div class="card-header">
+          <h5 class="mb-0 h6">SEO</h5>
+        </div>
+        <div class="card-body">
+
+          <div data-hook="admin_product_form_meta">
+            <div data-hook="admin_product_form_meta_title">
+              <%= f.field_container :meta_title do %>
+                <%= f.label :meta_title, Spree.t(:meta_title) %>
+                <%= f.text_field :meta_title, class: 'form-control' %>
+              <% end %>
+            </div>
+
+            <div data-hook="admin_product_form_meta_keywords">
+              <%= f.field_container :meta_keywords do %>
+                <%= f.label :meta_keywords, Spree.t(:meta_keywords) %>
+                <%= f.text_field :meta_keywords, class: 'form-control' %>
+              <% end %>
+            </div>
+
+            <div data-hook="admin_product_form_meta_description">
+              <%= f.field_container :meta_description do %>
+                <%= f.label :meta_description, Spree.t(:meta_description) %>
+                <%= f.text_area :meta_description, class: 'form-control' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -241,89 +318,18 @@
           <%= f.error_message_on :tax_category %>
         <% end %>
       </div>
-    </div>
 
-  </div>
-
-  <div data-hook="admin_product_form_taxons">
-    <%= f.field_container :taxons do %>
-      <%= f.label :taxon_ids, Spree.t(:taxons) %>
-
-      <% if can? :modify, Spree::Classification %>
-        <%= f.select :taxon_ids, options_from_collection_for_select(@product.taxons, :id, :pretty_name, @product.taxon_ids),
-                                  { include_hidden: true },
-                                    multiple: true,
-                                    data: { autocomplete_url_value: 'taxons_api_v2',
-                                            autocomplete_return_attr_value: 'pretty_name',
-                                            autocomplete_multiple_value: true } %>
-      <% elsif @product.taxons.any? %>
-        <ul class="text_list">
-          <% @product.taxons.each do |taxon| %>
-            <li><%= taxon.name %></li>
+      <% if @stores.count > 1 %>
+        <div data-hook="admin_product_form_stores">
+          <%= f.field_container :stores do %>
+            <%= f.label :product_stores, Spree.t(:stores) %>
+            <%= collection_select(:product, :store_ids, @stores, :id, :unique_name, {}, { multiple: true, class: 'select2' }) %>
           <% end %>
-        </ul>
-      <% else %>
-        <div class="alert alert-info"><%= Spree.t(:no_resource_found, resource: :taxons) %></div>
+        </div>
       <% end %>
-
-    <% end %>
+    </div>
   </div>
 
-  <div data-hook="admin_product_form_option_types">
-    <%= f.field_container :option_types do %>
-      <%= f.label :option_type_ids, Spree.t(:option_types) %>
-
-      <% if can? :modify, Spree::ProductOptionType %>
-      <%= f.select :option_type_ids, options_from_collection_for_select(@product.option_types, :id, :name, @product.option_type_ids),
-                                      { include_hidden: true },
-                                        multiple: true,
-                                        data: { autocomplete_url_value: 'option_types_api_v2',
-                                                autocomplete_return_attr_value: 'name',
-                                                autocomplete_multiple_value: true } %>
-      <% elsif @product.option_types.any? %>
-        <ul class="text_list">
-          <% @product.option_types.each do |type| %>
-            <li><%= type.presentation %> (<%= type.name %>)</li>
-          <% end %>
-        </ul>
-      <% else %>
-        <div class="alert alert-info"><%= Spree.t(:no_resource_found, resource: :option_types) %></div>
-      <% end %>
-
-    <% end %>
-  </div>
-
-  <% if @stores.count > 1 %>
-    <div data-hook="admin_product_form_stores">
-      <%= f.field_container :stores do %>
-        <%= f.label :product_stores, Spree.t(:stores) %>
-        <%= collection_select(:product, :store_ids, @stores, :id, :unique_name, {}, { multiple: true, class: 'select2' }) %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <div data-hook="admin_product_form_meta">
-    <div data-hook="admin_product_form_meta_title">
-      <%= f.field_container :meta_title do %>
-        <%= f.label :meta_title, Spree.t(:meta_title) %>
-        <%= f.text_field :meta_title, class: 'form-control' %>
-      <% end %>
-    </div>
-
-    <div data-hook="admin_product_form_meta_keywords">
-      <%= f.field_container :meta_keywords do %>
-        <%= f.label :meta_keywords, Spree.t(:meta_keywords) %>
-        <%= f.text_field :meta_keywords, class: 'form-control' %>
-      <% end %>
-    </div>
-
-    <div data-hook="admin_product_form_meta_description">
-      <%= f.field_container :meta_description do %>
-        <%= f.label :meta_description, Spree.t(:meta_description) %>
-        <%= f.text_area :meta_description, class: 'form-control' %>
-      <% end %>
-    </div>
-
-    <div data-hook="admin_product_form_additional_fields"></div>
-  </div>
+  <div data-hook="admin_product_form_additional_fields"></div>
+  <%= render partial: 'spree/admin/shared/metadata/form', locals: { resource: @product, f: f } %>
 </div>
