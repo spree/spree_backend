@@ -50,6 +50,9 @@ application.register("product-edit", ProductEditController)
 import InputTypeController from "./controllers/input_type_controller"
 application.register("input-type", InputTypeController)
 
+import CheckboxHiddenInputController from "./controllers/checkbox_hidden_input_controller"
+application.register("checkbox-hidden-input", CheckboxHiddenInputController)
+
 import * as RequestUtility from "./utilities/request_utility"
 
 //
