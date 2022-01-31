@@ -10,10 +10,6 @@ class Dashboard {
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
-import * as Turbo from "@hotwired/turbo"
-
-// To disable Turbo, un-comment the line below.
-// Turbo.session.drive = false
 
 //
 // Import Utility JavaScript required globally.
@@ -51,4 +47,4 @@ import * as RequestUtility from "./utilities/request_utility"
 
 //
 // Export
-export { Dashboard, application, flatpickr, Turbo, RequestUtility }
+export { Dashboard, application, flatpickr, RequestUtility }

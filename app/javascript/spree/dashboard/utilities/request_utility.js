@@ -1,6 +1,5 @@
 import { RequestInterceptor } from "@rails/request.js"
 import { FetchRequest } from "@rails/request.js"
-import { navigator } from "@hotwired/turbo"
 
 //
 // Inject Authorization & Content-Type into @rails/request.js requests.
@@ -11,13 +10,13 @@ RequestInterceptor.register(async (request) => {
 //
 // Setup Turbo Progress bar on @rails/request.js requests.
 export function showProgressBar() {
-  navigator.delegate.adapter.progressBar.setValue(0)
-  navigator.delegate.adapter.progressBar.show()
+  Turbo.navigator.delegate.adapter.progressBar.setValue(0)
+  Turbo.navigator.delegate.adapter.progressBar.show()
 }
 
 export function hideProgressBar() {
-  navigator.delegate.adapter.progressBar.setValue(1)
-  navigator.delegate.adapter.progressBar.hide()
+  Turbo.navigator.delegate.adapter.progressBar.setValue(1)
+  Turbo.navigator.delegate.adapter.progressBar.hide()
 }
 
 export function withProgress(request) {
