@@ -5,6 +5,8 @@ module Spree
 
       included do
         def assert_metadata(object)
+          return unless params[:public_metadata].present?
+
           params[:public_metadata][:key].each_with_index do |key, i|
             next unless key.present?
 

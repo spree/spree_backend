@@ -22,6 +22,7 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo": "^7.1.0",
     "@rails/request.js": "^0.0.6",
+    "@spree/dashboard": "^0.2.0",
     "bootstrap": "4.6.1",
     "flatpickr": "^4.6.9",
     "jquery": "3.5.1",
