@@ -1,29 +1,41 @@
-<div class="card my-5">
+<div class="card">
   <div class="card-header">
     <h3 class="mb-0 h6"><%= Spree.t('admin.metadata') %></h3>
   </div>
   <div class="card-body">
     <% if resource.public_metadata.present? %>
-      <% resource.public_metadata.each_with_index do |(key, data), index| %>
-       <div class="row">
-         <div class="col-6 d-flex">
-           <h5 class="mb-0 align-self-center"><%= key %></h5>
-           <input class="form-control" type="hidden" value="<%= key %>" name="[public_metadata][key][]" id="product_public_metadata_key" readonly>
-         </div>
-         <div class="col-6">
-           <% if data[:value].kind_of?(String) %>
-             <input class="form-control" type="text" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
-           <% elsif data[:value].kind_of?(Integer) %>
-             <input class="form-control" type="number" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
-           <% elsif data[:value].kind_of?(Float) %>
-             <input class="form-control" type="number" value="<%= data[:value] %>" min="0" value="0" step="any" name="[public_metadata][value][]" id="product_public_metadata_value">
-           <% end %>
-           <small class="form-text text-muted"><%= data[:description] %></small>
-           <input class="form-control" type="hidden" value="<%= data[:type] %>" name="[public_metadata][type][]" id="product_public_metadata_type">
-           <input class="form-control" type="hidden" value="<%= data[:description] %>" name="[public_metadata][description][]" id="product_public_metadata_description">
-         </div>
-       </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Key</th>
+            <th scope="col">Value</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% resource.public_metadata.each_with_index do |(key, data), index| %>
+          <tr>
+            <th scope="row">
+              <%= key %>
+              <small class="form-text text-muted"><%= data[:description] %></small>
+            </th>
+            <td>
+              <% if data[:value].kind_of?(String) %>
+                <input class="form-control" type="text" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+              <% elsif data[:value].kind_of?(Integer) %>
+                <input class="form-control" type="number" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+              <% elsif data[:value].kind_of?(Float) %>
+                <input class="form-control" type="number" value="<%= data[:value] %>" min="0" value="0" step="any" name="[public_metadata][value][]" id="product_public_metadata_value">
+              <% end %>
+
+            </td>
+            <td>Checkbox</td>
+            <input class="form-control" type="hidden" value="<%= data[:type] %>" name="[public_metadata][type][]" id="product_public_metadata_type">
+            <input class="form-control" type="hidden" value="<%= data[:description] %>" name="[public_metadata][description][]" id="product_public_metadata_description">
+          </tr>
       <% end %>
+        </tbody>
+      </table>
     <% else %>
       <div class="alert alert-primary" role="alert">
         No metadata set, begin adding metadata below.
