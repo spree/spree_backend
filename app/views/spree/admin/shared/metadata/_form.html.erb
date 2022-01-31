@@ -21,12 +21,15 @@
               <input class="form-control" type="hidden" value="<%= key %>" name="[public_metadata][key][]" id="product_public_metadata_key" readonly>
             </th>
             <td>
-              <% if data[:value].kind_of?(String) %>
-                <input class="form-control" type="text" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
-              <% elsif data[:value].kind_of?(Integer) %>
+              <% case data[:type] %>
+              <% when 'boolean' %>
+                <%= select("[public_metadata][value]", "",[ ['True', 'true'], ['False', 'false'] ], { include_blank: false, selected: data[:value] }, {class: 'custom-select', data: { action: "change->input-type#update" } }) %>
+              <% when 'integer' %>
                 <input class="form-control" type="number" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
-              <% elsif data[:value].kind_of?(Float) %>
+              <% when 'float' %>
                 <input class="form-control" type="number" value="<%= data[:value] %>" min="0" step="any" name="[public_metadata][value][]" id="product_public_metadata_value">
+              <% else %>
+                <input class="form-control" type="text" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
               <% end %>
             </td>
             <td>

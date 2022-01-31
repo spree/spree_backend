@@ -15,6 +15,7 @@ require 'inline_svg'
 require 'jsbundling-rails'
 require 'responders'
 require 'tinymce-rails'
+require 'wannabe_bool'
 
 require 'spree/backend/action_callbacks'
 require 'spree/backend/callbacks'
