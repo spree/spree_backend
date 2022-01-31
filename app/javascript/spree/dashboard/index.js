@@ -10,6 +10,9 @@ class Dashboard {
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
+if (!window.Turbo) {
+  require("@hotwired/turbo-rails")
+}
 
 //
 // Import Utility JavaScript required globally.
