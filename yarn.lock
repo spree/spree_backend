@@ -43,11 +43,6 @@
   resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.0.1.tgz#141f15645acaa3b133b7c247cad58ae252ffae85"
   integrity sha512-oHsJhgY2cip+K2ED7vKUNd2P+BEswVhrCYcJ802DSsblJFv7mPFVk3cQKvm2vHgHeDVdnj7oOKrBbzp1u8D+KA==
 
-"@hotwired/turbo@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-7.0.1.tgz#2a8c6ab2f24914d1d47f3a7a7779e2881e8c61a0"
-  integrity sha512-awqraytYXbHV2NT0WAOnDDDGJeHHnFtnztdXvRuIqgsStUtPKM8B9H7ISm77SwbHemEjxEOB8Ku4RfNbEEXsPQ==
-
 "@humanwhocodes/config-array@^0.6.0":
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.6.0.tgz#b5621fdb3b32309d2d16575456cbc277fa8f021a"
@@ -62,10 +57,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@rails/request.js@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.5.tgz#5ea896085f1c82bacca0e32aa918c8cd003a3d30"
-  integrity sha512-EDw3d5oCSPFn/os7C41+61urT5J5n+bMXK2NTQVhJI8VCPAIVbvFGjZIQI0a9zJ9KuaWKHM6IjXTRakKemlzoA==
+"@rails/request.js@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.6.tgz#5f0347a9f363e50ec45118c7134080490cda81d8"
+  integrity sha512-dfFWaQXitYJ4kxrgGJNhDNXX54/v10YgoJqBMVe6lhqs6a4N9WD7goZJEvwin82TtK8MqUNhwfyisgKwM6dMdg==
 
 "@rollup/plugin-commonjs@^19.0.1":
   version "19.0.2"

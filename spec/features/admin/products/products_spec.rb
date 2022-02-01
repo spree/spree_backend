@@ -127,6 +127,82 @@ describe 'Products', type: :feature do
         expect(page).not_to have_content('apache baseball cap2')
         expect(page).not_to have_content('zomg shirt')
       end
+
+      describe 'Products index tabs' do
+        let!(:draft_product) { create(:product, status: 'draft') }
+        let!(:pre_order_product) { create(:product, status: 'draft', available_on: 1.week.from_now) }
+        let!(:active_product) { create(:product, status: 'active') }
+        let!(:archived_product) { create(:product, status: 'archived') }
+        let!(:deleted_product) { create(:product, status: 'archived', deleted_at: 1.day.ago) }
+
+        before do
+          visit spree.admin_products_path
+        end
+
+        context 'all products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'All'
+            end
+          end
+
+          it 'shows all the products without deleted' do
+            expect(page).to have_content(draft_product.name)
+            expect(page).to have_content(pre_order_product.name)
+            expect(page).to have_content(active_product.name)
+            expect(page).to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+
+        context 'active products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'Active'
+            end
+          end
+
+          it 'shows all the active products without deleted' do
+            expect(page).not_to have_content(draft_product.name)
+            expect(page).not_to have_content(pre_order_product.name)
+            expect(page).to have_content(active_product.name)
+            expect(page).not_to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+
+        context 'draft products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'Draft'
+            end
+          end
+
+          it 'shows all the draft products without deleted' do
+            expect(page).to have_content(draft_product.name)
+            expect(page).to have_content(pre_order_product.name)
+            expect(page).not_to have_content(active_product.name)
+            expect(page).not_to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+
+        context 'archived products' do
+          before do
+            within('#spreePageTabs') do
+              click_link 'Archived'
+            end
+          end
+
+          it 'shows all the archived products without deleted' do
+            expect(page).not_to have_content(draft_product.name)
+            expect(page).not_to have_content(pre_order_product.name)
+            expect(page).not_to have_content(active_product.name)
+            expect(page).to have_content(archived_product.name)
+            expect(page).not_to have_content(deleted_product.name)
+          end
+        end
+      end
     end
 
     context 'creating a new product from a prototype', js: true do
@@ -175,8 +251,6 @@ describe 'Products', type: :feature do
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
 
-        fill_in_date_picker('product_available_on', { year: 2012, month: 1, day: 24 })
-
         select2 'Size', from: 'Prototype'
         check 'Large'
         select2 @shipping_category.name, css: '#product_shipping_category_field'
@@ -184,7 +258,7 @@ describe 'Products', type: :feature do
         click_button 'Create'
 
         expect(page).to have_content('successfully created!')
-        expect(page).to have_field(id: 'product_available_on', type: :hidden, with: '2012-01-24')
+        expect(page).to have_field(id: 'product_status', with: 'draft')
         expect(Spree::Product.last.variants.length).to eq(1)
       end
 
@@ -248,13 +322,11 @@ describe 'Products', type: :feature do
       let(:product) { Spree::Product.last }
 
       it 'allows an admin to create a new product' do
-        expect(page).to have_field('product_available_on', with: I18n.localize(Time.current, format: '%Y/%m/%d'))
         expect(page).to have_select('product_shipping_category_id', selected: @shipping_category.name)
 
         fill_in 'product_name', with: 'Baseball Cap'
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
-        fill_in 'product_available_on', with: '2012/01/24'
         click_button 'Create'
 
         expect(page).to have_content('successfully created!')
@@ -263,6 +335,7 @@ describe 'Products', type: :feature do
 
         expect(product.master.prices.last.currency).to eq('EUR')
         expect(product.stores).to eq([store])
+        expect(product.status).to eq('draft')
 
         click_button 'Update'
         expect(page).to have_content('successfully updated!')
@@ -339,7 +412,7 @@ describe 'Products', type: :feature do
           create(:product, name: 'apache baseball cap')
 
           visit spree.admin_products_path
-          click_on 'More Filters'
+          click_on 'Filters'
           wait_for_turbo
 
           find('label', text: 'Show Deleted').click
@@ -448,6 +521,66 @@ describe 'Products', type: :feature do
           expect(page).to have_field(id: 'product_weight', with: weight_prev)
         end
       end
+
+      context 'with limited permissions' do
+        before do
+          allow_any_instance_of(Spree::Admin::BaseController).to receive(:spree_current_user).and_return(nil)
+        end
+
+        custom_authorization! do |_user|
+          cannot :change_status, Spree::Product
+        end
+
+        it 'As a Vendor Owner/Member I cannot change the Product state, this is reserved only to marketplace owner (spree admin)' do
+          visit spree.admin_product_path(product)
+          expect(page).to have_field('Status', disabled: true)
+          expect(page).to have_field('Make Active At', disabled: true)
+        end
+      end
+
+      context 'changing the status' do
+        context 'from draft' do
+          before { product.update_column(:status, 'draft') }
+
+          it 'to active' do
+            change_status_and_update_record(to: 'active')
+          end
+
+          it 'to archived' do
+            change_status_and_update_record(to: 'archived')
+          end
+        end
+
+        context 'from active' do
+          it 'to draft' do
+            change_status_and_update_record(to: 'draft')
+          end
+
+          it 'to archived' do
+            change_status_and_update_record(to: 'archived')
+          end
+        end
+
+        context 'from archived' do
+          before { product.update_column(:status, 'archived') }
+
+          it 'to active' do
+            change_status_and_update_record(to: 'active')
+          end
+
+          it 'to draft' do
+            change_status_and_update_record(to: 'draft')
+          end
+        end
+
+        def change_status_and_update_record(to:)
+          visit spree.admin_product_path(product)
+          select to, from: 'product_status'
+          click_button 'Update'
+          expect(page).to have_content('successfully updated')
+          expect(product.reload.status).to eq(to)
+        end
+      end
     end
 
     context 'deleting a product', js: true do
@@ -460,7 +593,7 @@ describe 'Products', type: :feature do
         end
         expect(page).to have_content('Product has been deleted')
 
-        click_on 'More Filters'
+        click_on 'Filters'
         # This will show our deleted product
         find('label', text: 'Show Deleted').click
         click_on 'Search'
@@ -475,7 +608,7 @@ describe 'Products', type: :feature do
       it 'renders selected filters' do
         visit spree.admin_products_path
 
-        click_on 'More Filters'
+        click_on 'Filters'
 
         within('#table-filter') do
           fill_in 'q_search_by_name', with: 'Backpack'

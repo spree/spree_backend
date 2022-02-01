@@ -14,9 +14,9 @@
 <%= form_for [:admin, @option_type] do |f| %>
   <div class="card mb-3">
     <div class="card-header">
-      <h1 class="card-title mb-0 h6">
+      <h5 class="card-title mb-0 h6">
         <%= Spree.t(:option_values) %>
-      </h1>
+      </h5>
     </div>
     <div class="card-body">
       <%= render partial: 'form', locals: { f: f } %>

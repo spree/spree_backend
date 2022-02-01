@@ -9,4 +9,13 @@ document.addEventListener("spree:load", function() {
     menubar: false,
     toolbar: 'undo redo | styleselect | bold italic link forecolor backcolor | alignleft aligncenter alignright alignjustify | table | bullist numlist outdent indent | code '
   });
+
+  tinymce.init({
+    selector: '.spree-rte-simple',
+    menubar: false,
+    plugins: [
+      'image table paste link table'
+    ],
+    toolbar: 'undo redo | styleselect | bold italic link forecolor backcolor | alignleft aligncenter alignright alignjustify | table | bullist numlist outdent indent'
+  });
 })

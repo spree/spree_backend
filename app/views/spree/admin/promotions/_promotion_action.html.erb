@@ -2,7 +2,7 @@
   <% type_name = promotion_action.class.name.demodulize.underscore %>
   <div class="card-header d-flex justify-content-between">
     <%= link_to_with_icon 'delete.svg', '', spree.admin_promotion_promotion_action_path(@promotion, promotion_action), remote: true, method: :delete, class: 'delete order-2' %>
-    <h3 class="card-title h5 mb-0 promotion-title"><%= Spree.t("promotion_action_types.#{type_name}.description") %></h3>
+    <h5 class="card-title h5 mb-0 promotion-title"><%= Spree.t("promotion_action_types.#{type_name}.description") %></h5>
   </div>
   <% param_prefix = "promotion[promotion_actions_attributes][#{promotion_action.id}]" %>
   <%= hidden_field_tag "#{param_prefix}[id]", promotion_action.id %>

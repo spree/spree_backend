@@ -10,10 +10,9 @@ class Dashboard {
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
-import * as Turbo from "@hotwired/turbo"
-
-// To disable Turbo, un-comment the line below.
-// Turbo.session.drive = false
+if (!window.Turbo) {
+  require("@hotwired/turbo-rails")
+}
 
 //
 // Import Utility JavaScript required globally.
@@ -44,6 +43,11 @@ application.register("password-toggle", PasswordToggleController)
 import ClipboardController from "./controllers/clipboard_controller"
 application.register("clipboard", ClipboardController)
 
+import ProductEditController from "./controllers/product_edit_controller"
+application.register("product-edit", ProductEditController)
+
+import * as RequestUtility from "./utilities/request_utility"
+
 //
 // Export
-export { Dashboard, application, flatpickr, Turbo }
+export { Dashboard, application, flatpickr, RequestUtility }
