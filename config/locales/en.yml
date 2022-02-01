@@ -302,3 +302,10 @@ en:
         both: All
         front_end: Storefront
         back_end: Admin Panel
+      product:
+        all: All
+        active: Active
+        archived: Archived
+        deleted: Deleted
+        draft: Draft
+        pre_order: Pre-order

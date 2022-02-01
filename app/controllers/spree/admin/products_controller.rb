@@ -3,13 +3,15 @@ module Spree
     class ProductsController < ResourceController
       include Spree::Admin::ProductConcern
 
-      helper 'spree/products'
+      helper 'spree/admin/products'
 
       before_action :load_data, except: :index
       before_action :set_product_defaults, only: :new
 
       create.before :create_before
       update.before :update_before
+      update.before :skip_updating_status
+      update.after :update_status
       helper_method :clone_object_url
 
       def show
@@ -117,8 +119,19 @@ module Spree
       end
 
       def set_product_defaults
-        @product.available_on ||= Time.current
         @product.shipping_category ||= @shipping_categories&.first
+      end
+
+      def skip_updating_status
+        @new_status = params[:product].delete(:status)
+      end
+
+      def update_status
+        return if @new_status == @product.status
+        return if cannot? :change_status, Spree::Product
+
+        event_to_fire = @product.status_transitions.find { |transition| transition.from == @product.status && transition.to == @new_status }&.event
+        @product.send(event_to_fire) if event_to_fire
       end
 
       def collection
@@ -126,7 +139,6 @@ module Spree
 
         params[:q] ||= {}
         params[:q][:deleted_at_null] ||= '1'
-        params[:q][:not_discontinued] ||= '1'
 
         params[:q][:s] ||= 'name asc'
 
@@ -173,6 +185,14 @@ module Spree
 
       def clone_object_url(resource)
         clone_admin_product_url resource
+      end
+
+      def permitted_resource_params
+        if cannot?(:change_status, @product)
+          super.except(:status, :make_active_at).permit!
+        else
+          super
+        end
       end
 
       private
