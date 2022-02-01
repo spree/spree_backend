@@ -8,8 +8,6 @@ module Spree
 
         if product.available?
           Spree.t('admin.product.active')
-        elsif product.available_on&.future?
-          Spree.t('admin.product.pre_order')
         else
           Spree.t('admin.product.draft')
         end

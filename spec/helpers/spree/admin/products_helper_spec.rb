@@ -33,17 +33,6 @@ describe Spree::Admin::ProductsHelper, type: :helper do
       end
     end
 
-    context 'product will be available soon' do
-      before do
-        product.status = 'draft'
-        product.available_on = 1.month.from_now
-      end
-
-      it 'has Pre-order status' do
-        expect(status).to eq(Spree.t('admin.product.pre_order'))
-      end
-    end
-
     context 'draft product' do
       before do
         product.status = 'draft'
