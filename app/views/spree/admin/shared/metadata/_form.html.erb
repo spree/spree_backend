@@ -33,7 +33,7 @@
               <% end %>
             </td>
             <td>
-              <div class="custom-control custom-checkbox" data-controller="checkbox-hidden-input">
+              <div class="custom-control custom-checkbox ml-3" data-controller="checkbox-hidden-input">
                 <input type="checkbox" class="custom-control-input" id="delete_meta_line_<%= index%>" data-action="change->checkbox-hidden-input#toggleHiddenInputValue">
                 <label class="custom-control-label" for="delete_meta_line_<%= index%>"><span></span></label>
                 <input data-checkbox-hidden-input-target="input" class="form-control" type="hidden" value="0" name="[public_metadata][delete][]" id="product_public_metadata_delete">
@@ -81,5 +81,3 @@
     </div>
   </div>
 </div>
-
-
