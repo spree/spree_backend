@@ -43,5 +43,5 @@
 .badge-inactive,
 .badge-notice,
 .badge-partial {
-  @include badge-variant($light);
+  @include badge-variant(theme-color('warning'));
 }

@@ -239,7 +239,7 @@ module Spree
 
           html_options.delete('data-update') unless html_options['data-update']
 
-          html_options[:class] = html_options[:class] ? "btn #{html_options[:class]}" : 'btn btn-outline-secondary'
+          html_options[:class] = html_options[:class] ? "btn #{html_options[:class]}" : 'btn btn-light'
 
           if html_options[:icon]
             icon = if html_options[:icon].ends_with?('.svg')
