@@ -19,7 +19,9 @@ module Spree
 
             object.public_metadata[key.to_sym] =
               params[:public_metadata][:key] =
-                { type: params[:public_metadata][:type][i], value: params[:public_metadata][:value][i].send(assert_type),
+                { type: params[:public_metadata][:type][i],
+                  name: params[:public_metadata][:name][i],
+                  value: params[:public_metadata][:value][i].send(assert_type),
                   description: params[:public_metadata][:description][i] }
 
             if params[:public_metadata][:delete].present? && params[:public_metadata][:delete][i] == '1'

@@ -12,6 +12,14 @@ en:
       filters: Filters
       kind: Kind
       home: Home
+      metadata:
+        metadata: Metadata
+        no_metadata: No metadata has been set for this item, use the fields below to create a new metadata item.
+        name: Name
+        key: Key
+        value: Value
+        description: Description
+        delete: Delete
       cms:
         all_pages: All Pages
         add_new_page: Add New Page
