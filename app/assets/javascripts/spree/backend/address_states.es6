@@ -24,6 +24,7 @@ function updateAddressState(region, successCallback) {
               stateSelect.append(opt).trigger('change')
             })
             stateSelect.prop('disabled', false).show()
+            stateSelect.select2()
             if (stateSelectValue !== undefined) {
               stateSelect.val(stateSelectValue).trigger('change')
             }
