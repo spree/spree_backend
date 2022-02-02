@@ -3,22 +3,25 @@
     <div id="left_image_details" class="card p-3">
       <div class="text-center">
         <h4 class="pb-2"><%= Spree.t('admin.cms.side_by_side.left_image') %></h4>
-        <%= f.field_container :image_one do %>
-          <% if @cms_section.image_one.attached? && @cms_section.image_one.variable? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_one.variant(resize_to_limit: [244, 104])) %>
-            </figure>
-          <% elsif @cms_section.image_one.attached? && @cms_section.image_one.image? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_one) %>
-            </figure>
+        <% @cms_section.build_image_one unless @cms_section.image_one %>
+        <%= f.fields_for :image_one do |ff| %>
+          <%= f.field_container :image_one do %>
+            <% if @cms_section.image_one.attachment&.attached? && @cms_section.image_one.attachment&.variable? %>
+              <figure class="admin-img-holder">
+                <%= image_tag main_app.cdn_image_url(@cms_section.image_one.attachment.variant(resize_to_limit: [244, 104])) %>
+              </figure>
+            <% elsif @cms_section.image_one.attachment&.attached? && @cms_section.image_one.attachment&.image? %>
+              <figure class="admin-img-holder">
+                <%= image_tag main_app.cdn_image_url(@cms_section.image_one.attachment) %>
+              </figure>
+            <% end %>
+            <%= f.field_container :image_one, class: ['mb-0'] do %>
+              <%= ff.file_field :attachment %>
+              <%= f.error_message_on :image_one %>
+            <% end %>
           <% end %>
-          <%= f.field_container :image_one, class: ['mb-0'] do %>
-            <%= f.file_field :image_one %>
-            <%= f.error_message_on :image_one %>
-          <% end %>
-          <small class="text-muted"><%= Spree.t('admin.cms.side_by_side.image_info') %></small>
         <% end %>
+        <small class="text-muted"><%= Spree.t('admin.cms.side_by_side.image_info') %></small>
       </div>
 
       <%= f.field_container :title_one do %>
@@ -54,22 +57,25 @@
     <div id="right_image_details" class="card p-3">
       <div class="text-center">
         <h4 class="pb-2"><%= Spree.t('admin.cms.side_by_side.right_image') %></h4>
-        <%= f.field_container :image_two do %>
-          <% if @cms_section.image_two.attached? && @cms_section.image_two.variable? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_two.variant(resize_to_limit: [244, 104])) %>
-            </figure>
-          <% elsif @cms_section.image_two.attached? && @cms_section.image_two.image? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_two) %>
-            </figure>
+        <% @cms_section.build_image_two unless @cms_section.image_two %>
+        <%= f.fields_for :image_two do |ff| %>
+          <%= f.field_container :image_two do %>
+            <% if @cms_section.image_two.attachment&.attached? && @cms_section.image_two.attachment&.variable? %>
+              <figure class="admin-img-holder">
+                <%= image_tag main_app.cdn_image_url(@cms_section.image_two.attachment.variant(resize_to_limit: [244, 104])) %>
+              </figure>
+            <% elsif @cms_section.image_two.attachment&.attached? && @cms_section.image_two.attachment&.image? %>
+              <figure class="admin-img-holder">
+                <%= image_tag main_app.cdn_image_url(@cms_section.image_two.attachment) %>
+              </figure>
+            <% end %>
+            <%= f.field_container :image_two, class: ['mb-0'] do %>
+              <%= ff.file_field :attachment %>
+              <%= f.error_message_on :image_two %>
+            <% end %>
           <% end %>
-          <%= f.field_container :image_two, class: ['mb-0'] do %>
-            <%= f.file_field :image_two %>
-            <%= f.error_message_on :image_two %>
-          <% end %>
-          <small class="text-muted"><%= Spree.t('admin.cms.side_by_side.image_info') %></small>
         <% end %>
+        <small class="text-muted"><%= Spree.t('admin.cms.side_by_side.image_info') %></small>
       </div>
 
       <%= f.field_container :title_two do %>
