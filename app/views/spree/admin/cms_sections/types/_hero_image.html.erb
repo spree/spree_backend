@@ -28,23 +28,7 @@
   </div>
   <div class="col-12 col-md-6 pt-4">
     <% @cms_section.build_image_one unless @cms_section.image_one %>
-    <%= f.fields_for :image_one do |ff| %>
-      <%= f.field_container :image_one do %>
-        <% if @cms_section.image_one.attachment&.attached? && @cms_section.image_one.attachment&.variable? %>
-          <figure class="admin-img-holder">
-            <%= image_tag main_app.cdn_image_url(@cms_section.image_one.attachment.variant(resize_to_limit: [244, 104])) %>
-          </figure>
-        <% elsif @cms_section.image_one.attachment&.attached? && @cms_section.image_one.attachment&.image? %>
-          <figure class="admin-img-holder">
-            <%= image_tag main_app.cdn_image_url(@cms_section.image_one.attachment) %>
-          </figure>
-        <% end %>
-        <%= f.field_container :image_one do %>
-          <%= ff.file_field :attachment %>
-          <%= f.error_message_on :image_one %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%= render partial: 'image_upload_form', locals: { f: f, image: :image_one } %>
     <small class="form-text text-muted"><%= Spree.t('admin.cms.hero.aspect_ratio') %></small>
   </div>
   <div class="col-12"><hr></div>
