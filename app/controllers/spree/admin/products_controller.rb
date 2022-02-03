@@ -2,7 +2,6 @@ module Spree
   module Admin
     class ProductsController < ResourceController
       include Spree::Admin::ProductConcern
-      include Spree::Admin::MetadataConcern
 
       helper 'spree/admin/products'
 
@@ -32,8 +31,6 @@ module Spree
         if params[:product][:option_type_ids].present?
           params[:product][:option_type_ids] = params[:product][:option_type_ids].reject(&:empty?)
         end
-
-        assert_metadata(@object)
 
         invoke_callbacks(:update, :before)
         if @object.update(permitted_resource_params)
