@@ -31,7 +31,6 @@ module Spree
         if params[:product][:option_type_ids].present?
           params[:product][:option_type_ids] = params[:product][:option_type_ids].reject(&:empty?)
         end
-
         invoke_callbacks(:update, :before)
         if @object.update(permitted_resource_params)
           set_current_store
