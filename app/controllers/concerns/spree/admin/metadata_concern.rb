@@ -13,7 +13,6 @@ module Spree
             assert_type = case params[:public_metadata][:type][i].downcase
                           when 'integer' then 'to_i'
                           when 'float' then 'to_f'
-                          when 'boolean' then 'to_b'
                           else 'to_s'
                           end
 
