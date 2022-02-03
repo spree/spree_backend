@@ -46,9 +46,6 @@ application.register("clipboard", ClipboardController)
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
 
-import InputTypeController from "./controllers/input_type_controller"
-application.register("input-type", InputTypeController)
-
 import CheckboxHiddenInputController from "./controllers/checkbox_hidden_input_controller"
 application.register("checkbox-hidden-input", CheckboxHiddenInputController)
 
