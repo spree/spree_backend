@@ -1,0 +1,118 @@
+<%= @product.class.name %>
+<%= form_with url: admin_update_public_metadata_path(resource.class.name, resource.id), method: :put do |f| %>
+  <fieldset>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="mb-0 h6"><%= Spree.t('admin.metadata.metadata') %></h3>
+      </div>
+      <div class="card-body pb-0">
+        <% if resource.public_metadata.present? %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"><%= Spree.t('admin.metadata.key') %></th>
+                <th scope="col"><%= Spree.t('admin.metadata.name') %></th>
+                <th scope="col"><%= Spree.t('admin.metadata.value') %></th>
+                <th scope="col"><%= Spree.t('admin.metadata.delete') %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% resource.public_metadata.each_with_index do |(key, data), index| %>
+              <tr>
+                <th scope="row">
+                  <%= key %>
+                  <input class="form-control" type="hidden" value="<%= key %>" name="[public_metadata][key][]" id="product_public_metadata_key" readonly>
+                </th>
+                <th scope="row">
+                  <input class="form-control" type="text" value="<%= data[:name] %>" name="[public_metadata][name][]" id="product_public_metadata_name">
+                </th>
+                <td>
+                  <% case data[:type] %>
+                  <% when 'boolean' %>
+                    <%= select("[public_metadata][value]", "",[ ['True', 'true'], ['False', 'false'] ], { include_blank: false, selected: data[:value] }, {class: 'custom-select', data: { action: "change->input-type#update" } }) %>
+                  <% when 'integer' %>
+                    <input class="form-control" type="number" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+                  <% when 'float' %>
+                    <input class="form-control" type="number" value="<%= data[:value] %>" min="0" step="any" name="[public_metadata][value][]" id="product_public_metadata_value">
+                  <% when 'date' %>
+                    <div class="input-group datepicker"
+                         data-wrap="true"
+                         data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>">
+                      <input class="form-control"
+                             data-input
+                             type="number"
+                             value="<%= data[:value] %>"
+                             name="[public_metadata][value][]"
+                             placeholder="<%= Spree.t(:select_a_date) %>"
+                             id="product_public_metadata_value">
+                      <%= render partial: 'spree/admin/shared/cal_close' %>
+                    </div>
+
+                  <% when 'datetime' %>
+                    <div class="input-group datepicker"
+                         data-wrap="true"
+                         data-enable-time="true"
+                         data-alt-format="<%= Spree.t(:fpr_human_friendly_date_time_format, scope: 'date_picker', default: 'M j, Y H:i') %>">
+                      <input class="form-control"
+                             data-input
+                             type="number"
+                             value="<%= data[:value] %>"
+                             name="[public_metadata][value][]"
+                             placeholder="<%= Spree.t(:select_a_date) %>"
+                             id="product_public_metadata_value">
+                      <%= render partial: 'spree/admin/shared/cal_close' %>
+                    </div>
+                  <% else %>
+                    <input class="form-control" type="text" value="<%= data[:value] %>" name="[public_metadata][value][]" id="product_public_metadata_value">
+                  <% end %>
+                  <small class="form-text text-muted"><%= data[:description] %></small>
+                </td>
+                <td>
+                  <div class="custom-control custom-checkbox ml-3" data-controller="checkbox-hidden-input">
+                    <input type="checkbox" class="custom-control-input" id="delete_meta_line_<%= index%>" data-action="change->checkbox-hidden-input#toggleHiddenInputValue">
+                    <label class="custom-control-label" for="delete_meta_line_<%= index%>"><span></span></label>
+                    <input data-checkbox-hidden-input-target="input" class="form-control" type="hidden" value="0" name="[public_metadata][delete][]" id="product_public_metadata_delete">
+                  </div>
+                </td>
+                <input class="form-control" type="hidden" value="<%= data[:type] %>" name="[public_metadata][type][]" id="product_public_metadata_type">
+                <input class="form-control" type="hidden" value="<%= data[:description] %>" name="[public_metadata][description][]" id="product_public_metadata_description">
+              </tr>
+          <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          <div class="alert alert-primary" role="alert">
+            <%= Spree.t('admin.metadata.no_metadata') %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-6">
+            <%= f.label :public_metadata, Spree.t('admin.metadata.type') %>
+            <%= select("[public_metadata][type]", "",[ ['Text', 'string'], ['Integer', 'integer'], ['Decimal', 'float'], ['True/False', 'boolean'], ['Color Picker', 'color'], ['Date Picker', 'date'], ['Date-Time Picker', 'datetime'] ], { include_blank: false }, {class: 'custom-select', data: { action: "change->input-type#update" } }) %>
+          </div>
+          <div class="col-6">
+            <%= f.label :public_metadata, Spree.t('admin.metadata.key') %>
+            <input class="form-control" type="text" value="" name="[public_metadata][key][]" id="product_public_metadata_key">
+          </div>
+          <div class="col-12"><hr></div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <%= f.label :public_metadata, Spree.t('admin.metadata.name') %>
+            <input class="form-control" type="text" value="" name="[public_metadata][name][]" id="product_public_metadata_name">
+          </div>
+
+          <div class="col-6">
+            <%= f.label :public_metadata, Spree.t('admin.metadata.description') %>
+            <input class="form-control" type="text" value="" name="[public_metadata][description][]" id="product_public_metadata_description">
+            <input class="form-control" type="text" value="" name="[public_metadata][value][]" id="product_public_metadata_value" hidden readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

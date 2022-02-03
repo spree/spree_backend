@@ -23,10 +23,6 @@ module Spree
                   name: params[:public_metadata][:name][i],
                   value: params[:public_metadata][:value][i].send(assert_type),
                   description: params[:public_metadata][:description][i] }
-
-            if params[:public_metadata][:delete].present? && params[:public_metadata][:delete][i] == '1'
-              object.public_metadata.delete(key.to_sym)
-            end
           end
         end
       end
