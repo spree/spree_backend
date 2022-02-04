@@ -2,7 +2,7 @@
   <div class="col-12 col-md-6">
     <%= f.field_container :email do %>
       <%= f.label :email, raw(Spree.t(:email) + required_span_tag) %>
-      <%= f.email_field :email, class: 'form-control' %>
+      <%= f.email_field :email, class: 'form-control', required: true %>
       <%= f.error_message_on :email %>
     <% end %>
   </div>
@@ -22,7 +22,7 @@
   <div class="col-12 col-md-6">
     <%= f.field_container :password do %>
       <%= f.label :password, Spree.t(:password) %>
-      <%= f.password_field :password, class: 'form-control' %>
+      <%= f.password_field :password, class: 'form-control', required: true %>
       <%= f.error_message_on :password %>
     <% end %>
   </div>
@@ -30,7 +30,7 @@
   <div class="col-12 col-md-6">
     <%= f.field_container :password_confirmation do %>
       <%= f.label :password_confirmation, Spree.t(:confirm_password) %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <%= f.password_field :password_confirmation, class: 'form-control', required: true %>
       <%= f.error_message_on :password_confirmation %>
     <% end %>
   </div>
