@@ -88,32 +88,6 @@ describe 'Stores admin', type: :feature do
       expect(store.default_currency).to eq 'EUR'
       expect(store.name).to eq 'New Store Name'
     end
-
-    describe 'uploading a favicon' do
-      let(:favicon) { file_fixture('favicon.ico') }
-
-      before do
-        visit spree.edit_admin_store_path(store)
-
-        attach_file('Favicon', favicon)
-
-        click_on 'Update'
-      end
-
-      it 'allows uploading a favicon' do
-        expect(page).to have_content('Store "Spree Test Store" has been successfully updated!')
-        expect(store.reload.favicon_image.attached?).to be(true)
-      end
-
-      context 'when a favicon is invalid' do
-        let(:favicon) { file_fixture('icon_512x512.png') }
-
-        it 'prevents uploading a favicon and displays an error message' do
-          expect(page).to have_content('Unable to update store.: Favicon image must be less than or equal to 256 x 256 pixel')
-          expect(store.reload.favicon_image.attached?).to be(false) if Rails.version.to_f > 5.2
-        end
-      end
-    end
   end
 
   describe 'deleting store', js: true do
