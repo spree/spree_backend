@@ -10,18 +10,9 @@ module Spree
           params[:public_metadata][:key].each_with_index do |key, i|
             next unless key.present?
 
-            assert_type = case params[:public_metadata][:type][i].downcase
-                          when 'integer' then 'to_i'
-                          when 'float' then 'to_f'
-                          else 'to_s'
-                          end
-
             object.public_metadata[key.to_sym] =
               params[:public_metadata][:key] =
-                { type: params[:public_metadata][:type][i],
-                  name: params[:public_metadata][:name][i],
-                  value: params[:public_metadata][:value][i].send(assert_type),
-                  description: params[:public_metadata][:description][i] }
+                { value: params[:public_metadata][:value][i] }
           end
         end
       end

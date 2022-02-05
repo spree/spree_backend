@@ -6,33 +6,36 @@ module Spree
       before_action :find_resource
 
       def create
-        # Create a new JSON key value pair on public_metadata column for the @object
-        # Force key to be down-case separated with dot.notation, this seems to be the standard.
+        @object.public_metadata.update({ params[:public_metadata][:key].to_s => params[:public_metadata][:value] })
+        @object.save!
       end
 
       def update
-        assert_metadata(@object) # Swap this out for a simple key value pairs, this is here just for testing this works.
-                                 # Is it possible to update the key? By changing the key we are changing the ID
-                                 # of the target we are operating on, this needs consideration.
+        assert_metadata(@object)
         @object.save!
 
         respond_with(@object) do |format|
           format.html { redirect_to '/admin' } # Swap this for turbo stream to render in place
-                                               # It will be much easier than trying to redirect
-                                               # to the correct location for each metadata type
-                                               # Order, Address, Variant, Product.....
+          # It will be much easier than trying to redirect
+          # to the correct location for each metadata type
+          # Order, Address, Variant, Product.....
         end
       end
 
       def delete
-        @object.public_metadata.delete(key.to_sym)
-        @object.save!
+        @object.public_metadata.delete(params[:key].to_sym)
+
+        if @object.save!
+          respond_with(@object) do |format|
+            format.html { redirect_to '/admin' }
+          end
+        end
       end
 
       private
 
       def find_resource
-        model_klazz = params[:klazz_name].constantize # Because this is to be reusable across many different resources.
+        model_klazz = params[:klazz_name].constantize
         @object = model_klazz.find(params[:id])
       end
 

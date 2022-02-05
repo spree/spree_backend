@@ -1,9 +1,5 @@
 Spree::Core::Engine.add_routes do
   namespace :admin, path: Spree.admin_path do
-    # TODO
-    # Fix this naming:
-    put '/resource/:klazz_name/:id/public_metadata', to: 'public_metadata#update', as: :update_public_metadata
-
     resources :promotions do
       resources :promotion_rules
       resources :promotion_actions
@@ -11,6 +7,9 @@ Spree::Core::Engine.add_routes do
         post :clone
       end
     end
+
+    put '/public_metadata/:klazz_name/:id', to: 'public_metadata#update', as: :update_public_metadata
+    delete '/public_metadata/:klazz_name/:id/:key', to: 'public_metadata#delete', as: :delete_public_metadata
 
     resources :promotion_categories, except: [:show]
 
