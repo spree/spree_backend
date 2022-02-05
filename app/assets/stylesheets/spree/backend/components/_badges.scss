@@ -1,3 +1,8 @@
+.badge {
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
 // Green
 .badge-completed,
 .badge-complete,
@@ -11,6 +16,8 @@
 .badge-sold,
 .badge-open,
 .badge-authorized,
+.badge-published,
+.badge-live,
 .badge-approved {
   @include badge-variant(theme-color('success'));
 }
@@ -20,6 +27,7 @@
 .badge-considered_risky,
 .badge-error,
 .badge-invalid,
+.badge-rejected,
 .badge-closed {
   @include badge-variant(theme-color('danger'));
 }
@@ -42,6 +50,18 @@
 .badge-void,
 .badge-inactive,
 .badge-notice,
+.badge-suspended,
 .badge-partial {
   @include badge-variant(theme-color('warning'));
+}
+
+// light
+.badge-disabled,
+.badge-invited {
+  @include badge-variant(theme-color('light'));
+}
+
+// Info
+.badge-onboarding {
+  @include badge-variant(theme-color('info'));
 }
