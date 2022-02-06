@@ -10,9 +10,7 @@ module Spree
           params[:public_metadata][:key].each_with_index do |key, i|
             next unless key.present?
 
-            object.public_metadata[key.to_sym] =
-              params[:public_metadata][:key] =
-                { value: params[:public_metadata][:value][i] }
+            object.public_metadata[key.to_sym] = params[:public_metadata][:value][i]
           end
         end
       end

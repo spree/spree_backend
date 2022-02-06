@@ -1,14 +1,14 @@
-<div class="card">
+<div class="card my-4">
   <div class="card-header">
     <div class="row pb-0">
       <div class="col">
         <h3 class="mb-0"><%= Spree.t('admin.metadata.metadata') %></h3>
       </div>
 
-      <div class="col text-right" id="add_public_metadata_fields_form">
-        <%= form_with url: admin_add_public_metadata_path, method: :post, format: :turbo_stream do |f| %>
-          <%= f.submit Spree.t('admin.add'), class: 'btn btn-success' %>
-        <% end %>
+      <div class="col-auto text-right" id="add_public_metadata_fields_form">
+
+          <%= render partial: 'spree/admin/public_metadata/action_buttons', locals: { resource: resource } %>
+
       </div>
     </div>
   </div>
@@ -22,7 +22,9 @@
           <th scope="col"><%= Spree.t('admin.metadata.actions') %></th>
         </tr>
       </thead>
-        <%= render partial: 'spree/admin/public_metadata/table', locals: { resource: @product } %>
+      <%= form_with url: admin_update_public_metadata_path(resource.class.name, resource.id), method: :put, format: :turbo_stream, html: { id: 'my_sample_form' } do |f| %>
+        <%= render partial: 'spree/admin/public_metadata/table', locals: { resource: resource, f: f } %>
+      <% end %>
     </table>
   </div>
 </div>

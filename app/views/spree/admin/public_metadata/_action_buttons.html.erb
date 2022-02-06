@@ -1,0 +1,9 @@
+<div class="row pb-0">
+  <%= form_with url: admin_add_public_metadata_path(resource.class.name, resource.id), method: :post, format: :turbo_stream, html: { id: 'add_new_metafield_form', class: 'col-auto pr-1' } do |f| %>
+    <%= f.submit Spree.t('admin.metadata.add_new_meta_field'), class: 'btn btn-outline-secondary btn-sm' %>
+  <% end %>
+
+  <div class="col-auto pl-1">
+    <input type="submit" value="Update" form="my_sample_form" class="btn btn-success btn-sm">
+  </div>
+</div>
