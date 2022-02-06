@@ -1,6 +1,7 @@
 en:
   spree:
     admin:
+      add: Add
       url: URL
       active: Active
       name: Name

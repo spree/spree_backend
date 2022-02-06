@@ -14,20 +14,19 @@ module Spree
         assert_metadata(@object)
         @object.save!
 
-        respond_with(@object) do |format|
-          format.html { redirect_to '/admin' } # Swap this for turbo stream to render in place
-          # It will be much easier than trying to redirect
-          # to the correct location for each metadata type
-          # Order, Address, Variant, Product.....
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace('metadata_form', partial: 'spree/admin/public_metadata/form', locals: { resource: @object })
+          end
         end
       end
 
       def delete
         @object.public_metadata.delete(params[:key].to_sym)
 
-        if @object.save!
-          respond_with(@object) do |format|
-            format.html { redirect_to '/admin' }
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.remove('metadata_form')
           end
         end
       end
