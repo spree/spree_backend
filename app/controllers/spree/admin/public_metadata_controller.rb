@@ -3,12 +3,14 @@ module Spree
     class PublicMetadataController < BaseController
       include Spree::Admin::MetadataConcern
 
-      before_action :find_resource
+      before_action :find_resource, except: [:add]
 
       def create
         @object.public_metadata.update({ params[:public_metadata][:key].to_s => params[:public_metadata][:value] })
         @object.save!
       end
+
+      def add; end
 
       def update
         assert_metadata(@object)
@@ -16,7 +18,7 @@ module Spree
 
         respond_to do |format|
           format.turbo_stream do
-            render turbo_stream: turbo_stream.replace('metadata_form', partial: 'spree/admin/public_metadata/form', locals: { resource: @object })
+            render turbo_stream: turbo_stream.replace('metadata_form', partial: 'spree/admin/public_metadata/table', locals: { resource: @object })
           end
         end
       end

@@ -1,0 +1,14 @@
+<turbo-stream action="update" target="add_public_metadata_fields_form">
+  <template>
+    <%= form_with url: admin_add_public_metadata_path, method: :post, format: :turbo_stream do |f| %>
+      <%= f.submit Spree.t('admin.add'), class: 'btn btn-success' %>
+    <% end %>
+  </template>
+</turbo-stream>
+
+
+<turbo-stream action="prepend" target="metadata_form">
+  <template>
+    <%= render partial: 'spree/admin/public_metadata/fields' %>
+  </template>
+</turbo-stream>
