@@ -8,10 +8,6 @@ Spree::Core::Engine.add_routes do
       end
     end
 
-    put '/public_metadata/:klazz_name/:id', to: 'public_metadata#update', as: :update_public_metadata
-    delete '/public_metadata/:klazz_name/:id/:key', to: 'public_metadata#delete', as: :delete_public_metadata
-    post '/public_metadata/add/:klazz_name/:id', to: 'public_metadata#add', as: :add_public_metadata
-
     resources :promotion_categories, except: [:show]
 
     resources :zones
@@ -25,6 +21,11 @@ Spree::Core::Engine.add_routes do
     resources :tax_categories
 
     resources :products do
+      member do
+        post :create_public_metadata
+        delete :delete_public_metadata, path: '/delete_public_metadata/:key'
+      end
+
       resources :product_properties do
         collection do
           post :update_positions

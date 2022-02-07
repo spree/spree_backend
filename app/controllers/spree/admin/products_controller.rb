@@ -3,6 +3,10 @@ module Spree
     class ProductsController < ResourceController
       include Spree::Admin::ProductConcern
 
+      # Metadata
+      include Spree::Admin::MetadataConcern
+      include Spree::Admin::PublicMetadataConcern
+
       helper 'spree/admin/products'
 
       before_action :load_data, except: :index
@@ -32,6 +36,9 @@ module Spree
           params[:product][:option_type_ids] = params[:product][:option_type_ids].reject(&:empty?)
         end
         invoke_callbacks(:update, :before)
+
+        assert_metadata(@object)
+
         if @object.update(permitted_resource_params)
           set_current_store
           invoke_callbacks(:update, :after)
