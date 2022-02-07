@@ -6,9 +6,6 @@ class Dashboard {
   }
 }
 
-// Temp for testing testing
-import * as Turbo from "@hotwired/turbo"
-
 //
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
