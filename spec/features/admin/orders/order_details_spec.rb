@@ -33,6 +33,8 @@ describe 'Order Details', type: :feature, js: true do
         end
         within '.table' do
           click_icon :save
+
+          wait_for_turbo
         end
 
         within('#order_total') do

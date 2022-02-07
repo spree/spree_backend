@@ -335,9 +335,9 @@ describe 'Promotion Adjustments', type: :feature, js: true do
       click_on 'Filter Results'
 
       within('.table-active-filters') do
-        expect(page).to have_content('Name: welcome')
-        expect(page).to have_content('Code: rx01welcome')
-        expect(page).to have_content('Path: path_promo')
+        expect(page).to have_content('Name: Welcome')
+        expect(page).to have_content('Code: Rx01welcome')
+        expect(page).to have_content('Path: Path_Promo')
         expect(page).to have_content('Promotion Category: Welcome Category')
       end
     end
