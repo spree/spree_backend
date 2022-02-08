@@ -14,7 +14,7 @@ module Spree
           if @object.save!
             respond_to do |format|
               format.turbo_stream do
-                render turbo_stream: turbo_stream.remove("metadata_row_#{params[:key]}")
+                render turbo_stream: turbo_stream.remove("public_metadata_row_#{params[:key]}")
               end
             end
           end

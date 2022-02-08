@@ -1,8 +1,8 @@
-<tbody id="metadata_form">
+<tbody id="public_metadata_form">
     <% resource.public_metadata.each_with_index do |(key, value), index| %>
-      <tr id="metadata_row_<%= key %>">
+      <tr id="public_metadata_row_<%= key %>">
         <th scope="row">
-          <input class="form-control" type="text" value="<%= key %>" name="[public_metadata][key][]" id="product_public_metadata_key">
+          <input class="form-control" type="text" value="<%= key %>" name="[public_metadata][key][]" id="product_public_metadata_key" required>
         </th>
         <td>
           <input class="form-control" type="text" value="<%= value %>" name="[public_metadata][value][]" id="product_public_metadata_value">

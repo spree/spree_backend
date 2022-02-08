@@ -15,7 +15,7 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col"><%= Spree.t('admin.metadata.key') %></th>
+          <th scope="col"><%= raw(Spree.t('admin.metadata.key') + required_span_tag) %></th>
           <th scope="col"><%= Spree.t('admin.metadata.value') %></th>
           <th scope="col"><%= Spree.t('admin.metadata.actions') %></th>
         </tr>

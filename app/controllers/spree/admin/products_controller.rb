@@ -6,6 +6,7 @@ module Spree
       # Metadata
       include Spree::Admin::MetadataConcern
       include Spree::Admin::PublicMetadataConcern
+      include Spree::Admin::PrivateMetadataConcern
 
       helper 'spree/admin/products'
 
