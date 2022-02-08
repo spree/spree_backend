@@ -1,7 +1,7 @@
 <tbody id="<%= kind %>_metadata_form" data-controller="row">
   <% if resource.send("#{kind}_metadata").any? %>
     <% resource.send("#{kind}_metadata").each_with_index do |(key, value), index| %>
-      <tr id="<%= kind %>_metadata_row_<%= key %>">
+      <tr class="animate__animated animate__faster" id="<%= kind %>_metadata_row_<%= key %>" data-stream-exit-class="animate__flashOut">
         <th scope="row">
           <%= hidden_field_tag("[#{kind}_metadata][previous_key][]", key, { id: "#{kind}_metadata_previous_key_#{ index }" }) %>
           <%= text_field_tag("[#{kind}_metadata][key][]", key, { id: "#{kind}_metadata_key_#{ index }",  class: 'form-control', required: true }) %>

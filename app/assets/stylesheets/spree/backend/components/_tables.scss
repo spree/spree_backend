@@ -31,6 +31,26 @@ table.table {
 
   tbody {
     tr {
+
+      &.animate__flashIn {
+        animation: flash-green 0.5s ease-in-out;
+      }
+
+
+      &.animate__flashOut {
+        animation: flash-red 0.5s ease-in-out;
+      }
+
+      @keyframes flash-green {
+        from { background-color: #A7F3D0; }
+        to { background-color: transparent; }
+      }
+
+      @keyframes flash-red {
+        from { background-color: #FECACA; }
+        to { background-color: transparent; }
+      }
+
       td {
         vertical-align: middle;
         .filterable {

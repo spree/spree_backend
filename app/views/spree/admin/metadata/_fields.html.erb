@@ -1,4 +1,6 @@
-<tr data-controller="required-input">
+<tr class="animate__animated animate__faster"
+    data-controller="required-input"
+    data-stream-enter-class="animate__flashIn">
   <td>
     <%= text_field_tag("[#{kind}_metadata][key][]", nil, { id: nil, class: 'form-control', data: { required_input_target: "togglableInput" } }) %>
   </td>

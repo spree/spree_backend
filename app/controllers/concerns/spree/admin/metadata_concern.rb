@@ -24,7 +24,7 @@ module Spree
 
         def process_metadata(object)
           assert_metadata(object, 'public') if params[:public_metadata].present?
-          assert_metadata(object, 'private') if params[:public_metadata].present?
+          assert_metadata(object, 'private') if params[:private_metadata].present?
         end
 
         def assert_metadata(object, kind)
