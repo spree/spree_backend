@@ -23,10 +23,14 @@ module Spree
         private
 
         def assert_public_metadata(object)
-          return unless params[:public_metadata].blank?
+          return unless params[:public_metadata].present?
 
           params[:public_metadata][:key].each_with_index do |key, i|
             next unless key.present?
+
+            if key.to_s != params[:public_metadata][:previous_key][i].to_s
+              object.public_metadata.delete(params[:public_metadata][:previous_key][i].to_sym)
+            end
 
             object.public_metadata[format_key(key)] = params[:public_metadata][:value][i]
           end

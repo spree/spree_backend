@@ -2,6 +2,7 @@
   <% resource.public_metadata.each_with_index do |(key, value), index| %>
     <tr id="public_metadata_row_<%= key %>">
       <th scope="row">
+        <%= hidden_field_tag("[public_metadata][previous_key][]", key, { id: "public_metadata_previous_key_#{ index }" }) %>
         <%= text_field_tag("[public_metadata][key][]", key, { id: "public_metadata_key_#{ index }",  class: 'form-control', required: true }) %>
       </th>
       <td>
