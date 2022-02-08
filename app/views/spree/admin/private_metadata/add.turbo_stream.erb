@@ -1,7 +1,0 @@
-<%= turbo_stream.update "add_private_metadata_fields_form" do %>
-  <%= render partial: 'spree/admin/private_metadata/action_buttons', locals: { resource: @object } %>
-<% end %>
-
-<%= turbo_stream.prepend "private_metadata_form" do %>
-  <%= render partial: 'spree/admin/private_metadata/fields', locals: { resource: @object } %>
-<% end %>

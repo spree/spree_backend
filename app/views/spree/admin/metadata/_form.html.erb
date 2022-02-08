@@ -2,11 +2,11 @@
   <div class="card-header">
     <div class="row pb-0">
       <div class="col">
-        <h3 class="mb-0"><%= Spree.t('admin.metadata.private_metadata') %></h3>
+        <h3 class="mb-0"><%= Spree.t('admin.metadata.public_metadata') %></h3>
       </div>
 
-      <div class="col-auto text-right" id="add_private_metadata_fields_form">
-        <%= render partial: 'spree/admin/private_metadata/action_buttons', locals: { resource: resource } %>
+      <div class="col-auto text-right" id="add_<%= kind %>_metadata_fields_form">
+        <%= render partial: 'spree/admin/metadata/action_buttons', locals: { resource: resource, kind: kind } %>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
           <th scope="col" style="width: 10%; text-align: center;"><%= Spree.t('admin.metadata.actions') %></th>
         </tr>
       </thead>
-        <%= render partial: 'spree/admin/private_metadata/table', locals: { resource: resource, f: f } %>
+        <%= render partial: 'spree/admin/metadata/table', locals: { resource: resource, f: f, kind: kind } %>
     </table>
   </div>
 </div>

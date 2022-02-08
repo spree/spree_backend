@@ -2,10 +2,7 @@ module Spree
   module Admin
     class ProductsController < ResourceController
       include Spree::Admin::ProductConcern
-
-      # Metadata
-      include Spree::Admin::PublicMetadataConcern
-      include Spree::Admin::PrivateMetadataConcern
+      include Spree::Admin::MetadataConcern
 
       helper 'spree/admin/products'
 
@@ -37,8 +34,7 @@ module Spree
         end
         invoke_callbacks(:update, :before)
 
-        assert_public_metadata(@object)
-        assert_private_metadata(@object)
+        process_metadata(@object)
 
         if @object.update(permitted_resource_params)
           set_current_store

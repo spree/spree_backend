@@ -22,10 +22,8 @@ Spree::Core::Engine.add_routes do
 
     resources :products do
       member do
-        post :create_public_metadata
-        delete :delete_public_metadata, path: '/delete_public_metadata/:key'
-        post :create_private_metadata
-        delete :delete_private_metadata, path: '/delete_private_metadata/:key'
+        post :create_metadata, path: '/create_metadata/:kind'
+        delete :delete_metadata, path: '/delete_metadata/:key/:kind'
       end
 
       resources :product_properties do

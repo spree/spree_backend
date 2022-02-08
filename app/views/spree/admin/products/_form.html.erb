@@ -323,7 +323,6 @@
 
     <div data-hook="admin_product_form_additional_fields"></div>
 
-    <%= render partial: 'spree/admin/public_metadata/form', locals: { resource: @product, f: f } %>
-    <%= render partial: 'spree/admin/private_metadata/form', locals: { resource: @product, f: f } %>
+    <%= render partial: 'spree/admin/metadata/public_and_private', locals: { resource: @product, f: f } %>
   </div>
 </div>

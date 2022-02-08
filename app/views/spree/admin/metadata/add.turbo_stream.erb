@@ -1,0 +1,7 @@
+<%= turbo_stream.update "add_#{kind}_metadata_fields_form" do %>
+  <%= render partial: 'spree/admin/metadata/action_buttons', locals: { resource: @object, kind: kind } %>
+<% end %>
+
+<%= turbo_stream.prepend "#{kind}_metadata_form" do %>
+  <%= render partial: 'spree/admin/metadata/fields', locals: { resource: @object, kind: kind } %>
+<% end %>
