@@ -19,6 +19,22 @@ module Spree
             end
           end
         end
+
+        private
+
+        def assert_private_metadata(object)
+          return unless params[:private_metadata].present?
+
+          params[:private_metadata][:key].each_with_index do |key, i|
+            next unless key.present?
+
+            object.private_metadata[format_key(key)] = params[:private_metadata][:value][i]
+          end
+        end
+
+        def format_key(key)
+          key.downcase.parameterize.underscore.to_sym
+        end
       end
     end
   end

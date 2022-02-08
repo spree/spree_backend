@@ -4,7 +4,6 @@ module Spree
       include Spree::Admin::ProductConcern
 
       # Metadata
-      include Spree::Admin::MetadataConcern
       include Spree::Admin::PublicMetadataConcern
       include Spree::Admin::PrivateMetadataConcern
 
@@ -38,7 +37,8 @@ module Spree
         end
         invoke_callbacks(:update, :before)
 
-        assert_metadata(@object)
+        assert_public_metadata(@object)
+        assert_private_metadata(@object)
 
         if @object.update(permitted_resource_params)
           set_current_store
