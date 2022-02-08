@@ -23,7 +23,7 @@ module Spree
         private
 
         def assert_private_metadata(object)
-          return unless params[:private_metadata].present?
+          return unless params[:private_metadata].blank?
 
           params[:private_metadata][:key].each_with_index do |key, i|
             next unless key.present?

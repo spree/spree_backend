@@ -23,7 +23,7 @@ module Spree
         private
 
         def assert_public_metadata(object)
-          return unless params[:public_metadata].present?
+          return unless params[:public_metadata].blank?
 
           params[:public_metadata][:key].each_with_index do |key, i|
             next unless key.present?
