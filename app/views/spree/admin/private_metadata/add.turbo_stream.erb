@@ -1,12 +1,7 @@
-<turbo-stream action="update" target="add_private_metadata_fields_form">
-  <template>
-    <%= render partial: 'spree/admin/private_metadata/action_buttons', locals: { resource: @object } %>
-  </template>
-</turbo-stream>
+<%= turbo_stream.update "add_private_metadata_fields_form" do %>
+  <%= render partial: 'spree/admin/private_metadata/action_buttons', locals: { resource: @object } %>
+<% end %>
 
-
-<turbo-stream action="prepend" target="private_metadata_form">
-  <template>
-    <%= render partial: 'spree/admin/private_metadata/fields', locals: { resource: @object } %>
-  </template>
-</turbo-stream>
+<%= turbo_stream.prepend "private_metadata_form" do %>
+  <%= render partial: 'spree/admin/private_metadata/fields', locals: { resource: @object } %>
+<% end %>

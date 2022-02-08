@@ -1,9 +1,13 @@
 <tr>
   <td>
-    <input class="form-control" type="text" value="" name="[private_metadata][key][]" id="product_private_metadata_key">
+    <%= text_field_tag("[private_metadata][key][]", nil, { id: nil, class: 'form-control', required: true }) %>
   </td>
   <td>
-    <input class="form-control" type="text" value="" name="[private_metadata][value][]" id="product_private_metadata_value">
+    <%= text_field_tag("[private_metadata][value][]", nil, { id: nil, class: 'form-control' }) %>
   </td>
-  <td></td>
+  <td class="text-center">
+    <%= link_to '#', class: 'btn btn-light btn-sm', data: { action: 'click->row#remove' }  do %>
+      <%= svg_icon name: "x-lg.svg", width: '16', height: '16', classes: 'p-0 mx-0' %>
+    <% end %>
+  </td>
 </tr>

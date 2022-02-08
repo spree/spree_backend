@@ -15,9 +15,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col"><%= raw(Spree.t('admin.metadata.key') + required_span_tag) %></th>
+          <th scope="col" ><%= raw(Spree.t('admin.metadata.key') + required_span_tag) %></th>
           <th scope="col"><%= Spree.t('admin.metadata.value') %></th>
-          <th scope="col"><%= Spree.t('admin.metadata.actions') %></th>
+          <th scope="col" style="width: 10%; text-align: center;"><%= Spree.t('admin.metadata.actions') %></th>
         </tr>
       </thead>
         <%= render partial: 'spree/admin/public_metadata/table', locals: { resource: resource, f: f } %>
