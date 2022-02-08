@@ -5,5 +5,9 @@
   <td>
     <input class="form-control" type="text" value="" name="[public_metadata][value][]" id="product_public_metadata_value">
   </td>
-  <td></td>
+  <td>
+    <%= link_to '#', class: 'btn btn-outline-secondary btn-sm', data: { action: 'click->row#remove' }  do %>
+      <%= svg_icon name: "x-lg.svg", width: '16', height: '16', classes: 'p-0 mx-0' %>
+    <% end %>
+  </td>
 </tr>

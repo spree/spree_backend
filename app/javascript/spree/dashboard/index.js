@@ -12,9 +12,9 @@ import * as Turbo from "@hotwired/turbo"
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
-//
-// Import Utility JavaScript required globally.
+import * as RequestUtility from "./utilities/request_utility"
 import "./utilities/bootstrap"
+
 
 //
 // Stimulus - Setup
@@ -44,8 +44,10 @@ application.register("clipboard", ClipboardController)
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
 
-import * as RequestUtility from "./utilities/request_utility"
+import RowController from "./controllers/row_controller"
+application.register("row", RowController)
+
 
 //
 // Export
-export { Dashboard, application, flatpickr, RequestUtility, Turbo }
+export { Dashboard, application, flatpickr, RequestUtility }
