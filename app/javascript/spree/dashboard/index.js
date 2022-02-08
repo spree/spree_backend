@@ -47,6 +47,9 @@ application.register("product-edit", ProductEditController)
 import RowController from "./controllers/row_controller"
 application.register("row", RowController)
 
+import RequiredInputController from "./controllers/required_input_controller"
+application.register("required-input", RequiredInputController)
+
 
 //
 // Export

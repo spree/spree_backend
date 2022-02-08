@@ -1,9 +1,9 @@
-<tr>
+<tr data-controller="required-input">
   <td>
-    <%= text_field_tag("[public_metadata][key][]", nil, { id: nil, class: 'form-control', required: true }) %>
+    <%= text_field_tag("[public_metadata][key][]", nil, { id: nil, class: 'form-control', data: { required_input_target: "togglableInput" } }) %>
   </td>
   <td>
-    <%= text_field_tag("[public_metadata][value][]", nil, { id: nil, class: 'form-control' }) %>
+    <%= text_field_tag("[public_metadata][value][]", nil, { id: nil, class: 'form-control', data: { action: "input->required-input#toggleRequired" } }) %>
   </td>
   <td class="text-center">
     <%= link_to '#', class: 'btn btn-light btn-sm', data: { action: 'click->row#remove' }  do %>
