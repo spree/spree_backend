@@ -14,7 +14,7 @@ en:
       kind: Kind
       home: Home
       metadata:
-        add_new_meta_field: Add New Meta Field
+        add_new_row: Add New Row
         public_metadata: Public Metadata
         private_metadata: Private Metadata
         no_metadata: No metadata has been set for this item, use the fields below to create a new metadata item.

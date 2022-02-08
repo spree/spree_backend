@@ -1,12 +1,7 @@
-<turbo-stream action="update" target="add_public_metadata_fields_form">
-  <template>
-    <%= render partial: 'spree/admin/public_metadata/action_buttons', locals: { resource: @object } %>
-  </template>
-</turbo-stream>
+<%= turbo_stream.update "add_public_metadata_fields_form" do %>
+  <%= render partial: 'spree/admin/public_metadata/action_buttons', locals: { resource: @object } %>
+<% end %>
 
-
-<turbo-stream action="prepend" target="public_metadata_form">
-  <template>
-    <%= render partial: 'spree/admin/public_metadata/fields', locals: { resource: @object } %>
-  </template>
-</turbo-stream>
+<%= turbo_stream.prepend "public_metadata_form" do %>
+  <%= render partial: 'spree/admin/public_metadata/fields', locals: { resource: @object } %>
+<% end %>
