@@ -28,7 +28,10 @@ module Spree
           params[:public_metadata][:key].each_with_index do |key, i|
             next unless key.present?
 
-            if key.to_s != params[:public_metadata][:previous_key][i].to_s
+            if params[:public_metadata][:previous_key].present? &&
+                params[:public_metadata][:previous_key][i].present? &&
+                key.to_s != params[:public_metadata][:previous_key][i].to_s
+
               object.public_metadata.delete(params[:public_metadata][:previous_key][i].to_sym)
             end
 
