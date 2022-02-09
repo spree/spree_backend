@@ -10,8 +10,14 @@
           <%= text_field_tag("[#{kind}_metadata][value][]", value, { id: "product_#{kind}_metadata_value_#{ index }",  class: 'form-control'}) %>
         </td>
         <td class="text-center">
-          <%= link_to spree.delete_metadata_admin_product_path(resource, key, kind), class: 'btn button btn-danger btn-sm', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-            <%= svg_icon name: "delete.svg", width: '16', height: '16', classes: 'p-0 m-0 mb-1' %>
+          <% if @parent.present? %>
+            <%= link_to spree.send("delete_metadata_admin_#{spree_humanize_type(@parent.class.name).downcase}_#{spree_humanize_type(resource.class.name).downcase}_path", @parent, resource, key, kind), class: 'btn button btn-danger btn-sm', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+              <%= svg_icon name: "delete.svg", width: '16', height: '16', classes: 'p-0 m-0 mb-1' %>
+            <% end %>
+          <% else %>
+            <%= link_to spree.send("delete_metadata_admin_#{spree_humanize_type(resource.class.name).downcase}_path", resource, key, kind), class: 'btn button btn-danger btn-sm', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+              <%= svg_icon name: "delete.svg", width: '16', height: '16', classes: 'p-0 m-0 mb-1' %>
+            <% end %>
           <% end %>
         </td>
       </tr>

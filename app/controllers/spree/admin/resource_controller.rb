@@ -1,5 +1,6 @@
 class Spree::Admin::ResourceController < Spree::Admin::BaseController
   include Spree::Backend::Callbacks
+  include Spree::Admin::MetadataConcern
 
   helper_method :new_object_url, :edit_object_url, :object_url, :collection_url
   before_action :load_resource, except: :update_positions
@@ -26,6 +27,9 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
 
   def update
     invoke_callbacks(:update, :before)
+
+    process_metadata(@object)
+
     if @object.update(permitted_resource_params)
       set_current_store
       invoke_callbacks(:update, :after)

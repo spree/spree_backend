@@ -1,3 +1,9 @@
-<%= link_to Spree.t('admin.metadata.add_new_row'),
-      spree.create_metadata_admin_product_path(resource, kind),
-      class: 'btn btn-outline-secondary btn-sm', data: { turbo_method: :post } %>
+<% if @parent.present? %>
+  <%= link_to Spree.t('admin.metadata.add_new_row'),
+        spree.send("create_metadata_admin_#{spree_humanize_type(@parent.class.name).downcase}_#{spree_humanize_type(resource.class.name).downcase}_path", @parent, resource, kind),
+        class: 'btn btn-outline-secondary btn-sm', data: { turbo_method: :post } %>
+<% else %>
+  <%= link_to Spree.t('admin.metadata.add_new_row'),
+        spree.send("create_metadata_admin_#{spree_humanize_type(resource.class.name).downcase}_path", resource, kind),
+        class: 'btn btn-outline-secondary btn-sm', data: { turbo_method: :post } %>
+<% end %>
