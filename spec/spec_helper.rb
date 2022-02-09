@@ -68,7 +68,7 @@ RSpec.configure do |config|
 
   config.before :suite do
     Capybara.match = :smart
-    Capybara.default_wait_time = 10
+    Capybara.default_max_wait_time = 10
     DatabaseCleaner.clean_with :truncation
     # Force jobs to be executed in a synchronous way
     ActiveJob::Base.queue_adapter = :inline
