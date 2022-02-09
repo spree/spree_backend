@@ -25,6 +25,7 @@ describe 'Users', type: :feature do
   let!(:store_credit_gbp) { create(:store_credit, amount: '80', store: store, user: user_a, currency: 'GBP') }
 
   shared_examples_for 'a user page' do
+    # TODO: FIX -> new_legacy_user_issue
     context 'lifetime stats' do
       shared_examples_for 'has lifetime stats' do
         it 'has lifetime stats' do
