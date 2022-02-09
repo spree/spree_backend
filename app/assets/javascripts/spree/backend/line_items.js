@@ -12,7 +12,7 @@ document.addEventListener("spree:load", function() {
     toggleLineItemEdit(this)
   });
 
-  // handle save click.
+  // handle save click
   $('a.save-line-item').click(function (event) {
     event.preventDefault()
     var save = $(this)
