@@ -1,19 +1,30 @@
 /* global toggleItemEdit, order_number */
 document.addEventListener("spree:load", function() {
   // handle edit click
-  $('a.edit-line-item').click(toggleLineItemEdit)
+  $('a.edit-line-item').click(function(event) {
+    event.preventDefault()
+    toggleLineItemEdit(this)
+  });
+
   // handle cancel click
-  $('a.cancel-line-item').click(toggleLineItemEdit)
+  $('a.cancel-line-item').click(function(event) {
+    event.preventDefault()
+    toggleLineItemEdit(this)
+  });
+
   // handle save click
-  $('a.save-line-item').click(function () {
+  $('a.save-line-item').click(function (event) {
+    event.preventDefault()
     var save = $(this)
     var lineItemId = save.data('line-item-id')
     var quantity = parseInt(save.parents('tr').find('input.line_item_quantity').val())
     toggleItemEdit()
     adjustLineItem(lineItemId, quantity)
   })
+
   // handle delete click
-  $('a.delete-line-item').click(function () {
+  $('a.delete-line-item').click(function (event) {
+    event.preventDefault()
     if (confirm(Spree.translations.are_you_sure_delete)) {
       var del = $(this)
       var lineItemId = del.data('line-item-id')
@@ -23,10 +34,11 @@ document.addEventListener("spree:load", function() {
   })
 })
 
-function toggleLineItemEdit () {
-  var link = $(this)
+function toggleLineItemEdit (link) {
+  var link = $(link)
   var parent = link.parent()
   var tr = link.parents('tr')
+
   parent.find('a.edit-line-item').toggle()
   parent.find('a.cancel-line-item').toggle()
   parent.find('a.save-line-item').toggle()

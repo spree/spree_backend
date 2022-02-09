@@ -135,7 +135,7 @@ document.addEventListener("spree:load", function() {
       headers: Spree.apiV2Authentication(),
       url: Spree.url(Spree.routes.orders_api_v2 + '/' + order_number + '/advance')
     }).done(function() {
-      Turbo.visit(location)
+      window.location.reload()
     })
   }
 })
