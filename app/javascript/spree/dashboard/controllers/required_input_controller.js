@@ -1,3 +1,6 @@
+//
+// Adds the required html attribute to a target input
+// if another input has content.
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
