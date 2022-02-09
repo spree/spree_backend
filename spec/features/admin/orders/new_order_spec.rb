@@ -32,6 +32,8 @@ describe 'New Order', type: :feature do
     select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
 
     click_icon :add
+    wait_for_turbo
+
     expect(page).to have_css('.card', text: 'Order Line Items')
 
     click_on 'Customer'
@@ -39,14 +41,19 @@ describe 'New Order', type: :feature do
 
     check 'order_use_billing'
     fill_in_address
+
     click_on 'Update'
     wait_for_turbo
 
     click_on 'Payments'
+    wait_for_turbo
+
     click_on 'Update'
+    wait_for_turbo
 
     expect(page).to have_current_path(spree.admin_order_payments_path(order))
     click_icon 'capture'
+    wait_for_turbo
 
     click_on 'Shipments'
     wait_for_turbo
