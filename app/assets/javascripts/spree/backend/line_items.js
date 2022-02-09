@@ -1,6 +1,6 @@
 /* global toggleItemEdit, order_number */
 document.addEventListener("spree:load", function() {
-  // handle edit click
+  // handle edit click.
   $('a.edit-line-item').click(function(event) {
     event.preventDefault()
     toggleLineItemEdit(this)
