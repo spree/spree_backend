@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 //
 // Initialize Dashboard
 class Dashboard {
@@ -6,16 +8,12 @@ class Dashboard {
   }
 }
 
-// Temp for testing testing
-import * as Turbo from "@hotwired/turbo"
-
 //
 // Import JavaScript packages that are required globally.
+import * as Turbo from "@hotwired/turbo"
+import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
-
-//
-// Import Utility JavaScript required globally.
 import "./utilities/bootstrap"
 
 //
@@ -45,8 +43,6 @@ application.register("clipboard", ClipboardController)
 
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
-
-import * as RequestUtility from "./utilities/request_utility"
 
 //
 // Export
