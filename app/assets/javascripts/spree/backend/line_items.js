@@ -1,18 +1,18 @@
 /* global toggleItemEdit, order_number */
 document.addEventListener("spree:load", function() {
-  // handle edit click
+  // handle edit click.
   $('a.edit-line-item').click(function(event) {
     event.preventDefault()
     toggleLineItemEdit(this)
   });
 
-  // handle cancel click
+  // handle cancel click.
   $('a.cancel-line-item').click(function(event) {
     event.preventDefault()
     toggleLineItemEdit(this)
   });
 
-  // handle save click
+  // handle save click.
   $('a.save-line-item').click(function (event) {
     event.preventDefault()
     var save = $(this)
@@ -22,7 +22,7 @@ document.addEventListener("spree:load", function() {
     adjustLineItem(lineItemId, quantity)
   })
 
-  // handle delete click
+  // handle delete click.
   $('a.delete-line-item').click(function (event) {
     event.preventDefault()
     if (confirm(Spree.translations.are_you_sure_delete)) {
