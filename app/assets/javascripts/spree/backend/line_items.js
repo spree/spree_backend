@@ -22,7 +22,7 @@ document.addEventListener("spree:load", function() {
     adjustLineItem(lineItemId, quantity)
   })
 
-  // handle delete click.
+  // handle delete click
   $('a.delete-line-item').click(function (event) {
     event.preventDefault()
     if (confirm(Spree.translations.are_you_sure_delete)) {
