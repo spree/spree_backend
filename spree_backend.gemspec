@@ -1,5 +1,4 @@
-# encoding: UTF-8
-require_relative 'lib/spree/backend/version.rb'
+require_relative 'lib/spree/backend/version'
 
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
@@ -13,10 +12,10 @@ Gem::Specification.new do |s|
   s.license     = 'BSD-3-Clause'
 
   s.metadata = {
-    "bug_tracker_uri"   => "https://github.com/spree/spree_backend/issues",
-    "changelog_uri"     => "https://github.com/spree/spree_backend/releases/tag/v#{s.version}",
-    "documentation_uri" => "https://dev-docs.spreecommerce.org/",
-    "source_code_uri"   => "https://github.com/spree/spree_backend/tree/v#{s.version}",
+    'bug_tracker_uri' => 'https://github.com/spree/spree_backend/issues',
+    'changelog_uri' => "https://github.com/spree/spree_backend/releases/tag/v#{s.version}",
+    'documentation_uri' => 'https://dev-docs.spreecommerce.org/',
+    'source_code_uri' => "https://github.com/spree/spree_backend/tree/v#{s.version}",
   }
 
   s.required_ruby_version = '>= 2.5'
@@ -25,21 +24,23 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree', ">= 4.4.0.rc1"
+  s.add_dependency 'spree', '>= 4.4.0.rc1'
 
-  s.add_dependency 'babel-transpiler', '~> 0.7'
-  s.add_dependency 'bootstrap',        '~> 4.0'
-  s.add_dependency 'glyphicons',       '~> 1.0'
-  s.add_dependency 'flatpickr',        '~> 4.6'
-  s.add_dependency 'flag-icons-rails', '~> 3.4'
-  s.add_dependency 'hotwire-rails'
-  s.add_dependency 'inline_svg',       '~> 1.5'
-  s.add_dependency 'jsbundling-rails'
-  s.add_dependency 'jquery-rails',     '~> 4.3'
-  s.add_dependency 'jquery-ui-rails',  '~> 6.0'
-  s.add_dependency 'responders'
-  s.add_dependency 'sass-rails',       '>= 5'
-  s.add_dependency 'select2-rails',    '~> 4.0'
-  s.add_dependency 'sprockets',        '~> 4.0'
-  s.add_dependency 'tinymce-rails'
+  s.add_dependency 'awesome_nested_set',  '~> 3.5'
+  s.add_dependency 'babel-transpiler',    '~> 0.7'
+  s.add_dependency 'bootstrap',           '~> 4.0'
+  s.add_dependency 'flag-icons-rails',    '~> 3.4'
+  s.add_dependency 'flatpickr',           '~> 4.6'
+  s.add_dependency 'glyphicons',          '~> 1.0'
+  s.add_dependency 'inline_svg',          '~> 1.5'
+  s.add_dependency 'jquery-rails',        '~> 4.3'
+  s.add_dependency 'jquery-ui-rails',     '~> 6.0'
+  s.add_dependency 'jsbundling-rails',    '~> 1.0'
+  s.add_dependency 'paranoia',            '~> 2.5'
+  s.add_dependency 'responders',          '~> 3.0'
+  s.add_dependency 'sass-rails',          '>= 5.0'
+  s.add_dependency 'select2-rails',       '~> 4.0'
+  s.add_dependency 'sprockets',           '~> 4.0'
+  s.add_dependency 'tinymce-rails',       '~> 5.0'
+  s.add_dependency 'turbo-rails',         '~> 1.0'
 end
