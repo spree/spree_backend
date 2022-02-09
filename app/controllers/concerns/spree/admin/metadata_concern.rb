@@ -29,7 +29,7 @@ module Spree
 
         def assert_metadata(object, kind)
           params["#{kind}_metadata".to_sym][:key].each_with_index do |key, i|
-            next unless key.present?
+            next if key.blank?
 
             if params["#{kind}_metadata".to_sym][:previous_key].present? &&
                 params["#{kind}_metadata".to_sym][:previous_key][i].present? &&

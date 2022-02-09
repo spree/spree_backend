@@ -2,6 +2,7 @@
     data-controller="required-input"
     data-stream-enter-class="animate__flashIn">
   <td>
+    <%= hidden_field_tag("[#{kind}_metadata][previous_key][]", "", { id: nil }) %>
     <%= text_field_tag("[#{kind}_metadata][key][]", nil, { id: nil, class: 'form-control', data: { required_input_target: "togglableInput" } }) %>
   </td>
   <td>
