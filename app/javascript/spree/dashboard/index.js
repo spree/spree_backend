@@ -1,30 +1,29 @@
-//
-// Initialize Dashboard
-class Dashboard {
-  constructor() {
-    console.log("Spree Dashboard Initialized")
-  }
-}
+/* eslint-disable no-unused-vars */
 
-//
-// Import JavaScript packages that are required globally.
+//////////////////////
+//  Global Imports  //
+//////////////////////
+import * as Turbo from "@hotwired/turbo"
+import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
-import flatpickr from "flatpickr"
-if (!window.Turbo) {
-  require("@hotwired/turbo-rails")
-}
+import Flatpickr from "flatpickr"
+import jQuery from "jquery"
+import Bootstrap from "bootstrap"
+import PopperJs from "popper.js"
 
-//
-// Import Utility JavaScript required globally.
+
+//////////////////////
+// Generic Scripts  //
+//////////////////////
 import "./utilities/bootstrap"
 
-//
-// Stimulus - Setup
+
+//////////////
+// Stimulus //
+//////////////
 const application = Application.start()
 application.debug = false
-window.Stimulus = application
 
-// Stimulus - Spree Controllers
 import UploadButtonController from "./controllers/upload_button_controller"
 application.register("upload-button", UploadButtonController)
 
@@ -46,8 +45,12 @@ application.register("clipboard", ClipboardController)
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
 
-import * as RequestUtility from "./utilities/request_utility"
 
-//
-// Export
-export { Dashboard, application, flatpickr, RequestUtility }
+//////////////
+// Exports  //
+//////////////
+window.Stimulus       = application
+window.RequestUtility = RequestUtility
+window.flatpickr      = Flatpickr
+window.jQuery         = jQuery
+window.bootstrap      = Bootstrap
