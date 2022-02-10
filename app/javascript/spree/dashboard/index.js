@@ -6,15 +6,17 @@ class Dashboard {
   }
 }
 
-import * as Turbo from "@hotwired/turbo"
-
 //
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
-import * as RequestUtility from "./utilities/request_utility"
-import "./utilities/bootstrap"
+if (!window.Turbo) {
+  require("@hotwired/turbo-rails")
+}
 
+//
+// Import Utility JavaScript required globally.
+import "./utilities/bootstrap"
 
 //
 // Stimulus - Setup
@@ -43,6 +45,8 @@ application.register("clipboard", ClipboardController)
 
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
+
+import * as RequestUtility from "./utilities/request_utility"
 
 import RowController from "./controllers/row_controller"
 application.register("row", RowController)
