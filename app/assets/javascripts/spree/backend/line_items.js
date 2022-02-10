@@ -6,7 +6,7 @@ document.addEventListener("spree:load", function() {
     toggleLineItemEdit(this)
   });
 
-  // handle cancel click.
+  // handle cancel click
   $('a.cancel-line-item').click(function(event) {
     event.preventDefault()
     toggleLineItemEdit(this)
