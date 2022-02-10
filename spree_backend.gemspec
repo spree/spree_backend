@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree', '>= 4.4.0.rc1'
+  s.add_dependency 'spree', '>= 4.4.0'
 
   s.add_dependency 'awesome_nested_set',  '~> 3.5'
   s.add_dependency 'babel-transpiler',    '~> 0.7'
