@@ -16,7 +16,7 @@ module Spree
       #   # Link to /admin/orders, also highlight tab for ProductsController and ShipmentsController
       #   tab :orders, :products, :shipments
 
-      ICON_SIZE = 16
+      ICON_SIZE = 14
       MENU_ICON_SIZE = 18
 
       def tab(*args)
@@ -59,7 +59,7 @@ module Spree
                  link_to(
                    titleized_label,
                    destination_url,
-                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block #{selected ? 'bg-info text-white' : 'text-muted'}"
+                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block #{selected ? 'font-weight-bold' : 'text-muted'}"
                  )
                end
 
@@ -75,11 +75,11 @@ module Spree
           if icon.ends_with?('.svg')
             svg_icon(name: icon, classes: 'mr-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
               content_tag(:span, " #{text}", class: 'text-muted') +
-              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 4), height: (MENU_ICON_SIZE - 4))
+              svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           else
             content_tag(:span, nil, class: "icon text-muted icon-#{icon} mr-2") +
               content_tag(:span, " #{text}", class: 'text-muted') +
-              svg_icon(name: 'chevron-left.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 4), height: (MENU_ICON_SIZE - 4))
+              svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           end
         end
       end
@@ -110,7 +110,7 @@ module Spree
 
         select_tag(:per_page,
                    options_for_select(per_page_options, selected_option),
-                   class: "w-auto form-control js-per-page-select per-page-selected-#{selected_option} custom-select")
+                   class: "w-auto form-control js-per-page-select per-page-selected-#{selected_option} custom-select custom-select-sm")
       end
 
       # helper method to create proper url to apply per page ing
@@ -239,7 +239,7 @@ module Spree
 
           html_options.delete('data-update') unless html_options['data-update']
 
-          html_options[:class] = html_options[:class] ? "btn #{html_options[:class]}" : 'btn btn-outline-secondary'
+          html_options[:class] = html_options[:class] ? "btn #{html_options[:class]}" : 'btn btn-light'
 
           if html_options[:icon]
             icon = if html_options[:icon].ends_with?('.svg')
@@ -260,9 +260,9 @@ module Spree
           url.ends_with?("#{controller.controller_name.singularize}/edit")
 
         options[:class] = 'sidebar-menu-item d-block w-100'
-        options[:class] << ' selected' if options[:is_selected]
+        options[:class] << ' selected font-weight-bold' if options[:is_selected]
         content_tag(:li, options) do
-          link_to(link_text, url, class: "#{options[:is_selected] ? 'bg-info text-white': 'text-muted'} sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block")
+          link_to(link_text, url, class: "#{'text-muted' unless options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block")
         end
       end
 
@@ -271,7 +271,7 @@ module Spree
         label ||= condition ? Spree.t(:say_yes) : Spree.t(:say_no)
         css_class = condition ? 'badge-active' : 'badge-inactive'
 
-        content_tag(:strong, class: "badge #{css_class} text-uppercase") do
+        content_tag(:small, class: "badge badge-pill #{css_class}") do
           label
         end
       end
@@ -306,7 +306,7 @@ module Spree
       end
 
       def page_header_back_button(url)
-        link_to url, class: 'btn btn-outline-info mr-3' do
+        link_to url, class: 'btn btn-outline-info mr-3 pr-1' do
           svg_icon name: 'chevron-left.svg', width: 15, height: 15
         end
       end

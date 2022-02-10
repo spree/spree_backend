@@ -13,7 +13,7 @@ describe 'Product Properties', type: :feature, js: true do
     it 'allows admin to create a new property' do
       within_row(1) { click_icon :edit }
 
-      within('#tabs') { click_link 'Properties' }
+      within('#spreePageTabs') { click_link 'Properties' }
       fill_in 'product_product_properties_attributes_0_property_name', with: 'Material'
       fill_in 'product_product_properties_attributes_0_value', with: 'Leather'
       click_button 'Update'
@@ -29,7 +29,7 @@ describe 'Product Properties', type: :feature, js: true do
     it 'allows admin to create a new property and not show the property on the storefront' do
       within_row(1) { click_icon :edit }
 
-      within('#tabs') { click_link 'Properties' }
+      within('#spreePageTabs') { click_link 'Properties' }
       fill_in 'product_product_properties_attributes_0_property_name', with: 'gtin'
       fill_in 'product_product_properties_attributes_0_value', with: '9020188287332'
       find(:css, "#product_product_properties_attributes_0_show_property").set(false)

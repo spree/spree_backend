@@ -26,9 +26,9 @@ describe Spree::Admin::StoresController do
 
   describe '#update' do
     it 'can update logo' do
-      put :update, params: { id: store.to_param, store: { logo: image_file } }
+      put :update, params: { id: store.to_param, store: { logo_attributes: { attachment: image_file } } }
 
-      expect(store.reload.logo.blob.filename).to eq(image_file.original_filename)
+      expect(store.reload.logo.attachment.blob.filename).to eq(image_file.original_filename)
     end
   end
 end

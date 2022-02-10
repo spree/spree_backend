@@ -12,6 +12,9 @@
       <thead class="bg-light text-muted">
       <tr>
         <th><%= Spree.t('admin.url') %></th>
+        <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) && !current_spree_vendor %>
+          <th><%= Spree.t(:vendor) %></th>
+        <% end %>
         <th><%= Spree.t('admin.active') %></th>
         <th><%= Spree.t('admin.webhooks_subscribers.subscriptions') %></th>
         <th><%= Spree.t('admin.webhooks_subscribers.time_of_last_event') %></th>
@@ -22,7 +25,12 @@
       <tbody>
       <% @webhooks_subscribers.each do |webhooks_subscriber| %>
         <tr id="<%= spree_dom_id webhooks_subscriber %>">
-          <td><%= webhooks_subscriber.url %></td>
+          <td><code><%= webhooks_subscriber.url %></code></td>
+          <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) && !current_spree_vendor %>
+            <td>
+              <%= link_to webhooks_subscriber.vendor.name, spree.admin_vendor_path(webhooks_subscriber.vendor) if webhooks_subscriber.vendor.present? %>
+            </td>
+          <% end %>
           <td><%= active_badge(webhooks_subscriber.active) %></td>
           <td><%= webhooks_subscriber.subscriptions&.join(', ') %></td>
           <td><%= webhooks_subscriber.events.order(:created_at).last&.created_at %></td>

@@ -10,7 +10,7 @@ describe 'Order Risk Analysis', type: :feature do
 
   def visit_order
     visit spree.admin_path
-    click_link 'Orders'
+    click_link 'All Orders'
     within_row(1) do
       click_link order.number
     end

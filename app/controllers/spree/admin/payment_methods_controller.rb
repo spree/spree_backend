@@ -16,7 +16,7 @@ module Spree
         if @payment_method.save
           invoke_callbacks(:create, :after)
           flash[:success] = Spree.t(:successfully_created, resource: Spree.t(:payment_method))
-          redirect_to spree.edit_admin_payment_method_path(@payment_method)
+          redirect_to location_after_create
         else
           invoke_callbacks(:create, :fails)
           respond_with(@payment_method, status: :unprocessable_entity)
@@ -89,6 +89,10 @@ module Spree
         return {} unless params.key? key
 
         params.require(key).permit!
+      end
+
+      def location_after_create
+        spree.edit_admin_payment_method_path(@payment_method)
       end
     end
   end
