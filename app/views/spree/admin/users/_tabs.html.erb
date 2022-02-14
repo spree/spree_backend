@@ -1,5 +1,6 @@
 <% content_for :page_title do %>
-  <%= page_header_back_button spree.admin_users_path %>
+  <% back_url = defined?(back_button_url) ? back_button_url(@user) : spree.admin_users_path %>
+  <%= page_header_back_button back_url %>
   <%= @user.email %>
 <% end %>
 
