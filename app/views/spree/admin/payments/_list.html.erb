@@ -1,6 +1,6 @@
 <div class="table-responsive border rounded bg-white">
   <table class="table border rounded" id='payments' data-order-id='<%= @order.number %>'>
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
       <tr data-hook="payments_header">
         <th><%= Spree::Payment.human_attribute_name(:number) %></th>
         <th><%= "#{Spree.t('date')}/#{Spree.t('time')}" %></th>
@@ -28,9 +28,9 @@
             <span class="d-flex justify-content-center payment-action-buttons">
               <% payment.actions.each do |action| %>
                 <% if action == 'credit' %>
-                  <%= link_to_with_icon('exit.svg', Spree.t(:refund), new_admin_order_payment_refund_path(@order, payment), no_text: true, class: "btn btn-outline-secondary btn-sm") if can?(:create, Spree::Refund) %>
+                  <%= link_to_with_icon('exit.svg', Spree.t(:refund), new_admin_order_payment_refund_path(@order, payment), no_text: true, class: "btn btn-light btn-sm") if can?(:create, Spree::Refund) %>
                 <% else %>
-                  <%= link_to_with_icon(action + '.svg', Spree.t(action), fire_admin_order_payment_path(@order, payment, e: action), method: :put, no_text: true, data: { action: action }, class: "btn btn-outline-secondary btn-sm") if can?(action.to_sym, payment) %>
+                  <%= link_to_with_icon(action + '.svg', Spree.t(action), fire_admin_order_payment_path(@order, payment, e: action), method: :put, no_text: true, data: { action: action }, class: "btn btn-light btn-sm") if can?(action.to_sym, payment) %>
                 <% end %>
               <% end %>
             </span>

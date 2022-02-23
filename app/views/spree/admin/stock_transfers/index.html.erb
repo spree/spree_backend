@@ -46,7 +46,7 @@
 <% if @stock_transfers.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_stock_transfers' data-hook>
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
       <tr data-hook='stock_transfers_header'>
         <th><%= Spree.t(:number) %></th>
         <th><%= Spree.t(:reference) %></th>
@@ -74,7 +74,7 @@
           <td><%= stock_transfer.created_at.strftime('%F %T %Z') %></td>
           <td class="actions">
             <span class="d-flex justify-content-end">
-              <%= link_to_with_icon 'view.svg', Spree.t(:show), admin_stock_transfer_path(stock_transfer), class: 'btn btn-outline-secondary btn-sm', no_text: true, data: {action: 'view'} %>
+              <%= link_to_with_icon 'view.svg', Spree.t(:show), admin_stock_transfer_path(stock_transfer), class: 'btn btn-light btn-sm', no_text: true, data: {action: 'view'} %>
             </span>
           </td>
         </tr>
