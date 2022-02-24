@@ -1,4 +1,4 @@
-<div data-hook="admin_product_form_fields">
+<div data-hook="admin_product_form_fields" data-controller="product-edit">
   <div class="row">
 
     <div class="col-12 col-md-8" data-hook="admin_product_form_left">
@@ -28,6 +28,94 @@
     </div>
 
     <div class="col-12 col-md-4" data-hook="admin_product_form_right">
+      <div data-hook="new_product_status">
+        <%= f.field_container :status do %>
+          <%= f.label :status, Spree.t(:status) %>
+          <% options = ['draft', 'active', 'archived'] %>
+          <% options.delete('active') if cannot? :activate, @product %>
+          <% select_html = { class: 'select2',
+                             data: {
+                               action: 'change->product-edit#switchAvailabilityDatesFields',
+                               'product-edit-target': 'status'
+                             } } %>
+          <%= f.select(:status, options.each_slice(1), { selected: @product.status }, select_html) %>
+          <%= f.error_message_on :status %>
+        <% end %>
+      </div>
+
+      <div data-hook="admin_product_form_available_on" data-product-edit-target="availableOn">
+        <%= f.field_container :available_on do %>
+          <%= f.label :available_on, Spree.t(:available_on) %>
+          <%= f.error_message_on :available_on %>
+
+          <div class="input-group datePickerFrom"
+               data-wrap="true"
+               data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
+               data-max-date="<%= @product.discontinue_on %>">
+
+            <%= f.text_field :available_on,
+                             value: datepicker_field_value(@product.available_on),
+                             placeholder: Spree.t(:select_a_date),
+                             class: 'form-control ',
+                             'data-input':'' %>
+
+            <%= render partial: 'spree/admin/shared/cal_close' %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if can?(:activate, @product) %>
+        <div data-hook="admin_product_form_make_active_at" data-product-edit-target="makeActiveAt">
+          <%= f.field_container :make_active_at do %>
+            <%= f.label :make_active_at, Spree.t(:make_active_at) %>
+            <%= f.error_message_on :make_active_at %>
+
+            <div class="input-group datePickerFrom"
+                 data-wrap="true"
+                 data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
+                 data-max-date="<%= @product.discontinue_on %>">
+
+              <%= f.text_field :make_active_at,
+                               value: datepicker_field_value(@product.make_active_at),
+                               placeholder: Spree.t(:select_a_date),
+                               class: 'form-control ',
+                               'data-input':'' %>
+
+              <%= render partial: 'spree/admin/shared/cal_close' %>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div data-hook="admin_product_form_make_active_at">
+          <%= f.field_container :make_active_at do %>
+            <%= f.label :make_active_at, Spree.t(:make_active_at) %>
+            <%= f.text_field :make_active_at, value: datepicker_field_value(@product.make_active_at), class: 'form-control', disabled: true %>
+            <%= f.error_message_on :make_active_at %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <div data-hook="admin_product_form_discontinue_on" data-product-edit-target="discontinueOn">
+        <%= f.field_container :discontinue_on do %>
+          <%= f.label :discontinue_on, Spree.t(:discontinue_on) %>
+          <%= f.error_message_on :discontinue_on %>
+
+          <div class="input-group datePickerTo"
+               data-wrap="true"
+               data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
+               data-min-date="<%= @product.make_active_at %>">
+
+            <%= f.text_field :discontinue_on,
+                             value: datepicker_field_value(@product.discontinue_on),
+                             placeholder: Spree.t(:select_a_date),
+                             class: 'form-control ',
+                             'data-input':'' %>
+
+            <%= render partial: 'spree/admin/shared/cal_close' %>
+          </div>
+        <% end %>
+      </div>
+
       <div data-hook="admin_product_form_price">
         <%= f.field_container :price do %>
           <%= f.label :price, raw(Spree.t(:master_price) + required_span_tag) %>
@@ -69,48 +157,6 @@
         <% end %>
       </div>
 
-      <div data-hook="admin_product_form_available_on">
-        <%= f.field_container :available_on do %>
-          <%= f.label :available_on, Spree.t(:available_on) %>
-          <%= f.error_message_on :available_on %>
-
-          <div class="input-group datePickerFrom"
-               data-wrap="true"
-               data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
-               data-max-date="<%= @product.discontinue_on %>">
-
-            <%= f.text_field :available_on,
-                             value: datepicker_field_value(@product.available_on),
-                             placeholder: Spree.t(:select_a_date),
-                             class: 'form-control ',
-                             'data-input':'' %>
-
-            <%= render partial: 'spree/admin/shared/cal_close' %>
-          </div>
-        <% end %>
-      </div>
-
-      <div data-hook="admin_product_form_discontinue_on">
-        <%= f.field_container :discontinue_on do %>
-          <%= f.label :discontinue_on, Spree.t(:discontinue_on) %>
-          <%= f.error_message_on :discontinue_on %>
-
-          <div class="input-group datePickerTo"
-               data-wrap="true"
-               data-alt-format="<%= Spree.t(:fpr_human_friendly_date_format, scope: 'date_picker', default: 'M j, Y') %>"
-               data-min-date="<%= @product.available_on %>">
-
-            <%= f.text_field :discontinue_on,
-                              value: datepicker_field_value(@product.discontinue_on),
-                              placeholder: Spree.t(:select_a_date),
-                              class: 'form-control ',
-                              'data-input':'' %>
-
-            <%= render partial: 'spree/admin/shared/cal_close' %>
-          </div>
-        <% end %>
-      </div>
-
       <div data-hook="admin_product_form_promotionable">
         <%= f.field_container :promotionable do %>
           <%= f.check_box :promotionable %>
@@ -143,7 +189,7 @@
               <% end %>
             <div class="info-actions">
               <% if can?(:admin, Spree::Variant) %>
-                <%= link_to_with_icon 'adjust.svg', Spree.t(:manage_variants), spree.admin_product_variants_url(@product), class: "btn btn-outline-secondary" %>
+                <%= link_to_with_icon 'adjust.svg', Spree.t(:manage_variants), spree.admin_product_variants_url(@product), class: "btn btn-light" %>
               <% end %>
             </div>
           </div>

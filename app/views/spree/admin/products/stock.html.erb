@@ -9,7 +9,7 @@
 <div class="mb-3">
   <div class="table-responsive border rounded bg-white">
     <table class="table" id="listing_product_stock">
-      <thead class="bg-light text-muted">
+      <thead class="text-muted">
         <tr data-hook="admin_product_stock_management_index_headers">
           <th colspan="2"><%= Spree.t(:variant) %></th>
           <th colspan="3"><%= Spree.t(:stock_location_info) %></th>
@@ -20,9 +20,7 @@
           <% if variant.stock_items.present? %>
             <tr id="<%= spree_dom_id variant %>" data-hook="admin_product_stock_management_index_rows">
               <td class="image text-center">
-                <% if variant.images.present? %>
-                  <%= image_tag main_app.cdn_image_url(variant.images.first.url(:mini)) %>
-                <% end %>
+                <%= small_image(variant) %>
               </td>
               <td>
                 <%= variant.sku_and_options_text %>
@@ -42,7 +40,7 @@
 
               <td colspan="3" class="stock_location_info">
                 <table class="table border rounded mb-0">
-                  <thead class="bg-light text-muted">
+                  <thead class="text-muted">
                     <th><%= Spree.t(:stock_location) %></th>
                     <th class="text-center"><%= Spree.t(:count_on_hand) %></th>
                     <th class="text-center"><%= Spree.t(:backorderable) %></th>

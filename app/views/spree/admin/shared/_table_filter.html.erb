@@ -6,13 +6,13 @@
           <%= text_field_tag :quick_search, nil, class: "form-control js-quick-search", placeholder: Spree.t(:search_by) %>
         <% end %>
 
-        <button class="btn btn-outline-secondary js-show-index-filters m-0 rounded-sm" type="button">
+        <button class="btn btn-light js-show-index-filters m-0 rounded-sm" type="button">
           <%= svg_icon name: "filter.svg", width: '16', height: '16' %>
-          <span class="d-none d-sm-inline"><%= Spree.t('admin.more_filters') %></span>
+          <span class="d-none d-sm-inline"><%= Spree.t('admin.filters') %></span>
         </button>
       </div>
       <% unless defined?(simple) %>
-        <div id="table-filter" data-hook class="card bg-light filter-well mt-4">
+        <div id="table-filter" data-hook class="card filter-well mt-4">
           <div class="card-body">
             <%= yield :table_filter %>
           </div>

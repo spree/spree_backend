@@ -1,0 +1,31 @@
+<div data-hook="admin_products_sidebar">
+
+  <%= search_form_for [:admin, @search] do |f| %>
+    <div data-hook="admin_products_index_search" class="row">
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <%= f.label :search_by_name, Spree.t(:product_name) %>
+          <%= f.text_field :search_by_name, size: 15, class: "form-control js-quick-search-target js-filterable" %>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <%= f.label :variants_including_master_sku_cont, Spree.t(:sku) %>
+          <%= f.text_field :variants_including_master_sku_cont, size: 15, class: "form-control js-filterable" %>
+        </div>
+      </div>
+      <div class="col-12">
+        <%= f.field_container :deleted_at_null do %>
+          <div class="custom-control custom-checkbox">
+            <%= f.check_box :deleted_at_null, {checked: params[:q][:deleted_at_null] == '0', class: 'custom-control-input'}, '0', '1' %>
+            <%= f.label :deleted_at_null, Spree.t(:show_deleted), class: 'custom-control-label' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div data-hook="admin_products_index_search_buttons" class="form-actions">
+      <%= button Spree.t(:search), 'search.svg' %>
+    </div>
+  <% end %>
+
+</div>

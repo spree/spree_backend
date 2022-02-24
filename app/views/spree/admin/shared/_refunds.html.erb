@@ -1,6 +1,6 @@
 <div class="table-responsive border rounded bg-white">
   <table class="table table-condensed border rounded" id='refunds' data-order-id='<%= @order.number %>'>
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
       <tr data-hook="refunds_header">
         <th><%= "#{Spree.t('date')}/#{Spree.t('time')}" %></th>
         <th><%= Spree.t(:payment_identifier) %></th>
@@ -25,7 +25,7 @@
           <% if show_actions %>
             <td class="actions">
               <span class="d-flex justify-content-end">
-                <%= link_to_with_icon('edit.svg', Spree.t(:edit), edit_admin_order_payment_refund_path(refund.payment.order, refund.payment, refund), no_text: true, class: "btn btn-outline-secondary btn-sm") if can?(:edit, refund) %>
+                <%= link_to_with_icon('edit.svg', Spree.t(:edit), edit_admin_order_payment_refund_path(refund.payment.order, refund.payment, refund), no_text: true, class: "btn btn-light btn-sm") if can?(:edit, refund) %>
               </span>
             </td>
           <% end %>

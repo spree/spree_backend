@@ -122,22 +122,6 @@
           <%= f.select :channel_eq, Spree::Order.distinct.pluck(:channel), { include_blank: true }, class: 'select2-clear js-filterable' %>
         </div>
       </div>
-
-      <div class="col-12">
-        <%= f.field_container :completed_at_not_null do %>
-          <div class="custom-control custom-checkbox">
-            <%= f.check_box :completed_at_not_null, {checked: @show_only_completed, class: 'custom-control-input'}, '1', '0' %>
-            <%= f.label :completed_at_not_null, Spree.t(:show_only_complete_orders), class: 'custom-control-label' %>
-          </div>
-        <% end %>
-
-        <%= f.field_container :considered_risky_eq do %>
-          <div class="custom-control custom-checkbox">
-            <%= f.check_box :considered_risky_eq, {checked: params[:q][:considered_risky_eq] == '1', class: 'custom-control-input'}, '1', '' %>
-            <%= f.label :considered_risky_eq, Spree.t(:show_only_considered_risky), class: 'custom-control-label' %>
-          </div>
-        <% end %>
-      </div>
     </div>
 
     <div data-hook="admin_orders_index_search_buttons" class="form-actions">

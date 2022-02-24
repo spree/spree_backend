@@ -3,9 +3,9 @@
   <div class="card mb-3" data-hook="customer_guest">
 
     <div class="card-header">
-      <h1 class="card-title mb-0 h6">
+      <h5 class="card-title mb-0 h6">
         <%= Spree.t(:account) %>
-      </h1>
+      </h5>
     </div>
 
     <div class="card-body">
@@ -27,7 +27,7 @@
 
             <% if @order.completed? %>
               <div>
-                <span class="badge badge-secondary">
+                <span class="badge badge-pill badge-secondary">
                   <%= guest ? Spree.t(:say_yes) : Spree.t(:say_no) %>
                   <%= hidden_field_tag :guest_checkout, guest %>
                 </span>
@@ -58,7 +58,7 @@
     <div data-hook="bill_address_wrapper" class="col-12 col-lg-6">
       <div class="card mb-3">
         <div class="card-header">
-          <h1 class="card-title mb-0 h6"><%= Spree.t(:billing_address) %></h1>
+          <h5 class="card-title mb-0 h6"><%= Spree.t(:billing_address) %></h5>
         </div>
 
         <div class="card-body">
@@ -76,7 +76,7 @@
     <div class="col-12 col-lg-6" data-hook="ship_address_wrapper">
       <div class="card mb-3">
         <div class="card-header">
-          <h1 class="card-title mb-0 h6"><%= Spree.t(:shipping_address) %></h1>
+          <h5 class="card-title mb-0 h6"><%= Spree.t(:shipping_address) %></h5>
         </div>
         <div class="card-body">
           <% if can? :edit, @order.user %>

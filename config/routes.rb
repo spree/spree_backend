@@ -195,7 +195,9 @@ Spree::Core::Engine.add_routes do
     resources :webhooks_subscribers
 
     get '/forbidden', to: 'errors#forbidden', as: :forbidden
-    root to: "dashboard#show"
+    resource :dashboard, controller: 'dashboard'
+
+    root to: 'dashboard#show'
   end
 
   get Spree.admin_path, to: 'admin/dashboard#show', as: :admin

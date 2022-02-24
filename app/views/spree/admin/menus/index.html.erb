@@ -42,10 +42,10 @@
 <% if @menus.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table" id="menusTable">
-    <thead class="bg-light text-muted">
-      <th scope="col" class="text-center"><%= Spree.t(:name) %></th>
-      <th scope="col" class="text-center"><%= Spree.t('location') %></th>
-      <th scope="col" class="text-center"><%= Spree.t('language') %></th>
+    <thead class="text-muted">
+      <th scope="col"><%= Spree.t(:name) %></th>
+      <th scope="col"><%= Spree.t('location') %></th>
+      <th scope="col"><%= Spree.t('language') %></th>
       <th class="text-center" scope="col" class="text-center"><%= Spree.t('default') %>
         <span data-show-info
               data-alert-kind="info"

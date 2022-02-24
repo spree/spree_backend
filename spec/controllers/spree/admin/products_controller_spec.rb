@@ -24,16 +24,51 @@ describe Spree::Admin::ProductsController, type: :controller do
     end
   end
 
-  # regression test for #1370
-  context 'adding properties to a product' do
+  context '#update' do
     let!(:product) { create(:product, stores: [store]) }
-
-    specify do
+    let(:product_params) { { status: 'draft', make_active_at: Time.current.beginning_of_day } }
+    let(:send_request) do
       put :update, params: {
         id: product.to_param,
-        product: { product_properties_attributes: { '1' => { property_name: 'Foo', value: 'bar' } } }
+        product: product_params
       }
+    end
+
+    it 'will successfully update product' do
+      send_request
       expect(flash[:success]).to eq("Product #{product.name.inspect} has been successfully updated!")
+      expect(product.reload.status).to eq('draft')
+      expect(product.make_active_at).to eq(Time.current.beginning_of_day)
+    end
+
+    context 'with limited activate_product permissions' do
+      let(:product_params) { { status: :active, make_active_at: Time.current.beginning_of_day } }
+
+      stub_authorization! do |_u|
+        can :manage, :all
+        cannot :activate, Spree::Product
+      end
+
+      before do
+        product.update(status: :draft)
+      end
+
+      it 'cannot change the product status and make_available_at' do
+        send_request
+        expect(flash[:success]).to eq("Product #{product.name.inspect} has been successfully updated!")
+        expect(product.reload.status).not_to eq('active')
+        expect(product.make_active_at).not_to eq(Time.current.beginning_of_day)
+      end
+    end
+
+    # regression test for #1370
+    context 'adding properties to a product' do
+      let(:product_params) { { product_properties_attributes: { '1' => { property_name: 'Foo', value: 'bar' } } } }
+
+      specify do
+        send_request
+        expect(flash[:success]).to eq("Product #{product.name.inspect} has been successfully updated!")
+      end
     end
   end
 

@@ -1,0 +1,30 @@
+<h4 class="mb-3">APIs</h4>
+
+<ul class="list-group mb-5">
+  <li class="list-group-item">
+    Storefront API <code class="float-right"><%= current_store.formatted_url %>/api/v2/storefront</code>
+    <br />
+    <small class="text-muted">
+      <%= link_to 'Learn more', 'https://api.spreecommerce.org/docs/api-v2/api/docs/v2/storefront/index.yaml', target: :blank %>
+    </small>
+    <small class="text-muted float-right">
+      <%= link_to 'Download SDK', 'https://github.com/spree/spree-storefront-api-v2-js-sdk', class: 'btn btn-sm btn-light', target: :blank %>
+    </small>
+  </li>
+  <li class="list-group-item">
+    Platform API <code class="float-right"><%= current_store.formatted_url %>/api/v2/platform</code>
+    <br />
+    <small class="text-muted">
+      <%= link_to 'Learn more', 'https://api.spreecommerce.org/docs/api-v2/YXBpOjg3MzkxODk-platform-api', target: :blank %>
+    </small>
+    <small class="text-muted float-right">
+      <%= link_to 'Create Platform application', spree.admin_oauth_applications_path, class: 'btn btn-sm btn-light' %>
+    </small>
+  </li>
+  <li class="list-group-item">
+    Webhooks
+    <small class="text-muted float-right">
+      <%= link_to 'Create Webhook subscriber', spree.admin_webhooks_subscribers_path, class: 'btn btn-sm btn-light' %>
+    </small>
+  </li>
+</ul>

@@ -1,13 +1,13 @@
 <% if adjustments.eligible.exists? %>
   <div class="card mb-3">
     <div class="card-header">
-      <h1 class="card-title mb-0 h6">
+      <h5 class="card-title mb-0 h6">
         <%= title %>
-      </h1>
+      </h5>
     </div>
     <div class="table-responsive bg-white">
       <table class="table">
-        <thead class="bg-light text-muted">
+        <thead class="text-muted">
           <tr>
             <th><%= Spree.t('name') %></th>
             <th><%= Spree.t('amount') %></th>

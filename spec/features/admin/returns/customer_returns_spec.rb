@@ -45,14 +45,14 @@ describe 'Customer Returns', type: :feature do
     end
 
     it 'searches on number' do
-      click_on 'More Filters'
+      click_on 'Filters'
       fill_in 'q_number_cont', with: customer_return.number
       click_on 'Search'
 
       expect(page).to have_content(customer_return.number)
       expect(page).not_to have_content(customer_return_2.number)
 
-      click_on 'More Filters'
+      click_on 'Filters'
       fill_in 'q_number_cont', with: customer_return_2.number
       click_on 'Search'
 
@@ -61,7 +61,7 @@ describe 'Customer Returns', type: :feature do
     end
 
     it 'renders selected filters', js: true do
-      click_on 'More Filters'
+      click_on 'Filters'
 
       within('#table-filter') do
         fill_in 'q_number_cont', with: 'RX001-01'

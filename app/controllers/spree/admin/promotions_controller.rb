@@ -27,6 +27,8 @@ module Spree
       end
 
       def load_data
+        @actions = Rails.application.config.spree.promotions.actions
+
         @calculators = Rails.application.config.spree.calculators.promotion_actions_create_adjustments
         @promotion_categories = Spree::PromotionCategory.order(:name)
       end

@@ -94,6 +94,7 @@
         </div>
         <div class="row">
           <%= event_checkbox_for(:zone, f) %>
+          <%= event_checkbox_for(:vendor, f) if defined?(Spree::Vendor) %>
         </div>
       </div>
     <% end %>

@@ -7,7 +7,7 @@
 <% end if can? :create, Spree::Country %>
 <div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_countries' data-hook>
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
       <tr data-hook="tax_header">
         <th><%= Spree.t(:country_name) %></th>
         <th class="text-center"><%= Spree.t(:iso3) %></th>

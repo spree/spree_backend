@@ -11,7 +11,7 @@
     <div data-hook="admin_shipping_method_form_display_field" class="col-12 col-lg-6">
       <%= f.field_container :display_on do %>
         <%= f.label :display_on, Spree.t(:display) %>
-        <%= select(:shipping_method, :display_on, Spree::ShippingMethod::DISPLAY.collect { |display| [Spree.t(display), display.to_s] }, { include_blank: true }, { class: 'select2-clear' }) %>
+        <%= select(:shipping_method, :display_on, Spree::ShippingMethod::DISPLAY.collect { |display| [Spree.t("admin.display_on.#{display}"), display.to_s] }, { selected: :both, include_blank: true }, { class: 'select2-clear' }) %>
         <%= f.error_message_on :display_on %>
       <% end %>
     </div>
@@ -48,9 +48,9 @@
   <div data-hook="admin_shipping_method_form_availability_fields" class="col-12 col-lg-6">
     <div class="card mb-3 categories">
       <div class="card-header">
-        <h1 class="card-title mb-0 h6">
+        <h5 class="card-title mb-0 h6">
           <%= Spree.t(:shipping_categories) %>
-        </h1>
+        </h5>
       </div>
 
       <div class="card-body">
@@ -72,9 +72,9 @@
   <div class="col-12 col-lg-6">
     <div class="card mb-3">
       <div class="card-header">
-        <h1 class="card-title mb-0 h6">
+        <h5 class="card-title mb-0 h6">
           <%= Spree.t(:zones) %>
-        </h1>
+        </h5>
       </div>
 
       <div class="card-body">
@@ -87,7 +87,7 @@
                 <span class="text-uppercase"><%= zone.name %></span>
                 <br />
                 <% zone.zone_members.each do |zone_member| %>
-                  <small class="badge badge-info"><%= zone_member.zoneable.name %></small>
+                  <small class="badge badge-pill badge-info"><%= zone_member.zoneable.name %></small>
                 <% end %>
               <% end %>
             </div>
@@ -107,9 +107,9 @@
   <div class="col-12 col-lg-6">
     <div class="card mb-3 tax_categories">
       <div class="card-header">
-        <h1 class="card-title mb-0 h6">
+        <h5 class="card-title mb-0 h6">
           <%= Spree.t(:tax_category) %>
-        </h1>
+        </h5>
       </div>
 
       <div class="card-body">

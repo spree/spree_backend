@@ -6,10 +6,6 @@
   <% end %>
 <% end %>
 
-<% content_for :page_title do %>
-  / <%= Spree.t(:return_authorizations) %>
-<% end %>
-
 <% if @order.shipments.any?(&:shipped?) && @order.return_authorizations.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table">
@@ -27,9 +23,9 @@
         <tr id="<%= spree_dom_id(return_authorization) %>" data-hook="rma_row">
           <td><%= return_authorization.number %></td>
           <td>
-            <strong class="badge badge-<%= return_authorization.state %> text-uppercase">
+            <small class="badge badge-pill badge-<%= return_authorization.state %>">
               <%= Spree.t("return_authorization_states.#{return_authorization.state}") %>
-            </strong>
+            </small>
           </td>
           <td><%= return_authorization.display_pre_tax_total.to_html %></td>
           <td><%= pretty_time(return_authorization.created_at) %></td>

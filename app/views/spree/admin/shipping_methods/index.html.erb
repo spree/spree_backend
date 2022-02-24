@@ -9,7 +9,7 @@
 <% if @shipping_methods.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_shipping_methods'>
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
       <tr data-hook="admin_shipping_methods_index_headers">
         <th><%= Spree.t(:name) %></th>
         <% if defined?(Spree::Vendor) %>
@@ -27,7 +27,7 @@
           <td>
             <%= shipping_method.name %>
             <% if shipping_method.admin_name.present? %>
-              <small class="badge badge-light ml-2">
+              <small class="badge badge-pill badge-light ml-2">
                 <%= shipping_method.admin_name %>
               </small>
             <% end %>
@@ -39,23 +39,22 @@
               <% end %>
              </td>
           <% end %>
-          <td class="text-center text-uppercase">
+          <td class="text-center">
             <% shipping_method.zones.each do |zone| %>
-              <%= link_to zone.name, spree.edit_admin_zone_path(zone), class: 'badge badge-secondary' %>
+              <%= link_to zone.name, spree.edit_admin_zone_path(zone), class: 'badge badge-pill badge-secondary' %>
             <% end %>
           </td>
           <td class="text-center"><%= shipping_method.calculator.description %></td>
           <td class="text-center">
             <% if shipping_method.display_on.blank? %>
-              <span class="badge badge-danger">
+              <span class="badge badge-pill badge-danger">
                 <%= Spree.t(:none) %>
               </span>
             <% else %>
-              <span class="badge badge-success">
-                <%= Spree.t(shipping_method.display_on) %>
+              <span class="badge badge-pill badge-success">
+                <%= Spree.t("admin.display_on.#{shipping_method.display_on}") %>
               </span>
             <% end %>
-          </td>
           <td class="actions" data-hook="admin_shipping_methods_index_row_actions">
             <span class="d-flex justify-content-end">
               <%= link_to_edit(shipping_method, no_text: true) if can? :edit, shipping_method %>

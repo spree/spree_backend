@@ -10,10 +10,42 @@ describe 'Stores admin', type: :feature do
   before { store.update!(checkout_zone: zone) }
 
   describe 'creating store' do
-    it 'sets default currency value', js: true do
-      visit spree.new_admin_store_path
-      expect(page).to have_selector(:id, 'select2-store_default_currency-container', text: 'United States Dollar (USD)')
-      expect(page).to have_field('store_checkout_zone_id', text: 'No Limits')
+    context 'setting default values', js: true do
+      it 'sets default currency value' do
+        visit spree.new_admin_store_path
+        expect(page).to have_selector(:id, 'select2-store_default_currency-container', text: 'United States Dollar (USD)')
+      end
+
+      it 'sets default checkout zone' do
+        visit spree.new_admin_store_path
+        expect(page).to have_field('store_checkout_zone_id', text: 'No Limits')
+      end
+
+      context 'default country' do
+        let!(:default_country) { create(:country) }
+
+        context 'when default store has default_country_id' do
+          before do
+            Spree::Store.default.update(default_country_id: default_country.id)
+            visit spree.new_admin_store_path
+          end
+
+          it 'sets default country of new Store to the default store\'s default country' do
+            expect(page).to have_field('store_default_country_id', text: default_country.to_s)
+          end
+        end
+
+        context 'when default store does not have default_country_id' do
+          before do
+            Spree::Store.default.update(default_country_id: nil)
+            visit spree.new_admin_store_path
+          end
+
+          it 'sets default country of new Store to the default store\'s default country' do
+            expect(page).to have_field('store_default_country_id', text: 'United States')
+          end
+        end
+      end
     end
 
     it 'saving store' do
@@ -31,7 +63,7 @@ describe 'Stores admin', type: :feature do
 
       click_button 'Create'
 
-      expect(page).to have_current_path spree.admin_orders_path
+      expect(page).to have_current_path spree.admin_path
       expect(page).to have_content('Spree Example Test (spree)')
       expect(Spree::Store.count).to eq 2
       store = Spree::Store.last
@@ -55,32 +87,6 @@ describe 'Stores admin', type: :feature do
       store.reload
       expect(store.default_currency).to eq 'EUR'
       expect(store.name).to eq 'New Store Name'
-    end
-
-    describe 'uploading a favicon' do
-      let(:favicon) { file_fixture('favicon.ico') }
-
-      before do
-        visit spree.edit_admin_store_path(store)
-
-        attach_file('Favicon', favicon)
-
-        click_on 'Update'
-      end
-
-      it 'allows uploading a favicon' do
-        expect(page).to have_content('Store "Spree Test Store" has been successfully updated!')
-        expect(store.reload.favicon_image.attached?).to be(true)
-      end
-
-      context 'when a favicon is invalid' do
-        let(:favicon) { file_fixture('icon_512x512.png') }
-
-        it 'prevents uploading a favicon and displays an error message' do
-          expect(page).to have_content('Unable to update store.: Favicon image must be less than or equal to 256 x 256 pixel')
-          expect(store.reload.favicon_image.attached?).to be(false) if Rails.version.to_f > 5.2
-        end
-      end
     end
   end
 

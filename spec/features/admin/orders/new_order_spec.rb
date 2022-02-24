@@ -96,7 +96,7 @@ describe 'New Order', type: :feature do
 
   context "adding new item to the order which isn't available", js: true do
     before do
-      product.update(available_on: nil)
+      product.update(status: 'draft', available_on: nil)
       select2 product.name, from: Spree.t(:name_or_sku), search: true
     end
 

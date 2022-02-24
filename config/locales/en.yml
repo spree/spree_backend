@@ -9,8 +9,9 @@ en:
       response_code: Response Code
       execution_time: Execution Time
       request_errors: Request Errors
-      more_filters: More Filters
+      filters: Filters
       kind: Kind
+      home: Home
       cms:
         all_pages: All Pages
         add_new_page: Add New Page
@@ -151,7 +152,13 @@ en:
           resume: resume
           resend: Resend
       orders:
+        all: All
+        unpaid: Unpaid
+        unfulfilled: Unfulfilled
         cart: Cart
+        all_orders: All Orders
+        draft_orders: Draft Orders
+        abandoned_checkouts: Abandoned Checkouts
       oauth_applications:
         list: oAuth applications
         new: New oAuth application
@@ -293,3 +300,14 @@ en:
         wished_items: Wished Items
         wishlists: Wishlists
         zones: Zones
+      display_on:
+        both: All
+        front_end: Storefront
+        back_end: Admin Panel
+      product:
+        all: All
+        active: Active
+        archived: Archived
+        deleted: Deleted
+        draft: Draft
+        pre_order: Pre-order

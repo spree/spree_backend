@@ -43,11 +43,11 @@
 <% if @cms_pages.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table" id="pagesTable">
-    <thead class="bg-light text-muted">
-      <th scope="col" class="text-center"><%= Spree.t('admin.cms.title') %></th>
+    <thead class="text-muted">
+      <th scope="col"><%= Spree.t('admin.cms.title') %></th>
+      <th scope="col"><%= Spree.t('admin.cms.page_type') %></th>
+      <th scope="col"><%= Spree.t('language') %></th>
       <th scope="col" class="text-center"><%= Spree.t('admin.cms.visible') %></th>
-      <th scope="col" class="text-center"><%= Spree.t('admin.cms.page_type') %></th>
-      <th scope="col" class="text-center"><%= Spree.t('language') %></th>
       <th scope="col" class="text-center"></th>
     </thead>
     <tbody>
@@ -57,13 +57,13 @@
             <%= page.title %>
           </td>
           <td>
-            <%= active_badge(page.visible?) %>
-          </td>
-          <td>
             <%= spree_humanize_type(page.type) %>
           </td>
           <td>
             <%= locale_full_name(page.locale) %>
+          </td>
+          <td class="text-center">
+            <%= active_badge(page.visible?) %>
           </td>
           <td class="actions" data-hook="admin_pages_index_row_actions">
              <span class="d-flex justify-content-end">
