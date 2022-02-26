@@ -1,0 +1,22 @@
+<%= turbo_frame_tag "internal_note_#{dom_id(order)}" do %>
+  <div class="card mb-3" id="order_notes_summary">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h3 class="card-title mb-0 h6">
+        <%= Spree.t('admin.notes') %>
+      </h3>
+      <% if can? :update, order %>
+        <div>
+          <%= link_to_with_icon 'pen.svg', nil, spree.edit_admin_order_internal_note_path(order), class: "btn btn-light btn-sm" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="card-body">
+      <% if order.internal_note.present? %>
+        <%= order.internal_note %>
+      <% else %>
+        <span class="text-secondary"><%= Spree.t('admin.no_notes') %></span>
+      <% end %>
+    </div>
+  </div>
+<% end %>

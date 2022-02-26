@@ -86,13 +86,13 @@ Spree::Core::Engine.add_routes do
         get :channel
         put :set_channel
         get :reset_digitals
-        get :internal_note
-        put :set_internal_note
       end
 
       resources :state_changes, only: [:index]
 
       resource :customer, controller: 'orders/customer_details'
+      resource :internal_note, controller: 'orders/internal_notes'
+
       resources :customer_returns, only: [:index, :new, :edit, :create, :update] do
         member do
           put :refund
