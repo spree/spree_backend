@@ -7,18 +7,25 @@ describe 'Order Internal Note', type: :feature do
     visit spree.new_admin_order_path
   end
 
-  context 'navigating to Notes via the tab' do
-    it 'loads Order notes form and saves notes' do
-      within find('[data-hook="admin_order_tabs"]') do
-        click_link 'Internal Notes'
+  context 'Can set a note', js: true do
+    it 'allows user to create and save a new note' do
+      within '#order_notes_summary' do
+        click_icon 'order-note-edit'
       end
 
-      fill_in 'Notes', with: 'This order is not to be shipped until customer confirms with Jeff.'
+      wait_for_turbo
+
+      expect(page).to have_field('internal_note')
+      expect(page).to have_css('.icon-close-order-note-edit')
+      expect(page).not_to have_css('.icon-order-note-edit')
+      fill_in 'internal_note', with: 'This order is not to be shipped until customer confirms with Jeff.'
 
       click_button 'Update'
 
       wait_for_turbo
 
+      expect(page).to have_css('.icon-order-note-edit')
+      expect(page).not_to have_field('internal_note')
       expect(page).to have_text('This order is not to be shipped until customer confirms with Jeff.')
     end
   end

@@ -5,7 +5,7 @@
         <%= Spree.t('admin.notes') %>
       </h3>
       <% if can? :update, order %>
-        <%= link_to_with_icon 'pen.svg', nil, spree.edit_admin_order_internal_note_path(order), class: "btn btn-light btn-sm" %>
+        <%= link_to_with_icon 'pen.svg', nil, spree.edit_admin_order_internal_note_path(order), class: "btn btn-light btn-sm icon-order-note-edit" %>
       <% end %>
     </div>
 
