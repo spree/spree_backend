@@ -11,11 +11,17 @@ module Spree
         def edit; end
 
         def update
-          if @order.update(internal_note: params[:internal_note])
+          if @order.update(order_params)
             redirect_to admin_order_internal_note_path(@order)
           else
             render :edit, status: :unprocessable_entity
           end
+        end
+
+        private
+
+        def order_params
+          params.require(:order).permit(:internal_note)
         end
       end
     end
