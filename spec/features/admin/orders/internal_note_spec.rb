@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe 'Order Internal Note', type: :feature do
+describe 'Order / Internal Note', type: :feature do
   stub_authorization!
 
   before do
     visit spree.new_admin_order_path
   end
 
-  context 'Can set a note', js: true do
-    it 'allows user to create and save a new note' do
+  context 'from an order page', js: true do
+    it 'allows admin user to create and save a new note' do
       within '#order_notes_summary' do
         click_icon 'order-note-edit'
       end
