@@ -18,7 +18,6 @@
                              mb-4 mb-lg-0
                             <% end %>">
       <div class="row">
-
         <%#-------------------------------------------------%>
         <%# Sidebar                                         %>
         <%#-------------------------------------------------%>
@@ -34,34 +33,28 @@
         <%# Content                                         %>
         <%#-------------------------------------------------%>
         <main class="col-12 col-lg-9 col-xl-10 offset-lg-3 offset-xl-2 main pt-2" id="main-part">
-          <div class="px-lg-4 px-md-2 px-2">
-
+          <div class="row">
             <%#-------------------------------------------------%>
             <%# Content header (page title/actions)             %>
             <%#-------------------------------------------------%>
             <%= render partial: 'spree/admin/shared/content_header' %>
 
-            <div class="row">
-              <%#-------------------------------------------------%>
-              <%# Main content                                    %>
-              <%#-------------------------------------------------%>
-              <div class="<%= content_for?(:sidebar) ? 'with-sidebar col-12 col-lg-9 px-0' : 'col-12 px-0' %>" id="content" data-hook>
-                <div class="<%= content_for?(:sidebar) ? 'pr-3' : '' %>">
-                  <%= render partial: 'spree/admin/shared/table_filter' if content_for?(:table_filter) %>
-                  <%= yield %>
-                </div>
-              </div>
-
-              <%#-------------------------------------------------%>
-              <%# Inner aside                                     %>
-              <%#-------------------------------------------------%>
-              <% if content_for?(:sidebar) || content_for?(:page_actions) %>
-                <div class="col-12 col-lg-3 m-0 p-4 p-lg-0" id="contextualSideMenu">
-                  <%= render partial: 'spree/admin/shared/sidebar' %>
-                </div>
-              <% end %>
+            <%#-------------------------------------------------%>
+            <%# Main content                                    %>
+            <%#-------------------------------------------------%>
+            <div class="<%= content_for?(:sidebar) ? 'with-sidebar col-12 col-lg-9' : 'col-12' %>" id="content" data-hook>
+              <%= render partial: 'spree/admin/shared/table_filter' if content_for?(:table_filter) %>
+              <%= yield %>
             </div>
 
+            <%#-------------------------------------------------%>
+            <%# Inner aside                                     %>
+            <%#-------------------------------------------------%>
+            <% if content_for?(:sidebar) || content_for?(:page_actions) %>
+              <div class="col-12 col-lg-3 m-0 p-4 py-lg-0 px-lg-3" id="contextualSideMenu">
+                <%= render partial: 'spree/admin/shared/sidebar' %>
+              </div>
+            <% end %>
           </div>
         </main>
       </div>
