@@ -12,9 +12,10 @@ import { Application } from "@hotwired/stimulus"
 import jQuery from "jquery"
 import flatpickr from "flatpickr"
 import "popper.js"
-if (!window.Turbo) { window.Turbo = require("@hotwired/turbo-rails") }
-window.bootstrap = require("bootstrap")
-window.$ = window.jQuery = jQuery
+
+if (!window.Turbo)      { window.Turbo = require("@hotwired/turbo-rails") }
+if (!window.bootstrap)  { window.bootstrap = require("bootstrap") }
+if (!window.jQuery)     { window.$ = window.jQuery = jQuery }
 
 //
 // Import Utility JavaScript required globally.
