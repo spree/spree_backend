@@ -1,16 +1,12 @@
-import jquery from 'jquery'
-import 'bootstrap'
-import 'popper.js'
-
-const $ = jquery
-
+/* eslint-disable no-undef */
 document.addEventListener("spree:load", function() {
-  $('.with-tip').each(function() {
-    $(this).tooltip()
-  })
+  const matches = document.querySelectorAll(".with-tip")
 
-  $('.with-tip').on('show.bs.tooltip', function(event) {
-    if (('ontouchstart' in window)) {
+  matches.forEach(function(tip) {
+    new bootstrap.Tooltip(tip)
+
+    // ToDo Check this on touch devise
+    if (("ontouchstart" in window)) {
       event.preventDefault()
     }
   })

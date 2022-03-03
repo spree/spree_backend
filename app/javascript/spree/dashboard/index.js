@@ -9,13 +9,14 @@ class Dashboard {
 //
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
+import jQuery from "jquery"
 import flatpickr from "flatpickr"
-if (!window.Turbo) {
-  require("@hotwired/turbo-rails")
-}
+import 'popper.js'
 
-//
-// Import Utility JavaScript required globally.
+window.Turbo = require("@hotwired/turbo-rails")
+window.bootstrap = require("bootstrap")
+window.$ = window.jQuery = jQuery
+
 import "./utilities/bootstrap"
 
 //
