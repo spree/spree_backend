@@ -242,7 +242,7 @@ module Spree
         button_link_to(
           Spree.t('admin.utilities.preview', name: resource_name),
           spree_storefront_resource_url(resource),
-          class: 'btn-outline-secondary', icon: 'view.svg', id: "adminPreview#{resource_name}", target: :blank, data: { turbo: false }
+          class: 'btn-light', icon: 'view.svg', id: "adminPreview#{resource_name}", target: :blank, data: { turbo: false }
         )
       end
 
