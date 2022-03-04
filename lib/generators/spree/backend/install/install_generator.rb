@@ -16,6 +16,7 @@ module Spree
           template 'app/javascript/spree-dashboard.js'
           template 'vendor/assets/javascripts/spree/backend/all.js'
           template 'vendor/assets/stylesheets/spree/backend/all.css'
+
         end
       end
     end
