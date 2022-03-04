@@ -24,12 +24,12 @@ application.debug = false
 // Exports To Window //
 ///////////////////////
 if (window instanceof Window) {
-  if (!window.Turbo) { require("@hotwired/turbo") }
-  if (!window.Stimulus) { window.Stimulus = application }
+  if (!window.Turbo)          { require("@hotwired/turbo") }
+  if (!window.Stimulus)       { window.Stimulus = application }
   if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
-  if (!window.flatpickr) { window.flatpickr = Flatpickr }
-  if (!window.jQuery) { window.$ = window.jQuery = jQuery }
-  if (!window.bootstrap) { window.bootstrap = Bootstrap }
+  if (!window.flatpickr)      { window.flatpickr = Flatpickr }
+  if (!window.jQuery)         { window.$ = window.jQuery = jQuery }
+  if (!window.bootstrap)      { window.bootstrap = Bootstrap }
 }
 
 /////////////////////
