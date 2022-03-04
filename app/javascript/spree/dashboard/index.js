@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 //
 // Initialize Dashboard
 class Dashboard {
@@ -14,21 +16,21 @@ import jQuery from "jquery"
 import flatpickr from "flatpickr"
 import "popper.js"
 
+//
+// Stimulus - Setup
+const application = Application.start()
+application.debug = false
+
 if (window instanceof Window) {
   if (!window.Turbo) { window.Turbo = require("@hotwired/turbo-rails") }
   window.bootstrap = require("bootstrap")
   window.$ = window.jQuery = jQuery
+  window.Stimulus = application
 }
 
 //
 // Import Utility JavaScript required globally.
 import "./utilities/bootstrap"
-
-//
-// Stimulus - Setup
-const application = Application.start()
-application.debug = false
-window.Stimulus = application
 
 // Stimulus - Spree Controllers
 import UploadButtonController from "./controllers/upload_button_controller"
