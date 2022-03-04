@@ -10,6 +10,8 @@ class Dashboard {
 
 //
 // Import JavaScript packages that are required globally.
+
+import * as SpreeDashboardTurbo from "@hotwired/turbo"
 import { Application } from "@hotwired/stimulus"
 import jQuery from "jquery"
 import flatpickr from "flatpickr"
@@ -21,7 +23,7 @@ const application = Application.start()
 application.debug = false
 
 if (window instanceof Window) {
-  if (!window.Turbo) { window.Turbo = require("@hotwired/turbo-rails") }
+  if (!window.Turbo) { window.Turbo = SpreeDashboardTurbo }
   window.bootstrap = require("bootstrap")
   window.$ = window.jQuery = jQuery
   window.Stimulus = application
