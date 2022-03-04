@@ -11,11 +11,12 @@ class Dashboard {
 //
 // Import JavaScript packages that are required globally.
 
-import * as SpreeDashboardTurbo from "@hotwired/turbo"
+import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
-import jQuery from "jquery"
 import flatpickr from "flatpickr"
-import "popper.js"
+import jQuery from "jquery"
+import PopperJs from "popper.js"
+import Bootstrap from "bootstrap"
 
 //
 // Stimulus - Setup
@@ -23,10 +24,12 @@ const application = Application.start()
 application.debug = false
 
 if (window instanceof Window) {
-  if (!window.Turbo) { window.Turbo = SpreeDashboardTurbo }
-  window.bootstrap = require("bootstrap")
-  window.$ = window.jQuery = jQuery
-  window.Stimulus = application
+  if (!window.Turbo)          { require("@hotwired/turbo") }
+  if (!window.Stimulus)       { window.Stimulus = application }
+  if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
+  if (!window.flatpickr)      { window.flatpickr = Flatpickr }
+  if (!window.jQuery)         { window.$ = window.jQuery = jQuery }
+  if (!window.bootstrap)      { window.bootstrap = Bootstrap }
 }
 
 //
@@ -54,8 +57,6 @@ application.register("clipboard", ClipboardController)
 
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
-
-import * as RequestUtility from "./utilities/request_utility"
 
 //
 // Export

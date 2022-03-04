@@ -1,11 +1,11 @@
 /* eslint-disable no-undef */
+
 document.addEventListener("spree:load", function() {
-  const matches = document.querySelectorAll(".with-tip")
+  $(".with-tip").each(function() {
+    $(this).tooltip()
+  })
 
-  matches.forEach(function(tip) {
-    new bootstrap.Tooltip(tip)
-
-    // ToDo Check this on touch devise
+  $(".with-tip").on("show.bs.tooltip", function(event) {
     if (("ontouchstart" in window)) {
       event.preventDefault()
     }
