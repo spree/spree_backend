@@ -9,7 +9,9 @@
 if (!window.__appClientLoaded) {
   window.__appClientLoaded = true
 
-  require("@hotwired/turbo")
+  if ((window instanceof Window) && (!window.Turbo)) {
+    require("@hotwired/turbo-rails")
+  }
 }
 
 import * as RequestUtility from "./utilities/request_utility"
