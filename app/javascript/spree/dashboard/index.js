@@ -5,15 +5,6 @@
 ////////////////////
 // Global Imports //
 ////////////////////
-
-if (!window.__appClientLoaded) {
-  window.__appClientLoaded = true
-
-  if ((window instanceof Window) && (!window.Turbo)) {
-    require("@hotwired/turbo-rails")
-  }
-}
-
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import Flatpickr from "flatpickr"
@@ -33,14 +24,16 @@ application.debug = false
 // Exports To Window //
 ///////////////////////
 if (window instanceof Window) {
-  // Ensure we only ever bind one instance to window.
-  if (!window.Stimulus) { window.Stimulus = application }
-  if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
-  if (!window.flatpickr) { window.flatpickr = Flatpickr }
-  if (!window.jQuery) { window.$ = window.jQuery = jQuery }
-  if (!window.bootstrap) { window.bootstrap = Bootstrap }
+  if (!window.Turbo) { require("@hotwired/turbo-rails") }
+} else {
+  require("@hotwired/turbo-rails")
 }
 
+if (!window.Stimulus) { window.Stimulus = application }
+if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
+if (!window.flatpickr) { window.flatpickr = Flatpickr }
+if (!window.jQuery) { window.$ = window.jQuery = jQuery }
+if (!window.bootstrap) { window.bootstrap = Bootstrap }
 
 /////////////////////
 // Generic Scripts //
