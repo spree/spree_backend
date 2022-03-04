@@ -14,8 +14,11 @@ import jQuery from "jquery"
 import flatpickr from "flatpickr"
 import "popper.js"
 
-window.bootstrap = require("bootstrap")
-window.$ = window.jQuery = jQuery
+if (window instanceof Window) {
+  if (!window.Turbo) { window.Turbo = require("@hotwired/turbo-rails") }
+  window.bootstrap = require("bootstrap")
+  window.$ = window.jQuery = jQuery
+}
 
 //
 // Import Utility JavaScript required globally.
