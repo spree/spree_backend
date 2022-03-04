@@ -5,22 +5,19 @@
 ////////////////////
 // Global Imports //
 ////////////////////
-const getTurbo = async () => {
-  if (!window.Turbo) {
-    const Turbo = require('@hotwired/turbo')
-    await Turbo.start()
-    window.Turbo = Turbo
-  }
-  return window.Turbo
-}
 
+if (!window.__appClientLoaded) {
+  window.__appClientLoaded = true
+
+  require("@hotwired/turbo")
+}
 
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import Flatpickr from "flatpickr"
 import jQuery from "jquery"
-import Bootstrap from "bootstrap"
 import PopperJs from "popper.js"
+import Bootstrap from "bootstrap"
 
 
 ////////////////////
