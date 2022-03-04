@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
-//////////////////////
-//  Global Imports  //
-//////////////////////
-import * as Turbo from "@hotwired/turbo"
+////////////////////
+// Global Imports //
+////////////////////
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import Flatpickr from "flatpickr"
@@ -12,18 +12,36 @@ import Bootstrap from "bootstrap"
 import PopperJs from "popper.js"
 
 
-//////////////////////
-// Generic Scripts  //
-//////////////////////
-import "./utilities/bootstrap"
-
-
-//////////////
-// Stimulus //
-//////////////
+////////////////////
+// Stimulus Setup //
+////////////////////
 const application = Application.start()
 application.debug = false
 
+
+///////////////////////
+// Exports To Window //
+///////////////////////
+if (window instanceof Window) {
+  // Ensure we only ever bind one instance to window.
+  if (!window.Turbo) { window.Turbo = require("@hotwired/turbo-rails") }
+  if (!window.Stimulus) { window.Stimulus = application}
+  if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
+  if (!window.flatpickr) { window.flatpickr = Flatpickr }
+  if (!window.jQuery) { window.$ = window.jQuery = jQuery }
+  if (!window.bootstrap) { window.bootstrap = Bootstrap }
+}
+
+
+/////////////////////
+// Generic Scripts //
+/////////////////////
+import "./utilities/bootstrap"
+
+
+//////////////////////////
+// Stimulus Controllers //
+//////////////////////////
 import UploadButtonController from "./controllers/upload_button_controller"
 application.register("upload-button", UploadButtonController)
 
@@ -44,13 +62,3 @@ application.register("clipboard", ClipboardController)
 
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
-
-
-//////////////
-// Exports  //
-//////////////
-window.Stimulus       = application
-window.RequestUtility = RequestUtility
-window.flatpickr      = Flatpickr
-window.jQuery         = jQuery
-window.bootstrap      = Bootstrap
