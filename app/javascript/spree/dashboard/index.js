@@ -1,9 +1,20 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
+
 ////////////////////
 // Global Imports //
 ////////////////////
+const getTurbo = async () => {
+  if (!window.Turbo) {
+    const Turbo = require('@hotwired/turbo')
+    await Turbo.start()
+    window.Turbo = Turbo
+  }
+  return window.Turbo
+}
+
+
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import Flatpickr from "flatpickr"
@@ -24,8 +35,7 @@ application.debug = false
 ///////////////////////
 if (window instanceof Window) {
   // Ensure we only ever bind one instance to window.
-  if (!window.Turbo) { window.Turbo = require("@hotwired/turbo-rails") }
-  if (!window.Stimulus) { window.Stimulus = application}
+  if (!window.Stimulus) { window.Stimulus = application }
   if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
   if (!window.flatpickr) { window.flatpickr = Flatpickr }
   if (!window.jQuery) { window.$ = window.jQuery = jQuery }
