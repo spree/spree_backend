@@ -1,37 +1,43 @@
 /* eslint-disable no-undef */
 
-//
-// Initialize Dashboard
+//////////////////////////
+// Initialize Dashboard //
+//////////////////////////
 class Dashboard {
-  constructor() {
-    console.log("Spree Dashboard Initialized")
-  }
+  constructor() { console.log("Spree Dashboard Initialized") }
 }
 
-//
-// Import JavaScript packages that are required globally.
+
+////////////
+// Import //
+////////////
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
 import jQuery from "jquery"
-import Bootstrap from "bootstrap"
+import * as Bootstrap from "bootstrap"
 
-//
-// Stimulus - Setup
+
+////////////////////
+// Bind To Window //
+////////////////////
+if (!window.Turbo)          { require("@hotwired/turbo-rails") }
+if (!window.jQuery)         { window.$ = window.jQuery = jQuery }
+if (!window.bootstrap)      { window.bootstrap = Bootstrap }
+
+
+///////////////
+// Utilities //
+///////////////
+import "./utilities/bootstrap"
+
+
+//////////////
+// Stimulus //
+//////////////
 const application = Application.start()
 application.debug = false
 
-if (window instanceof Window) {
-  if (!window.Turbo)          { require("@hotwired/turbo-rails") }
-  if (!window.jQuery)         { window.$ = window.jQuery = jQuery }
-  if (!window.bootstrap)      { window.bootstrap = Bootstrap }
-}
-
-//
-// Import Utility JavaScript required globally.
-import "./utilities/bootstrap"
-
-// Stimulus - Spree Controllers
 import UploadButtonController from "./controllers/upload_button_controller"
 application.register("upload-button", UploadButtonController)
 
@@ -53,6 +59,8 @@ application.register("clipboard", ClipboardController)
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
 
-//
-// Export
+
+////////////
+// Export //
+////////////
 export { Dashboard, application, flatpickr, RequestUtility }
