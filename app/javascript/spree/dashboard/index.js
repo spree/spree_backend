@@ -9,7 +9,6 @@ import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import Flatpickr from "flatpickr"
 import jQuery from "jquery"
-import PopperJs from "popper.js"
 import Bootstrap from "bootstrap"
 
 
