@@ -13,29 +13,29 @@
 
   Events
 
-  <div data-controller="webhooks_subscriber_events">
+  <div data-controller="webhooks-subscriber-events">
     <%= f.field_container :subscriptions, class: ['form-group'] do %>
       <div>
         <div class="radio my-2">
           <%= radio_button_tag :subscribe_to_all_events, true,
                                subscribe_to_all_events?,
                                {
-                                 'data-action' => 'webhooks_subscriber_events#hideCheckboxes',
-                                 'data-webhooks_subscriber_events-target' => 'subscribeToAll',
+                                 'data-action' => 'webhooks-subscriber-events#hideCheckboxes',
+                                 'data-webhooks-subscriber-events-target' => 'subscribeToAll',
                                   class: 'events' } %>
           <%= label_tag :subscribe_to_all_events_true, Spree.t('admin.webhooks_subscribers.subscribe_to_all_events') %>
         </div>
         <div class="radio my-2">
           <%= radio_button_tag :subscribe_to_all_events, false,
                                !subscribe_to_all_events?,
-                               { 'data-action' => 'webhooks_subscriber_events#showCheckboxes',
+                               { 'data-action' => 'webhooks-subscriber-events#showCheckboxes',
                                  class: 'events' } %>
           <%= label_tag :subscribe_to_all_events_false, Spree.t('admin.webhooks_subscribers.select_events') %>
         </div>
       </div>
       <br/>
 
-      <div data-webhooks_subscriber_events-target="eventsCheckboxesContainer">
+      <div data-webhooks-subscriber-events-target="eventsCheckboxesContainer">
         <div class="row">
           <%= event_checkbox_for(:address, f) %>
           <%= event_checkbox_for(:asset, f) %>
