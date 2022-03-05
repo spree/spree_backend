@@ -3,7 +3,7 @@
     <div class="col-12">
       <div class="card sp-card">
         <% unless %w[new create].include? controller.action_name %>
-        <div class="card-header col-12">
+        <div class="card-header">
           <div class="row no-gutters pb-0">
             <div class="col d-flex justify-content-start align-items-center">
               <%= f.field_container :visible, class: ['pb-0 mb-0'] do %>
@@ -100,7 +100,7 @@
               <% end %>
 
               <div class="col-12 col-sm text-right pt-3 pt-sm-0">
-                <button id="toggleMorePageSettingsButton" class="btn btn-outline-secondary" type="button" data-toggle="collapse" data-target="#cmsPageSettings" aria-expanded="false" aria-controls="collapsePageSettings">
+                <button id="toggleMorePageSettingsButton" class="btn btn-light" type="button" data-toggle="collapse" data-target="#cmsPageSettings" aria-expanded="false" aria-controls="collapsePageSettings">
                   <%= raw Spree.t('admin.cms.more_page_settings') %>
                 </button>
               </div>

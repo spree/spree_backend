@@ -4,24 +4,24 @@
 <% content_for :page_actions do %>
   <%= external_page_preview_link(@product) %>
 
+  <span class="js-new-ptype-link">
+    <%= button_link_to Spree.t(:select_from_prototype),
+      available_admin_prototypes_url,
+      { icon: 'list.svg', remote: true, 'data-update' => 'prototypes', class: 'btn-light' } %>
+  </span>
+
   <%= button_link_to(
     Spree.t(:add_product_properties),
     "javascript:;",
     { icon: 'add.svg', :'data-target' => "tbody#sortVert", class: 'btn-success spree_add_fields' }) %>
-
-  <span class="js-new-ptype-link">
-    <%= button_link_to Spree.t(:select_from_prototype),
-      available_admin_prototypes_url,
-      { icon: 'list.svg', remote: true, 'data-update' => 'prototypes', class: 'btn-outline-secondary' } %>
-  </span>
 <% end if can? :create, Spree::ProductProperty %>
 
 <%= form_for @product, url: spree.admin_product_url(@product), method: :put do |f| %>
   <fieldset>
     <div id="prototypes" data-hook></div>
-    <div class="table-responsive border rounded mb-3">
+    <div class="table-responsive border rounded mb-3 bg-white">
       <table id="product_properties" class="table sortable" data-hook data-sortable-link="<%= update_positions_admin_product_product_properties_url %>">
-        <thead class="bg-light text-muted">
+        <thead class="text-muted">
           <tr data-hook="product_properties_header">
             <th></th>
             <th><%= Spree.t(:property) %></th>

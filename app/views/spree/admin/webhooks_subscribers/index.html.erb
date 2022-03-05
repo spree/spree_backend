@@ -9,7 +9,7 @@
 <% if @webhooks_subscribers.any? %>
   <div class="table-responsive border rounded bg-white">
     <table class="table">
-      <thead class="bg-light text-muted">
+      <thead class="text-muted">
       <tr>
         <th><%= Spree.t('admin.url') %></th>
         <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) && !current_spree_vendor %>
