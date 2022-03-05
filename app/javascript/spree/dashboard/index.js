@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
 //
@@ -11,12 +10,10 @@ class Dashboard {
 
 //
 // Import JavaScript packages that are required globally.
-
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
 import jQuery from "jquery"
-import PopperJs from "popper.js"
 import Bootstrap from "bootstrap"
 
 //
@@ -26,9 +23,6 @@ application.debug = false
 
 if (window instanceof Window) {
   if (!window.Turbo)          { require("@hotwired/turbo-rails") }
-  if (!window.Stimulus)       { window.Stimulus = application }
-  if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
-  if (!window.flatpickr)      { window.flatpickr = Flatpickr }
   if (!window.jQuery)         { window.$ = window.jQuery = jQuery }
   if (!window.bootstrap)      { window.bootstrap = Bootstrap }
 }
