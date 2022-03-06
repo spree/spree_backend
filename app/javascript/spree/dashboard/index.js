@@ -20,6 +20,7 @@ if (!window.flatpickr)      { window.flatpickr = Flatpickr }
 if (!window.jQuery)         { window.$ = window.jQuery = jQuery }
 if (!window.bootstrap)      { window.bootstrap = Bootstrap }
 
+
 /////////////////////
 // Generic Scripts //
 /////////////////////
