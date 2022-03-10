@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-ui-rails',     '~> 6.0'
   s.add_dependency 'jsbundling-rails',    '~> 1.0'
   s.add_dependency 'paranoia',            '~> 2.5'
+  s.add_dependency 'ransack',             '~> 2.6'
   s.add_dependency 'responders',          '~> 3.0'
   s.add_dependency 'sass-rails',          '>= 5.0'
   s.add_dependency 'select2-rails',       '~> 4.0'

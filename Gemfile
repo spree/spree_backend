@@ -6,7 +6,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
   actionmailer actionpack actionview activejob activemodel activerecord
   activestorage activesupport railties
 ].each do |rails_gem|
-  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 7.0.0.rc1'), require: false
+  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 7.0.0'), require: false
 end
 
 platforms :jruby do
@@ -56,10 +56,6 @@ end
 group :development do
   gem 'github_fast_changelog'
   gem 'solargraph'
-end
-
-if ENV['RAILS_VERSION']&.match(/7\.0\.0/) || !ENV['RAILS_VERSION']
-  gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'master'
 end
 
 spree_opts = { github: 'spree/spree', branch: 'main' }
