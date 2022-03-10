@@ -2,7 +2,7 @@
   <legend><%= "#{Spree.t(:risk_analysis)}: #{Spree.t(:not) unless @order.is_risky?} #{Spree.t(:risky)}" %></legend>
   <div class="table-responsive border rounded bg-white">
     <table class="table table-condensed border rounded">
-      <thead class="bg-light text-muted">
+      <thead class="text-muted">
         <th><%= Spree.t('risk') %></th>
         <th><%= Spree.t('status') %></th>
       </thead>

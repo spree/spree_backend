@@ -9,7 +9,7 @@
 <% if @shipping_methods.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table" id='listing_shipping_methods'>
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
       <tr data-hook="admin_shipping_methods_index_headers">
         <th><%= Spree.t(:name) %></th>
         <% if defined?(Spree::Vendor) %>

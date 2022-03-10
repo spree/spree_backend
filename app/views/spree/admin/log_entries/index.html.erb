@@ -13,7 +13,7 @@
 <div class="table-responsive border rounded bg-white">
 <table class="table" id='listing_log_entries'>
   <% @log_entries.each do |entry| %>
-      <thead class="bg-light text-muted">
+      <thead class="text-muted">
         <tr class="log_entry <%= entry.parsed_details.success? ? 'success' : 'fail' %>">
           <td colspan="2">
             <h4>

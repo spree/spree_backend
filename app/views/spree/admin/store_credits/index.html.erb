@@ -11,14 +11,14 @@
 <% if @store_credits.any? %>
 <div class="table-responsive border rounded bg-white">
   <table class="table">
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
       <th><%= Spree.t(:credited) %></th>
       <th><%= Spree.t(:used) %></th>
       <th><%= Spree.t(:category) %></th>
       <th><%= Spree.t(:created_by) %></th>
       <th><%= Spree.t(:issued_on) %></th>
       <th data-hook="admin_store_credits_index_header_actions" class="actions"></th>
-    <thead class="bg-light text-muted">
+    <thead class="text-muted">
     <tbody>
       <% @store_credits.each do |store_credit| %>
         <tr>
