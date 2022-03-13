@@ -61,10 +61,11 @@ module Spree
         Spree.t(event_sym, resource: resource_desc)
       end
 
-      def render_flash(message:, kind:)
+      def render_flash(message:, kind: 'success')
         respond_to do |format|
           format.turbo_stream do
-            render turbo_stream: turbo_stream.append('FlashAlertsContainer', partial: 'spree/admin/shared/flash_notice', locals: { message: message, kind: kind })
+            render turbo_stream: turbo_stream.append('FlashAlertsContainer', partial: 'spree/admin/shared/flash_notice',
+                                                                             locals: { message: message, kind: kind })
           end
         end
       end
@@ -93,9 +94,7 @@ module Spree
       end
 
       def admin_oauth_application
-        @admin_oauth_application ||= begin
-          Spree::OauthApplication.find_or_create_by!(name: 'Admin Panel', scopes: 'admin', redirect_uri: '')
-        end
+        @admin_oauth_application ||= Spree::OauthApplication.find_or_create_by!(name: 'Admin Panel', scopes: 'admin', redirect_uri: '')
       end
 
       # FIXME: auto-expire this token
