@@ -61,7 +61,7 @@ module Spree
         Spree.t(event_sym, resource: resource_desc)
       end
 
-      def render_flash(kind, message)
+      def render_flash(message:, kind:)
         respond_to do |format|
           format.turbo_stream do
             render turbo_stream: turbo_stream.append('FlashAlertsContainer', partial: 'spree/admin/shared/flash_notice', locals: { message: message, kind: kind })
