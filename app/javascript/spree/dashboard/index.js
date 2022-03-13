@@ -46,6 +46,9 @@ application.register("clipboard", ClipboardController)
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
 
+import FlashNoticeController from "./controllers/flash_notice_controller"
+application.register("flash-notice", FlashNoticeController)
+
 import * as RequestUtility from "./utilities/request_utility"
 
 //
