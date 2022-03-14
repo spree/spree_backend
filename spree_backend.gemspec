@@ -32,7 +32,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'glyphicons',       '~> 1.0'
   s.add_dependency 'flatpickr',        '~> 4.6'
   s.add_dependency 'flag-icons-rails', '~> 3.4'
-  s.add_dependency 'hotwire-rails'
+  s.add_dependency 'turbo-rails'
   s.add_dependency 'inline_svg',       '~> 1.5'
   s.add_dependency 'jsbundling-rails'
   s.add_dependency 'jquery-rails',     '~> 4.3'
@@ -42,4 +42,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'select2-rails',    '~> 4.0'
   s.add_dependency 'sprockets',        '~> 4.0'
   s.add_dependency 'tinymce-rails'
+  s.add_dependency 'paranoia'
+  s.add_dependency 'awesome_nested_set'
+  s.add_dependency 'ransack',          '~> 2.0'
 end
