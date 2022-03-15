@@ -11,7 +11,6 @@ class Dashboard {
 ////////////
 // Import //
 ////////////
-import "@hotwired/turbo-rails"
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
