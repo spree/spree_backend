@@ -16,9 +16,11 @@ export default [
     input: "app/javascript/spree/dashboard/index.js",
     output: {
       file: "app/assets/javascripts/spree-dashboard.js",
+      inlineDynamicImports: true,
       format: "umd",
       name: "SpreeDashboard"
     },
+
     plugins: [
       resolve(),
       commonjs(),
@@ -30,6 +32,7 @@ export default [
     input: "app/javascript/spree/dashboard/index.js",
     output: {
       file: "app/assets/javascripts/spree-dashboard.esm.js",
+      inlineDynamicImports: true,
       format: "es"
     },
     plugins: [

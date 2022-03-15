@@ -11,6 +11,7 @@ class Dashboard {
 ////////////
 // Import //
 ////////////
+import "@hotwired/turbo-rails"
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
@@ -21,9 +22,8 @@ import * as Bootstrap from "bootstrap"
 ////////////////////
 // Bind To Window //
 ////////////////////
-if (!window.Turbo)          { require("@hotwired/turbo-rails") }
-if (!window.jQuery)         { window.$ = window.jQuery = jQuery }
-if (!window.bootstrap)      { window.bootstrap = Bootstrap }
+if (!window.jQuery)     { window.$ = window.jQuery = jQuery }
+if (!window.bootstrap)  { window.bootstrap = Bootstrap }
 
 
 ///////////////
