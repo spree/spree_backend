@@ -27,7 +27,6 @@ export default [
       terser(terserOptions)
     ]
   },
-
   {
     input: "app/javascript/spree/dashboard/index.js",
     output: {

@@ -4,7 +4,10 @@
 // Initialize Dashboard //
 //////////////////////////
 class Dashboard {
-  constructor() { console.log("Spree Dashboard Initialized") }
+  constructor() {
+    console.log("Spree Dashboard Initialized")
+    if (!window.Turbo) { console.warn("Spree Dashboard requires @hotwired/turbo-rails.") }
+  }
 }
 
 
