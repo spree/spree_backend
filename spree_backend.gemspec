@@ -44,5 +44,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'tinymce-rails'
   s.add_dependency 'paranoia'
   s.add_dependency 'awesome_nested_set'
-  s.add_dependency 'ransack',          '~> 2.0'
+  s.add_dependency 'ransack'
 end
