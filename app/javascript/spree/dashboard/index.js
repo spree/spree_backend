@@ -3,6 +3,7 @@
 /////////////////////////
 // Node Module Imports //
 /////////////////////////
+import "@hotwired/turbo-rails"
 import * as RequestUtility from "./utilities/request_utility"
 import { Application } from "@hotwired/stimulus"
 import Flatpickr from "flatpickr"
@@ -26,7 +27,6 @@ import ProductEditController from "./controllers/product_edit_controller"
 ///////////////////////
 // Exports To Window //
 ///////////////////////
-if (!window.Turbo)          { require("@hotwired/turbo-rails") }
 if (!window.Stimulus)       { window.Stimulus = Application.start() }
 if (!window.RequestUtility) { window.RequestUtility = RequestUtility }
 if (!window.flatpickr)      { window.flatpickr = Flatpickr }
