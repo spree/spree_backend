@@ -279,9 +279,9 @@ cross-spawn@^7.0.2:
     which "^2.0.1"
 
 debug@^4.1.1, debug@^4.3.2:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.3.tgz#04266e0b70a98d4462e6e288e38259213332b664"
-  integrity sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
+  integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
   dependencies:
     ms "2.1.2"
 
@@ -451,10 +451,10 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
-flatpickr@^4.6.9:
-  version "4.6.11"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.11.tgz#c92f5108269c551c6b5069ecd754be610574574c"
-  integrity sha512-/rnbE/hu5I5zndLEyYfYvqE4vPDvI5At0lFcQA5eOPfjquZLcQ0HMKTL7rv5/+DvbPM3/vJcXpXjB/DjBh+1jw==
+flatpickr@4.6.9:
+  version "4.6.9"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.9.tgz#9a13383e8a6814bda5d232eae3fcdccb97dc1499"
+  integrity sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==
 
 flatted@^3.1.0:
   version "3.2.5"

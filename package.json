@@ -23,7 +23,7 @@
     "@hotwired/turbo-rails": "^7.1.1",
     "@rails/request.js": "^0.0.6",
     "bootstrap": "4.6.1",
-    "flatpickr": "^4.6.9",
+    "flatpickr": "4.6.9",
     "jquery": "^3.6.0",
     "popper.js": "1.16.1",
     "sortablejs": "^1.14.0",
