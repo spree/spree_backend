@@ -70,6 +70,15 @@ describe Spree::Admin::ProductsController, type: :controller do
         expect(flash[:success]).to eq("Product #{product.name.inspect} has been successfully updated!")
       end
     end
+
+    context 'adding the same property to a product twice' do
+      let(:product_params) { { product_properties_attributes: { '1' => { property_name: 'Foo', value: 'bar' }, '2' => { property_name: 'Foo', value: 'bar2' } } } }
+
+      specify do
+        expect { send_request }.not_to raise_error
+        expect(flash[:success]).to eq("Product #{product.name.inspect} has been successfully updated!")
+      end
+    end
   end
 
   # regression test for #801
