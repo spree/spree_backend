@@ -38,13 +38,15 @@ module Spree
 
         css_classes = ['sidebar-menu-item d-block w-100 position-relative']
 
-        selected = if options[:match_path].is_a? Regexp
-                     request.fullpath =~ options[:match_path]
-                   elsif options[:match_path]
-                     request.fullpath.starts_with?("#{spree.admin_path}#{options[:match_path]}")
-                   else
-                     args.include?(controller.controller_name.to_sym)
-                   end
+        if (selected = options[:selected]).nil?
+          selected = if options[:match_path].is_a? Regexp
+                       request.fullpath =~ options[:match_path]
+                     elsif options[:match_path]
+                       request.fullpath.starts_with?("#{spree.admin_path}#{options[:match_path]}")
+                     else
+                       args.include?(controller.controller_name.to_sym)
+                     end
+        end
 
         link = if options[:icon]
                  link_to_with_icon(
