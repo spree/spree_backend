@@ -41,18 +41,22 @@ describe Spree::Admin::ProductsController, type: :controller do
       expect(product.make_active_at).to eq(Time.current.beginning_of_day)
     end
 
-    context 'with limited change_status permissions' do
-      let(:product_params) { { status: :draft, make_active_at: Time.current.beginning_of_day } }
+    context 'with limited activate_product permissions' do
+      let(:product_params) { { status: :active, make_active_at: Time.current.beginning_of_day } }
 
       stub_authorization! do |_u|
         can :manage, :all
-        cannot :change_status, Spree::Product
+        cannot :activate, Spree::Product
+      end
+
+      before do
+        product.update(status: :draft)
       end
 
       it 'cannot change the product status and make_available_at' do
         send_request
         expect(flash[:success]).to eq("Product #{product.name.inspect} has been successfully updated!")
-        expect(product.reload.status).not_to eq('draft')
+        expect(product.reload.status).not_to eq('active')
         expect(product.make_active_at).not_to eq(Time.current.beginning_of_day)
       end
     end

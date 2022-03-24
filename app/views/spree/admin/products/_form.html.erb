@@ -31,11 +31,14 @@
       <div data-hook="new_product_status">
         <%= f.field_container :status do %>
           <%= f.label :status, Spree.t(:status) %>
-          <% options = ['draft', 'active', 'archived'].each_slice(1) %>
+          <% options = ['draft', 'active', 'archived'] %>
+          <% options.delete('active') if cannot? :activate, @product %>
           <% select_html = { class: 'select2',
-                             data: { action: 'change->product-edit#switchAvailabilityDatesFields', 'product-edit-target': 'status' },
-                             disabled: cannot?(:change_status, @product) } %>
-          <%= f.select(:status, options, { selected: @product.status }, select_html) %>
+                             data: {
+                               action: 'change->product-edit#switchAvailabilityDatesFields',
+                               'product-edit-target': 'status'
+                             } } %>
+          <%= f.select(:status, options.each_slice(1), { selected: @product.status }, select_html) %>
           <%= f.error_message_on :status %>
         <% end %>
       </div>
@@ -61,7 +64,7 @@
         <% end %>
       </div>
 
-      <% if can?(:change_status, @product) %>
+      <% if can?(:activate, @product) %>
         <div data-hook="admin_product_form_make_active_at" data-product-edit-target="makeActiveAt">
           <%= f.field_container :make_active_at do %>
             <%= f.label :make_active_at, Spree.t(:make_active_at) %>
@@ -186,7 +189,7 @@
               <% end %>
             <div class="info-actions">
               <% if can?(:admin, Spree::Variant) %>
-                <%= link_to_with_icon 'adjust.svg', Spree.t(:manage_variants), spree.admin_product_variants_url(@product), class: "btn btn-outline-secondary" %>
+                <%= link_to_with_icon 'adjust.svg', Spree.t(:manage_variants), spree.admin_product_variants_url(@product), class: "btn btn-light" %>
               <% end %>
             </div>
           </div>
