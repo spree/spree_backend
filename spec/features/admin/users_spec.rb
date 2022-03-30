@@ -124,14 +124,13 @@ describe 'Users', type: :feature do
       end
     end
 
-    # TODO: Fix: undefined method `new_admin_legacy_user_url
-    xcontext 'filtering users', js: true do
+    context 'filtering users', js: true do
       it 'renders selected filters' do
         click_on 'Filters'
         wait_for { !page.has_text?('Search') }
 
         within('#table-filter') do
-          fill_in 'q_email_cont', with: 'spree@example.com'
+          fill_in 'q_email_cont', with: 'a@example.com'
           fill_in 'q_bill_address_firstname_cont', with: 'John'
           fill_in 'q_bill_address_lastname_cont', with: 'Doe'
           fill_in 'q_bill_address_company_cont', with: 'Company'
@@ -141,7 +140,7 @@ describe 'Users', type: :feature do
         wait_for_turbo
 
         within('.table-active-filters') do
-          expect(page).to have_content('Email: spree@example.com')
+          expect(page).to have_content('Email: A@Example.Com')
           expect(page).to have_content('First Name: John')
           expect(page).to have_content('Last Name: Doe')
           expect(page).to have_content('Company: Company')
