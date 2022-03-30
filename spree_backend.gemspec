@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'spree', ">= 4.4.0.rc1"
 
-  s.add_dependency 'awesome_nested_set'
   s.add_dependency 'babel-transpiler', '~> 0.7'
   s.add_dependency 'bootstrap',        '~> 4.0'
   s.add_dependency 'flag-icons-rails', '~> 3.4'
