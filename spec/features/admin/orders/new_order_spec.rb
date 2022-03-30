@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'New Order', type: :feature do
-  let!(:product) { create(:product_in_stock, stores: [store]) }
+  let(:store) { Spree::Store.default }
+  let!(:product) { create(:product_in_stock, stores: [store], name: 'Fisher Price Truck') }
   let!(:state) { create(:state) }
   let!(:user) { create(:user, ship_address: create(:address), bill_address: create(:address)) }
   let(:order) { Spree::Order.last }
-  let(:store) { Spree::Store.default }
 
   stub_authorization!
 
@@ -29,9 +29,11 @@ describe 'New Order', type: :feature do
   end
 
   it 'completes new order successfully without using the cart', js: true do
-    select2 product.name, from: Spree.t(:name_or_sku), search: true
+    select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
 
     click_icon :add
+    wait_for_turbo
+
     expect(page).to have_css('.card', text: 'Order Line Items')
 
     click_on 'Customer'
@@ -39,14 +41,19 @@ describe 'New Order', type: :feature do
 
     check 'order_use_billing'
     fill_in_address
+
     click_on 'Update'
     wait_for_turbo
 
     click_on 'Payments'
+    wait_for_turbo
+
     click_on 'Update'
+    wait_for_turbo
 
     expect(page).to have_current_path(spree.admin_order_payments_path(order))
     click_icon 'capture'
+    wait_for_turbo
 
     click_on 'Shipments'
     wait_for_turbo
@@ -59,7 +66,7 @@ describe 'New Order', type: :feature do
 
   context 'adding new item to the order', js: true do
     it 'inventory items show up just fine and are also registered as shipments' do
-      select2 product.name, from: Spree.t(:name_or_sku), search: true
+      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
 
       within('table.stock-levels') do
         fill_in 'variant_quantity', with: 2
@@ -97,7 +104,7 @@ describe 'New Order', type: :feature do
   context "adding new item to the order which isn't available", js: true do
     before do
       product.update(status: 'draft', available_on: nil)
-      select2 product.name, from: Spree.t(:name_or_sku), search: true
+      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
     end
 
     it 'inventory items is displayed' do
@@ -124,7 +131,7 @@ describe 'New Order', type: :feature do
     end
 
     it 'can still see line items' do
-      select2 product.name, from: Spree.t(:name_or_sku), search: true
+      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
       click_icon :add
       within('.line-items') do
         within('.line-item-name') do
@@ -152,9 +159,14 @@ describe 'New Order', type: :feature do
 
       click_on 'Shipments'
       expect(page).to have_content('Add Product')
-      select2 product.name, from: Spree.t(:name_or_sku), search: true
 
-      expect(page).to have_content(product.name)
+      wait_for_turbo
+
+      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
+
+      wait_for_turbo
+
+      expect(page).to have_content('Fisher Price Truck')
       expect(page).to have_content('Select stock')
 
       click_icon :add
@@ -163,7 +175,7 @@ describe 'New Order', type: :feature do
       click_on 'Payments'
       click_on 'Continue'
 
-      expect(page).to have_css('#order_tab_summary .state', text: 'COMPLETE')
+      expect(page).to have_css('#order_tab_summary .state', text: 'Complete')
     end
   end
 
@@ -175,7 +187,7 @@ describe 'New Order', type: :feature do
     end
 
     it 'transitions to delivery not to complete' do
-      select2 product.name, from: Spree.t(:name_or_sku), search: true
+      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
 
       within('table.stock-levels') do
         fill_in 'variant_quantity', with: 1
@@ -198,7 +210,7 @@ describe 'New Order', type: :feature do
     fill_in 'First Name',                with: 'John 99'
     fill_in 'Last Name',                 with: 'Doe'
     fill_in 'Address',                   with: '100 first lane'
-    fill_in 'Address (contd.)',          with: '#101'
+    fill_in 'Address (contd.)',          with: '101'
     fill_in 'City',                      with: 'Bethesda'
     fill_in 'Zip Code',                  with: '20170'
     select2 state.name,                  css: '#bstate'

@@ -124,8 +124,6 @@ describe 'Users', type: :feature do
     end
 
     context 'filtering users', js: true do
-      before { visit current_path } # For Rails turbo JavaScript testing.
-
       it 'renders selected filters' do
         click_on 'Filters'
         wait_for { !page.has_text?('Search') }
@@ -141,7 +139,7 @@ describe 'Users', type: :feature do
         wait_for_turbo
 
         within('.table-active-filters') do
-          expect(page).to have_content('Email: a@example.com')
+          expect(page).to have_content('Email: A@Example.Com')
           expect(page).to have_content('First Name: John')
           expect(page).to have_content('Last Name: Doe')
           expect(page).to have_content('Company: Company')
@@ -156,12 +154,12 @@ describe 'Users', type: :feature do
     it_behaves_like 'a user page'
 
     it 'can edit the user email' do
-      fill_in 'user_email', with: 'a@example.com99'
+      fill_in 'user_email', with: 'spree@example.com99'
       click_button 'Update'
 
-      expect(user_a.reload.email).to eq 'a@example.com99'
+      expect(user_a.reload.email).to eq 'spree@example.com99'
       expect(page).to have_text 'Account updated'
-      expect(page).to have_field('user_email', with: 'a@example.com99')
+      expect(page).to have_field('user_email', with: 'spree@example.com99')
     end
 
     it 'can edit the user password' do

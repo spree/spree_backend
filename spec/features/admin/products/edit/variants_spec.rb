@@ -35,9 +35,9 @@ describe 'Product Variants', type: :feature, js: true do
       visit spree.admin_products_path
       within_row(1) { click_icon :edit }
 
-      select2_open label: 'Option Types'
-      select2_search 'shirt', label: 'Option Types'
-      select2_select 'shirt', from: 'Option Types', match: :first
+      wait_for_turbo
+
+      select2 'shirt', from: 'Option Types', search: 'shirt'
 
       wait_for { !page.has_button?('Update') }
       click_button 'Update'

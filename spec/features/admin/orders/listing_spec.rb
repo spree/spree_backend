@@ -273,15 +273,15 @@ describe 'Orders Listing', type: :feature do
           expect(page).to have_content('Start: 2018-01-18')
           expect(page).to have_content('Stop: 2019-03-25')
           expect(page).to have_content('Order Number: R100')
-          expect(page).to have_content('Status: cart')
-          expect(page).to have_content('Payment State: paid')
-          expect(page).to have_content('Shipment State: pending')
+          expect(page).to have_content('Status: Cart')
+          expect(page).to have_content('Payment State: Paid')
+          expect(page).to have_content('Shipment State: Pending')
           expect(page).to have_content('First Name Begins With: John')
           expect(page).to have_content('Last Name Begins With: Smith')
           expect(page).to have_content('Promotion: Promo')
-          expect(page).to have_content('Email: john_smith@example.com')
+          expect(page).to have_content('Email: John_Smith@Example.Com')
           expect(page).to have_content('SKU: BAG-00001')
-          expect(page).to have_content('Channel: spree')
+          expect(page).to have_content('Channel: Spree')
         end
       end
     end

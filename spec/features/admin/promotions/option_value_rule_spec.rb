@@ -4,7 +4,7 @@ describe 'Promotion with option value rule', type: :feature do
   stub_authorization!
 
   let(:store) { Spree::Store.default }
-  let(:product) { create(:product, stores: [store]) }
+  let(:product) { create(:product, stores: [store], name: 'Blue Jeans') }
   let!(:variant) { create(:variant, product: product) }
   let!(:option_value) { variant.option_values.first }
 
@@ -26,7 +26,7 @@ describe 'Promotion with option value rule', type: :feature do
     end
 
     within('.promo-rule-option-value') do
-      select2 product.name,       css: '.product-select', search: true
+      select2 'Blue Jeans',       css: '.product-select', search: true
       select2 option_value.name,  css: '.option-value-select', search: true
     end
 
@@ -37,7 +37,7 @@ describe 'Promotion with option value rule', type: :feature do
 
     first_rule = promotion.rules.reload.first
     expect(first_rule.class).to eq Spree::Promotion::Rules::OptionValue
-    expect(first_rule.preferred_eligible_values).to eq Hash[product.id => [option_value.id]]
+    expect(first_rule.preferred_eligible_values).to eq Hash[product.id.to_s => [option_value.id.to_s]]
   end
 
   context 'with an existing option value rule' do
@@ -68,7 +68,7 @@ describe 'Promotion with option value rule', type: :feature do
 
       first_rule = promotion.rules.reload.first
       expect(first_rule.preferred_eligible_values).to eq(
-        Hash[variant1.product_id => variant1.option_values.pluck(:id)]
+        Hash[variant1.product_id.to_s => variant1.option_values.pluck(:id).map(&:to_s)]
       )
     end
   end

@@ -19,8 +19,8 @@ module Spree
 
       expect(page).to have_content('Brazil')
       expect(page).to have_content('BRL')
-      expect(page).to have_content('YES')
-      expect(page).to have_content('NO')
+      expect(page).to have_content('Yes')
+      expect(page).to have_content('No')
 
       accept_confirm do
         click_icon :delete
