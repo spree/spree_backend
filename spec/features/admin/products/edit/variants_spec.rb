@@ -76,7 +76,11 @@ describe 'Product Variants', type: :feature, js: true do
       within_row(1) { click_icon :edit }
 
       select2_open label: 'Option Types'
+      wait_for_turbo
+
       select2_search 'shirt', label: 'Option Types'
+      wait_for_turbo
+
       select2_select 'shirt', from: 'Option Types', match: :first
 
       wait_for { !page.has_button?('Update') }
