@@ -37,7 +37,7 @@ describe 'Promotion with option value rule', type: :feature do
 
     first_rule = promotion.rules.reload.first
     expect(first_rule.class).to eq Spree::Promotion::Rules::OptionValue
-    expect(first_rule.preferred_eligible_values).to eq Hash[product.id => [option_value.id]]
+    expect(first_rule.preferred_eligible_values).to eq Hash[product.id.to_s => [option_value.id.to_s]]
   end
 
   context 'with an existing option value rule' do
@@ -68,7 +68,7 @@ describe 'Promotion with option value rule', type: :feature do
 
       first_rule = promotion.rules.reload.first
       expect(first_rule.preferred_eligible_values).to eq(
-        Hash[variant1.product_id => variant1.option_values.pluck(:id)]
+        Hash[variant1.product_id.to_s => variant1.option_values.pluck(:id).map(&:to_s)]
       )
     end
   end
