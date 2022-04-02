@@ -1,5 +1,11 @@
 /* eslint-disable no-undef */
 
+import jQuery from "jquery"
+import Bootstrap from "bootstrap"
+
+if (!window.jQuery)     { window.$ = window.jQuery = jQuery }
+if (!window.bootstrap)  { window.bootstrap = Bootstrap }
+
 document.addEventListener("spree:load", function() {
   $(".with-tip").each(function() {
     $(this).tooltip()
