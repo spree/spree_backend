@@ -8,7 +8,7 @@ describe 'Featured Article section', type: :feature do
   let!(:store) { Spree::Store.default }
   let!(:feature_page) { create(:cms_feature_page, store: store, title: 'Test Page') }
   let!(:taxon) { create(:taxon) }
-  let!(:product) { create(:product, name: 'Red Truck') }
+  let!(:product) { create(:product) }
   let!(:cms_standard_page) { create(:cms_standard_page, store: store) }
   let!(:homepage) { create(:cms_homepage, store: store, title: 'Super Home Page') }
   let!(:section) { create(:cms_featured_article_section, cms_page: feature_page, name: "Test #{section_type}") }
@@ -51,7 +51,7 @@ describe 'Featured Article section', type: :feature do
 
       click_on 'Update'
 
-      select2 'Red Truck', from: 'Product', search: true
+      select2 product.name, from: 'Product', search: true
 
       click_on 'Update'
 

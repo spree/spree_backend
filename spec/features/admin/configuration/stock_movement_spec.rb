@@ -23,7 +23,7 @@ describe 'Stock Movements', type: :feature do
   end
 
   describe 'creation', js: true do
-    let!(:product) { create(:product_in_stock, stores: [store], name: 'Leather Jacket') }
+    let!(:product) { create(:product_in_stock, stores: [store]) }
 
     before do
       visit spree.admin_stock_location_stock_movements_path(stock_location.id)
@@ -34,8 +34,8 @@ describe 'Stock Movements', type: :feature do
       fill_in 'Quantity', with: 10
 
       select2_open label: 'Stock Item'
-      select2_search 'Leather Jacket', from: 'Stock Item'
-      select2_select 'Leather Jacket', from: 'Stock Item', match: :first
+      select2_search product.name, from: 'Stock Item'
+      select2_select product.name, from: 'Stock Item', match: :first
 
       click_button 'Create'
 

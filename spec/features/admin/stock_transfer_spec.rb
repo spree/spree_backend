@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'Stock Transfers', type: :feature, js: true do
   stub_authorization!
 
-  let!(:product) { create(:product_in_stock, name: 'Fluffy Toy Monkey', sku: 'A99400', description: 'lorem ipsum') }
+  let!(:product) { create(:product_in_stock, sku: 'A99400', description: 'lorem ipsum') }
   let!(:variant) { create(:variant, product: product, sku: 'MIOD') }
 
   it 'shows variants with options text' do
@@ -45,7 +45,7 @@ describe 'Stock Transfers', type: :feature, js: true do
       expect(page).to have_content('Reference PO 666')
       expect(page).to have_content('NY')
       expect(page).to have_content('SF')
-      expect(page).to have_content('Fluffy Toy Monkey')
+      expect(page).to have_content(product.name)
 
       transfer = Spree::StockTransfer.last
       expect(transfer.stock_movements.size).to eq 2

@@ -4,7 +4,7 @@ describe 'Promotion with option value rule', type: :feature do
   stub_authorization!
 
   let(:store) { Spree::Store.default }
-  let(:product) { create(:product, stores: [store], name: 'Blue Jeans') }
+  let(:product) { create(:product, stores: [store]) }
   let!(:variant) { create(:variant, product: product) }
   let!(:option_value) { variant.option_values.first }
 
@@ -26,7 +26,7 @@ describe 'Promotion with option value rule', type: :feature do
     end
 
     within('.promo-rule-option-value') do
-      select2 'Blue Jeans',       css: '.product-select', search: true
+      select2 product.name,       css: '.product-select', search: true
       select2 option_value.name,  css: '.option-value-select', search: true
     end
 

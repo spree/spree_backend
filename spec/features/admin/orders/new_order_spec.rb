@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'New Order', type: :feature do
   let(:store) { Spree::Store.default }
-  let!(:product) { create(:product_in_stock, stores: [store], name: 'Fisher Price Truck') }
+  let!(:product) { create(:product_in_stock, stores: [store]) }
   let!(:state) { create(:state) }
   let!(:user) { create(:user, ship_address: create(:address), bill_address: create(:address)) }
   let(:order) { Spree::Order.last }
@@ -29,7 +29,7 @@ describe 'New Order', type: :feature do
   end
 
   it 'completes new order successfully without using the cart', js: true do
-    select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
+    select2 product.name, from: Spree.t(:name_or_sku), search: true
 
     click_icon :add
     wait_for_turbo
@@ -66,7 +66,7 @@ describe 'New Order', type: :feature do
 
   context 'adding new item to the order', js: true do
     it 'inventory items show up just fine and are also registered as shipments' do
-      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
+      select2 product.name, from: Spree.t(:name_or_sku), search: true
 
       within('table.stock-levels') do
         fill_in 'variant_quantity', with: 2
@@ -104,7 +104,7 @@ describe 'New Order', type: :feature do
   context "adding new item to the order which isn't available", js: true do
     before do
       product.update(status: 'draft', available_on: nil)
-      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
+      select2 product.name, from: Spree.t(:name_or_sku), search: true
     end
 
     it 'inventory items is displayed' do
@@ -131,7 +131,7 @@ describe 'New Order', type: :feature do
     end
 
     it 'can still see line items' do
-      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
+      select2 product.name, from: Spree.t(:name_or_sku), search: true
       click_icon :add
       within('.line-items') do
         within('.line-item-name') do
@@ -187,7 +187,7 @@ describe 'New Order', type: :feature do
     end
 
     it 'transitions to delivery not to complete' do
-      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
+      select2 product.name, from: Spree.t(:name_or_sku), search: true
 
       within('table.stock-levels') do
         fill_in 'variant_quantity', with: 1
