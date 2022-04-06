@@ -166,7 +166,7 @@ describe 'New Order', type: :feature do
 
       wait_for_turbo
 
-      expect(page).to have_content('Fisher Price Truck')
+      expect(page).to have_content(product.name)
       expect(page).to have_content('Select stock')
 
       click_icon :add
