@@ -162,7 +162,7 @@ describe 'New Order', type: :feature do
 
       wait_for_turbo
 
-      select2 'Fisher Price Truck', from: Spree.t(:name_or_sku), search: true
+      select2 product.name, from: Spree.t(:name_or_sku), search: true
 
       wait_for_turbo
 
