@@ -1,0 +1,18 @@
+<%= f.fields_for image do |ff| %>
+  <%= f.field_container image do %>
+    <% attachment = @cms_section.send(image).attachment %>
+    <% if attachment&.attached? && attachment&.variable? %>
+      <figure class="admin-img-holder">
+        <%= image_tag main_app.cdn_image_url(attachment.variant(resize_to_limit: [244, 104])) %>
+      </figure>
+    <% elsif attachment&.attached? && attachment&.image? %>
+      <figure class="admin-img-holder">
+        <%= image_tag main_app.cdn_image_url(attachment) %>
+      </figure>
+    <% end %>
+    <%= f.field_container image, class: ['mb-0'] do %>
+      <%= ff.file_field :attachment %>
+      <%= f.error_message_on image %>
+    <% end %>
+  <% end %>
+<% end %>

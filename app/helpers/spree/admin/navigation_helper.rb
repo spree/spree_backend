@@ -38,13 +38,15 @@ module Spree
 
         css_classes = ['sidebar-menu-item d-block w-100 position-relative']
 
-        selected = if options[:match_path].is_a? Regexp
-                     request.fullpath =~ options[:match_path]
-                   elsif options[:match_path]
-                     request.fullpath.starts_with?("#{spree.admin_path}#{options[:match_path]}")
-                   else
-                     args.include?(controller.controller_name.to_sym)
-                   end
+        if (selected = options[:selected]).nil?
+          selected = if options[:match_path].is_a? Regexp
+                       request.fullpath =~ options[:match_path]
+                     elsif options[:match_path]
+                       request.fullpath.starts_with?("#{spree.admin_path}#{options[:match_path]}")
+                     else
+                       args.include?(controller.controller_name.to_sym)
+                     end
+        end
 
         link = if options[:icon]
                  link_to_with_icon(
@@ -74,11 +76,11 @@ module Spree
         link_to url, 'data-toggle': 'collapse', class: 'd-flex w-100 px-3 py-2 position-relative align-items-center' do
           if icon.ends_with?('.svg')
             svg_icon(name: icon, classes: 'mr-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
-              content_tag(:span, " #{text}", class: 'text-muted') +
+              content_tag(:span, raw(" #{text}"), class: 'text-muted') +
               svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           else
             content_tag(:span, nil, class: "icon text-muted icon-#{icon} mr-2") +
-              content_tag(:span, " #{text}", class: 'text-muted') +
+              content_tag(:span, raw(" #{text}"), class: 'text-muted') +
               svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           end
         end

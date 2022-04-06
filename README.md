@@ -6,11 +6,11 @@
 
 This is the default Spree Admin Dashboard. 
 
-## Maintained by
+## Developed by
 
-[![Spark Solutions](http://sparksolutions.co/wp-content/uploads/2015/01/logo-ss-tr-221x100.png)][spark]
+[![Vendo](https://assets-global.website-files.com/6230c485f2c32ea1b0daa438/623372f40a8c54ca9aea34e8_vendo%202.svg)](https://getvendo.com?utm_source=spree_backend_github)
 
-[Spark Solutions][spark] is a full stack eCommerce agency. Our project teams consist of Designers, Software Engineers, Testers and Project Managers practicing agile project delivery. We’ll integrate our team with yours to jointly architect, deliver, maintain and scale the software products you need. You drive the project with requirements and acceptance testing and we help you deliver faster using industry-standard project management and comms best practices. [Contact us to launch your new eCommerce project](https://sparksolutions.co/contact/).
+> All-in-one platform for all your Marketplace and B2B eCommerce needs. [Start your 30-day free trial](https://e98esoirr8c.typeform.com/contactvendo?typeform-source=spree_backend_github)
 
 ## Key Features
 
