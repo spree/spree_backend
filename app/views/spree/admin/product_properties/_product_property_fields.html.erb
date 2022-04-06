@@ -1,4 +1,4 @@
-<tr class="product_property fields" <% if f.object.persisted? && can?(:edit, f.object) %>id="spree_<%= dom_id(f.object) %>"<% end %> data-hook="product_property">
+<tr class="product_property fields" <% if f.object.persisted? && can?(:edit, f.object) %>id="spree_<%= dom_id(f.object) %>"<% end %> data-hook="product_property" data-controller="required-input">
   <% if f.object.persisted? && can?(:edit, f.object) %>
     <td class="move-handle">
       <%= render "spree/admin/shared/grab_handle" %>
@@ -11,10 +11,10 @@
     </td>
   <% end %>
   <td class='property_name'>
-    <%= f.text_field :property_name, class: 'autocomplete form-control', required: f.object.persisted? %>
+    <%= f.text_field :property_name, class: 'autocomplete form-control', required: f.object.persisted?, data: { action: "input->required-input#toggleRequired" } %>
   </td>
   <td class='value'>
-    <%= f.text_field :value, class: 'form-control', required: f.object.persisted? %>
+    <%= f.text_field :value, class: 'form-control', required: f.object.persisted?, data: { required_input_target: "togglableInput" } %>
   </td>
   <td class="show_property text-center">
     <div class="custom-control custom-checkbox">
