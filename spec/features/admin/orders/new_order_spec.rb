@@ -152,7 +152,6 @@ describe 'New Order', type: :feature do
 
       click_on 'Shipments'
       expect(page).to have_content('Add Product')
-
       select2 product.name, from: Spree.t(:name_or_sku), search: true
 
       expect(page).to have_content(product.name)
