@@ -25,20 +25,8 @@
     <div id="image_a_details" class="card p-3">
       <div class="text-center">
         <h4 class="pb-2"><%= Spree.t('admin.cms.image_gallery.image_a') %></h4>
-        <%= f.field_container :image_one do %>
-          <% if @cms_section.image_one.attached? && @cms_section.image_one.variable? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_one.variant(resize_to_limit: [244, 104])) %>
-            </figure>
-          <% elsif @cms_section.image_one.attached? && @cms_section.image_one.image? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_one) %>
-            </figure>
-          <% end %>
-
-          <%= f.file_field :image_one %>
-          <%= f.error_message_on :image_one %>
-        <% end %>
+        <% @cms_section.build_image_one unless @cms_section.image_one %>
+        <%= render partial: 'image_upload_form', locals: { f: f, image: :image_one } %>
       </div>
       <small class="text-muted mb-4"><%= Spree.t('admin.cms.image_gallery.square_image') %></small>
 
@@ -69,20 +57,8 @@
     <div id="image_b_details" class="card p-3">
       <div class="text-center">
         <h4 class="pb-2"><%= Spree.t('admin.cms.image_gallery.image_b') %></h4>
-        <%= f.field_container :image_two do %>
-          <% if @cms_section.image_two.attached? && @cms_section.image_two.variable? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_two.variant(resize_to_limit: [244, 104])) %>
-            </figure>
-          <% elsif @cms_section.image_two.attached? && @cms_section.image_two.image? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_two) %>
-            </figure>
-          <% end %>
-
-          <%= f.file_field :image_two %>
-          <%= f.error_message_on :image_two %>
-        <% end %>
+        <% @cms_section.build_image_two unless @cms_section.image_two %>
+        <%= render partial: 'image_upload_form', locals: { f: f, image: :image_two } %>
       </div>
       <small class="text-muted mb-4"><%= Spree.t('admin.cms.image_gallery.tall_image') %></small>
 
@@ -113,20 +89,8 @@
     <div id="image_c_details" class="card p-3">
       <div class="text-center">
         <h4 class="pb-2"><%= Spree.t('admin.cms.image_gallery.image_c') %></h4>
-        <%= f.field_container :image_three do %>
-          <% if @cms_section.image_three.attached? && @cms_section.image_three.variable? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_three.variant(resize_to_limit: [244, 104])) %>
-            </figure>
-          <% elsif @cms_section.image_three.attached? && @cms_section.image_three.image? %>
-            <figure class="admin-img-holder">
-              <%= image_tag main_app.cdn_image_url(@cms_section.image_three) %>
-            </figure>
-          <% end %>
-
-          <%= f.file_field :image_three %>
-          <%= f.error_message_on :image_three %>
-        <% end %>
+        <% @cms_section.build_image_three unless @cms_section.image_three %>
+        <%= render partial: 'image_upload_form', locals: { f: f, image: :image_three } %>
       </div>
       <small class="text-muted mb-4"><%= Spree.t('admin.cms.image_gallery.square_image') %></small>
 

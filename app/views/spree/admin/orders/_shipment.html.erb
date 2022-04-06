@@ -20,7 +20,7 @@
 
   <div class="table-responsive bg-white">
     <table class="table stock-contents" data-hook="stock-contents">
-      <thead class="bg-light text-muted">
+      <thead class="text-muted">
         <tr>
           <th colspan="2"><%= Spree.t(:item_description) %></th>
           <th width="15%" class="text-center"><%= Spree.t(:price) %></th>
@@ -46,7 +46,7 @@
             <td class="actions">
               <span class="d-flex justify-content-center">
                 <% if can? :update, shipment %>
-                  <%= link_to_with_icon 'cancel.svg', Spree.t('actions.cancel'), "#", class: 'cancel-method btn btn-outline-secondary btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true %>
+                  <%= link_to_with_icon 'cancel.svg', Spree.t('actions.cancel'), "#", class: 'cancel-method btn btn-light btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true %>
                   <%= link_to_with_icon 'save.svg', Spree.t('actions.save'), "#", class: 'save-method btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
                 <% end %>
               </span>
@@ -69,7 +69,7 @@
             <td class="actions">
               <span class="d-flex justify-content-center">
                 <% if( (can? :update, shipment) and !shipment.shipped?) %>
-                  <%= link_to_with_icon 'edit.svg', Spree.t('edit'), "javascript:;", class: 'edit-method with-tip btn btn-sm btn-outline-secondary', data: {action: 'edit'}, no_text: true %>
+                  <%= link_to_with_icon 'edit.svg', Spree.t('edit'), "javascript:;", class: 'edit-method with-tip btn btn-sm btn-light', data: {action: 'edit'}, no_text: true %>
                 <% end %>
               </span>
             </td>
@@ -83,7 +83,7 @@
           <td class="actions">
             <span class="d-flex justify-content-center">
               <% if can? :update, shipment %>
-                <%= link_to_with_icon 'cancel.svg', Spree.t('actions.cancel'), "#", class: 'cancel-tracking btn btn-outline-secondary btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true %>
+                <%= link_to_with_icon 'cancel.svg', Spree.t('actions.cancel'), "#", class: 'cancel-tracking btn btn-light btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true %>
                 <%= link_to_with_icon 'save.svg', Spree.t('actions.save'), "#", class: 'save-tracking btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
               <% end %>
             </span>
@@ -109,7 +109,7 @@
           <td class="actions">
             <span class="d-flex justify-content-center">
               <% if can? :update, shipment %>
-                <%= link_to_with_icon 'edit.svg', Spree.t('edit'), "#", class: 'edit-tracking btn btn-outline-secondary btn-sm', data: {action: 'edit'}, title: Spree.t('edit'), no_text: true %>
+                <%= link_to_with_icon 'edit.svg', Spree.t('edit'), "#", class: 'edit-tracking btn btn-light btn-sm', data: {action: 'edit'}, title: Spree.t('edit'), no_text: true %>
               <% end %>
             </span>
           </td>

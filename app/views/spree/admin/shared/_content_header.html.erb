@@ -22,7 +22,7 @@
           <div class="d-flex d-lg-none justify-content-end m-0 p-0">
             <button type="button"
                     id="contextual-menu-toggle"
-                    class="btn btn-outline-secondary">
+                    class="btn btn-light">
                     <span class="d-none d-sm-inline">
                       <%= Spree.t('more') %>
                     </span>
@@ -35,7 +35,7 @@
       <% if content_for?(:page_tabs) %>
         <div class="row my-2 mb-3 pb-1 pt-1 align-items-center" data-nav-x-wrapper>
           <div data-nav-x-container class="w-100">
-            <ul id="spreePageTabs" class="nav nav-pills w-100 flex-nowrap" data-nav-x-content>
+            <ul id="spreePageTabs" class="nav nav-pills flex-nowrap" data-nav-x-content>
               <%= yield :page_tabs %>
             </ul>
           </div>

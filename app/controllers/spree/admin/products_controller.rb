@@ -128,7 +128,7 @@ module Spree
 
       def update_status
         return if @new_status == @product.status
-        return if cannot? :change_status, Spree::Product
+        return if cannot?(:activate, Spree::Product) && @new_status&.to_sym == :active
 
         event_to_fire = @product.status_transitions.find { |transition| transition.from == @product.status && transition.to == @new_status }&.event
         @product.send(event_to_fire) if event_to_fire
@@ -157,6 +157,7 @@ module Spree
                       includes(product_includes).
                       page(params[:page]).
                       per(params[:per_page] || Spree::Backend::Config[:admin_products_per_page])
+
         @collection
       end
 
@@ -188,7 +189,7 @@ module Spree
       end
 
       def permitted_resource_params
-        if cannot?(:change_status, @product)
+        if cannot?(:activate, @product) && @new_status&.to_sym == :active
           super.except(:status, :make_active_at).permit!
         else
           super
