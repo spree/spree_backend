@@ -522,22 +522,6 @@ describe 'Products', type: :feature do
         end
       end
 
-      xcontext 'with limited permissions' do
-        before do
-          allow_any_instance_of(Spree::Admin::BaseController).to receive(:spree_current_user).and_return(nil)
-        end
-
-        custom_authorization! do |_user|
-          cannot :change_status, Spree::Product
-        end
-
-        it 'As a Vendor Owner/Member I cannot change the Product state, this is reserved only to marketplace owner (spree admin)' do
-          visit spree.admin_product_path(product)
-          expect(page).to have_field('Status', disabled: true)
-          expect(page).to have_field('Make Active At', disabled: true)
-        end
-      end
-
       context 'changing the status' do
         context 'from draft' do
           before { product.update_column(:status, 'draft') }
