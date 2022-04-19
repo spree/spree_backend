@@ -6,6 +6,10 @@ class Dashboard {
   }
 }
 
+if (!window.Turbo) {
+  console.warn("Please import '@hotwired/turbo-rails' before '@spree/dashboard' to use Rails Turbo within the Spree Dashboard environment.")
+}
+
 //
 // Import JavaScript packages that are required globally.
 import { Application } from "@hotwired/stimulus"
