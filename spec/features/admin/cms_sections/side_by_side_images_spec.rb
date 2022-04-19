@@ -61,6 +61,7 @@ describe 'Image Side By Side Images section', type: :feature do
     it 'allows changing of the section name' do
       fill_in 'Name *', with: 'My New Section Name'
       click_on 'Update'
+
       expect(page).to have_field('Name *', with: 'My New Section Name')
     end
 
@@ -74,6 +75,7 @@ describe 'Image Side By Side Images section', type: :feature do
         select2('Shirts', css: '#cms_section_link_one_field', search: true)
 
         click_on 'Update'
+        wait_for_turbo
 
         within 'div#left_image_details' do
           expect(page).to have_field('Title', with: 'Trendy Styles')
@@ -94,6 +96,7 @@ describe 'Image Side By Side Images section', type: :feature do
           select2('Zomg Shirt', css: '#cms_section_link_one_field', search: true)
 
           click_on 'Update'
+          wait_for_turbo
 
           within 'div#left_image_details' do
             wait_for_ajax do
@@ -108,6 +111,7 @@ describe 'Image Side By Side Images section', type: :feature do
           attach_file('cms_section_image_one', file_path)
 
           click_button 'Update'
+          wait_for_turbo
 
           expect(page).to have_content('successfully updated!')
           expect(page).to have_css('.admin-img-holder img')
@@ -125,6 +129,7 @@ describe 'Image Side By Side Images section', type: :feature do
         select2('Shirts', css: '#cms_section_link_one_field', search: true)
 
         click_on 'Update'
+        wait_for_turbo
 
         within 'div#right_image_details' do
           expect(page).to have_field('Title', with: 'Trendy Styles')
@@ -145,6 +150,7 @@ describe 'Image Side By Side Images section', type: :feature do
           select2('Zomg Shirt', css: '#cms_section_link_one_field', search: true)
 
           click_on 'Update'
+          wait_for_turbo
 
           within 'div#right_image_details' do
             wait_for_ajax do
@@ -159,6 +165,7 @@ describe 'Image Side By Side Images section', type: :feature do
           attach_file('cms_section_image_one', file_path)
 
           click_button 'Update'
+          wait_for_turbo
 
           expect(page).to have_content('successfully updated!')
           expect(page).to have_css('.admin-img-holder img')
