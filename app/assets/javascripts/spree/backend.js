@@ -1,5 +1,6 @@
 //= require purify
 //= require sortable
+//= require jquery3
 //= require handlebars
 //= require cleave
 //= require jquery_ujs

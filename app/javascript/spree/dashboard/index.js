@@ -12,9 +12,6 @@ if (!window.Turbo) {
 
 //
 // Import JavaScript packages that are required globally.
-import jQuery from "jquery"
-if (!window.jQuery) { window.$ = window.jQuery = jQuery }
-
 import { Application } from "@hotwired/stimulus"
 import flatpickr from "flatpickr"
 
