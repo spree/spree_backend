@@ -122,9 +122,13 @@ describe 'Image Side By Side Images section', type: :feature do
           fill_in 'Subtitle', with: 'Shop Today'
         end
 
-        select2('Shirts', css: '#cms_section_link_one_field', search: true)
+        select2_open css: '#cms_section_link_two_field'
+        select2_search 'Shirts', css: '#cms_section_link_two_field'
+        wait_for_ajax
+        select2_select 'Shirts', css: '#cms_section_link_two_field', match: :first
 
         click_on 'Update'
+        wait_for_turbo
 
         within 'div#right_image_details' do
           expect(page).to have_field('Title', with: 'Trendy Styles')
@@ -138,11 +142,11 @@ describe 'Image Side By Side Images section', type: :feature do
 
       if Rails::VERSION::STRING >= '6.0'
         it 'allows admin to change the link type and save a product' do
-          select2('Product', css: '#cms_section_link_type_one_field')
+          select2('Product', css: '#cms_section_link_type_two_field')
 
           click_on 'Update'
 
-          select2('Zomg Shirt', css: '#cms_section_link_one_field', search: true)
+          select2('Zomg Shirt', css: '#cms_section_link_two_field', search: true)
 
           click_on 'Update'
 
