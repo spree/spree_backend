@@ -58,7 +58,6 @@ run_tests: &run_tests
     - store_artifacts:
           path: tmp/capybara
 
-
 run_tests_3_0: &run_tests_3_0
   <<: *defaults_3_0
   parallelism: 8
