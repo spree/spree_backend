@@ -103,15 +103,13 @@ describe 'Image Side By Side Images section', type: :feature do
         end
       end
 
-      xcontext 'TODO: Fix' do
-        it 'admin should be able to add image' do
-          attach_file('cms_section_image_one', file_path)
+      it 'admin should be able to add image' do
+        attach_file('cms_section[image_one_attributes][attachment]', file_path)
 
-          click_button 'Update'
+        click_button 'Update'
 
-          expect(page).to have_content('successfully updated!')
-          expect(page).to have_css('.admin-img-holder img')
-        end
+        expect(page).to have_content('successfully updated!')
+        expect(page).to have_css('.admin-img-holder img')
       end
     end
 
@@ -158,15 +156,13 @@ describe 'Image Side By Side Images section', type: :feature do
         end
       end
 
-      xcontext 'TODO: Fix' do
-        it 'admin should be able to add image' do
-          attach_file('cms_section_image_two', file_path)
+      it 'admin should be able to add image' do
+        attach_file('cms_section[image_two_attributes][attachment]', file_path)
 
-          click_button 'Update'
+        click_button 'Update'
 
-          expect(page).to have_content('successfully updated!')
-          expect(page).to have_css('.admin-img-holder img')
-        end
+        expect(page).to have_content('successfully updated!')
+        expect(page).to have_css('.admin-img-holder img')
       end
     end
   end

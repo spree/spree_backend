@@ -36,15 +36,13 @@ describe 'Hero Image section', type: :feature do
       assert_admin_flash_alert_success('Section "Test Hero Image" has been successfully updated!')
     end
 
-    xcontext 'TODO: Fix' do
-      it 'admin should be able to add image' do
-        attach_file('cms_section_image_one_attachment', file_path)
+    it 'admin should be able to add image' do
+      attach_file('cms_section[image_one_attributes][attachment]', file_path)
 
-        click_button 'Update'
+      click_button 'Update'
 
-        expect(page).to have_content('successfully updated!')
-        expect(page).to have_css('.admin-img-holder img')
-      end
+      expect(page).to have_content('successfully updated!')
+      expect(page).to have_css('.admin-img-holder img')
     end
 
     it 'saves product path and loads it back into the view' do
