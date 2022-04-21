@@ -7,6 +7,7 @@ defaults: &defaults
     BUNDLE_JOBS: 4
     BUNDLE_RETRY: 3
     BUNDLE_PATH: ~/spree/vendor/bundle
+  working_directory: ~/spree
   docker:
     - image: &ruby_image circleci/ruby:2.7-node-browsers
     - image: &redis_image circleci/redis:6.2-alpine
@@ -41,7 +42,7 @@ run_tests: &run_tests
         command: |
           bundle exec rake test_app
     - run:
-        name: Unlink NPM package.
+        name: Unlink NPM package
         command: |
           cd spec/dummy && yarn unlink @spree/dashboard
     - run:
