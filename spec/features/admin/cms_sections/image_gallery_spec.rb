@@ -84,6 +84,10 @@ describe 'Image Gallery section', type: :feature do
           fill_in 'Title', with: 'Trendy Styles'
         end
 
+        select2('Taxon', css: '#cms_section_link_type_one_field')
+        click_on 'Update'
+        wait_for_turbo
+
         select2('Shirts', css: '#cms_section_link_one_field', search: true)
 
         click_on 'Update'
@@ -130,6 +134,10 @@ describe 'Image Gallery section', type: :feature do
         within 'div#image_b_details' do
           fill_in 'Title', with: 'Trendy Styles'
         end
+
+        select2('Taxon', css: '#cms_section_link_type_two_field')
+        click_on 'Update'
+        wait_for_turbo
 
         select2('Shirts', css: '#cms_section_link_two_field', search: true)
 
@@ -178,10 +186,11 @@ describe 'Image Gallery section', type: :feature do
           fill_in 'Title', with: 'Trendy Styles'
         end
 
-        select2_open css: '#cms_section_link_three_field'
-        select2_search 'Shirts', css: '#cms_section_link_three_field'
-        wait_for_ajax
-        select2_select 'Shirts', css: '#cms_section_link_three_field', match: :first
+        select2('Taxon', css: '#cms_section_link_type_three_field')
+        click_on 'Update'
+        wait_for_turbo
+
+        select2('Shirts', css: '#cms_section_link_three_field', search: true)
 
         click_on 'Update'
 
