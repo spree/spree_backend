@@ -99,7 +99,7 @@ run_tests_3_0: &run_tests_3_0
           path: /tmp/capybara
 
 jobs:
-  build:
+  bundle:
     <<: *defaults
     steps:
       - checkout
@@ -186,11 +186,11 @@ workflows:
   version: 2
   main:
     jobs:
-      - build
+      - bundle
       - bundle_ruby_3_0
       - tests_postgres_ruby_3_0:
           requires:
             - bundle_ruby_3_0
       - tests_mysql:
           requires:
-            - build
+            - bundle
