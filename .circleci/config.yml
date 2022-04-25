@@ -7,7 +7,7 @@ defaults: &defaults
     BUNDLE_JOBS: 4
     BUNDLE_RETRY: 3
     BUNDLE_PATH: ~/spree/vendor/bundle
-  working_directory: ~/spree
+  working_directory: /tmp
   docker:
     - image: &ruby_image circleci/ruby:2.7-node-browsers
     - image: &redis_image circleci/redis:6.2-alpine
@@ -56,7 +56,7 @@ run_tests: &run_tests
     - store_test_results:
           path: ~/rspec
     - store_artifacts:
-          path: tmp/capybara
+          path: /tmp/capybara
 
 run_tests_3_0: &run_tests_3_0
   <<: *defaults_3_0
@@ -96,10 +96,10 @@ run_tests_3_0: &run_tests_3_0
     - store_test_results:
           path: ~/rspec
     - store_artifacts:
-          path: tmp/capybara
+          path: /tmp/capybara
 
 jobs:
-  bundle:
+  build:
     <<: *defaults
     steps:
       - checkout
@@ -186,11 +186,11 @@ workflows:
   version: 2
   main:
     jobs:
-      - bundle
+      - build
       - bundle_ruby_3_0
       - tests_postgres_ruby_3_0:
           requires:
             - bundle_ruby_3_0
       - tests_mysql:
           requires:
-            - bundle
+            - build
