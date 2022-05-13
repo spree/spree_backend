@@ -1,11 +1,14 @@
-body.admin {
-  --bs-primary-rgb: 165,42,42;
-  --bs-secondary-rgb: 165,42,42;
-  --bs-success-rgb: 165,42,42;
-  --bs-info-rgb: 165,42,42;
-  --bs-warning-rgb: 165,42,42;
-  --bs-danger-rgb: 165,42,42;
-  --bs-warning-rgb: 165,42,42;
-  --bs-success: 165,42,42;
-  --bs-primary: #503395;
-}
+// TODO setup full css var setup in bootstrap 5.2 for theming.
+// Need to use 5.2 on node_modules.
+
+// body.admin {
+//   --bs-primary-rgb: 165,42,42;
+//   --bs-secondary-rgb: 165,42,42;
+//   --bs-success-rgb: 165,42,42;
+//   --bs-info-rgb: 165,42,42;
+//   --bs-warning-rgb: 165,42,42;
+//   --bs-danger-rgb: 165,42,42;
+//   --bs-warning-rgb: 165,42,42;
+//   --bs-success: 165,42,42;
+//   --bs-primary: #503395;
+// }
