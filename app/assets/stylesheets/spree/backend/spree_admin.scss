@@ -18,13 +18,7 @@
 @import 'spree/backend/components/navigation';
 @import 'spree/backend/components/taxon_products_view';
 
-@import 'spree/backend/plugins/sweetalert2_custom';
-@import 'spree/backend/plugins/jquery_ui';
-@import 'spree/backend/plugins/flatpickr';
-@import 'spree/backend/plugins/select2_bootstrap4';
-@import 'spree/backend/plugins/select2_custom';
-@import 'spree/backend/plugins/tinymce_custom';
-@import 'spree/backend/plugins/nav_x';
+@import 'spree/backend/plugins/index';
 
 @import 'spree/backend/shared/base';
 @import 'spree/backend/shared/forms';
