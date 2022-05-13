@@ -1,11 +1,11 @@
-$theme-colors: (
-  "primary": #4C75BA,
-);
-
-$enable-shadows: true;
-
-// https://github.com/twbs/bootstrap/issues/32019
-// we need this hotfix for sassc
-$custom-control-indicator-checked-box-shadow:   none !default;
-$custom-control-indicator-active-box-shadow:    none !default;
-$custom-checkbox-indicator-indeterminate-box-shadow:   none !default;
+body.admin {
+  --bs-primary-rgb: 165,42,42;
+  --bs-secondary-rgb: 165,42,42;
+  --bs-success-rgb: 165,42,42;
+  --bs-info-rgb: 165,42,42;
+  --bs-warning-rgb: 165,42,42;
+  --bs-danger-rgb: 165,42,42;
+  --bs-warning-rgb: 165,42,42;
+  --bs-success: 165,42,42;
+  --bs-primary: #503395;
+}

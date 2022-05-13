@@ -1,11 +1,10 @@
 <% if try_spree_current_user %>
-  <div class="btn-group">
-
-    <button id="accountNav" type="button" class="btn text-light px-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= svg_icon name: "user.svg", width: '24', height: '24', classes: 'mb-0' %>
+  <div class="d-flex justify-content-end">
+    <button id="accountNav" type="button" class="btn text-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= svg_icon name: "user.svg", width: '24', height: '24', classes: 'm-0' %>
     </button>
 
-    <div class="dropdown-menu dropdown-menu-end overflow-hidden mt-2 p-0 me-2">
+    <div class="dropdown-menu">
       <div class="dropdown-item px-0 text-center bg-light">
         <span class="d-block py-2 px-4"><%= try_spree_current_user.email %></span>
       </div>

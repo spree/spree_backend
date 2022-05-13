@@ -19,7 +19,7 @@
 .bg-published,
 .bg-live,
 .bg-approved {
-  background: var(--bs-green);
+  background: var(--bs-success);
 }
 
 // Red
@@ -29,7 +29,7 @@
 .bg-invalid,
 .bg-rejected,
 .bg-closed {
-  background: var(--bs-red);
+  background: var(--bs-danger);
 }
 
 // Orange
@@ -52,16 +52,16 @@
 .bg-notice,
 .bg-suspended,
 .bg-partial {
-  background: var(--bs-yellow);
+  background: var(--bs-warning);
 }
 
 // light
 .bg-disabled,
 .bg-invited {
-  background: var(--bs-grey);
+  background: var(--bs-light);
 }
 
 // Info
 .bg-onboarding {
-  background: var(--bs-cyan);
+  background: var(--bs-info);
 }

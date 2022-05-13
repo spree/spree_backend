@@ -8,7 +8,7 @@
      <span class="d-none d-sm-inline"><%= current_store.name %></span> (<%= current_store.code %>) <%= svg_icon name: "chevron-down.svg", width: '12', height: '12', classes: 'ms-1 mb-0' %>
     </a>
 
-    <div class="dropdown-menu dropdown-menu-left overflow-hidden ms-2" aria-labelledby="storeSelectorDropdown">
+    <div class="dropdown-menu overflow-hidden ms-2" aria-labelledby="storeSelectorDropdown">
       <% @stores.each do |store| %>
         <%= store_switcher_link(store) %>
       <% end %>
