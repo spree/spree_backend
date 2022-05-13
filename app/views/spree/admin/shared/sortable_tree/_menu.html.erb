@@ -10,7 +10,7 @@
     <div class="overflow-hidden">
       <%= item.name %>
       <% if item.link.present? %>
-        <span class="badge badge-pill badge-light badge-light-muted-text">-> <%= item.link %></span>
+        <span class="badge rounded-pill bg-light bg-light-muted-text">-> <%= item.link %></span>
       <% end %>
       <small class="form-text text-muted mt-0">
         <%= "#{Spree.t('admin.navigation.type')}: #{item.item_type}" %>
