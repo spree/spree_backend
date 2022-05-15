@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "source" ]
+  static get targets() {
+    return ["source"]
+  }
 
   copy(event) {
     console.log(event)
