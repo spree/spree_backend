@@ -21,6 +21,11 @@ Spree::Core::Engine.add_routes do
     resources :tax_categories
 
     resources :products do
+      member do
+        post :create_metadata, path: '/create_metadata/:kind'
+        delete :delete_metadata, path: '/delete_metadata/:key/:kind'
+      end
+
       resources :product_properties do
         collection do
           post :update_positions
@@ -36,6 +41,11 @@ Spree::Core::Engine.add_routes do
         get :stock
       end
       resources :variants do
+        member do
+          post :create_metadata, path: '/create_metadata/:kind'
+          delete :delete_metadata, path: '/delete_metadata/:key/:kind'
+        end
+
         collection do
           post :update_positions
         end

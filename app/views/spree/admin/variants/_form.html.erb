@@ -64,5 +64,7 @@
         <%= f.text_field field, value: value, class: 'form-control' %>
       </div>
     <% end %>
+
+    <%= render partial: 'spree/admin/metadata/public_and_private', locals: { resource: @variant, f: f} %>
   </div>
 </div>

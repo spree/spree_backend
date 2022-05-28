@@ -48,6 +48,13 @@ application.register("product-edit", ProductEditController)
 
 import * as RequestUtility from "./utilities/request_utility"
 
+import RowController from "./controllers/row_controller"
+application.register("row", RowController)
+
+import RequiredInputController from "./controllers/required_input_controller"
+application.register("required-input", RequiredInputController)
+
+
 //
 // Export
 export { Dashboard, application, flatpickr, RequestUtility }
