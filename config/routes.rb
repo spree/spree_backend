@@ -78,14 +78,14 @@ Spree::Core::Engine.add_routes do
       member do
         get :cart
         post :resend
-        get :open_adjustments
-        get :close_adjustments
+        put :open_adjustments
+        put :close_adjustments
         put :approve
         put :cancel
         put :resume
         get :channel
         put :set_channel
-        get :reset_digitals
+        put :reset_digitals
       end
 
       resources :state_changes, only: [:index]
