@@ -1,16 +1,18 @@
-import jquery from 'jquery'
-import 'bootstrap'
-import 'popper.js'
+/* eslint-disable no-undef */
 
-const $ = jquery
+import jQuery from "jquery"
+import Bootstrap from "bootstrap"
+
+if (!window.jQuery)     { window.$ = window.jQuery = jQuery }
+if (!window.bootstrap)  { window.bootstrap = Bootstrap }
 
 document.addEventListener("spree:load", function() {
-  $('.with-tip').each(function() {
+  $(".with-tip").each(function() {
     $(this).tooltip()
   })
 
-  $('.with-tip').on('show.bs.tooltip', function(event) {
-    if (('ontouchstart' in window)) {
+  $(".with-tip").on("show.bs.tooltip", function(event) {
+    if (("ontouchstart" in window)) {
       event.preventDefault()
     }
   })

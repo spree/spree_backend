@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import { RequestInterceptor } from "@rails/request.js"
 import { FetchRequest } from "@rails/request.js"
 

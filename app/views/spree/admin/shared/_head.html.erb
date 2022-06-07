@@ -21,7 +21,7 @@
   <%== "var ADDRESS_FIELDS = #{Spree::Address::ADDRESS_FIELDS}" %>
 </script>
 <%= render 'spree/admin/shared/paths' %>
-<%= javascript_include_tag "spree-dashboard", defer: true, data: { turbo_track: "reload" } %>
+<%= javascript_include_tag "spree-dashboard", data: { turbo_track: "reload" } %>
 <%= javascript_include_tag 'spree/backend/all', data: { turbo_track: "reload" } %>
 <%= render "spree/admin/shared/translations" %>
 
