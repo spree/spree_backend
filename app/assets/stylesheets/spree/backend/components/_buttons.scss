@@ -1,5 +1,15 @@
+// We should overide the bootstrap theming of buttons with a custom set of button classes that can
+
+// .spree-success-btn
+// .spree-warn-btn
+// .spree-standard-btn
+
 .payment-action-save {
-  @include button-variant(theme-color('success'), theme-color('success'), theme-color('success') );
+    // This is a bad idea:
+    // Ideally, I would keep colors out of SASS mixins, preferably set via -var() CSS variables
+    // This allows for theme-able colors that won't blow up the SASS engine.
+
+    @include button-variant($success, $success, $success);
 }
 
 .btn,
@@ -42,4 +52,13 @@ input[type="file"]::-webkit-file-upload-button {
 .actions .btn,
 .page-actions .btn {
   margin: 2px;
+}
+
+
+.btn-success {
+  background-color: var(--bs-primary);
+
+  &:hover {
+    background: red;
+  }
 }
