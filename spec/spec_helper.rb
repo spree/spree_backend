@@ -17,6 +17,9 @@ end
 # This file is copied to ~/spec when you run 'ruby script/generate rspec'
 # from the project root directory.
 ENV['RAILS_ENV'] ||= 'test'
+if ENV['test']
+  YAML.safe_load(ENV['test'], [Symbol])
+end
 
 begin
   require File.expand_path('../dummy/config/environment', __FILE__)
