@@ -43,6 +43,10 @@ Spree::Core::Engine.add_routes do
       resources :variants_including_master, only: [:update]
       resources :prices, only: [:index, :create]
       resources :digitals, only: [:index, :create, :destroy]
+      member do
+        get :translations
+        post :translations, to: 'products#edit_translations'
+      end
     end
 
     resources :option_types do

@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    class ProductsController < ResourceController
+    class ProductsController < TranslatableResourceController
       include Spree::Admin::ProductConcern
 
       helper 'spree/admin/products'
