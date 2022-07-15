@@ -59,4 +59,12 @@
       class: "nav-link #{'active' if current == :digitals} #{current}" %>
 
   <% end if can?(:admin, Spree::Digital) && !@product.deleted? %>
+
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'translate.svg',
+      Spree.t(:translations),
+      translations_admin_product_path(@product),
+      class: "nav-link #{'active' if current == :translations}" %>
+
+  <% end if can?(:admin, Spree::Product) && !@product.deleted? %>
 <% end %>

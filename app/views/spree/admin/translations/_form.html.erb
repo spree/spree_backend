@@ -1,0 +1,10 @@
+<%= form_tag nil, { class: 'form-horizontal' } do %>
+  <div class="my-3">
+    <%= render 'spree/admin/translations/translation_table', resource: resource %>
+  </div>
+  <div class="form-actions" data-hook="buttons">
+    <%= button Spree.t('actions.update'), 'update.svg' %>
+    <span class="or"><%= Spree.t(:or) %></span>
+    <%= button_link_to Spree.t('actions.cancel'), admin_product_path(resource), icon: 'delete.svg' %>
+  </div>
+<% end %>
