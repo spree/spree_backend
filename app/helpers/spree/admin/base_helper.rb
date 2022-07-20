@@ -61,9 +61,16 @@ module Spree
         formatted_option_values
       end
 
+      def spree_humanize_cms(cms_array)
+        formatted_option_values = []
+        cms_array.each do |section|
+          formatted_option_values << [spree_humanize_type(section.name), section]
+        end
+        return formatted_option_values
+      end
+
       def spree_humanize_type(obj)
         last_word = obj.split('::', 10).last
-
         if last_word.starts_with?('Cms')
           last_word.slice(3, 100).gsub(/(?<=[a-z])(?=[A-Z])/, ' ')
         else
