@@ -17,9 +17,7 @@ end
 # This file is copied to ~/spec when you run 'ruby script/generate rspec'
 # from the project root directory.
 ENV['RAILS_ENV'] ||= 'test'
-if ENV['test']
-  YAML.safe_load(ENV['test'], [Symbol])
-end
+
 
 begin
   require File.expand_path('../dummy/config/environment', __FILE__)
@@ -71,6 +69,7 @@ RSpec.configure do |config|
 
   config.before :suite do
     Capybara.match = :smart
+    Capybara.javascript_driver = :selenium_chrome
     Capybara.default_max_wait_time = 10
     DatabaseCleaner.clean_with :truncation
     # Force jobs to be executed in a synchronous way

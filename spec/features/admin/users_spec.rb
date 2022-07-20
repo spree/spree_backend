@@ -48,15 +48,15 @@ describe 'Users', type: :feature do
       it_behaves_like 'has lifetime stats'
 
       context 'when other store order exits' do
-        let(:new_store) { create(:store) }
+        let!(:new_store) { create(:store, id: 3) }
         let!(:new_order) { create(:completed_order_with_totals, store: new_store, number: 'K999') }
-
-        it { expect(Spree::Order.count).not_to eq(store.orders.count) }
+        it {
+          expect(Spree::Order.count).not_to eq(new_store.orders.count)
+        }
 
         it_behaves_like 'has lifetime stats'
       end
     end
-
     it 'can go back to the users list' do
       expect(page).to have_link Spree.t(:users), href: spree.admin_users_path
     end
@@ -115,8 +115,9 @@ describe 'Users', type: :feature do
     end
 
     it 'displays the correct results for a user search' do
-      fill_in 'q_email_cont', with: user_a.email, visible: false
-      click_button 'Search', visible: false
+      wait_for { !page.has_text?('Search') }
+      fill_in 'quick_search', with: user_a.email, visible: true
+      find('#quick_search').send_keys(:enter)
       within_table('listing_users') do
         expect(page).to have_text user_a.email
         expect(page).not_to have_text user_b.email
@@ -156,7 +157,7 @@ describe 'Users', type: :feature do
     it 'can edit the user email' do
       fill_in 'user_email', with: 'spree@example.com99'
       click_button 'Update'
-
+      wait_for_turbo
       expect(user_a.reload.email).to eq 'spree@example.com99'
       expect(page).to have_text 'Account updated'
       expect(page).to have_field('user_email', with: 'spree@example.com99')
@@ -177,6 +178,7 @@ describe 'Users', type: :feature do
 
       check 'user_spree_role_admin'
       click_button 'Update'
+      wait_for_turbo
       expect(page).to have_text 'Account updated'
       expect(page).to have_checked_field('user_spree_role_admin')
     end
@@ -187,6 +189,7 @@ describe 'Users', type: :feature do
       within('#admin_user_edit_addresses') do
         fill_in 'user_ship_address_attributes_address1', with: '1313 Mockingbird Ln'
         click_button 'Update'
+        wait_for_turbo
         expect(page).to have_field('user_ship_address_attributes_address1', with: '1313 Mockingbird Ln')
       end
 
@@ -200,6 +203,7 @@ describe 'Users', type: :feature do
       within('#admin_user_edit_addresses') do
         fill_in 'user_bill_address_attributes_address1', with: '1313 Mockingbird Ln'
         click_button 'Update'
+        wait_for_turbo
         expect(page).to have_field('user_bill_address_attributes_address1', with: '1313 Mockingbird Ln')
       end
 
@@ -213,6 +217,7 @@ describe 'Users', type: :feature do
       within('#admin_user_edit_addresses') do
         find('#user_use_billing').click
         click_button 'Update'
+        wait_for_turbo
       end
 
       expect(user_a.reload.ship_address == user_a.reload.bill_address).to eq true

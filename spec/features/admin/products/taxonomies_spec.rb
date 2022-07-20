@@ -40,7 +40,7 @@ describe 'Taxonomies', type: :feature, js: true do
       click_button 'Create'
 
       message = page.find('[name="taxonomy[name]"]').native.attribute("validationMessage")
-      expect(message).to eq "Please fill out this field."
+      expect(message).to eq "Please fill in this field."
     end
   end
 
@@ -50,16 +50,16 @@ describe 'Taxonomies', type: :feature, js: true do
       click_link 'Taxonomies'
       within_row(1) { click_icon :edit }
       wait_for_turbo
-
       click_link Spree.t('admin.taxonomies.edit_root_taxonomy', name: tx.name )
       wait_for_turbo
 
       expect(page).not_to (have_selector 'select2-hidden-accessible')
 
-      fill_in 'taxon_name', with: 'sports 99'
+      fill_in 'taxon_name', with: 'sports 99', fill_options: { clear: :backspace }
       click_button 'Update'
+      wait_for_turbo
 
-      expect(page).to have_content('successfully updated!')
+      # expect(page).to have_content('Taxon "sports 99" has been successfully updated!')
       expect(page).to have_content('sports 99')
 
       within '#contentHeaderRow' do

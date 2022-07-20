@@ -44,9 +44,10 @@ describe 'Edit Standard Page', type: :feature do
     it 'allows user to switch language', js: true do
       find('[aria-controls="collapsePageSettings"]').click
 
-      select2 'Français (FR)', from: 'Language'
+      find('[name="cms_page[locale]"]').find(:option, 'Français (FR)').select_option
 
       click_on 'Update'
+      wait_for_turbo
 
       expect(page).to have_text('Français (FR)')
     end
@@ -55,7 +56,8 @@ describe 'Edit Standard Page', type: :feature do
       expect(page).to have_text ('Visible')
 
       find(:xpath, '//*[@id="cms_page_visible"]/..').click
-
+      click_button 'Update'
+      wait_for_turbo
       expect(page).to have_text ('Draft Mode')
     end
 

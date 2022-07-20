@@ -54,7 +54,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     wait_for_turbo
 
     expect(page).to have_content('Taxon "Shirt" has been successfully updated!')
-    expect(page).to have_field('Permalink', with: 'shirt-rails')
+    expect(page).to have_field('permalink_part', with: 'shirt-rails')
   end
 
   it 'taxon without name should not be updated' do
@@ -67,7 +67,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     wait_for_turbo
 
     message = page.find('[name="taxon[name]"]').native.attribute("validationMessage")
-    expect(message).to eq "Please fill out this field."
+    expect(message).to eq "Please fill in this field."
   end
 
   it 'admin should be able to remove a product from a taxon', js: true do
