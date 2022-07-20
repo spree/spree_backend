@@ -1,0 +1,26 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:taxonomies), spree.admin_taxonomies_url %> /
+
+  <%= link_to @taxonomy.root.name, spree.edit_admin_taxonomy_url(@taxonomy) %>
+  <% unless @taxon.root? %>
+    / <%= @taxon.name %>
+  <% end %>
+<% end %>
+
+<% content_for(:page_tabs) do %>
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'edit.svg',
+                          Spree.t(:details),
+                          spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxon.id),
+                          class: "nav-link #{'active' if current == :details}" %>
+
+  <% end if can?(:admin, Spree::Taxonomy) %>
+
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'translate.svg',
+                          Spree.t(:translations),
+                          translations_admin_taxonomy_taxon_path(@taxonomy, @taxon.id),
+                          class: "nav-link #{'active' if current == :translations}" %>
+
+  <% end if can?(:admin, Spree::Taxonomy) %>
+<% end %>

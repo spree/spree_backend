@@ -1,11 +1,4 @@
-<% content_for :page_title do %>
-  <%= link_to Spree.t(:taxonomies), spree.admin_taxonomies_url %> /
-
-  <%= link_to @taxonomy.root.name, spree.edit_admin_taxonomy_url(@taxonomy) %>
-  <% unless @taxon.root? %>
-   / <%= @taxon.name %>
-   <% end %>
-<% end %>
+<%= render partial: 'spree/admin/taxons/taxons_tabs', locals: {current: :details} %>
 
 <% content_for :page_actions do %>
   <%= external_page_preview_link(@taxon) %>
