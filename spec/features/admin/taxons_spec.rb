@@ -23,9 +23,8 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     it 'updates the taxon path' do
       visit spree.edit_admin_taxonomy_taxon_path(taxonomy_1, taxon_b.id)
       select2 '- jackets', from: 'Nested under'
-
       click_button 'Update'
-      wait_for_turbo
+
 
       expect(page).to have_content('t/clothing/jackets/')
     end
@@ -51,7 +50,6 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
 
     fill_in 'permalink_part', with: 'shirt-rails'
     click_button 'Update'
-    wait_for_turbo
 
     expect(page).to have_content('Taxon "Shirt" has been successfully updated!')
     expect(page).to have_field('permalink_part', with: 'shirt-rails')
@@ -64,7 +62,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
 
     fill_in 'permalink_part', with: 'shirt-rails'
     click_button 'Update'
-    wait_for_turbo
+
 
     message = page.find('[name="taxon[name]"]').native.attribute("validationMessage")
     expect(message).to eq "Please fill in this field."
@@ -82,7 +80,6 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     find('.product .dropdown-toggle').click
 
     click_link 'Remove'
-    wait_for_turbo
 
     expect(page).not_to have_css('.product')
 
@@ -97,7 +94,6 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
 
     attach_file('taxon_icon', file_path)
     click_button 'Update'
-    wait_for_turbo
 
     expect(page).to have_content('successfully updated!')
 
@@ -138,7 +134,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     visit spree.edit_admin_taxonomy_taxon_path(taxonomy, taxonomy.root_id)
 
     click_link 'Remove Image'
-    wait_for_turbo
+
 
     expect(page).to have_content('Image has been successfully removed')
   end
@@ -153,6 +149,5 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     visit spree.edit_admin_taxonomy_taxon_path(taxonomy, taxonomy.root_id)
     attach_file('taxon_icon', file_path)
     click_button 'Update'
-    wait_for_turbo
   end
 end

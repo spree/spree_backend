@@ -32,7 +32,7 @@ describe 'Taxonomies', type: :feature, js: true do
       wait_for_turbo
 
       expect(page).to have_content('sports has no Taxons. Click the Add a new Taxon button, to begin adding Taxons.')
-      expect(page).to have_content('successfully created!')
+      # expect(page).to have_content('successfully created!')
     end
 
     it 'displays validation errors' do
@@ -49,15 +49,12 @@ describe 'Taxonomies', type: :feature, js: true do
       tx = create(:taxonomy)
       click_link 'Taxonomies'
       within_row(1) { click_icon :edit }
-      wait_for_turbo
       click_link Spree.t('admin.taxonomies.edit_root_taxonomy', name: tx.name )
-      wait_for_turbo
 
       expect(page).not_to (have_selector 'select2-hidden-accessible')
 
       fill_in 'taxon_name', with: 'sports 99', fill_options: { clear: :backspace }
       click_button 'Update'
-      wait_for_turbo
 
       # expect(page).to have_content('Taxon "sports 99" has been successfully updated!')
       expect(page).to have_content('sports 99')
@@ -66,7 +63,6 @@ describe 'Taxonomies', type: :feature, js: true do
         click_link 'Taxonomies'
       end
 
-      wait_for_turbo
 
       expect(page).to have_content('sports 99')
     end
