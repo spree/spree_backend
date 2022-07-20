@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    class TaxonsController < ResourceController
+    class TaxonsController < TranslatableResourceController
       belongs_to 'spree/taxonomy'
 
       before_action :set_permalink_part, only: [:edit]

@@ -135,6 +135,8 @@ Spree::Core::Engine.add_routes do
       resources :taxons do
         member do
           delete :remove_icon
+          get :translations
+          post :translations, to: 'taxons#edit_translations'
         end
       end
     end
