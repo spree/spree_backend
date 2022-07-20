@@ -69,7 +69,8 @@ RSpec.configure do |config|
 
   config.before :suite do
     Capybara.match = :smart
-    Capybara.javascript_driver = :selenium_chrome
+    Capybara.default_driver = :selenium_chrome_headless
+    Capybara.javascript_driver = :selenium_chrome_headless
     Capybara.default_max_wait_time = 10
     DatabaseCleaner.clean_with :truncation
     # Force jobs to be executed in a synchronous way
