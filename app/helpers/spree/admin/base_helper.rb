@@ -61,12 +61,12 @@ module Spree
         formatted_option_values
       end
 
-      def spree_humanize_cms(cms_array)
+      def spree_humanize_cms_dropdown_values
         formatted_option_values = []
-        cms_array.each do |section|
+        Rails.application.config.spree.cms.sections.each do |section|
           formatted_option_values << [spree_humanize_type(section.name), section]
         end
-        return formatted_option_values
+        formatted_option_values
       end
 
       def spree_humanize_type(obj)

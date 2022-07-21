@@ -32,7 +32,7 @@ describe 'Taxonomies', type: :feature, js: true do
       wait_for_turbo
 
       expect(page).to have_content('sports has no Taxons. Click the Add a new Taxon button, to begin adding Taxons.')
-      # expect(page).to have_content('successfully created!')
+      expect(page).to have_content('successfully created!')
     end
 
     it 'displays validation errors' do
@@ -56,7 +56,7 @@ describe 'Taxonomies', type: :feature, js: true do
       fill_in 'taxon_name', with: 'sports 99', fill_options: { clear: :backspace }
       click_button 'Update'
 
-      # expect(page).to have_content('Taxon "sports 99" has been successfully updated!')
+      expect(page).to have_content('Taxon "sports 99" has been successfully updated!')
       expect(page).to have_content('sports 99')
 
       within '#contentHeaderRow' do

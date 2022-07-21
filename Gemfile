@@ -22,6 +22,7 @@ platforms :ruby do
 end
 
 group :test do
+  gem 'tinymce-rails'
   gem 'capybara', '~> 3.24'
   gem 'capybara-screenshot', '~> 1.0'
   gem 'capybara-select-2'
@@ -39,6 +40,7 @@ group :test do
   gem 'webmock', '~> 3.7'
   gem 'timecop'
   gem 'rails-controller-testing'
+  gem 'turbo-rails'
 end
 
 group :test, :development do
@@ -61,5 +63,5 @@ end
 spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
-
+gem 'selenium-webdriver'
 gemspec
