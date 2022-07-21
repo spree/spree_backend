@@ -15,9 +15,9 @@ describe 'Promotion with option value rule', type: :feature do
   end
 
   it 'adding an option value rule', js: true do
-    find('[name="promotion_rule[type]"]').find(:option, 'Option Value(s)').select_option
+    select2 'Option Value(s)', from: 'Add rule of type'
     within('#rule_fields') { click_button 'Add' }
-    visit current_path
+
     within('#rules .promotion-block') do
       click_button 'Add'
 

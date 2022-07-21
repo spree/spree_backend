@@ -257,7 +257,7 @@ describe 'Products', type: :feature do
 
         click_button 'Create'
 
-        # expect(page).to have_content('successfully created!')
+        expect(page).to have_content('successfully created!')
         expect(page).to have_field(id: 'product_status', with: 'draft')
         expect(Spree::Product.last.variants.length).to eq(1)
       end
@@ -402,7 +402,9 @@ describe 'Products', type: :feature do
         visit spree.admin_products_path
         within_row(1) do
           click_icon :clone
+          sleep(1)
         end
+
         visit spree.admin_products_path
         expect(page).to have_content('COPY OF')
       end

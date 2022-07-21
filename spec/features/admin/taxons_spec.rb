@@ -149,5 +149,6 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
     visit spree.edit_admin_taxonomy_taxon_path(taxonomy, taxonomy.root_id)
     attach_file('taxon_icon', file_path)
     click_button 'Update'
+    wait_for_turbo
   end
 end

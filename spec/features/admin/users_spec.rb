@@ -114,7 +114,7 @@ describe 'Users', type: :feature do
       end
     end
 
-    it 'displays the correct results for a user search' do
+    it 'displays the correct results for a user search', js: true do
       wait_for { !page.has_text?('Search') }
       fill_in 'quick_search', with: user_a.email, visible: true
       find('#quick_search').send_keys(:enter)
