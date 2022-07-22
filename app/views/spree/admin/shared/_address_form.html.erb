@@ -38,7 +38,6 @@
 <% content_for :head do %>
   <script>
     document.addEventListener("spree:load", function() {
-      updateAddressState('<%= s_or_b %>');
       $('#<%= s_or_b %>country select').on('change', function() { updateAddressState('<%= s_or_b %>'); });
     })
   </script>
