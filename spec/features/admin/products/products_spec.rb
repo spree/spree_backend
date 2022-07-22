@@ -402,7 +402,7 @@ describe 'Products', type: :feature do
         visit spree.admin_products_path
         within_row(1) do
           click_icon :clone
-          wait_for_turbo
+          sleep(1)
         end
 
         visit spree.admin_products_path
@@ -432,7 +432,7 @@ describe 'Products', type: :feature do
 
           within_row(1) do
             click_icon :clone
-            wait_for_turbo
+            sleep(1)
           end
 
           visit spree.admin_products_path
