@@ -50,9 +50,9 @@ describe 'Users', type: :feature do
       context 'when other store order exits' do
         let!(:new_store) { create(:store, id: 3) }
         let!(:new_order) { create(:completed_order_with_totals, store: new_store, number: 'K999') }
-        it {
+        it do
           expect(Spree::Order.count).not_to eq(new_store.orders.count)
-        }
+        end
 
         it_behaves_like 'has lifetime stats'
       end

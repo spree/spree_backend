@@ -26,8 +26,9 @@ describe 'Stock Transfers', type: :feature, js: true do
   it 'can modify existing app' do
     visit "/admin/oauth_applications/#{oauth_application.id}/edit"
 
-    fill_in 'Name', with: 'New name'
+    fill_in 'Name', with: 'New name', fill_options: { clear: :backspace }
     click_button 'Update'
+    wait_for_turbo
 
     expect(page).to have_content('successfully updated!')
     expect(page).to have_content('New name')
