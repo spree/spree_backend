@@ -2,6 +2,7 @@ en:
   spree:
     admin:
       url: URL
+      uri: URI
       active: Active
       name: Name
       successful: Successful
@@ -231,8 +232,8 @@ en:
         menu_items: '%{menu_name} Items'
         public_details: Public Details
         subtitle: Subtitle
-        url_info: 'The URL field can link to an external website using <b>https://example.com</b>, link to an otherwise unreachable internal path using <b>/policies/privacy</b>,
-        launch an email client using <b>mailto:sales@example.com</b> or used to create a clickable phone number with <b>tel:123456789</b>'
+        url_info: 'The URI field can link to an external website using <b>https://example.com</b>, link to an otherwise unreachable internal path using <b>/policies/privacy</b>,
+        launch an email client using <b>mailto:sales@example.com</b> or used to create a clickable phone number with <b>tel:123456789</b>.'
         search_for_a_product: Search for a Product
         search_for_a_taxon: Search for a Taxon
         settings: Settings

@@ -66,6 +66,8 @@ module Spree
 
         if last_word.starts_with?('Cms')
           last_word.slice(3, 100).gsub(/(?<=[a-z])(?=[A-Z])/, ' ')
+        elsif last_word == 'Uri'
+          last_word.gsub(/(?<=[a-z])(?=[A-Z])/, ' ').upcase
         else
           last_word.gsub(/(?<=[a-z])(?=[A-Z])/, ' ')
         end
