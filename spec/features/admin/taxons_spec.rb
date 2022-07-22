@@ -65,7 +65,7 @@ describe 'Taxonomies and taxons', type: :feature, js: true do
 
 
     message = page.find('[name="taxon[name]"]').native.attribute("validationMessage")
-    expect(message).to eq "Please fill in this field."
+    expect(message).to have_content "Please fill"
   end
 
   it 'admin should be able to remove a product from a taxon', js: true do

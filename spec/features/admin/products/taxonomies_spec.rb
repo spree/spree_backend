@@ -40,7 +40,7 @@ describe 'Taxonomies', type: :feature, js: true do
       click_button 'Create'
 
       message = page.find('[name="taxonomy[name]"]').native.attribute("validationMessage")
-      expect(message).to eq "Please fill in this field."
+      expect(message).to have_content "Please fill"
     end
   end
 

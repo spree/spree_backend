@@ -402,7 +402,7 @@ describe 'Products', type: :feature do
         visit spree.admin_products_path
         within_row(1) do
           click_icon :clone
-          sleep(1)
+          wait_for_turbo
         end
 
         visit spree.admin_products_path
@@ -410,18 +410,29 @@ describe 'Products', type: :feature do
       end
 
       context 'cloning a deleted product' do
-        it 'allows an admin to clone a deleted product' do
+        before do
           create(:product, name: 'apache baseball cap')
+          visit spree.admin_products_path
+          accept_confirm do
+            click_icon :delete
+          end
+          visit spree.admin_products_path
+        end
+        it 'allows an admin to clone a deleted product' do
+          visit spree.admin_products_path
 
           click_on 'Filters'
+          wait_for_turbo
 
           find('label', text: 'Show Deleted').click
           click_on 'Search'
+          wait_for_turbo
 
           expect(page).to have_content('apache baseball cap')
 
           within_row(1) do
             click_icon :clone
+            wait_for_turbo
           end
 
           visit spree.admin_products_path
