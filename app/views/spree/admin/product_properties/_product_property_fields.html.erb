@@ -1,23 +1,26 @@
-<tr class="product_property fields" id="spree_<%= dom_id(f.object) %>" data-hook="product_property">
+<tr class="product_property fields" <% if f.object.persisted? && can?(:edit, f.object) %>id="spree_<%= dom_id(f.object) %>"<% end %> data-hook="product_property" data-controller="required-input">
   <% if f.object.persisted? && can?(:edit, f.object) %>
-  <td class="move-handle">
-    <%= svg_icon name: "grip-vertical.svg", width: '18', height: '18' %>
-    <%= f.hidden_field :id %>
-  </td>
+    <td class="move-handle">
+      <%= render "spree/admin/shared/grab_handle" %>
+      <%= f.hidden_field :id %>
+    </td>
   <% else %>
-  <td style="opacity:0.2;">
-    <%= svg_icon name: "grip-vertical.svg", width: '18', height: '18' %>
-    <%= f.hidden_field :id %>
-  </td>
+    <td class="dummy-move-handle">
+      <%= render "spree/admin/shared/grab_handle" %>
+      <%= f.hidden_field :id %>
+    </td>
   <% end %>
   <td class='property_name'>
-    <%= f.text_field :property_name, class: 'autocomplete form-control', required: true %>
+    <%= f.text_field :property_name, class: 'autocomplete form-control', required: f.object.persisted?, data: { action: "input->required-input#toggleRequired" } %>
   </td>
   <td class='value'>
-    <%= f.text_field :value, class: 'form-control', required: true %>
+    <%= f.text_field :value, class: 'form-control', required: f.object.persisted?, data: { required_input_target: "togglableInput" } %>
   </td>
   <td class="show_property text-center">
-    <%= f.check_box :show_property %>
+    <div class="custom-control custom-checkbox">
+      <%= f.check_box :show_property, { class: 'custom-control-input' } %>
+      <%= f.label :show_property, '<span></span>'.html_safe , class: 'custom-control-label' %>
+    </div>
   </td>
   <td class="actions">
     <span class="d-flex justify-content-end">

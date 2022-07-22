@@ -14,7 +14,14 @@ table.table {
   }
 
   td.move-handle {
-    width:45px;
+    width:55px;
+    text-align: center;
+  }
+
+  td.dummy-move-handle {
+    width:55px;
+    text-align: center;
+    opacity: 0.2;
   }
 
   thead {

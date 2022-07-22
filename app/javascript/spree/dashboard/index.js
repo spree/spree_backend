@@ -46,6 +46,9 @@ application.register("clipboard", ClipboardController)
 import ProductEditController from "./controllers/product_edit_controller"
 application.register("product-edit", ProductEditController)
 
+import RequiredInputController from "./controllers/required_input_controller"
+application.register("required-input", RequiredInputController)
+
 import * as RequestUtility from "./utilities/request_utility"
 
 //

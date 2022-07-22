@@ -36,9 +36,9 @@
     <tbody id="sortVert">
       <% (@product.variant_images).each do |image| %>
         <tr id="<%= spree_dom_id image %>" data-hook="images_row">
-          <td class="move-handle text-center">
+          <td class="move-handle">
             <% if can? :edit, image %>
-              <%= svg_icon name: "grip-vertical.svg", width: '18', height: '18' %>
+              <%= render "spree/admin/shared/grab_handle" %>
             <% end %>
           </td>
           <td class="image text-center">
