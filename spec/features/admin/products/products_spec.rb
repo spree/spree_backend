@@ -402,8 +402,8 @@ describe 'Products', type: :feature do
         visit spree.admin_products_path
         within_row(1) do
           click_icon :clone
-          sleep(1)
         end
+        wait_for_turbo
 
         visit spree.admin_products_path
         expect(page).to have_content('COPY OF')
@@ -432,8 +432,8 @@ describe 'Products', type: :feature do
 
           within_row(1) do
             click_icon :clone
-            sleep(1)
           end
+          wait_for_turbo
 
           visit spree.admin_products_path
           expect(page).to have_content('COPY OF')
