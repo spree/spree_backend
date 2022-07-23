@@ -58,7 +58,6 @@ group :development do
   gem 'solargraph'
 end
 
-if ENV['RAILS_VERSION']&.match(/7\.0\.0/) || !ENV['RAILS_VERSION']
 end
 
 spree_opts = { github: 'spree/spree', branch: 'main' }
