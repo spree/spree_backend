@@ -5,7 +5,7 @@ module Spree
 
       private
 
-      def create_turbo_stream_enabled?
+      def turbo_enabled?
         true
       end
 

@@ -30,7 +30,6 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
       set_current_store
       invoke_callbacks(:update, :after)
       respond_with(@object) do |format|
-        format.turbo_stream if update_turbo_stream_enabled?
         format.html do
           flash[:success] = flash_message_for(@object, :successfully_updated)
           redirect_to location_after_save unless request.xhr?
@@ -54,8 +53,8 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
       invoke_callbacks(:create, :after)
       flash[:success] = flash_message_for(@object, :successfully_created)
       respond_with(@object) do |format|
-        format.turbo_stream if create_turbo_stream_enabled?
         format.html { redirect_to location_after_save }
+        format.turbo_stream if turbo_enabled?
         format.js   { render layout: false }
       end
     else
@@ -282,11 +281,7 @@ class Spree::Admin::ResourceController < Spree::Admin::BaseController
     [:new, :create]
   end
 
-  def create_turbo_stream_enabled?
-    false
-  end
-
-  def update_turbo_stream_enabled?
+  def turbo_enabled?
     false
   end
 end
