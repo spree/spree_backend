@@ -17,7 +17,7 @@ describe 'Image Gallery section', type: :feature do
   end
 
   context 'editing new page', js: true  do
-    it 'loads with correct defaults setings' do
+    it 'loads with correct defaults settings' do
       expect(page).to have_field('Name *', with: "Test #{section_type}")
       expect(page).to have_select('Section Type', selected: section_type)
       expect(page).to have_content("Options For: #{section_type}")
@@ -84,6 +84,10 @@ describe 'Image Gallery section', type: :feature do
           fill_in 'Title', with: 'Trendy Styles'
         end
 
+        select2('Taxon', css: '#cms_section_link_type_one_field')
+        click_on 'Update'
+        wait_for_turbo
+
         select2('Shirts', css: '#cms_section_link_one_field', search: true)
 
         click_on 'Update'
@@ -116,7 +120,7 @@ describe 'Image Gallery section', type: :feature do
       end
 
       it 'admin should be able to add image' do
-        attach_file('cms_section_image_one', file_path)
+        attach_file('cms_section[image_one_attributes][attachment]', file_path)
 
         click_button 'Update'
 
@@ -130,6 +134,10 @@ describe 'Image Gallery section', type: :feature do
         within 'div#image_b_details' do
           fill_in 'Title', with: 'Trendy Styles'
         end
+
+        select2('Taxon', css: '#cms_section_link_type_two_field')
+        click_on 'Update'
+        wait_for_turbo
 
         select2('Shirts', css: '#cms_section_link_two_field', search: true)
 
@@ -163,7 +171,7 @@ describe 'Image Gallery section', type: :feature do
       end
 
       it 'admin should be able to add image' do
-        attach_file('cms_section_image_two', file_path)
+        attach_file('cms_section[image_two_attributes][attachment]', file_path)
 
         click_button 'Update'
 
@@ -177,6 +185,10 @@ describe 'Image Gallery section', type: :feature do
         within 'div#image_c_details' do
           fill_in 'Title', with: 'Trendy Styles'
         end
+
+        select2('Taxon', css: '#cms_section_link_type_three_field')
+        click_on 'Update'
+        wait_for_turbo
 
         select2('Shirts', css: '#cms_section_link_three_field', search: true)
 
@@ -210,7 +222,7 @@ describe 'Image Gallery section', type: :feature do
       end
 
       it 'admin should be able to add image' do
-        attach_file('cms_section_image_three', file_path)
+        attach_file('cms_section[image_three_attributes][attachment]', file_path)
 
         click_button 'Update'
 

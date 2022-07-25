@@ -1,4 +1,4 @@
-version: 2.1 # use CircleCI 2.0
+version: 2.1
 
 defaults: &defaults
   environment: &environment
@@ -56,7 +56,7 @@ run_tests: &run_tests
     - store_test_results:
           path: ~/rspec
     - store_artifacts:
-          path: tmp/capybara
+          path: ~/spree/tmp/capybara
 
 run_tests_3_0: &run_tests_3_0
   <<: *defaults_3_0
@@ -96,7 +96,7 @@ run_tests_3_0: &run_tests_3_0
     - store_test_results:
           path: ~/rspec
     - store_artifacts:
-          path: tmp/capybara
+          path: /tmp/capybara
 
 jobs:
   bundle:

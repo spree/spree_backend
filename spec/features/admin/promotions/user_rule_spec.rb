@@ -41,12 +41,14 @@ describe 'Promotion with user rule', type: :feature, js: true do
   it 'user dropdown shows user emails that matches user query #1' do
     fill_in 'Name', with: 'User promotion'
     click_button 'Create'
+    wait_for_turbo
 
     select2 'User', from: 'Add rule of type', match: :first
     within('#rule_fields') { click_button 'Add' }
 
     select2_open label: 'Choose users'
     select2_search 'example', label: 'Choose users'
+    wait_for_ajax
 
     expect(page).to have_content('first@example.com')
     expect(page).to have_content('second@example.com')
@@ -56,12 +58,14 @@ describe 'Promotion with user rule', type: :feature, js: true do
   it 'user dropdown shows user emails that matches user query #2' do
     fill_in 'Name', with: 'User promotion'
     click_button 'Create'
+    wait_for_turbo
 
     select2 'User', from: 'Add rule of type', match: :first
     within('#rule_fields') { click_button 'Add' }
 
     select2_open label: 'Choose users'
     select2_search 'test', label: 'Choose users'
+    wait_for_ajax
 
     expect(page).to have_content('fourth@testing.com')
     expect(page).to have_content('fifth@testing.com')

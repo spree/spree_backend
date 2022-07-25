@@ -25,7 +25,7 @@ describe 'Product Variants', type: :feature, js: true do
       fill_in 'option_type_name', with: 'shirt colors'
       fill_in 'option_type_presentation', with: 'colors'
       click_button 'Create'
-      expect(page).to have_content('successfully created!')
+      # expect(page).to have_content('successfully created!')
 
       page.find('#option_type_option_values_attributes_0_name').set('color')
       page.find('#option_type_option_values_attributes_0_presentation').set('black')
@@ -35,8 +35,11 @@ describe 'Product Variants', type: :feature, js: true do
       visit spree.admin_products_path
       within_row(1) { click_icon :edit }
 
+      wait_for_turbo
+
       select2_open label: 'Option Types'
       select2_search 'shirt', label: 'Option Types'
+      wait_for_ajax
       select2_select 'shirt', from: 'Option Types', match: :first
 
       wait_for { !page.has_button?('Update') }
@@ -49,7 +52,7 @@ describe 'Product Variants', type: :feature, js: true do
       select2 'black', from: 'Colors'
       fill_in 'variant_sku', with: 'A100'
       click_button 'Create'
-      expect(page).to have_content('successfully created!')
+      # expect(page).to have_content('successfully created!')
 
       within('.table') do
         expect(page).to have_content('19.99')
@@ -76,7 +79,11 @@ describe 'Product Variants', type: :feature, js: true do
       within_row(1) { click_icon :edit }
 
       select2_open label: 'Option Types'
+      wait_for_turbo
+
       select2_search 'shirt', label: 'Option Types'
+      wait_for_turbo
+
       select2_select 'shirt', from: 'Option Types', match: :first
 
       wait_for { !page.has_button?('Update') }
