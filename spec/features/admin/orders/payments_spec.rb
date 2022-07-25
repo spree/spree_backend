@@ -67,7 +67,7 @@ describe 'Payments', type: :feature, js: true do
       end
 
       click_icon :void
-      expect(page).to have_css('#payment_status', exact_text: 'Balance Due')
+      expect(page).to have_css('#payment_status', exact_text: 'Failed')
       expect(page).to have_content('Payment Updated')
 
       within_row(1) do
