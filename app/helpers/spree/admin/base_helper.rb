@@ -61,14 +61,6 @@ module Spree
         formatted_option_values
       end
 
-      def spree_humanize_cms_dropdown_values
-        formatted_option_values = []
-        Rails.application.config.spree.cms.sections.each do |section|
-          formatted_option_values << [spree_humanize_type(section.name), section]
-        end
-        formatted_option_values
-      end
-
       def spree_humanize_type(obj)
         last_word = obj.split('::', 10).last
         if last_word.starts_with?('Cms')
