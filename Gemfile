@@ -58,11 +58,6 @@ group :development do
   gem 'solargraph'
 end
 
-if ENV['RAILS_VERSION']&.match(/7\.0\.0/) || !ENV['RAILS_VERSION']
-  gem 'paranoia', github: 'payrollhero/paranoia', branch: 'rails7'
-  gem 'awesome_nested_set', github: 'damianlegawiec/awesome_nested_set', branch: 'master'
-  gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'master'
-end
 
 spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree_core', spree_opts
