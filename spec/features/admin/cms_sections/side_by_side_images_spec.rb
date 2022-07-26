@@ -72,6 +72,7 @@ describe 'Image Side By Side Images section', type: :feature do
         end
 
         select2('Shirts', css: '#cms_section_link_one_field', search: true)
+        wait_for_ajax
 
         click_on 'Update'
 
