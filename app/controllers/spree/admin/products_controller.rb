@@ -141,7 +141,7 @@ module Spree
         params[:q][:deleted_at_null] ||= '1'
 
         # This doesnt work because name asc takes spree_product.name, it is needed to use order with i18n before.
-        # params[:q][:s] ||= 'name asc'
+        params[:q][:s] ||= 'name asc'
 
         @collection = product_scope
 
