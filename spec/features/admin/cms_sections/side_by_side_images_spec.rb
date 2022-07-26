@@ -70,9 +70,10 @@ describe 'Image Side By Side Images section', type: :feature do
           fill_in 'Title', with: 'Trendy Styles'
           fill_in 'Subtitle', with: 'Shop Today'
         end
-
-        select2('Shirts', css: '#cms_section_link_one_field', search: true)
+        select2_open css: '#cms_section_link_one_field'
+        select2_search 'Shirts', css: '#cms_section_link_one_field'
         wait_for_ajax
+        select2_select 'Shirts', css: '#cms_section_link_one_field', match: :first
 
         click_on 'Update'
 
