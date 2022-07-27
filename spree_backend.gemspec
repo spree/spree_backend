@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jsbundling-rails'
   s.add_dependency 'responders'
   s.add_dependency 'sass-rails',       '>= 5'
-  s.add_dependency 'select2-rails',    '4.0.10'
+  s.add_dependency 'select2-rails',    '~> 4.0.6'
   s.add_dependency 'sprockets',        '~> 4.0'
   s.add_dependency 'tinymce-rails',    '~> 5.0'
 end
