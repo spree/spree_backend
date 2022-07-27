@@ -139,7 +139,10 @@ describe 'Image Gallery section', type: :feature do
         click_on 'Update'
         wait_for_turbo
 
-        select2('Shirts', css: '#cms_section_link_two_field', search: true)
+        select2_open css: '#cms_section_link_two_field'
+        select2_search 'Shirts', css: '#cms_section_link_two_field'
+        wait_for_ajax
+        select2_select 'Shirts', css: '#cms_section_link_two_field', match: :first
 
         click_on 'Update'
 
