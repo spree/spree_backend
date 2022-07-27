@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["availableOn", "makeActiveAt", "discontinueOn", "status"]
+  static get targets() {
+    return ["availableOn", "makeActiveAt", "discontinueOn", "status"]
+  }
 
   initialize() {
     $(this.statusTarget).on("select2:select", function (e) {

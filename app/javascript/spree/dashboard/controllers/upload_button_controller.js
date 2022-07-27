@@ -1,7 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "uploadButton"]
+  static get targets() {
+    return ["uploadButton"]
+  }
 
   initialize() {
     this.uploadButtonTarget.disabled = true
