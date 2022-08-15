@@ -1,6 +1,6 @@
 {
   "name": "@spree/dashboard",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Spree Dashboard",
   "main": "app/assets/javascripts/spree-dashboard.js",
   "type": "module",
