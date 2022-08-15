@@ -6,7 +6,7 @@ const $ = jquery
 
 document.addEventListener("spree:load", function() {
   $('.with-tip').each(function() {
-    $(this).tooltip()
+    $(this).tooltip({ container: 'body' })
   })
 
   $('.with-tip').on('show.bs.tooltip', function(event) {
