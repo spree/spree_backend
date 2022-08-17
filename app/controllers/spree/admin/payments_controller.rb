@@ -64,7 +64,7 @@ module Spree
       end
 
       def fire
-        return unless event = params[:e] and @payment.payment_source
+        return unless (event = find_payment_event) && @payment.payment_source
 
         # Because we have a transition method also called void, we do this to avoid conflicts.
         event = 'void_transaction' if event == 'void'
@@ -106,6 +106,10 @@ module Spree
 
       def model_class
         Spree::Payment
+      end
+
+      def find_payment_event
+        %w[process authorize purchase capture void cancel].find { |e| e == params[:e] }
       end
     end
   end

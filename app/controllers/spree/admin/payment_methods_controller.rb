@@ -8,7 +8,8 @@ module Spree
       respond_to :html
 
       def create
-        @payment_method = params[:payment_method].delete(:type).constantize.new(payment_method_params)
+        provider_name = @providers.map(&:to_s).find { |provider| provider == params[:payment_method][:type] }
+        @payment_method = provider_name.constantize.new(payment_method_params)
         @object = @payment_method
         set_current_store
         invoke_callbacks(:create, :before)
@@ -80,7 +81,7 @@ module Spree
       end
 
       def payment_method_params
-        params.require(:payment_method).permit!
+        params.require(:payment_method).permit(:type, :name, :description, :display_on, :auto_capture, :active, store_ids: [])
       end
 
       def preferences_params

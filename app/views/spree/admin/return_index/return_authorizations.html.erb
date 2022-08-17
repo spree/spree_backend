@@ -10,12 +10,12 @@
   </li>
   <li class="nav-item">
     <%= link_to Spree.t(:authorized),
-      params.merge({q: {state_eq: :authorized}}).permit!,
+      params.permit(q: {}).merge({q: {state_eq: :authorized}}),
       class: "nav-link #{'active' if params[:q][:state_eq] == 'authorized'}" %>
   </li>
   <li class="nav-item">
     <%= link_to Spree.t(:canceled),
-      params.merge({q: {state_eq: :canceled}}).permit!,
+      params.permit(q: {}).merge({q: {state_eq: :canceled}}),
       class: "nav-link #{'active' if params[:q][:state_eq] == 'canceled'}" %>
   </li>
 <% end %>
