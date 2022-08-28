@@ -17,6 +17,12 @@ document.addEventListener("spree:load", function() {
     placeholder: Spree.translations.select_an_option,
     allowClear: true
   })
+
+  if(jQuery().jquery >= '3.6.0') {
+    $(document).on('select2:open', () => {
+      document.querySelector('.select2-search__field').focus()
+    });
+  }
 })
 
 $.fn.addSelect2Options = function (data) {
