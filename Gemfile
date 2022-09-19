@@ -50,7 +50,7 @@ group :test, :development do
   gem 'rubocop', '~> 1.22.3', require: false # bumped
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
-  gem 'webdrivers', '~> 4.1'
+  gem 'webdrivers', '~> 5.1'
   gem 'puma'
   gem 'ffaker'
 end
