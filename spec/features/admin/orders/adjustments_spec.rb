@@ -80,7 +80,7 @@ describe 'Adjustments', type: :feature do
   context 'admin editing an adjustment', js: true do
     before do
       within_row(2) do
-        visit current_path
+        wait_for_turbo
         click_icon :edit
       end
     end
