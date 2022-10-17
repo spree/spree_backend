@@ -52,7 +52,7 @@ group :test, :development do
   gem 'pry-byebug'
   gem 'webdrivers', '~> 4.1'
   # Puma 6.0 causes issues in specs due to conflict with capybara version
-  gem 'puma', '< 6.0'
+  gem 'puma', '< 7.0'
   gem 'ffaker'
 end
 
