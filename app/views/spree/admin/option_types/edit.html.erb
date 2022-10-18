@@ -3,12 +3,6 @@
   <%= @option_type.name %>
 <% end %>
 
-<% content_for :page_actions do %>
-  <span id="new_add_option_value" data-hook>
-    <%= button_link_to Spree.t(:add_option_value), "javascript:;", { icon: 'add.svg', :'data-target' => "tbody#sortVert", class: 'btn-success spree_add_fields' } %>
-  </span>
-<% end %>
-
 <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @option_type } %>
 
 <%= form_for [:admin, @option_type] do |f| %>
@@ -43,6 +37,15 @@
               <% end %>
             <% end %>
           </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">
+                <div id="new_add_option_value" class="d-flex" data-hook>
+                  <%= button_link_to Spree.t(:add_option_value), "javascript:;", { icon: 'add.svg', :'data-target' => "tbody#sortVert", class: 'btn-success mx-auto spree_add_fields' } %>
+                </div>
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>
