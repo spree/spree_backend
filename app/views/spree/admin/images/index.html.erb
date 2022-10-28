@@ -2,7 +2,7 @@
 
 <% content_for :page_actions do %>
   <%= yield :page_actions %>
-  <%= product_preview_link(@product) %>
+  <%= external_page_preview_link(@product) %>
   <%= button_link_to(Spree.t(:new_image), spree.new_admin_product_image_url(@product), { class: "btn-success", icon: 'add.svg', id: 'new_image_link' }) if can? :create, Spree::Image %>
 <% end %>
 
