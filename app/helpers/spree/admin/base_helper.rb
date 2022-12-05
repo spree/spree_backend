@@ -61,6 +61,10 @@ module Spree
         formatted_option_values
       end
 
+      def path_for(obj)
+        obj.class.name.demodulize.underscore
+      end
+
       def spree_humanize_type(obj)
         last_word = obj.split('::', 10).last
         if last_word.starts_with?('Cms')
