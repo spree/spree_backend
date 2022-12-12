@@ -5,7 +5,6 @@ module Spree
       def edit_translations
         params[:translation].each do |key, translation|
           translation.each do |locale, value|
-            next unless value != ''
             I18n.with_locale(locale) do
               @object.public_send("#{key}=", value)
             end
