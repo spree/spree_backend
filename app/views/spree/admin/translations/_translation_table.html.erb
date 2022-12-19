@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody id="translations_body" data-hook="translations_body">
-        <% resource.translatable_fields.each do |field| %>
+        <% resource.class.translatable_fields.each do |field| %>
           <tr id="translates_field_row" data-hook="translates_field_row">
             <td class="text-left" style="min-width: 12.5rem; position: absolute; background-color: white; height: 3.5rem">
               <span><%= field %></span>

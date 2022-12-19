@@ -13,6 +13,9 @@
               <%= button_link_to Spree.t('admin.taxonomies.edit_root_taxonomy', name: @taxonomy.root.name ), spree.edit_admin_taxonomy_taxon_path(@taxonomy, @taxonomy.root.id), icon: 'edit.svg', class: 'no-wrap btn-light align-self-center' %>
             </div>
             <div class="col d-flex my-1 justify-content-end">
+              <%= button_link_to Spree.t(:translations), translations_admin_taxonomy_path(@taxonomy), icon: 'translate.svg', class: "nav-link" %>
+            </div>
+            <div class="col d-flex my-1 justify-content-end">
               <%= button_link_to Spree.t('admin.taxonomies.add_new_taxon'), spree.new_admin_taxonomy_taxon_path(@taxonomy.id), icon: 'add.svg', class: 'no-wrap btn btn-success align-self-center' %>
             </div>
           </div>
