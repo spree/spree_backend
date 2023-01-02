@@ -50,7 +50,7 @@ group :test, :development do
   gem 'rubocop', '~> 1.42.0', require: false # bumped
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
-  gem 'webdrivers', '~> 4.1'
+  gem 'webdrivers', '~> 5.2'
   # Puma 6.0 causes issues in specs due to conflict with capybara version
   gem 'puma', '< 6.0'
   gem 'ffaker'
