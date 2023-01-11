@@ -32,7 +32,7 @@
             </td>
           <% end %>
           <td><%= active_badge(webhooks_subscriber.active) %></td>
-          <td><%= webhooks_subscriber.subscriptions&.join(', ') %></td>
+          <td><%= webhooks_subscriber.subscriptions&.sort&.join(', ') %></td>
           <td><%= webhooks_subscriber.events.order(:created_at).last&.created_at %></td>
           <td><%= link_to Spree.t(:view), admin_webhooks_subscriber_path(webhooks_subscriber) %></td>
           <td class="actions">
