@@ -16,7 +16,7 @@
       </tr>
       <tr>
         <td><strong><%= Spree.t('admin.webhooks_subscribers.subscriptions') %></strong></td>
-        <td><%= @webhooks_subscriber.subscriptions&.join(', ') %></td>
+        <td><%= @webhooks_subscriber.subscriptions&.sort&.join(', ') %></td>
       </tr>
     </table>
   </div>
