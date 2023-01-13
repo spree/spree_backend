@@ -1,6 +1,8 @@
 module Spree
   module Admin
     class OptionTypesController < ResourceController
+      include Translatable
+
       before_action :setup_new_option_value, only: :edit
 
       def update_values_positions
