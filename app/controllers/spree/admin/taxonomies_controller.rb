@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    class TaxonomiesController < TranslatableResourceController
+    class TaxonomiesController < ResourceController
       private
 
       def location_after_save
