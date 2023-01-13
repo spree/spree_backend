@@ -1,0 +1,22 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:option_types), spree.admin_option_types_url %> /
+  <%= @option_type.name %>
+<% end %>
+
+<% content_for(:page_tabs) do %>
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'edit.svg',
+                          Spree.t(:details),
+                          spree.edit_admin_option_type_path(@option_type),
+                          class: "nav-link #{'active' if current == :details}" %>
+
+  <% end if can?(:admin, Spree::OptionType) %>
+
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'translate.svg',
+                          Spree.t(:translations),
+                          spree.translations_admin_option_type_path(@option_type),
+                          class: "nav-link #{'active' if current == :translations}" %>
+
+  <% end if can?(:admin, Spree::OptionType) %>
+<% end %>
