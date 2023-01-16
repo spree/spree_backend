@@ -58,6 +58,12 @@ Spree::Core::Engine.add_routes do
         get :translations
         post :translations, to: 'option_types#edit_translations'
       end
+      resources :option_values do
+        member do
+          get :translations
+          post :translations, to: 'option_values#edit_translations'
+        end
+      end
     end
 
     delete '/option_values/:id', to: 'option_values#destroy', as: :option_value
