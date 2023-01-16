@@ -1,0 +1,9 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:option_types), spree.admin_option_types_url %> /
+  <%= link_to @object.option_type.name, spree.edit_admin_option_type_url(@object.option_type) %> /
+  <%= @object.name %>
+<% end %>
+
+<div class="row" style="display: block">
+  <%= render 'spree/admin/translations/form', resource: @object %>
+</div>

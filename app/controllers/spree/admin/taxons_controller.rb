@@ -57,7 +57,7 @@ module Spree
         end
       end
 
-      # This method is added here to allow `edit_polymorphic_path`
+      # This method is added here to allow `edit_polymorphic_path` to work
       def edit_admin_taxon_path(taxon)
         spree.edit_admin_taxonomy_taxon_path(taxon.taxonomy, taxon.id)
       end
