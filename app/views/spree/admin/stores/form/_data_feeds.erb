@@ -1,14 +1,16 @@
 <div class="card mb-4">
   <div class="card-header">
     <h5 class="card-title mb-0 h6">
-      <%= Spree.t('Export') %>
+      <%= Spree.t('Data feeds') %>
     </h5>
   </div>
   <div class="card-body">
+    <% @store.data_feed_settings.each do |data_feed_setting| %>
     <ul class="list-group mb-5">
       <li class="list-group-item">
-        Link to Google feed in RSS 2.0 <code class="float-right"><%= current_store.formatted_url %>/api/v2/storefront/export/google.rss</code>
+        <%= data_feed_setting.name %> <code class="float-right"><%= data_feed_setting.formatted_url %></code>
       </li>
     </ul>
+    <% end %>
   </div>
 </div>
