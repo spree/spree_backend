@@ -4,13 +4,24 @@
       <%= Spree.t('Data feeds') %>
     </h5>
   </div>
-  <div class="card-body">
-    <% @store.data_feed_settings.each do |data_feed_setting| %>
-    <ul class="list-group mb-5">
-      <li class="list-group-item">
-        <%= data_feed_setting.name %> <code class="float-right"><%= data_feed_setting.formatted_url %></code>
-      </li>
-    </ul>
-    <% end %>
+  <div class="table-responsive border rounded bg-white">
+    <table class="table" id="listing_data_feeds">
+      <thead class="text-muted">
+        <tr>
+          <th scope="col" class="text-center"><%= Spree.t(:name) %></th>
+          <th scope="col" class="text-center"><%= Spree.t('Enabled') %></th>
+          <th scope="col" class="text-center"><%= Spree.t(:url) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.fields_for :data_feed_settings do |data| %>
+          <tr>
+            <td class="text-center"><%= data.object.name %></td>
+            <td class="text-center"><%= data.check_box :enabled %></td>
+            <td class="text-center"><code><%= data.object.formatted_url %></code></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
