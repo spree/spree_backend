@@ -9,6 +9,7 @@
       <thead class="text-muted">
         <tr>
           <th scope="col" class="text-center"><%= Spree.t(:name) %></th>
+          <th scope="col" class="text-center"><%= Spree.t(:provider) %></th>
           <th scope="col" class="text-center"><%= Spree.t('Enabled') %></th>
           <th scope="col" class="text-center"><%= Spree.t(:url) %></th>
         </tr>
@@ -17,6 +18,7 @@
         <%= f.fields_for :data_feed_settings do |data| %>
           <tr>
             <td class="text-center"><%= data.object.name %></td>
+            <td class="text-center"><%= data.object.provider %></td>
             <td class="text-center"><%= data.check_box :enabled %></td>
             <td class="text-center"><code><%= data.object.formatted_url %></code></td>
           </tr>
