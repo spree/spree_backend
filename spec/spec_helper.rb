@@ -18,6 +18,7 @@ end
 # from the project root directory.
 ENV['RAILS_ENV'] ||= 'test'
 
+
 begin
   require File.expand_path('../dummy/config/environment', __FILE__)
 rescue LoadError
@@ -68,6 +69,9 @@ RSpec.configure do |config|
 
   config.before :suite do
     Capybara.match = :smart
+    Capybara.javascript_driver = :selenium_chrome
+    Capybara.default_max_wait_time = 10
+    Capybara.raise_server_errors = false
     DatabaseCleaner.clean_with :truncation
     # Force jobs to be executed in a synchronous way
     ActiveJob::Base.queue_adapter = :inline

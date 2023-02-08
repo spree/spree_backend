@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'New Order', type: :feature do
+  let(:store) { Spree::Store.default }
   let!(:product) { create(:product_in_stock, stores: [store]) }
   let!(:state) { create(:state) }
   let!(:user) { create(:user, ship_address: create(:address), bill_address: create(:address)) }
   let(:order) { Spree::Order.last }
-  let(:store) { Spree::Store.default }
 
   stub_authorization!
 
@@ -32,6 +32,8 @@ describe 'New Order', type: :feature do
     select2 product.name, from: Spree.t(:name_or_sku), search: true
 
     click_icon :add
+    wait_for_turbo
+
     expect(page).to have_css('.card', text: 'Order Line Items')
 
     click_on 'Customer'
@@ -39,14 +41,19 @@ describe 'New Order', type: :feature do
 
     check 'order_use_billing'
     fill_in_address
+
     click_on 'Update'
     wait_for_turbo
 
     click_on 'Payments'
+    wait_for_turbo
+
     click_on 'Update'
+    wait_for_turbo
 
     expect(page).to have_current_path(spree.admin_order_payments_path(order))
     click_icon 'capture'
+    wait_for_turbo
 
     click_on 'Shipments'
     wait_for_turbo
@@ -152,7 +159,12 @@ describe 'New Order', type: :feature do
 
       click_on 'Shipments'
       expect(page).to have_content('Add Product')
+
+      wait_for_turbo
+
       select2 product.name, from: Spree.t(:name_or_sku), search: true
+
+      wait_for_turbo
 
       expect(page).to have_content(product.name)
       expect(page).to have_content('Select stock')
@@ -163,7 +175,7 @@ describe 'New Order', type: :feature do
       click_on 'Payments'
       click_on 'Continue'
 
-      expect(page).to have_css('#order_tab_summary .state', text: 'COMPLETE')
+      expect(page).to have_css('#order_tab_summary .state', text: 'Complete')
     end
   end
 
@@ -198,7 +210,7 @@ describe 'New Order', type: :feature do
     fill_in 'First Name',                with: 'John 99'
     fill_in 'Last Name',                 with: 'Doe'
     fill_in 'Address',                   with: '100 first lane'
-    fill_in 'Address (contd.)',          with: '#101'
+    fill_in 'Address (contd.)',          with: '101'
     fill_in 'City',                      with: 'Bethesda'
     fill_in 'Zip Code',                  with: '20170'
     select2 state.name,                  css: '#bstate'

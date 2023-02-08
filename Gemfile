@@ -6,7 +6,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
   actionmailer actionpack actionview activejob activemodel activerecord
   activestorage activesupport railties
 ].each do |rails_gem|
-  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 7.0.0.rc1'), require: false
+  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 7.0.0'), require: false
 end
 
 platforms :jruby do
@@ -22,6 +22,7 @@ platforms :ruby do
 end
 
 group :test do
+  gem 'tinymce-rails'
   gem 'capybara', '~> 3.24'
   gem 'capybara-screenshot', '~> 1.0'
   gem 'capybara-select-2'
@@ -35,21 +36,23 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'rswag-specs'
   gem 'jsonapi-rspec'
-  gem 'simplecov', '0.17.1'
+  gem 'simplecov', '0.22.0'
   gem 'webmock', '~> 3.7'
   gem 'timecop'
   gem 'rails-controller-testing'
+  gem 'turbo-rails'
 end
 
 group :test, :development do
   gem 'awesome_print'
   gem 'gem-release'
   gem 'redis'
-  gem 'rubocop', '~> 1.22.3', require: false # bumped
+  gem 'rubocop', '~> 1.42.0', require: false # bumped
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
   gem 'webdrivers', '~> 4.1'
-  gem 'puma'
+  # Puma 6.0 causes issues in specs due to conflict with capybara version
+  gem 'puma', '< 6.0'
   gem 'ffaker'
 end
 
@@ -58,14 +61,9 @@ group :development do
   gem 'solargraph'
 end
 
-if ENV['RAILS_VERSION']&.match(/7\.0\.0/) || !ENV['RAILS_VERSION']
-  gem 'paranoia', github: 'payrollhero/paranoia', branch: 'rails7'
-  gem 'awesome_nested_set', github: 'damianlegawiec/awesome_nested_set', branch: 'master'
-  gem 'ransack', github: 'activerecord-hackery/ransack', branch: 'master'
-end
 
 spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
-
+gem 'selenium-webdriver'
 gemspec

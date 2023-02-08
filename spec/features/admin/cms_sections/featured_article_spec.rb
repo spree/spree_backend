@@ -18,7 +18,7 @@ describe 'Featured Article section', type: :feature do
   end
 
   context 'editing new page', js: true  do
-    it 'loads with correct defaults setings' do
+    it 'loads with correct defaults settings' do
       expect(page).to have_field('Name *', with: "Test #{section_type}")
       expect(page).to have_select('Section Type', selected: section_type)
       expect(page).to have_content("Options For: #{section_type}")
@@ -28,10 +28,14 @@ describe 'Featured Article section', type: :feature do
     it 'saves WYSIWYG content to database' do
       rte_content = 'Ipsum blanditiis labore voluptates vero asperiores ullam excepturi'
 
-      wait_for_turbo
-      page.execute_script("$(tinymce.editors[0].setContent('#{rte_content}'))")
+      within_frame("cms_section_rte_content_ifr") do
+        editor = page.find_by_id('tinymce')
+        editor.native.send_keys rte_content
+      end
 
+      wait_for_turbo
       click_on 'Update'
+      wait_for_turbo
 
       expect(page).to have_field(id: 'cms_section_rte_content', with: "<p>#{rte_content}</p>", visible: :hidden, disabled: false)
       assert_admin_flash_alert_success('Section "Test Featured Article" has been successfully updated!')

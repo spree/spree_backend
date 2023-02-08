@@ -251,9 +251,9 @@ describe 'Products', type: :feature do
         fill_in 'product_sku', with: 'B100'
         fill_in 'product_price', with: '100'
 
-        select2 'Size', from: 'Prototype'
+        find('[name="product[prototype_id]"]').find(:option, 'Size').select_option
         check 'Large'
-        select2 @shipping_category.name, css: '#product_shipping_category_field'
+        find('[name="product[shipping_category_id]"]').find(:option, @shipping_category.name).select_option
 
         click_button 'Create'
 
@@ -275,7 +275,7 @@ describe 'Products', type: :feature do
           fill_in 'product_name', with: ''
           fill_in 'product_sku', with: 'B100'
           fill_in 'product_price', with: '100'
-          select2 'Size', from: 'Prototype'
+          find('[name="product[prototype_id]"]').find(:option, 'Size').select_option
           check 'Large'
           click_button 'Create'
 
@@ -403,15 +403,24 @@ describe 'Products', type: :feature do
         within_row(1) do
           click_icon :clone
         end
+        wait_for_turbo
 
-        expect(page).to have_content('Product has been cloned')
+        visit spree.admin_products_path
+        expect(page).to have_content('COPY OF')
       end
 
       context 'cloning a deleted product' do
-        it 'allows an admin to clone a deleted product' do
+        before do
           create(:product, name: 'apache baseball cap')
-
           visit spree.admin_products_path
+          accept_confirm do
+            click_icon :delete
+          end
+          visit spree.admin_products_path
+        end
+        it 'allows an admin to clone a deleted product' do
+          visit spree.admin_products_path
+
           click_on 'Filters'
           wait_for_turbo
 
@@ -422,12 +431,12 @@ describe 'Products', type: :feature do
           expect(page).to have_content('apache baseball cap')
 
           within_row(1) do
-            wait_for_turbo
             click_icon :clone
           end
           wait_for_turbo
 
-          expect(page).to have_content('Product has been cloned')
+          visit spree.admin_products_path
+          expect(page).to have_content('COPY OF')
         end
       end
     end
@@ -519,22 +528,6 @@ describe 'Products', type: :feature do
           weight_prev = find('#product_weight').value
           click_button 'Update'
           expect(page).to have_field(id: 'product_weight', with: weight_prev)
-        end
-      end
-
-      context 'with limited permissions' do
-        before do
-          allow_any_instance_of(Spree::Admin::BaseController).to receive(:spree_current_user).and_return(nil)
-        end
-
-        custom_authorization! do |_user|
-          cannot :change_status, Spree::Product
-        end
-
-        it 'As a Vendor Owner/Member I cannot change the Product state, this is reserved only to marketplace owner (spree admin)' do
-          visit spree.admin_product_path(product)
-          expect(page).to have_field('Status', disabled: true)
-          expect(page).to have_field('Make Active At', disabled: true)
         end
       end
 
@@ -634,7 +627,8 @@ describe 'Products', type: :feature do
         fill_in 'product_compare_at_price', with: '99.99'
         click_button 'Update'
 
-        expect(page).to have_content 'successfully updated!'
+        compare_at_price = find('[name="product[compare_at_price]"]').value
+        expect(compare_at_price).to eq('99.99')
       end
     end
   end

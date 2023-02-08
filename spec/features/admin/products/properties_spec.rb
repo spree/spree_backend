@@ -59,8 +59,8 @@ describe 'Properties', type: :feature, js: true do
         click_on 'Search'
 
         within('.table-active-filters') do
-          expect(page).to have_content('Name: color')
-          expect(page).to have_content('Presentation: shade')
+          expect(page).to have_content('Name: Color')
+          expect(page).to have_content('Presentation: Shade')
         end
       end
     end

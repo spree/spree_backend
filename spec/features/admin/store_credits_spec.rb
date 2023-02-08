@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Store credits admin', type: :feature do
+describe 'Store credits admin', type: :feature, js: true do
   stub_authorization!
 
   let(:store) { Spree::Store.default }
@@ -20,10 +20,13 @@ describe 'Store credits admin', type: :feature do
     it 'is on the store credits page' do
       click_link store_credit.user.email
       click_link 'Store Credits'
+      wait_for_turbo
+
       expect(page).to have_current_path(spree.admin_user_store_credits_path(store_credit.user))
+      visit current_path
 
       store_credit_table = page.find('table', match: :first)
-      expect(store_credit_table).to have_css('tr').once
+      expect(store_credit_table).to have_css('tr').twice
       expect(store_credit_table).to have_content(Spree::Money.new(store_credit.amount, currency: store_credit.currency).to_s)
       expect(store_credit_table).to have_content(Spree::Money.new(store_credit.amount_used, currency: store_credit.currency).to_s)
       expect(store_credit_table).to have_content(store_credit.category_name)
@@ -35,8 +38,10 @@ describe 'Store credits admin', type: :feature do
     before do
       visit spree.admin_path
       click_link 'Users'
+      wait_for_turbo
       click_link store_credit.user.email
       click_link 'Store Credits'
+      wait_for_turbo
       allow_any_instance_of(Spree::Admin::StoreCreditsController).to receive(:try_spree_current_user).and_return(admin_user)
     end
 
@@ -59,7 +64,7 @@ describe 'Store credits admin', type: :feature do
         expect(page).to have_current_path(spree.admin_user_store_credits_path(store_credit.user))
 
         store_credit_table = page.find('table', match: :first)
-        expect(store_credit_table).to have_css('tr').twice
+        expect(store_credit_table).to have_css('tr').thrice
         expect(Spree::StoreCredit.count).to eq 2
         expect(Spree::StoreCredit.last.store).to eq(store)
       end
@@ -79,7 +84,7 @@ describe 'Store credits admin', type: :feature do
         expect(page).to have_current_path(spree.admin_user_store_credits_path(store_credit.user))
 
         store_credit_table = page.find('table', match: :first)
-        expect(store_credit_table).to have_css('tr').twice
+        expect(store_credit_table).to have_css('tr').thrice
         expect(Spree::StoreCredit.count).to eq 2
         expect(Spree::StoreCredit.last.currency).to eq 'EUR'
         expect(store_credit_table).to have_content('€100.00')
@@ -93,13 +98,15 @@ describe 'Store credits admin', type: :feature do
     before do
       visit spree.admin_path
       click_link 'Users'
+      wait_for_turbo
       click_link store_credit.user.email
       click_link 'Store Credits'
+      wait_for_turbo
       allow_any_instance_of(Spree::Admin::StoreCreditsController).to receive(:try_spree_current_user).and_return(admin_user)
     end
 
     it 'creates store credit and associate it with the user' do
-      click_link 'Edit'
+      click_icon :edit
       page.fill_in 'store_credit_amount', with: updated_amount
       click_button 'Update'
 
@@ -114,8 +121,10 @@ describe 'Store credits admin', type: :feature do
     before do
       visit spree.admin_path
       click_link 'Users'
+      wait_for_turbo
       click_link store_credit.user.email
       click_link 'Store Credits'
+      wait_for_turbo
       allow_any_instance_of(Spree::Admin::StoreCreditsController).to receive(:try_spree_current_user).and_return(admin_user)
     end
 

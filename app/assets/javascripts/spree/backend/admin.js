@@ -39,7 +39,7 @@ document.addEventListener("spree:load", function() {
       var el = $(this)
       el.prop('href', '#')
     })
-    $(target).prepend(newTableRow)
+    $(target).append(newTableRow)
   })
 
   /**

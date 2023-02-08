@@ -15,7 +15,7 @@ describe 'Product Carousel section', type: :feature do
   end
 
   context 'editing new page', js: true  do
-    it 'loads with correct defaults setings' do
+    it 'loads with correct defaults settings' do
       expect(page).to have_field('Name *', with: "Test #{section_type}")
       expect(page).to have_select('Section Type', selected: section_type)
       expect(page).to have_content("Options For: #{section_type}")

@@ -76,8 +76,9 @@ describe 'Product Details', type: :feature, js: true do
       expect(page).to have_content('Discontinue On')
     end
 
-    it 'hides all fields' do
+    it 'hides all fields', js: true do
       select 'archived', from: 'Status'
+      click_button 'Update'
       expect(page).not_to have_content('Available On')
       expect(page).not_to have_content('Make Active At')
       expect(page).to have_content('Discontinue On')

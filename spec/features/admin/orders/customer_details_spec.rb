@@ -102,7 +102,7 @@ describe 'Customer Details', type: :feature, js: true do
       # Regression test for #2950 + #2433
       # This act should transition the state of the order as far as it will go too
       within('#order_tab_summary') do
-        expect(page).to have_css('.state', text: 'COMPLETE')
+        expect(page).to have_css('.state', text: 'Complete')
       end
     end
 
@@ -140,7 +140,7 @@ describe 'Customer Details', type: :feature, js: true do
         fill_in 'order_ship_address_attributes_lastname',   with: 'Doe'
         fill_in 'order_ship_address_attributes_lastname',   with: 'Company'
         fill_in 'order_ship_address_attributes_address1',   with: '100 first lane'
-        fill_in 'order_ship_address_attributes_address2',   with: '#101'
+        fill_in 'order_ship_address_attributes_address2',   with: '101'
         fill_in 'order_ship_address_attributes_city',       with: 'Bethesda'
         fill_in 'order_ship_address_attributes_zipcode',    with: '20170'
 
@@ -156,7 +156,7 @@ describe 'Customer Details', type: :feature, js: true do
     fill_in 'Last Name',               with: 'Doe'
     fill_in 'Company',                 with: 'Company'
     fill_in 'Address',                 with: '100 first lane'
-    fill_in 'Address (contd.)',        with: '#101'
+    fill_in 'Address (contd.)',        with: '101'
     select2 country.name,              from: 'Country'
     fill_in 'City',                    with: 'Bethesda'
     fill_in 'Zip Code',                with: '20170'

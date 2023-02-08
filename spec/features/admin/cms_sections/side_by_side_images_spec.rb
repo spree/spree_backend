@@ -17,7 +17,7 @@ describe 'Image Side By Side Images section', type: :feature do
   end
 
   context 'editing new page', js: true  do
-    it 'loads with correct defaults setings' do
+    it 'loads with correct defaults settings' do
       expect(page).to have_field('Name *', with: "Test #{section_type}")
       expect(page).to have_select('Section Type', selected: section_type)
       expect(page).to have_content("Options For: #{section_type}")
@@ -70,9 +70,10 @@ describe 'Image Side By Side Images section', type: :feature do
           fill_in 'Title', with: 'Trendy Styles'
           fill_in 'Subtitle', with: 'Shop Today'
         end
-
-        select2('Shirts', css: '#cms_section_link_one_field', search: true)
-
+        select2_open css: '#cms_section_link_one_field'
+        select2_search 'Shirts', css: '#cms_section_link_one_field'
+        wait_for_ajax
+        select2_select 'Shirts', css: '#cms_section_link_one_field', match: :first
         click_on 'Update'
 
         within 'div#left_image_details' do
@@ -104,7 +105,7 @@ describe 'Image Side By Side Images section', type: :feature do
       end
 
       it 'admin should be able to add image' do
-        attach_file('cms_section_image_one', file_path)
+        attach_file('cms_section[image_one_attributes][attachment]', file_path)
 
         click_button 'Update'
 
@@ -120,9 +121,13 @@ describe 'Image Side By Side Images section', type: :feature do
           fill_in 'Subtitle', with: 'Shop Today'
         end
 
-        select2('Shirts', css: '#cms_section_link_one_field', search: true)
+        select2_open css: '#cms_section_link_two_field'
+        select2_search 'Shirts', css: '#cms_section_link_two_field'
+        wait_for_ajax
+        select2_select 'Shirts', css: '#cms_section_link_two_field', match: :first
 
         click_on 'Update'
+        wait_for_turbo
 
         within 'div#right_image_details' do
           expect(page).to have_field('Title', with: 'Trendy Styles')
@@ -136,11 +141,11 @@ describe 'Image Side By Side Images section', type: :feature do
 
       if Rails::VERSION::STRING >= '6.0'
         it 'allows admin to change the link type and save a product' do
-          select2('Product', css: '#cms_section_link_type_one_field')
+          select2('Product', css: '#cms_section_link_type_two_field')
 
           click_on 'Update'
 
-          select2('Zomg Shirt', css: '#cms_section_link_one_field', search: true)
+          select2('Zomg Shirt', css: '#cms_section_link_two_field', search: true)
 
           click_on 'Update'
 
@@ -153,7 +158,7 @@ describe 'Image Side By Side Images section', type: :feature do
       end
 
       it 'admin should be able to add image' do
-        attach_file('cms_section_image_one', file_path)
+        attach_file('cms_section[image_two_attributes][attachment]', file_path)
 
         click_button 'Update'
 
