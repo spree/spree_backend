@@ -1,7 +1,9 @@
 module Spree
   module Admin
     class StoresController < Spree::Admin::BaseController
-      before_action :load_store, only: [:new, :edit, :update]
+      include Translatable
+
+      before_action :load_store, only: [:new, :edit, :translations, :edit_translations, :update]
       before_action :set_default_currency, only: :new
       before_action :set_default_locale, only: :new
       before_action :normalize_supported_currencies, only: [:create, :update]
@@ -87,6 +89,13 @@ module Spree
 
       def set_default_country_id
         @store.default_country_id ||= Spree::Store.default.default_country_id || Spree::Country.find_by(iso: "US")&.id
+      end
+
+      private
+
+      def save_translation_values
+        @object = @store
+        super
       end
     end
   end

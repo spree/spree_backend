@@ -1,0 +1,17 @@
+<% content_for(:page_tabs) do %>
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'edit.svg',
+                          Spree.t(:details),
+                          spree.edit_admin_store_path(@store),
+                          class: "nav-link #{'active' if current == :details}" %>
+
+  <% end if can?(:admin, Spree::Store) %>
+
+  <%= content_tag :li, class: 'nav-item' do %>
+    <%= link_to_with_icon 'translate.svg',
+                          Spree.t(:translations),
+                          spree.translations_admin_store_path(@store),
+                          class: "nav-link #{'active' if current == :translations}" %>
+
+  <% end if can?(:admin, Spree::Store) %>
+<% end %>

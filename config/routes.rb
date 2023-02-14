@@ -12,7 +12,12 @@ Spree::Core::Engine.add_routes do
 
     resources :zones
 
-    resources :stores, except: %i[index show]
+    resources :stores, except: %i[index show] do
+      member do
+        get :translations
+        post :translations, to: 'stores#edit_translations'
+      end
+    end
 
     resources :countries do
       resources :states
