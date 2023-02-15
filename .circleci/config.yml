@@ -35,8 +35,11 @@ run_tests_2_7: &run_tests_2_7
           - spree-dashboard-bundle-v10-ruby-2-7-{{ .Branch }}
           - spree-dashboard-bundle-v10-ruby-2-7
     - run:
+        name: Add keyserver
+        command: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B
+    - run:
         name: Install libvips
-        command: sudo apt-get install libvips
+        command: sudo apt-get update && sudo apt-get install libvips
     - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
@@ -75,8 +78,11 @@ run_tests_3_0: &run_tests_3_0
           - spree-dashboard-bundle-v10-ruby-3-0-{{ .Branch }}
           - spree-dashboard-bundle-v10-ruby-3-0
     - run:
+        name: Add keyserver
+        command: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B
+    - run:
         name: Install libvips
-        command: sudo apt-get install libvips
+        command: sudo apt-get update && sudo apt-get install libvips
     - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
@@ -155,8 +161,11 @@ jobs:
             - spree-dashboard-bundle-v10-ruby-2-7-{{ .Branch }}
             - spree-dashboard-bundle-v10-ruby-2-7
       - run:
+          name: Add keyserver
+          command: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B
+      - run:
           name: Install libvips
-          command: sudo apt-get install libvips
+          command: sudo apt-get update && sudo apt-get install libvips
       - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
@@ -178,8 +187,11 @@ jobs:
             - spree-dashboard-bundle-v10-ruby-3-0-{{ .Branch }}
             - spree-dashboard-bundle-v10-ruby-3-0
       - run:
+          name: Add keyserver
+          command: sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4EB27DB2A3B88B8B
+      - run:
           name: Install libvips
-          command: sudo apt-get install libvips
+          command: sudo apt-get update && sudo apt-get install libvips
       - run:
           name: Set bundle path
           command: bundle config --local path vendor/bundle
