@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe 'Products', type: :feature do
-  let(:store) { Spree::Store.default }
+  let(:store) { create(:store, default: true) }
   let(:other_store) { create(:store, name: 'Other Store', url: 'another-store.lvh.me') }
 
   context 'as admin user' do
