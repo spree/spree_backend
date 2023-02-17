@@ -6,16 +6,19 @@
   <td class="name"><%= f.text_field :name, class: "form-control", required: true %></td>
   <td class="presentation"><%= f.text_field :presentation, class: "form-control", required: true %></td>
   <td class="actions">
+
     <span class="d-flex justify-content-end">
-      <%= link_to_with_icon 'translate.svg',
-                             '',
-                             spree.translations_admin_option_type_option_value_path(f.object.option_type.id, f.object.id),
-                             class: 'btn btn-sm btn-light',
-                             data: {
-                               action: 'translate'
-                             },
-                             title: Spree.t(:translations),
-                             no_text: true %>
+      <% unless f.object.id.nil? -%>
+        <%= link_to_with_icon 'translate.svg',
+                               '',
+                               spree.translations_admin_option_type_option_value_path(f.object.option_type.id, f.object.id),
+                               class: 'btn btn-sm btn-light',
+                               data: {
+                                 action: 'translate'
+                               },
+                               title: Spree.t(:translations),
+                               no_text: true %>
+      <% end %>
       <%= link_to_icon_remove_fields f %>
     </span>
   </td>
