@@ -91,8 +91,6 @@ module Spree
         @store.default_country_id ||= Spree::Store.default.default_country_id || Spree::Country.find_by(iso: "US")&.id
       end
 
-      private
-
       def save_translation_values
         @object = @store
         super
