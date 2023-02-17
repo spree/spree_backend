@@ -75,7 +75,7 @@ describe Spree::Admin::TaxonomiesController, type: :controller do
       it 'should be able to destroy taxonomy' do
         expect(assigns(:object)).to eq(taxonomy)
         expect(response).to have_http_status(:found)
-        expect(flash[:success]).to eq("Taxonomy \"#{taxonomy.name}\" has been successfully removed!")
+        expect(flash[:success]).to eq("Taxonomy has been successfully removed!")
       end
     end
 
