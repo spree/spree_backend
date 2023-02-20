@@ -98,6 +98,27 @@ module Spree
         end
       end
 
+      def translate
+        if automated_translations_service.enabled?
+          result = automated_translations_service.call(
+            product: @product,
+            source_locale: current_store.default_locale,
+            target_locales: current_store.supported_locales_list - [current_store.default_locale],
+            skip_existing: true
+          )
+
+          if result.success?
+            flash[:message] = 'Requested translations were generated successfully'
+          else
+            flash[:error] = result.value&.message
+          end
+        else
+          flash[:error] = 'No automated translations provider configured'
+        end
+
+        redirect_to translations_admin_product_path(@product)
+      end
+
       protected
 
       def find_resource
@@ -200,6 +221,10 @@ module Spree
 
       def variant_stock_includes
         [:images, stock_items: :stock_location, option_values: :option_type]
+      end
+
+      def automated_translations_service
+        Spree::Dependencies.products_generate_automated_translations.constantize
       end
     end
   end

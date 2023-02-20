@@ -51,6 +51,7 @@ Spree::Core::Engine.add_routes do
       member do
         get :translations
         post :translations, to: 'products#edit_translations'
+        patch :translate
       end
     end
 

@@ -1,3 +1,7 @@
+<% if resource.is_a?(Spree::Product) && Spree::Dependencies.products_generate_automated_translations&.constantize&.enabled? %>
+  <%= button_to('Translate automatically', translate_admin_product_path(resource), method: :patch, class: 'btn btn-primary') %>
+<% end %>
+
 <%= form_tag nil, { class: 'form-horizontal' } do %>
   <div class="my-3">
     <%= render 'spree/admin/translations/translation_table', resource: resource %>
