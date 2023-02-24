@@ -1,13 +1,13 @@
 <div class="table-responsive border rounded bg-white">
   <div id="translations-table-wrapper">
     <table class="table">
-      <% locales = current_store.supported_locales&.split(',') %>
+      <% locales = current_store.supported_locales_list.sort %>
       <thead class="text-muted">
       <tr data-hook="translations_header">
         <th scope="col" class="text-center" style="min-width: 12.5rem; position: absolute; background-color: white;"><%= Spree.t(:field) %></th>
         <th style="min-width: 12.5rem; display: block; height: 100%"></th>
         <% locales.each do |locale| %>
-          <th scope="col" class="text-center" style="min-width: 12.5rem"><%= Spree.t(locale) %></th>
+          <th scope="col" class="text-center" style="min-width: 12.5rem"><%= locale %></th>
         <% end %>
       </tr>
       </thead>
@@ -15,7 +15,7 @@
         <% resource.class.translatable_fields.each do |field| %>
           <tr id="translates_field_row" data-hook="translates_field_row">
             <td class="text-left" style="min-width: 12.5rem; position: absolute; background-color: white; height: 3.5rem">
-              <span><%= field %></span>
+              <span><%= Spree.t(field) %></span>
             </td>
             <td style="min-width: 12.5rem; display: block; height: 100%"></td>
             <% locales.each do |locale| %>
