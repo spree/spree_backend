@@ -12,7 +12,12 @@ Spree::Core::Engine.add_routes do
 
     resources :zones
 
-    resources :stores, except: %i[index show]
+    resources :stores, except: %i[index show] do
+      member do
+        get :translations
+        post :translations, to: 'stores#edit_translations'
+      end
+    end
 
     resources :countries do
       resources :states
@@ -43,12 +48,26 @@ Spree::Core::Engine.add_routes do
       resources :variants_including_master, only: [:update]
       resources :prices, only: [:index, :create]
       resources :digitals, only: [:index, :create, :destroy]
+      member do
+        get :translations
+        post :translations, to: 'products#edit_translations'
+      end
     end
 
     resources :option_types do
       collection do
         post :update_positions
         post :update_values_positions
+      end
+      member do
+        get :translations
+        post :translations, to: 'option_types#edit_translations'
+      end
+      resources :option_values do
+        member do
+          get :translations
+          post :translations, to: 'option_values#edit_translations'
+        end
       end
     end
 
@@ -128,9 +147,15 @@ Spree::Core::Engine.add_routes do
       collection do
         post :update_positions
       end
+      member do
+        get :translations
+        post :translations, to: 'taxonomies#edit_translations'
+      end
       resources :taxons do
         member do
           delete :remove_icon
+          get :translations
+          post :translations, to: 'taxons#edit_translations'
         end
       end
     end

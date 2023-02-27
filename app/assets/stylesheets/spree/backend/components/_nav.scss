@@ -1,0 +1,13 @@
+.nav-pills .nav-link {
+  color: $gray-800;
+}
+
+.nav-pills .nav-link:hover {
+  color: map-get($theme-colors, 'primary');
+}
+
+.nav-pills .nav-link.active {
+  background-color: $gray-200;
+  color: map-get($theme-colors, 'primary');
+}
+

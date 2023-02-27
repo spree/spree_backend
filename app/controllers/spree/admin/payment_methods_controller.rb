@@ -45,7 +45,10 @@ module Spree
           redirect_to spree.edit_admin_payment_method_path(@payment_method)
         else
           invoke_callbacks(:update, :fails)
-          respond_with(@payment_method, status: :unprocessable_entity)
+          respond_with(@payment_method) do |format|
+            format.html { render action: :edit, status: :unprocessable_entity }
+            format.js { render layout: false, status: :unprocessable_entity }
+          end
         end
       end
 

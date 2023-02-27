@@ -1,0 +1,31 @@
+<div class="table-responsive border rounded bg-white">
+  <div id="translations-table-wrapper">
+    <table class="table">
+      <% locales = current_store.supported_locales_list.sort %>
+      <thead class="text-muted">
+      <tr data-hook="translations_header">
+        <th scope="col" class="text-center" style="min-width: 12.5rem; position: absolute; background-color: white;"><%= Spree.t(:field) %></th>
+        <th style="min-width: 12.5rem; display: block; height: 100%"></th>
+        <% locales.each do |locale| %>
+          <th scope="col" class="text-center" style="min-width: 12.5rem"><%= locale %></th>
+        <% end %>
+      </tr>
+      </thead>
+      <tbody id="translations_body" data-hook="translations_body">
+        <% resource.class.translatable_fields.each do |field| %>
+          <tr id="translates_field_row" data-hook="translates_field_row">
+            <td class="text-left" style="min-width: 12.5rem; position: absolute; background-color: white; height: 3.5rem">
+              <span><%= Spree.t(field) %></span>
+            </td>
+            <td style="min-width: 12.5rem; display: block; height: 100%"></td>
+            <% locales.each do |locale| %>
+              <td style="height: 3.5rem">
+                <%= text_field_tag "translation[#{field}][#{locale}]", resource.get_field_with_locale(locale, field), class: 'form-control' %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

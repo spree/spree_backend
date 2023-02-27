@@ -1,5 +1,6 @@
 <% content_for :page_title do %>
   <%= Spree.t(:store) %>
+  <%= render partial: 'spree/admin/stores/tabs', locals: {current: :details} %>
 <% end %>
 
 <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @store } %>

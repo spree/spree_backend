@@ -1,6 +1,8 @@
 module Spree
   module Admin
     class TaxonsController < ResourceController
+      include Translatable
+
       belongs_to 'spree/taxonomy'
 
       before_action :set_permalink_part, only: [:edit]
@@ -53,6 +55,11 @@ module Spree
           flash[:error] = Spree.t('errors.messages.cannot_remove_icon')
           render :edit, status: :unprocessable_entity
         end
+      end
+
+      # This method is added here to allow `edit_polymorphic_path` to work
+      def edit_admin_taxon_path(taxon)
+        spree.edit_admin_taxonomy_taxon_path(taxon.taxonomy, taxon.id)
       end
 
       private

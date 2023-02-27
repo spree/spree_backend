@@ -2,6 +2,7 @@ module Spree
   module Admin
     class ProductsController < ResourceController
       include Spree::Admin::ProductConcern
+      include Translatable
 
       helper 'spree/admin/products'
 
@@ -139,7 +140,6 @@ module Spree
 
         params[:q] ||= {}
         params[:q][:deleted_at_null] ||= '1'
-
         params[:q][:s] ||= 'name asc'
 
         @collection = product_scope
