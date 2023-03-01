@@ -13,15 +13,16 @@ module Spree
       private
 
       def save_translation_values
-        params[:translation].each do |key, translation|
-          translation.each do |locale, value|
-            I18n.with_locale(locale) do
-              @object.public_send("#{key}=", value)
+        translation_params = params[:translation]
+
+        current_store.supported_locales_list.each do |locale|
+          I18n.with_locale(locale) do
+            translation_params.each do |attribute, translations|
+              @object.public_send("#{attribute}=", translations[locale])
             end
+            @object.save!
           end
         end
-
-        @object.save
       end
     end
   end
