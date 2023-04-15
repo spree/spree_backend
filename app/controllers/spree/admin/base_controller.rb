@@ -70,7 +70,7 @@ module Spree
       end
 
       def stores_scope
-        Spree::Store.accessible_by(current_ability, :show)
+        Spree::Store.accessible_by(current_ability, :show).includes(:translations)
       end
 
       def load_stores
