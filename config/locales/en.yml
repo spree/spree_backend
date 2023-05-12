@@ -173,6 +173,7 @@ en:
           For more information <a href='https://guides.spreecommerce.org/user/configuration/configuring_geography.html#zones' target='_blank' class='alert-link'>please see documentation</a>"
         currencies_help: "You can accept payments in multiple currencies. Each product and product variant can have different price in different currency"
         locales_help: "Install <a href='https://github.com/spree-contrib/spree_i18n' target='_blank' class='alert-link'>Spree I18n extension</a> to add more locales"
+        default_locale_notice: "Warning: Before changing the default locale, ensure that all products, taxons and stores have translations in the new locale"
         social_help: "If you want to link to your social accounts in the footer part of your website please fill below fields"
         default_country_help: "This is the Country that will be pre-selected on the Checkout Address form"
         footer_help: "This content is visible in the footer section of your Store"

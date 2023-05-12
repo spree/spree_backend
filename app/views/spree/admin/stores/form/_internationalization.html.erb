@@ -40,6 +40,9 @@
       <%= f.label :default_locale %>
       <%= f.select :default_locale, options_from_collection_for_select(all_locales_options, :last, :first, @store.default_locale || I18n.locale), {}, { class: 'select2' } %>
       <%= f.error_message_on :default_locale %>
+      <small class="form-text text-muted">
+        <%= Spree.t('admin.store_form.default_locale_notice') %>
+      </small>
       <% unless defined?(SpreeI18n) %>
         <small class="form-text text-muted">
           <%= raw(Spree.t('admin.store_form.locales_help')) %>
