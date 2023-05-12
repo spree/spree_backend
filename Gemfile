@@ -65,5 +65,7 @@ end
 spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
-gem 'selenium-webdriver'
+# Last version that supports Ruby 2.7
+# We should remove this once we drop support for Ruby 2.7
+gem 'selenium-webdriver', '~> 4.8.1'
 gemspec
