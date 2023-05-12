@@ -1,0 +1,13 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t('spree.admin.data_feeds.data_feeds'), spree.admin_data_feeds_path %> /
+  <%= @data_feed.name %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @data_feed } %>
+
+<%= form_for @data_feed, as: :data_feed, url: admin_data_feed_path(@data_feed) do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

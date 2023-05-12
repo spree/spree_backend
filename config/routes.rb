@@ -215,6 +215,8 @@ Spree::Core::Engine.add_routes do
       end
     end
 
+    resources :data_feeds
+
     resources :webhooks_subscribers
 
     get '/forbidden', to: 'errors#forbidden', as: :forbidden

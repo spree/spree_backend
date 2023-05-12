@@ -80,6 +80,11 @@ en:
           square_image: Please use an image with an aspect ratio of 18:13 (1080px x 780px).
           tall_image: Please use an image with an aspect ratio of 27:40 (1080px x 1600px).
       copy_to_clipboard: Copy to clipboard
+      data_feeds:
+        data_feeds: Data Feeds
+        type: Type
+        slug_label: Slug (leave blank to generate)
+        new_data_feed: New Data Feed
       digitals:
         digital: Digital
         add_new_file: Add a new digital asset.

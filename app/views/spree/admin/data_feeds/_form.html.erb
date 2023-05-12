@@ -1,0 +1,29 @@
+<div data-hook="admin_webhooks_subscriber_form_fields">
+  <%= f.field_container :name, class: ['form-group'] do %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.error_message_on :name %>
+  <% end %>
+
+  <%= f.field_container :slug, class: ['form-group'] do %>
+    <%= f.label :slug, Spree.t('admin.data_feeds.slug_label') %>
+    <%= f.text_field :slug, class: 'form-control' %>
+    <%= f.error_message_on :slug %>
+  <% end %>
+
+  <%= f.field_container :provider, class: ['form-group'] do %>
+    <%= f.label :type, Spree.t('admin.data_feeds.type') %>
+    <%= f.collection_select :type, Spree::DataFeed.available_types, :name, :label, {}, class: 'form-control' %>
+    <%= f.error_message_on :type %>
+  <% end %>
+
+  <%= f.hidden_field :store_id, value: current_store.id %>
+
+  <div class="form-group">
+    <div class="custom-control custom-switch">
+      <%= f.check_box :active, class: 'custom-control-input' %>
+      <%= f.label :active, class: 'custom-control-label' %>
+    </div>
+  </div>
+
+</div>
