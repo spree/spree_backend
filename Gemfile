@@ -47,7 +47,7 @@ group :test, :development do
   gem 'awesome_print'
   gem 'gem-release'
   gem 'redis'
-  gem 'rubocop', '~> 1.48.1', require: false # bumped
+  gem 'rubocop', '~> 1.51.0', require: false # bumped
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
   gem 'webdrivers', '~> 4.1'
