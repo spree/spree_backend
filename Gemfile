@@ -67,5 +67,5 @@ gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
 # Last version that supports Ruby 2.7
 # We should remove this once we drop support for Ruby 2.7
-gem 'selenium-webdriver', '~> 4.8.1'
+gem 'selenium-webdriver', '~> 4.11.0'
 gemspec
