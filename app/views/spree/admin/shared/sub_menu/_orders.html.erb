@@ -1,5 +1,0 @@
-<ul id="sidebar-orders" class="collapse nav nav-pills nav-stacked pb-2" data-hook="admin_orders">
-  <%= tab :orders, match_path: /completed_at_not_null\%5D\=1/, url: spree.admin_orders_path(q: { completed_at_not_null: '1' }), label: Spree.t('admin.orders.all_orders') %>
-<%= tab :draft_orders, match_path: /cart/, url: spree.admin_orders_path(q: { completed_at_not_null: false, state_eq: :cart}), label: Spree.t('admin.orders.draft_orders') %>
-  <%= tab :abandoned_checkouts, match_path: /state_in/, url: spree.admin_orders_path(q: { completed_at_not_null: false, state_in: %i[address delivery payment confirm]}), label: Spree.t('admin.orders.abandoned_checkouts') %>
-</ul>

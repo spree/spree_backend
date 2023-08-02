@@ -133,10 +133,12 @@ en:
         taxons: Taxons
         users: Users
         return_authorizations: Return Authorizations
+        stock: Stock
         customer_returns: Customer Returns
         apps: Apps
         applications: Applications
         integrations: Integrations
+        webhook_subscribers: Webhook Subscribers
       taxon:
         nested_under_info: Nest this Taxon within the Taxonomy tree.
       taxonomies:
