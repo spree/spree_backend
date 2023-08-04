@@ -279,9 +279,8 @@ describe 'Products', type: :feature do
           check 'Large'
           click_button 'Create'
 
-          expect(page).to have_css('#product_name_field') do |el|
-            el['validationMessage'] == 'Please fill in this field.'
-          end
+          validationMessage = page.find('[name="product[name]"]').native.attribute('validationMessage')
+          expect(validationMessage).to have_content "Please fill"
           expect(page).to have_checked_field('Size')
           expect(page).to have_checked_field('Large')
           expect(page).to have_unchecked_field('Small')
