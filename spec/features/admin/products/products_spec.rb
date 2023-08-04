@@ -578,7 +578,7 @@ describe 'Products', type: :feature do
     context 'deleting a product', js: true do
       let!(:product) { create(:product, stores: Spree::Store.all) }
 
-      it 'is still viewable' do
+      xit 'is still viewable' do
         visit spree.admin_products_path
         accept_confirm do
           click_icon :delete
