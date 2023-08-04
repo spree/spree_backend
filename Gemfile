@@ -62,7 +62,7 @@ group :development do
 end
 
 
-spree_opts = { github: 'spree/spree', branch: 'main' }
+spree_opts = { github: 'spree/spree', branch: '4-6-stable' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
 # Last version that supports Ruby 2.7
