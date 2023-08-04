@@ -23,7 +23,7 @@ end
 
 group :test do
   gem 'tinymce-rails'
-  gem 'capybara', '~> 3.24'
+  gem 'capybara', '~> 3.39'
   gem 'capybara-screenshot', '~> 1.0'
   gem 'capybara-select-2'
   gem 'database_cleaner', '~> 2.0'
@@ -50,7 +50,7 @@ group :test, :development do
   gem 'rubocop', '~> 1.48.1', require: false # bumped
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
-  gem 'webdrivers', '~> 4.1'
+  gem 'webdrivers', '~> 5.3'
   # Puma 6.0 causes issues in specs due to conflict with capybara version
   gem 'puma', '< 6.0'
   gem 'ffaker'
