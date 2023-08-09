@@ -11,83 +11,25 @@
     </button>
   </div>
 
-  <ul class="nav nav-sidebar" id="sidebarDashboard">
-    <%= tab Spree.t('admin.home'), url: spree.admin_dashboard_path, match_path: '/dashboard', icon: 'house-door-fill.svg' %>
-  </ul>
+  <% main_menu.items.each do |item| %>
+    <% next unless item.available?(current_ability, current_store) %>
 
-  <% if can? :admin, Spree::Order %>
-    <ul class="nav nav-sidebar" id="sidebarOrder">
-      <%= main_menu_tree Spree.t(:orders), icon: "inbox-fill.svg", sub_menu: "orders", url: "#sidebar-orders" %>
-    </ul>
-  <% end %>
+    <ul class="nav nav-sidebar" id="sidebar<%= item.key.upcase %>>">
+      <% if item.children? %>
+        <li class="sidebar-menu-item d-block w-100 text-muted">
+          <%= main_menu_item(Spree.t(item.label_translation_key), url: "#sidebar-#{item.key}", icon: item.icon_key) %>
 
-  <% if can?(:admin, Spree::ReturnAuthorization) || can?(:admin, Spree::CustomerReturn) %>
-    <ul class="nav nav-sidebar" id="sidebarReturn">
-      <%= main_menu_tree Spree.t(:returns), icon: "reply-fill.svg", sub_menu: "returns", url: "#sidebar-returns" %>
-    </ul>
-  <% end %>
+          <ul id="sidebar-<%= item.key %>" class="collapse nav nav-pills nav-stacked pb-2" data-hook="admin_orders">
+            <% item.items.each do |section_item| %>
+              <% next unless section_item.available?(current_ability, current_store) %>
 
-  <% if can? :admin, Spree::Product %>
-    <ul class="nav nav-sidebar" id="sidebarProduct">
-      <%= main_menu_tree Spree.t(:products), icon: "tags-fill.svg", sub_menu: "product", url: "#sidebar-product" %>
-    </ul>
-  <% end %>
-
-  <% if can?(:admin, Spree::StockLocation) || can?(:admin, Spree::StockTransfer) %>
-    <ul class="nav nav-sidebar" id="sidebarStock">
-      <%= main_menu_tree Spree.t(:stock), icon: "box-seam.svg", sub_menu: "stock", url: "#sidebar-stock" %>
-    </ul>
-  <% end %>
-
-  <% if can? :admin, Spree::Admin::ReportsController %>
-    <ul class="nav nav-sidebar" id="sidebarReport">
-      <%= tab *Spree::Backend::Configuration::REPORT_TABS, icon: 'pie-chart-fill.svg' %>
-    </ul>
-  <% end %>
-
-  <% if can? :admin, Spree::Promotion %>
-    <ul class="nav nav-sidebar" id="sidebarPromotion">
-      <%= main_menu_tree Spree.t(:promotions), icon: "percent.svg", sub_menu: "promotion", url: "#sidebar-promotions" %>
-    </ul>
-  <% end %>
-
-  <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) && can?(:index, Spree::Vendor) %>
-    <ul class="nav nav-sidebar" id="sidebarOrganizations">
-      <%= main_menu_tree Spree.t(:organizations), icon: "building.svg", sub_menu: "organizations", url: "#sidebar-organizations" %>
-    </ul>
-  <% end %>
-
-  <% if Spree.user_class && can?(:admin, Spree.user_class) %>
-    <ul class="nav nav-sidebar" id="sidebarUser">
-      <%= tab *Spree::Backend::Configuration::USER_TABS, url: spree.admin_users_path, icon: 'people-fill.svg' %>
-    </ul>
-  <% end %>
-
-  <% if can? :admin, Spree::Menu %>
-    <ul class="nav nav-sidebar" id="sidebarMenu">
-      <%= main_menu_tree Spree.t('admin.tab.content'), icon: "card-heading.svg", sub_menu: "content", url: "#sidebar-content" %>
-    </ul>
-  <% end %>
-
-  <% if can?(:admin, Spree::Webhooks::Subscriber) || can?(:admin, Spree::PaymentMethod) %>
-    <ul class="nav nav-sidebar" id="sidebarIntegrations">
-      <%= main_menu_tree Spree.t('admin.tab.integrations'), icon: "stack.svg", sub_menu: "integrations", url: "#sidebar-integrations" %>
-    </ul>
-  <% end %>
-
-  <% if can? :admin, Spree::OauthApplication %>
-    <ul class="nav nav-sidebar" id="sidebarApps">
-      <%= main_menu_tree Spree.t('admin.tab.apps'), icon: "terminal-fill.svg", sub_menu: "apps", url: "#sidebar-apps" %>
-    </ul>
-  <% end %>
-
-  <% if can? :admin, current_store %>
-    <ul class="nav nav-sidebar" id="sidebarConfiguration">
-      <%= main_menu_tree Spree.t('admin.settings'), icon: "gear-fill.svg", sub_menu: "configuration", url: "#sidebar-configuration" %>
-    </ul>
-  <% elsif defined?(current_spree_vendor) && current_spree_vendor.present? %>
-    <ul class="nav nav-sidebar" id="sidebarConfiguration">
-      <%= main_menu_tree Spree.t('admin.settings'), icon: "gear-fill.svg", sub_menu: "vendor_configuration", url: "#sidebar-configuration" %>
+              <%= tab(Spree.t(section_item.label_translation_key), url: section_item.url.is_a?(Proc) ? section_item.url.call(current_store) : section_item.url, match_path: section_item.match_path, icon: section_item.icon_key) %>
+            <% end %>
+          </ul>
+        </li>
+      <% else %>
+        <%= tab(Spree.t(item.label_translation_key), url: item.url.is_a?(Proc) ? item.url.call(current_store) : item.url, match_path: item.match_path, icon: item.icon_key) %>
+      <% end %>
     </ul>
   <% end %>
 </nav>

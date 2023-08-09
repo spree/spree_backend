@@ -14,7 +14,7 @@ describe 'Homepage', type: :feature do
       end
 
       it 'has a link to stock' do
-        expect(page).to have_link('Stock', href: '#sidebar-stock')
+        expect(page).to have_link('Stock', href: '#sidebar-stocks')
       end
 
       it 'has a link to reports' do
@@ -22,7 +22,7 @@ describe 'Homepage', type: :feature do
       end
 
       it 'has a link to settings' do
-        expect(page).to have_link('Settings', href: '#sidebar-configuration')
+        expect(page).to have_link('Settings', href: '#sidebar-settings')
       end
 
       it 'has a link to return authorizations' do

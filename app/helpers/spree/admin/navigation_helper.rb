@@ -86,14 +86,6 @@ module Spree
         end
       end
 
-      # Main menu tree menu
-      def main_menu_tree(text, icon: nil, sub_menu: nil, url: '#')
-        content_tag :li, class: 'sidebar-menu-item d-block w-100 text-muted' do
-          main_menu_item(text, url: url, icon: icon) +
-            render(partial: "spree/admin/shared/sub_menu/#{sub_menu}")
-        end
-      end
-
       # the per_page_dropdown is used on index pages like orders, products, promotions etc.
       # this method generates the select_tag
       def per_page_dropdown
@@ -311,6 +303,10 @@ module Spree
         link_to url, class: 'btn btn-outline-info mr-3 pr-1' do
           svg_icon name: 'chevron-left.svg', width: 15, height: 15
         end
+      end
+
+      def main_menu
+        Rails.application.config.spree_backend.main_menu
       end
     end
   end

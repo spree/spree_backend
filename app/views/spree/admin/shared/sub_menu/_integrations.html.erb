@@ -1,5 +1,0 @@
-<ul id="sidebar-integrations" class="collapse nav nav-pills nav-stacked pb-2" data-hook="admin_integrations">
-  <%= tab :payment_methods, match_path: '/payment_methods', label: 'Payment Methods' if can? :manage, Spree::PaymentMethod %>
-  <%= tab :data_feeds, match_path: '/data_feeds', label: 'Data Feeds' if can? :manage, Spree::DataFeed %>
-  <%= tab :webhooks_subscribers, match_path: '/webhooks_subscribers', label: 'Webhooks' if can? :manage, Spree::Webhooks::Subscriber %>
-</ul>
