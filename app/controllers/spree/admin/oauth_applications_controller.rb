@@ -3,6 +3,10 @@ module Spree
     class OauthApplicationsController < ResourceController
       before_action :set_default_scopes, only: [:new, :edit]
 
+      def index
+        flash.now[:notice] = Spree.t('admin.oauth_applications.documentation_message').html_safe
+      end
+
       private
 
       def create_turbo_stream_enabled?
