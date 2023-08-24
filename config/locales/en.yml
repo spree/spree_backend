@@ -169,7 +169,7 @@ en:
         new: New oAuth application
         uid: UID
         scopes: Scopes
-        documentation_message: 'If you need help, you can find documentation&nbsp<a href="https://dev-docs.spreecommerce.org/api/platform-api/authenticating-requests">here</a>.'
+        documentation_message: 'If you need help, you can find documentation '
       reports:
         for: For %{store_name}
       return_authorization:
