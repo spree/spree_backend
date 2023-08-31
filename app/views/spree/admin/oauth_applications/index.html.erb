@@ -6,6 +6,13 @@
   <%= button_link_to Spree.t('admin.oauth_applications.new'), new_object_url, class: "btn-success", icon: 'add.svg', id: 'admin_new_role_link' %>
 <% end if can? :create, Spree::OauthApplication %>
 
+  <div class="card bg-light">
+    <div class="card-body">
+      <%=Spree.t('admin.oauth_applications.documentation_message')%>
+      <%= link_to(Spree.t('admin.oauth_applications.documentation_cta'), 'https://dev-docs.spreecommerce.org/api/platform-api/authenticating-requests')%>
+    </div>
+  </div>
+
 <% if @oauth_applications.any? %>
   <div class="table-responsive rounded border mt-4">
     <table class="table">

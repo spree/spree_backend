@@ -167,6 +167,8 @@ en:
         new: New oAuth application
         uid: UID
         scopes: Scopes
+        documentation_message: 'To learn how to authenticate requests to the Platform API, '
+        documentation_cta: see the documentation
       reports:
         for: For %{store_name}
       return_authorization:
