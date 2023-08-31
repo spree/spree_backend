@@ -47,10 +47,11 @@ group :test, :development do
   gem 'awesome_print'
   gem 'gem-release'
   gem 'redis'
-  gem 'rubocop', '~> 1.48.1', require: false # bumped
+  gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
   gem 'webdrivers', '~> 5.3'
+  gem 'selenium-webdriver'
   # Puma 6.0 causes issues in specs due to conflict with capybara version
   gem 'puma', '< 6.0'
   gem 'ffaker'
@@ -65,7 +66,4 @@ end
 spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
-# Last version that supports Ruby 2.7
-# We should remove this once we drop support for Ruby 2.7
-gem 'selenium-webdriver', '~> 4.8.1'
 gemspec
