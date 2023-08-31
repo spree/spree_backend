@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
     "source_code_uri"   => "https://github.com/spree/spree_backend/tree/v#{s.version}",
   }
 
-  s.required_ruby_version = '>= 2.5'
+  s.required_ruby_version = '>= 3.0'
 
   s.files        = `git ls-files`.split("\n").reject { |f| f.match(/^spec/) && !f.match(/^spec\/fixtures/) }
   s.require_path = 'lib'
