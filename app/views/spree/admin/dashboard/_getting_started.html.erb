@@ -45,6 +45,7 @@
         <% else %>
           <p>
             <%= Spree.t('admin.gettting_started.products_section.message_without_products') %>
+            <%= link_to(Spree.t('admin.gettting_started.products_section.import_message'), 'https://api.spreecommerce.org/docs/api-v2/27527143a4edf-create-a-product') %>
           </p>
           <%= link_to_with_icon 'add.svg', Spree.t('admin.gettting_started.add_products'), spree.admin_products_path, class: 'btn btn-success btn-sm mb-2' %>
         <% end %>
