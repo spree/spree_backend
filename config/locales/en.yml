@@ -326,7 +326,8 @@ en:
         setup_taxes_calculation: Setup tax calculation
         products_section:
           message_with_products_html: You have added <strong> %{count} products</strong> so far - good job!</p>
-          message_without_products: You can add products manually through API or import from a CSV file.
+          message_without_products: You can add products manually or
+          import_message: import them via the API.
         shipping_section:
           message_with_shipping: You have setup shipping for
           message_without_shipping: You can add multiple shipping methods, different for each country, continent or region.
