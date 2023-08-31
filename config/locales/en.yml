@@ -167,6 +167,8 @@ en:
         new: New oAuth application
         uid: UID
         scopes: Scopes
+        documentation_message: 'If you need help, you can find documentation '
+        here: here.
       reports:
         for: For %{store_name}
       return_authorization:
