@@ -64,13 +64,18 @@
         <div class="card-body">
           <div id="preference-settings" data-hook class="form-group">
             <% unless @object.new_record? %>
-            <% if preference_fields(@object, f).empty? %>
-              <%= Spree.t('no_payment_provider_settings_message') %>
-            <% end %>
-              <%= preference_fields(@object, f) %>
+              <% if @object.respond_to?(:use_settings?) && @object.use_settings? %>
+                <%= render partial: "spree/admin/shared/payment_methods/settings/#{path_for(@object)}", locals: { object: @object, form: f } %>
+              <% else %>
+                <% if preference_fields(@object, f).empty? %>
+                  <%= Spree.t('no_payment_provider_settings_message') %>
+                <% end %>
 
-              <% if @object.respond_to?(:preferences) %>
-                <div id="gateway-settings-warning" class="info warning"><%= Spree.t(:provider_settings_warning) %></div>
+                <%= preference_fields(@object, f) %>
+
+                <% if @object.respond_to?(:preferences) %>
+                  <div id="gateway-settings-warning" class="info warning"><%= Spree.t(:provider_settings_warning) %></div>
+                <% end %>
               <% end %>
             <% end %>
           </div>
