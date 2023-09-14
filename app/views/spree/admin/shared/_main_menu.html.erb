@@ -11,24 +11,24 @@
     </button>
   </div>
 
-  <% main_menu.items.each do |item| %>
-    <% next unless item.available?(current_ability, current_store) %>
+  <% main_menu.items.each do |section_item| %>
+    <% next unless section_item.available?(current_ability, current_store) %>
 
-    <ul class="nav nav-sidebar" id="sidebar<%= item.key.upcase %>>">
-      <% if item.children? %>
+    <ul class="nav nav-sidebar" id="sidebar<%= section_item.key.upcase %>>">
+      <% if section_item.children? %>
         <li class="sidebar-menu-item d-block w-100 text-muted">
-          <%= main_menu_item(Spree.t(item.label_translation_key), url: "#sidebar-#{item.key}", icon: item.icon_key) %>
+          <%= main_menu_item(Spree.t(section_item.label_translation_key), url: "#sidebar-#{section_item.key}", icon: section_item.icon_key) %>
 
-          <ul id="sidebar-<%= item.key %>" class="collapse nav nav-pills nav-stacked pb-2" data-hook="admin_orders">
-            <% item.items.each do |section_item| %>
-              <% next unless section_item.available?(current_ability, current_store) %>
+          <ul id="sidebar-<%= section_item.key %>" class="collapse nav nav-pills nav-stacked pb-2" data-hook="admin_orders">
+            <% section_item.items.each do |item| %>
+              <% next unless item.available?(current_ability, current_store) %>
 
-              <%= tab(Spree.t(section_item.label_translation_key), url: section_item.url.is_a?(Proc) ? section_item.url.call(current_store) : section_item.url, match_path: section_item.match_path, icon: section_item.icon_key) %>
+              <%= tab(Spree.t(item.label_translation_key), url: item.url.is_a?(Proc) ? item.url.call(current_store) : item.url, match_path: item.match_path, icon: item.icon_key) %>
             <% end %>
           </ul>
         </li>
       <% else %>
-        <%= tab(Spree.t(item.label_translation_key), url: item.url.is_a?(Proc) ? item.url.call(current_store) : item.url, match_path: item.match_path, icon: item.icon_key) %>
+        <%= tab(Spree.t(section_item.label_translation_key), url: section_item.url.is_a?(Proc) ? section_item.url.call(current_store) : section_item.url, match_path: section_item.match_path, icon: section_item.icon_key) %>
       <% end %>
     </ul>
   <% end %>
