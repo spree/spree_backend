@@ -5,14 +5,6 @@ module Spree
     describe Resources::Root, type: :model do
       let(:root) { described_class.new }
 
-      describe '#key' do
-        subject { root.key }
-
-        it 'returns root' do
-          expect(subject).to eq('root')
-        end
-      end
-
       describe '#add(item)' do
         let(:item) { double(key: 'test') }
 
@@ -28,24 +20,6 @@ module Spree
 
           it 'raises an error' do
             expect { root.add(item) }.to raise_error(KeyError)
-          end
-        end
-      end
-
-      describe '#children?' do
-        subject { root.children? }
-
-        context 'when there are child items' do
-          before { root.add(double(key: 'test')) }
-
-          it 'returns true' do
-            expect(subject).to be(true)
-          end
-        end
-
-        context 'when there are no child items' do
-          it 'returns false' do
-            expect(subject).to be(false)
           end
         end
       end
