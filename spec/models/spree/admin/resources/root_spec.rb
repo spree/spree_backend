@@ -23,11 +23,13 @@ module Spree
           end
         end
 
-        # context "when there is an item with a particular key"
-        #   it 'raises an error' do
-            
-        #   end
-        # end
+        context "when there is an item with a particular key" do
+        before { root.add(item) }
+
+          it 'raises an error' do
+            expect { root.add(item) }.to raise_error(KeyError)
+          end
+        end
       end
 
       describe '#children?' do
