@@ -3,8 +3,9 @@ require 'spec_helper'
 module Spree
   module Admin
     describe Resources::Tab, type: :model do
-      let(:tab) { described_class.new(icon_name, availability_check) }
+      let(:tab) { described_class.new(icon_name, text, availability_check) }
       let(:icon_name) { 'cart-check.svg' }
+      let(:text) { 'Cart' }
       let(:availability_check) { nil }
 
       describe '#icon_name' do
@@ -12,6 +13,14 @@ module Spree
 
         it 'returns icon_name' do
           expect(subject).to eq(icon_name)
+        end
+      end
+
+      describe '#text' do
+        subject { tab.text }
+
+        it 'returns text' do
+          expect(subject).to eq(text)
         end
       end
       
