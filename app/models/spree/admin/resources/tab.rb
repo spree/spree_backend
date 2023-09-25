@@ -2,11 +2,12 @@ module Spree
   module Admin
     module Resources
       class Tab
-        attr_reader :icon_name, :text, :availability_check
+        attr_reader :icon_name, :text, :url, :availability_check
 
-        def initialize(icon_name, text, availability_check, options = {})
+        def initialize(icon_name, text, url, availability_check, options = {})
           @icon_name = icon_name
           @text = text
+          @url = url
           @availability_check = availability_check
         end
 
