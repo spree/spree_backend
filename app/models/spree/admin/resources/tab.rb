@@ -3,6 +3,7 @@ module Spree
     module Resources
       class Tab
         include ActiveChecker
+        include AvailabilityBuilderMethods
 
         attr_reader :icon_name, :text, :partial_name, :classes, :availability_check
 
