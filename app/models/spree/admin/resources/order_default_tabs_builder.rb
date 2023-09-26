@@ -20,7 +20,7 @@ module Spree
         private
 
         def add_cart_tab(root)
-          Tab.new(
+          tab = Tab.new(
             'cart-check.svg',
             :cart,
             ->(resource) { cart_admin_order_url(resource) },
@@ -28,7 +28,15 @@ module Spree
             'nav-link',
           )
           .with_active_check
-          .with_update_availability_check
+          .with_availability_check(
+            # An abstract module should not be aware of resource's internal structure.
+            # If these checks are elaborate, it's better to have this complexity declared explicitly here.
+            ->(ability, resource) do
+              ability.can?(:update, resource)
+              && (resource.shipments.size.zero? || resource.shipments.shipped.size.zero?)
+            end
+          )
+          root.add(tab)
         end
 
         def add_channel_tab(root)
