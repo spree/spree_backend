@@ -20,6 +20,15 @@ module Spree
         private
 
         def add_cart_tab(root)
+          Tab.new(
+            'cart-check.svg',
+            :cart,
+            ->(resource) { cart_admin_order_url(resource) },
+            :cart,
+            'nav-link',
+          )
+          .with_active_check
+          .with_update_availability_check
         end
 
         def add_channel_tab(root)
