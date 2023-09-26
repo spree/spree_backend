@@ -32,11 +32,9 @@ module Spree
             # An abstract module should not be aware of resource's internal structure.
             # If these checks are elaborate, it's better to have this complexity declared explicitly here.
             ->(ability, resource) do
-              ability.can?(:update, resource)
-              && (resource.shipments.size.zero? || resource.shipments.shipped.size.zero?)
+              ability.can?(:update, resource) && (resource.shipments.size.zero? || resource.shipments.shipped.size.zero?)
             end
           )
-          root.add(tab)
         end
 
         def add_channel_tab(root)

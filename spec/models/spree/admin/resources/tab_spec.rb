@@ -3,13 +3,12 @@ require 'spec_helper'
 module Spree
   module Admin
     describe Resources::Tab, type: :model do
-      let(:tab) { described_class.new(icon_name, text, url, partial_name, classes, availability_check) }
+      let(:tab) { described_class.new(icon_name, text, url, partial_name, classes) }
       let(:icon_name) { 'cart-check.svg' }
       let(:text) { 'Cart' }
       let(:url) { '/cart' }
       let(:partial_name) { 'Cart' }
       let(:classes) { 'nav-link' }
-      let(:availability_check) { nil }
 
       describe '#icon_name' do
         subject { tab.icon_name }

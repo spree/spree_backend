@@ -5,15 +5,14 @@ module Spree
         include ActiveChecker
         include AvailabilityBuilderMethods
 
-        attr_reader :icon_name, :text, :partial_name, :classes, :availability_check
+        attr_reader :icon_name, :text, :partial_name, :classes
 
-        def initialize(icon_name, text, url, partial_name, classes, availability_check, options = {})
+        def initialize(icon_name, text, url, partial_name, classes, options = {})
           @icon_name = icon_name
           @text = text
           @url = url
           @partial_name = partial_name
           @classes = classes
-          @availability_check = availability_check
         end
 
         def available?(current_ability, current_store)
