@@ -2,6 +2,8 @@ module Spree
   module Admin
     module Resources
       class Tab
+        include ActiveChecker
+
         attr_reader :icon_name, :text, :partial_name, :classes, :availability_check
 
         def initialize(icon_name, text, url, partial_name, classes, availability_check, options = {})
@@ -19,8 +21,12 @@ module Spree
           @availability_check.call(current_ability, current_store)
         end
 
-        def url(resource)
+        def url(resource = nil)
           @url.is_a?(Proc) ? @url.call(resource) : @url
+        end
+
+        def active?(current_tab, partial_name)
+          @active_check.call(current_tab, partial_name)
         end
       end
     end

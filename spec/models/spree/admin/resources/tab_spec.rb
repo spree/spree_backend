@@ -8,9 +8,7 @@ module Spree
       let(:text) { 'Cart' }
       let(:url) { '/cart' }
       let(:partial_name) { 'Cart' }
-      let(:classes) do
-        { class: 'nav-link active' }
-      end
+      let(:classes) { 'nav-link' }
       let(:availability_check) { nil }
 
       describe '#icon_name' do
