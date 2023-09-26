@@ -2,7 +2,7 @@ module Spree
   module Admin
     module Resources
       class Tab
-        attr_reader :icon_name, :text, :url, :partial_name, :classes, :availability_check
+        attr_reader :icon_name, :text, :partial_name, :classes, :availability_check
 
         def initialize(icon_name, text, url, partial_name, classes, availability_check, options = {})
           @icon_name = icon_name
@@ -17,6 +17,10 @@ module Spree
           return true unless @availability_check.present?
 
           @availability_check.call(current_ability, current_store)
+        end
+
+        def url(resource)
+          @url.is_a?(Proc) ? @url.call(resource) : @url
         end
       end
     end
