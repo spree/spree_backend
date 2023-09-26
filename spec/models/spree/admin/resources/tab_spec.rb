@@ -3,11 +3,14 @@ require 'spec_helper'
 module Spree
   module Admin
     describe Resources::Tab, type: :model do
-      let(:tab) { described_class.new(icon_name, text, url, partial_name, availability_check) }
+      let(:tab) { described_class.new(icon_name, text, url, partial_name, classes, availability_check) }
       let(:icon_name) { 'cart-check.svg' }
       let(:text) { 'Cart' }
       let(:url) { '/cart' }
       let(:partial_name) { 'Cart' }
+      let(:classes) do
+        { class: 'nav-link active' }
+      end
       let(:availability_check) { nil }
 
       describe '#icon_name' do
@@ -42,6 +45,14 @@ module Spree
 
         it 'returns partial_name' do
           expect(subject).to eq(partial_name)
+        end
+      end
+
+      describe '#classes' do
+        subject { tab.classes }
+
+        it 'returns classes' do
+          expect(subject).to eq(classes)
         end
       end
       
