@@ -9,7 +9,7 @@ module Spree
         end
 
         def add(item)
-          raise KeyError, "Item with key #{item.key} already exists" if index_for_key(item.key)
+          raise KeyError, "Item with key #{item.text} already exists" if index_for_key(item.text)
 
           @items << item
         end
