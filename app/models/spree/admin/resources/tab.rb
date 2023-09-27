@@ -5,13 +5,12 @@ module Spree
         include ActiveChecker
         include AvailabilityBuilderMethods
 
-        attr_reader :icon_name, :text, :partial_name, :classes
+      attr_reader :icon_name, :text, :classes
 
-        def initialize(icon_name, text, url, partial_name, classes, options = {})
+        def initialize(icon_name, text, url, classes, options = {})
           @icon_name = icon_name
           @text = text
           @url = url
-          @partial_name = partial_name
           @classes = classes
         end
 
@@ -26,7 +25,7 @@ module Spree
         end
 
         def active?(current_tab)
-          @active_check.call(current_tab, partial_name)
+          @active_check.call(current_tab, text)
         end
       end
     end

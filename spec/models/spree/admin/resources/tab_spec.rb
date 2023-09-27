@@ -34,17 +34,6 @@ module Spree
         end
       end
 
-      # TO-DO: If partial names would match the contents of 'text' - this can be removed.
-      # For example, there's only one mismatch in _orders_tabs partial, and it's
-      # :customer_details not matching :customer
-      describe '#partial_name' do
-        subject { tab.partial_name }
-
-        it 'returns partial_name' do
-          expect(subject).to eq(partial_name)
-        end
-      end
-
       describe '#classes' do
         subject { tab.classes }
 

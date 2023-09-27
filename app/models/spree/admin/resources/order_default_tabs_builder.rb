@@ -24,7 +24,6 @@ module Spree
             'cart-check.svg',
             :cart,
             ->(resource) { cart_admin_order_url(resource) },
-            :cart,
             'nav-link',
           )
           .with_active_check
@@ -42,7 +41,6 @@ module Spree
             'funnel.svg',
             :channel,
             ->(resource) { channel_admin_order_url(resource) },
-            :channel,
             'nav-link',
           )
           .with_active_check
@@ -54,7 +52,6 @@ module Spree
             'person-lines-fill.svg',
             :customer,
             ->(resource) { admin_order_customer_url(resource) },
-            :customer_details,
             'nav-link',
           )
           .with_active_check
@@ -70,7 +67,6 @@ module Spree
             'truck.svg',
             :shipments,
             ->(resource) { edit_admin_order_url(resource) },
-            :shipments,
             'nav-link',
           )
           .with_active_check
@@ -82,7 +78,6 @@ module Spree
             'adjust.svg',
             :adjustments,
             ->(resource) { admin_order_adjustments_url(resource) },
-            :adjustments,
             'nav-link',
           )
           .with_active_check
@@ -94,7 +89,6 @@ module Spree
             'credit-card.svg',
             :payments,
             ->(resource) { admin_order_payments_url(resource) },
-            :payments,
             'nav-link',
           )
           .with_active_check
@@ -106,7 +100,6 @@ module Spree
             'enter.svg',
             :return_authorizations,
             ->(resource) { admin_order_return_authorizations_url(resource) },
-            :return_authorizations,
             'nav-link',
           )
           .with_active_check
@@ -118,7 +111,6 @@ module Spree
             'returns.svg',
             :customer_returns,
             ->(resource) { admin_order_customer_returns_url(resource) },
-            :customer_returns,
             'nav-link',
           )
           .with_active_check
@@ -130,7 +122,6 @@ module Spree
             'calendar3.svg',
             :state_changes,
             ->(resource) { admin_order_state_changes_url(resource) },
-            :state_changes,
             'nav-link',
           )
           .with_active_check
