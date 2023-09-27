@@ -5,7 +5,7 @@ module Spree
     describe Resources::OrderDefaultTabsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_tabs) do
-        %w(cart
+        %i(cart
           channel
           customer
           shipments

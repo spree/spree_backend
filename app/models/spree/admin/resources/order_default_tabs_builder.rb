@@ -15,6 +15,7 @@ module Spree
           add_return_authorizations_tab(root)
           add_customer_returns_tab(root)
           add_state_changes_tab(root)
+          root
         end
 
         private
@@ -34,6 +35,8 @@ module Spree
               ability.can?(:update, resource) && (resource.shipments.size.zero? || resource.shipments.shipped.size.zero?)
             end
           )
+
+          root.add(tab)
         end
 
         def add_channel_tab(root)
@@ -45,6 +48,8 @@ module Spree
           )
           .with_active_check
           .with_update_availability_check
+
+          root.add(tab)
         end
 
         def add_customer_tab(root)
@@ -60,6 +65,8 @@ module Spree
               ability.can?(:update, resource) && resource.checkout_steps.include?("address")
             end
           )
+
+          root.add(tab)
         end
 
         def add_shipments_tab(root)
@@ -71,6 +78,8 @@ module Spree
           )
           .with_active_check
           .with_update_availability_check
+
+          root.add(tab)
         end
 
         def add_adjustments_tab(root)
@@ -82,6 +91,8 @@ module Spree
           )
           .with_active_check
           .with_index_availability_check(Spree::Adjustment)
+
+          root.add(tab)
         end
 
         def add_payments_tab(root)
@@ -93,6 +104,8 @@ module Spree
           )
           .with_active_check
           .with_index_availability_check(Spree::Payment)
+
+          root.add(tab)
         end
 
         def add_return_authorizations_tab(root)
@@ -104,6 +117,8 @@ module Spree
           )
           .with_active_check
           .with_index_availability_check(Spree::ReturnAuthorization)
+
+          root.add(tab)
         end
 
         def add_customer_returns_tab(root)
@@ -115,6 +130,8 @@ module Spree
           )
           .with_active_check
           .with_index_availability_check(Spree::CustomerReturn)
+
+          root.add(tab)
         end
 
         def add_state_changes_tab(root)
@@ -126,6 +143,8 @@ module Spree
           )
           .with_active_check
           .with_update_availability_check
+
+          root.add(tab)
         end
       end
     end
