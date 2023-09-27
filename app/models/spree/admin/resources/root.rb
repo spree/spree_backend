@@ -9,15 +9,15 @@ module Spree
         end
 
         def add(item)
-          raise KeyError, "Item with key #{item.text} already exists" if index_for_key(item.text)
+          raise KeyError, "Item with key #{item.text} already exists" if index_for_text(item.text)
 
           @items << item
         end
 
         private
 
-        def index_for_key(key)
-          @items.index { |e| e.key == key }
+        def index_for_text(text)
+          @items.index { |e| e.text == text }
         end
       end
     end

@@ -6,9 +6,10 @@ module Spree
       let(:root) { described_class.new }
 
       describe '#add(item)' do
-        let(:item) { double(key: 'test') }
+        let(:item) { double(text: 'test') }
 
         context "when there's no item with a particular key" do
+
           it 'appends an item' do
             root.add(item)
             expect(root.items).to include(item)
