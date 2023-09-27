@@ -27,7 +27,7 @@
       <%= link_to_with_icon 'person-lines-fill.svg',
         Spree.t(:customer),
         spree.admin_order_customer_url(@order),
-        class: "#{'active' if current == :customer_details} nav-link" %>
+        class: "#{'active' if current == :customer} nav-link" %>
     </li>
   <% end %>
 
