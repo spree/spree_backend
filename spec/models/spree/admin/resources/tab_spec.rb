@@ -54,7 +54,6 @@ module Spree
         end
 
         context 'when availability check returns true' do
-
           before do
             tab.with_availability_check(->(_ability, _resource) { true })
           end
@@ -65,7 +64,6 @@ module Spree
         end
 
         context 'when availability check returns false' do
-
           before do
             tab.with_availability_check(->(_ability, _resource) { false })
           end
@@ -93,6 +91,39 @@ module Spree
           let(:current_tab) { 'non-matching' }
 
           it "returns false" do
+            expect(subject).to be(false)
+          end
+        end
+      end
+
+      describe '#complete?' do
+        subject { tab.complete?(resource) }
+        let(:resource) { double }
+
+        context 'when complete check is not set' do
+          it 'is returns true' do
+            expect(subject).to be(true)
+          end
+        end
+
+        context 'when complete check returns true' do
+          before do
+            tab.with_completed_check
+            allow(resource).to receive(:completed?).and_return(true)
+          end
+
+          it 'returns true' do
+            expect(subject).to be(true)
+          end
+        end
+
+        context 'when complete check returns false' do
+          before do
+            tab.with_completed_check
+            allow(resource).to receive(:completed?).and_return(false)
+          end
+
+          it 'returns false' do
             expect(subject).to be(false)
           end
         end

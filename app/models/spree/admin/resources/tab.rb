@@ -2,7 +2,7 @@ module Spree
   module Admin
     module Resources
       class Tab
-        include ActiveChecker
+        include ConditionalChecker
         include AvailabilityBuilderMethods
 
       attr_reader :icon_name, :text, :classes
@@ -26,6 +26,12 @@ module Spree
 
         def active?(current_tab)
           @active_check.call(current_tab, text)
+        end
+
+        def complete?(resource)
+          return true unless @completed_check.present?
+
+          @completed_check.call(resource)
         end
       end
     end
