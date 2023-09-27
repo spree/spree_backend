@@ -5,9 +5,9 @@ module Spree
         include ConditionalChecker
         include AvailabilityBuilderMethods
 
-      attr_reader :icon_name, :text, :classes
+        attr_reader :icon_name, :text, :classes
 
-        def initialize(icon_name, text, url, classes, options = {})
+        def initialize(icon_name, text, url, classes)
           @icon_name = icon_name
           @text = text
           @url = url

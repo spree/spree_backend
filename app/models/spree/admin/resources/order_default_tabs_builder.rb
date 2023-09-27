@@ -25,16 +25,16 @@ module Spree
             'cart-check.svg',
             :cart,
             ->(resource) { cart_admin_order_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_availability_check(
-            # An abstract module should not be aware of resource's internal structure.
-            # If these checks are elaborate, it's better to have this complexity declared explicitly here.
-            ->(ability, resource) do
-              ability.can?(:update, resource) && (resource.shipments.size.zero? || resource.shipments.shipped.size.zero?)
-            end
-          )
+            'nav-link'
+          ).
+            with_active_check.
+            with_availability_check(
+              # An abstract module should not be aware of resource's internal structure.
+              # If these checks are elaborate, it's better to have this complexity declared explicitly here.
+              lambda do |ability, resource|
+                ability.can?(:update, resource) && (resource.shipments.empty? || resource.shipments.shipped.empty?)
+              end
+            )
 
           root.add(tab)
         end
@@ -44,10 +44,10 @@ module Spree
             'funnel.svg',
             :channel,
             ->(resource) { channel_admin_order_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_update_availability_check
+            'nav-link'
+          ).
+            with_active_check.
+            with_update_availability_check
 
           root.add(tab)
         end
@@ -57,14 +57,14 @@ module Spree
             'person-lines-fill.svg',
             :customer,
             ->(resource) { admin_order_customer_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_availability_check(
-            ->(ability, resource) do
-              ability.can?(:update, resource) && resource.checkout_steps.include?("address")
-            end
-          )
+            'nav-link'
+          ).
+            with_active_check.
+            with_availability_check(
+              lambda do |ability, resource|
+                ability.can?(:update, resource) && resource.checkout_steps.include?('address')
+              end
+            )
 
           root.add(tab)
         end
@@ -74,10 +74,10 @@ module Spree
             'truck.svg',
             :shipments,
             ->(resource) { edit_admin_order_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_update_availability_check
+            'nav-link'
+          ).
+            with_active_check.
+            with_update_availability_check
 
           root.add(tab)
         end
@@ -87,10 +87,10 @@ module Spree
             'adjust.svg',
             :adjustments,
             ->(resource) { admin_order_adjustments_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_index_availability_check(Spree::Adjustment)
+            'nav-link'
+          ).
+            with_active_check.
+            with_index_availability_check(Spree::Adjustment)
 
           root.add(tab)
         end
@@ -100,10 +100,10 @@ module Spree
             'credit-card.svg',
             :payments,
             ->(resource) { admin_order_payments_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_index_availability_check(Spree::Payment)
+            'nav-link'
+          ).
+            with_active_check.
+            with_index_availability_check(Spree::Payment)
 
           root.add(tab)
         end
@@ -113,10 +113,10 @@ module Spree
             'enter.svg',
             :return_authorizations,
             ->(resource) { admin_order_return_authorizations_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_index_availability_check(Spree::ReturnAuthorization)
+            'nav-link'
+          ).
+            with_active_check.
+            with_index_availability_check(Spree::ReturnAuthorization)
 
           root.add(tab)
         end
@@ -126,10 +126,10 @@ module Spree
             'returns.svg',
             :customer_returns,
             ->(resource) { admin_order_customer_returns_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_index_availability_check(Spree::CustomerReturn)
+            'nav-link'
+          ).
+            with_active_check.
+            with_index_availability_check(Spree::CustomerReturn)
 
           root.add(tab)
         end
@@ -139,10 +139,10 @@ module Spree
             'calendar3.svg',
             :state_changes,
             ->(resource) { admin_order_state_changes_url(resource) },
-            'nav-link',
-          )
-          .with_active_check
-          .with_update_availability_check
+            'nav-link'
+          ).
+            with_active_check.
+            with_update_availability_check
 
           root.add(tab)
         end
