@@ -13,7 +13,7 @@ module Spree
         end
 
         def with_index_availability_check(klass)
-          @availability_check = ->(ability, _resource) { ability.can?(:index, klaas) }
+          @availability_check = ->(ability, _resource) { ability.can?(:index, klass) }
           self
         end
       end
