@@ -11,6 +11,11 @@ module Spree
           @availability_check = ->(ability, resource) { ability.can?(:update, resource) }
           self
         end
+
+        def with_index_availability_check(klass)
+          @availability_check = ->(ability, _resource) { ability.can?(:index, klaas) }
+          self
+        end
       end
     end
   end
