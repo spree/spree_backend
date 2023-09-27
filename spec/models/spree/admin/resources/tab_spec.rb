@@ -82,7 +82,7 @@ module Spree
             tab.with_availability_check(->(_ability, _resource) { false })
           end
 
-          it 'returns true' do
+          it 'returns false' do
             expect(subject).to be(false)
           end
         end
