@@ -87,6 +87,28 @@ module Spree
           end
         end
       end
+
+      describe '#active?' do
+        subject { tab.active?(current_tab) }
+
+        before { tab.with_active_check }
+
+        context 'when tab matches the current tab' do
+          let(:current_tab) { partial_name }
+
+          it "returns true" do
+            expect(subject).to be(true)
+          end
+        end
+
+        context 'when tab does not match the current tab' do
+          let(:current_tab) { 'non-matching' }
+
+          it "returns false" do
+            expect(subject).to be(false)
+          end
+        end
+      end
     end
   end
 end

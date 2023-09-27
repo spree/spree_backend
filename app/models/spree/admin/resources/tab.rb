@@ -25,7 +25,7 @@ module Spree
           @url.is_a?(Proc) ? @url.call(resource) : @url
         end
 
-        def active?(current_tab, partial_name)
+        def active?(current_tab)
           @active_check.call(current_tab, partial_name)
         end
       end
