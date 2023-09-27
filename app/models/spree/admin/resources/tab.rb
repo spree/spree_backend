@@ -15,10 +15,10 @@ module Spree
           @classes = classes
         end
 
-        def available?(current_ability, current_store)
+        def available?(current_ability, resource)
           return true unless @availability_check.present?
 
-          @availability_check.call(current_ability, current_store)
+          @availability_check.call(current_ability, resource)
         end
 
         def url(resource = nil)

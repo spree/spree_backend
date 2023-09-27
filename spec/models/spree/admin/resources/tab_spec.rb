@@ -54,10 +54,10 @@ module Spree
       end
       
       describe '#available?' do
-        subject { tab.available?(ability, store) }
+        subject { tab.available?(ability, resource) }
 
         let(:ability) { double }
-        let(:store) { double }
+        let(:resource) { double }
 
         context 'when availability check is not set' do
           it 'is returns true' do
@@ -66,7 +66,7 @@ module Spree
         end
 
         context 'when availability check returns true' do
-          let(:availability_check) { ->(_ability, _store) { true } }
+          let(:availability_check) { ->(_ability, _resource) { true } }
 
           it 'returns true' do
             expect(subject).to be(true)
@@ -74,7 +74,7 @@ module Spree
         end
 
         context 'when availability check returns false' do
-          let(:availability_check) { ->(_ability, _store) { false } }
+          let(:availability_check) { ->(_ability, _resource) { false } }
 
           it 'returns true' do
             expect(subject).to be(false)
