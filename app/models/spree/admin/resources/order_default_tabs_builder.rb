@@ -25,7 +25,7 @@ module Spree
             Tab.new(
               'cart-check.svg',
               :cart,
-              ->(resource) { cart_admin_order_url(resource) },
+              ->(resource) { cart_admin_order_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -46,7 +46,7 @@ module Spree
             Tab.new(
               'funnel.svg',
               :channel,
-              ->(resource) { channel_admin_order_url(resource) },
+              ->(resource) { channel_admin_order_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -61,7 +61,7 @@ module Spree
             Tab.new(
               'person-lines-fill.svg',
               :customer,
-              ->(resource) { admin_order_customer_url(resource) },
+              ->(resource) { admin_order_customer_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -80,7 +80,7 @@ module Spree
             Tab.new(
               'truck.svg',
               :shipments,
-              ->(resource) { edit_admin_order_url(resource) },
+              ->(resource) { edit_admin_order_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -95,7 +95,7 @@ module Spree
             Tab.new(
               'adjust.svg',
               :adjustments,
-              ->(resource) { admin_order_adjustments_url(resource) },
+              ->(resource) { admin_order_adjustments_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -110,7 +110,7 @@ module Spree
             Tab.new(
               'credit-card.svg',
               :payments,
-              ->(resource) { admin_order_payments_url(resource) },
+              ->(resource) { admin_order_payments_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -125,7 +125,7 @@ module Spree
             Tab.new(
               'enter.svg',
               :return_authorizations,
-              ->(resource) { admin_order_return_authorizations_url(resource) },
+              ->(resource) { admin_order_return_authorizations_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -140,7 +140,7 @@ module Spree
             Tab.new(
               'returns.svg',
               :customer_returns,
-              ->(resource) { admin_order_customer_returns_url(resource) },
+              ->(resource) { admin_order_customer_returns_path(resource) },
               'nav-link'
             ).
             with_active_check.
@@ -155,7 +155,7 @@ module Spree
             Tab.new(
               'calendar3.svg',
               :state_changes,
-              ->(resource) { admin_order_state_changes_url(resource) },
+              ->(resource) { admin_order_state_changes_path(resource) },
               'nav-link'
             ).
             with_active_check.
