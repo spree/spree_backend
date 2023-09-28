@@ -21,12 +21,13 @@ module Spree
         private
 
         def add_cart_tab(root)
-          tab = Tab.new(
-            'cart-check.svg',
-            :cart,
-            ->(resource) { cart_admin_order_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'cart-check.svg',
+              :cart,
+              ->(resource) { cart_admin_order_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_availability_check(
               # An abstract module should not be aware of resource's internal structure.
@@ -40,12 +41,13 @@ module Spree
         end
 
         def add_channel_tab(root)
-          tab = Tab.new(
-            'funnel.svg',
-            :channel,
-            ->(resource) { channel_admin_order_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'funnel.svg',
+              :channel,
+              ->(resource) { channel_admin_order_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_update_availability_check
 
@@ -53,12 +55,13 @@ module Spree
         end
 
         def add_customer_tab(root)
-          tab = Tab.new(
-            'person-lines-fill.svg',
-            :customer,
-            ->(resource) { admin_order_customer_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'person-lines-fill.svg',
+              :customer,
+              ->(resource) { admin_order_customer_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -70,12 +73,13 @@ module Spree
         end
 
         def add_shipments_tab(root)
-          tab = Tab.new(
-            'truck.svg',
-            :shipments,
-            ->(resource) { edit_admin_order_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'truck.svg',
+              :shipments,
+              ->(resource) { edit_admin_order_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_update_availability_check
 
@@ -83,12 +87,13 @@ module Spree
         end
 
         def add_adjustments_tab(root)
-          tab = Tab.new(
-            'adjust.svg',
-            :adjustments,
-            ->(resource) { admin_order_adjustments_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'adjust.svg',
+              :adjustments,
+              ->(resource) { admin_order_adjustments_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_index_availability_check(Spree::Adjustment)
 
@@ -96,12 +101,13 @@ module Spree
         end
 
         def add_payments_tab(root)
-          tab = Tab.new(
-            'credit-card.svg',
-            :payments,
-            ->(resource) { admin_order_payments_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'credit-card.svg',
+              :payments,
+              ->(resource) { admin_order_payments_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_index_availability_check(Spree::Payment)
 
@@ -109,12 +115,13 @@ module Spree
         end
 
         def add_return_authorizations_tab(root)
-          tab = Tab.new(
-            'enter.svg',
-            :return_authorizations,
-            ->(resource) { admin_order_return_authorizations_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'enter.svg',
+              :return_authorizations,
+              ->(resource) { admin_order_return_authorizations_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_index_availability_check(Spree::ReturnAuthorization)
 
@@ -122,12 +129,13 @@ module Spree
         end
 
         def add_customer_returns_tab(root)
-          tab = Tab.new(
-            'returns.svg',
-            :customer_returns,
-            ->(resource) { admin_order_customer_returns_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'returns.svg',
+              :customer_returns,
+              ->(resource) { admin_order_customer_returns_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_index_availability_check(Spree::CustomerReturn)
 
@@ -135,12 +143,13 @@ module Spree
         end
 
         def add_state_changes_tab(root)
-          tab = Tab.new(
-            'calendar3.svg',
-            :state_changes,
-            ->(resource) { admin_order_state_changes_url(resource) },
-            'nav-link'
-          ).
+          tab =
+            Tab.new(
+              'calendar3.svg',
+              :state_changes,
+              ->(resource) { admin_order_state_changes_url(resource) },
+              'nav-link'
+            ).
             with_active_check.
             with_update_availability_check
 
