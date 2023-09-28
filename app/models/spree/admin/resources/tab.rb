@@ -5,11 +5,11 @@ module Spree
         include ConditionalChecker
         include AvailabilityBuilderMethods
 
-        attr_reader :icon_name, :text, :classes
+        attr_reader :icon_name, :name, :classes
 
-        def initialize(icon_name, text, url, classes)
+        def initialize(icon_name, name, url, classes)
           @icon_name = icon_name
-          @text = text
+          @name = name
           @url = url
           @classes = classes
         end
@@ -25,7 +25,7 @@ module Spree
         end
 
         def active?(current_tab)
-          @active_check.call(current_tab, text)
+          @active_check.call(current_tab, name)
         end
 
         def complete?(resource)

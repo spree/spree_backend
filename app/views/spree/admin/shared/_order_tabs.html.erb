@@ -9,7 +9,7 @@
       <li class="nav-item">
         <%= link_to_with_icon(
           tab.icon_name,
-          Spree.t(tab.text),
+          Spree.t(tab.name),
           tab.url(@order),
           class: tab.active?(current) ? tab.classes.concat(' active') : tab.classes
         ) %>

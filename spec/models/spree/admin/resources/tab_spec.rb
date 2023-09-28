@@ -3,9 +3,9 @@ require 'spec_helper'
 module Spree
   module Admin
     describe Resources::Tab, type: :model do
-      let(:tab) { described_class.new(icon_name, text, url, classes) }
+      let(:tab) { described_class.new(icon_name, name, url, classes) }
       let(:icon_name) { 'cart-check.svg' }
-      let(:text) { 'Cart' }
+      let(:name) { 'Cart' }
       let(:url) { '/cart' }
       let(:classes) { 'nav-link' }
 
@@ -17,11 +17,11 @@ module Spree
         end
       end
 
-      describe '#text' do
-        subject { tab.text }
+      describe '#name' do
+        subject { tab.name }
 
-        it 'returns text' do
-          expect(subject).to eq(text)
+        it 'returns name' do
+          expect(subject).to eq(name)
         end
       end
 
@@ -80,7 +80,7 @@ module Spree
         before { tab.with_active_check }
 
         context 'when tab matches the current tab' do
-          let(:current_tab) { text }
+          let(:current_tab) { name }
 
           it "returns true" do
             expect(subject).to be(true)
