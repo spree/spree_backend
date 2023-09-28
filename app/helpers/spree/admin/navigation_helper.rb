@@ -308,6 +308,10 @@ module Spree
       def main_menu
         Rails.application.config.spree_backend.main_menu
       end
+
+      def order_tabs
+        Rails.application.config.spree_backend.order_tabs
+      end
     end
   end
 end
