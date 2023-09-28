@@ -29,6 +29,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_availability_check(
               # An abstract module should not be aware of resource's internal structure.
               # If these checks are elaborate, it's better to have this complexity declared explicitly here.
@@ -49,6 +50,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_update_availability_check
 
           root.add(tab)
@@ -63,6 +65,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:update, resource) && resource.checkout_steps.include?('address')
@@ -81,6 +84,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_update_availability_check
 
           root.add(tab)
@@ -95,6 +99,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_index_availability_check(Spree::Adjustment)
 
           root.add(tab)
@@ -109,6 +114,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_index_availability_check(Spree::Payment)
 
           root.add(tab)
@@ -123,6 +129,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_index_availability_check(Spree::ReturnAuthorization)
 
           root.add(tab)
@@ -137,6 +144,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_default_translator.
             with_index_availability_check(Spree::CustomerReturn)
 
           root.add(tab)
@@ -151,6 +159,7 @@ module Spree
               'nav-link'
             ).
             with_active_check.
+            with_custom_translator(::Spree::StateChange, :human_attribute_name).
             with_update_availability_check
 
           root.add(tab)

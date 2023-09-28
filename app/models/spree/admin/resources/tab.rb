@@ -4,6 +4,7 @@ module Spree
       class Tab
         include ConditionalChecker
         include AvailabilityBuilderMethods
+        include Translator
 
         attr_reader :icon_name, :name, :classes
 
@@ -32,6 +33,12 @@ module Spree
           return true unless @completed_check.present?
 
           @completed_check.call(resource)
+        end
+
+        def text
+          return true unless @translate.present?
+
+          @translate.call(name)
         end
       end
     end
