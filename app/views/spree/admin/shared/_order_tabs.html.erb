@@ -10,7 +10,7 @@
         <%= link_to_with_icon(
           tab.icon_name,
           Spree.t(tab.text),
-          tab.url(@resource),
+          tab.url(@order),
           class: tab.active?(current) ? tab.classes.concat(' active') : tab.classes
         ) %>
       </li>
