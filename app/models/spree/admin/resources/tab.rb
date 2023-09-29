@@ -6,13 +6,14 @@ module Spree
         include AvailabilityBuilderMethods
         include Translator
 
-        attr_reader :icon_name, :name, :classes
+        attr_reader :icon_name, :name, :classes, :partial_name
 
-        def initialize(icon_name, name, url, classes)
-          @icon_name = icon_name
-          @name = name
-          @url = url
-          @classes = classes
+        def initialize(config)
+          @icon_name = config[:icon_name]
+          @name = config[:name]
+          @url = config[:url]
+          @classes = config[:classes]
+          @partial_name = config[:partial_name]
         end
 
         def available?(current_ability, resource)
