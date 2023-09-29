@@ -115,7 +115,7 @@ module Spree
             ).
             with_active_check.
             with_default_translator.
-            with_index_availability_check(Spree::Adjustment)
+            with_index_availability_check(::Spree::Adjustment)
 
           root.add(tab)
         end
@@ -133,7 +133,7 @@ module Spree
             ).
             with_active_check.
             with_default_translator.
-            with_index_availability_check(Spree::Payment)
+            with_index_availability_check(::Spree::Payment)
 
           root.add(tab)
         end
@@ -151,7 +151,7 @@ module Spree
             ).
             with_active_check.
             with_default_translator.
-            with_index_availability_check(Spree::ReturnAuthorization)
+            with_index_availability_check(::Spree::ReturnAuthorization)
 
           root.add(tab)
         end
@@ -169,7 +169,7 @@ module Spree
             ).
             with_active_check.
             with_default_translator.
-            with_index_availability_check(Spree::CustomerReturn)
+            with_index_availability_check(::Spree::CustomerReturn)
 
           root.add(tab)
         end

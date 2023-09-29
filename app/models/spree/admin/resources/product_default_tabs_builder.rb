@@ -32,7 +32,7 @@ module Spree
             ).
             with_active_check.
             with_default_translator.
-            with_admin_availability_check(Spree::Product)
+            with_admin_availability_check(::Spree::Product)
 
           root.add(tab)
         end
@@ -52,7 +52,7 @@ module Spree
             with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
-                ability.can?(:admin, Spree::Image) && !resource.deleted?
+                ability.can?(:admin, ::Spree::Image) && !resource.deleted?
               end
             )
 
@@ -74,7 +74,7 @@ module Spree
             with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
-                ability.can?(:admin, Spree::Variant) && !resource.deleted?
+                ability.can?(:admin, ::Spree::Variant) && !resource.deleted?
               end
             )
 
@@ -96,7 +96,7 @@ module Spree
             with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
-                ability.can?(:admin, Spree::ProductProperty) && !resource.deleted?
+                ability.can?(:admin, ::Spree::ProductProperty) && !resource.deleted?
               end
             )
 
@@ -118,7 +118,7 @@ module Spree
             with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
-                ability.can?(:admin, Spree::StockItem) && !resource.deleted?
+                ability.can?(:admin, ::Spree::StockItem) && !resource.deleted?
               end
             )
 
@@ -140,7 +140,7 @@ module Spree
             with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
-                ability.can?(:admin, Spree::Price) && !resource.deleted?
+                ability.can?(:admin, ::Spree::Price) && !resource.deleted?
               end
             )
 
@@ -162,7 +162,7 @@ module Spree
             with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
-                ability.can?(:admin, Spree::Digital) && !resource.deleted?
+                ability.can?(:admin, ::Spree::Digital) && !resource.deleted?
               end
             )
 
@@ -184,7 +184,7 @@ module Spree
             with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
-                ability.can?(:admin, Spree::Product) && !resource.deleted?
+                ability.can?(:admin, ::Spree::Product) && !resource.deleted?
               end
             )
 
