@@ -22,10 +22,12 @@ module Spree
         def add_details_tab(root)
           tab =
             Tab.new(
-              'edit.svg',
-              :details,
-              ->(resource) { edit_admin_product_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'edit.svg',
+                name: :details,
+                url: ->(resource) { edit_admin_product_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -37,10 +39,12 @@ module Spree
         def add_images_tab(root)
           tab =
             Tab.new(
-              'images.svg',
-              :images,
-              ->(resource) { admin_product_images_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'images.svg',
+                name: :images,
+                url: ->(resource) { admin_product_images_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -56,10 +60,12 @@ module Spree
         def add_variants_tab(root)
           tab =
             Tab.new(
-              'adjust.svg',
-              :variants,
-              ->(resource) { admin_product_variants_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'adjust.svg',
+                name: :variants,
+                url: ->(resource) { admin_product_variants_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -75,10 +81,12 @@ module Spree
         def add_properties_tab(root)
           tab =
             Tab.new(
-              'list.svg',
-              :properties,
-              ->(resource) { admin_product_product_properties_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'list.svg',
+                name: :properties,
+                url: ->(resource) { admin_product_product_properties_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -94,10 +102,12 @@ module Spree
         def add_stock_tab(root)
           tab =
             Tab.new(
-              'box-seam.svg',
-              :stock,
-              ->(resource) { stock_admin_product_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'box-seam.svg',
+                name: :stock,
+                url: ->(resource) { stock_admin_product_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -113,10 +123,12 @@ module Spree
         def add_prices_tab(root)
           tab =
             Tab.new(
-              'currency-exchange.svg',
-              :prices,
-              ->(resource) { admin_product_prices_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'currency-exchange.svg',
+                name: :prices,
+                url: ->(resource) { admin_product_prices_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -132,10 +144,12 @@ module Spree
         def add_digitals_tab(root)
           tab =
             Tab.new(
-              'download.svg',
-              'admin.digitals.digital_assets',
-              ->(resource) { admin_product_digitals_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'download.svg',
+                name: 'admin.digitals.digital_assets',
+                url: ->(resource) { admin_product_digitals_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -151,10 +165,12 @@ module Spree
         def add_translations_tab(root)
           tab =
             Tab.new(
-              'translate.svg',
-              :translations,
-              ->(resource) { translations_admin_product_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'translate.svg',
+                name: :translations,
+                url: ->(resource) { translations_admin_product_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.

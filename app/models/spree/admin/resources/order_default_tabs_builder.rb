@@ -23,10 +23,12 @@ module Spree
         def add_cart_tab(root)
           tab =
             Tab.new(
-              'cart-check.svg',
-              :cart,
-              ->(resource) { cart_admin_order_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'cart-check.svg',
+                name: :cart,
+                url: ->(resource) { cart_admin_order_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -44,10 +46,12 @@ module Spree
         def add_channel_tab(root)
           tab =
             Tab.new(
-              'funnel.svg',
-              :channel,
-              ->(resource) { channel_admin_order_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'funnel.svg',
+                name: :channel,
+                url: ->(resource) { channel_admin_order_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -59,10 +63,12 @@ module Spree
         def add_customer_tab(root)
           tab =
             Tab.new(
-              'person-lines-fill.svg',
-              :customer,
-              ->(resource) { admin_order_customer_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'person-lines-fill.svg',
+                name: :customer,
+                url: ->(resource) { admin_order_customer_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -78,10 +84,12 @@ module Spree
         def add_shipments_tab(root)
           tab =
             Tab.new(
-              'truck.svg',
-              :shipments,
-              ->(resource) { edit_admin_order_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'truck.svg',
+                name: :shipments,
+                url: ->(resource) { edit_admin_order_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -93,10 +101,12 @@ module Spree
         def add_adjustments_tab(root)
           tab =
             Tab.new(
-              'adjust.svg',
-              :adjustments,
-              ->(resource) { admin_order_adjustments_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'adjust.svg',
+                name: :adjustments,
+                url: ->(resource) { admin_order_adjustments_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -108,10 +118,12 @@ module Spree
         def add_payments_tab(root)
           tab =
             Tab.new(
-              'credit-card.svg',
-              :payments,
-              ->(resource) { admin_order_payments_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'credit-card.svg',
+                name: :payments,
+                url: ->(resource) { admin_order_payments_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -123,10 +135,12 @@ module Spree
         def add_return_authorizations_tab(root)
           tab =
             Tab.new(
-              'enter.svg',
-              :return_authorizations,
-              ->(resource) { admin_order_return_authorizations_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'enter.svg',
+                name: :return_authorizations,
+                url: ->(resource) { admin_order_return_authorizations_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -138,10 +152,12 @@ module Spree
         def add_customer_returns_tab(root)
           tab =
             Tab.new(
-              'returns.svg',
-              :customer_returns,
-              ->(resource) { admin_order_customer_returns_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'returns.svg',
+                name: :customer_returns,
+                url: ->(resource) { admin_order_customer_returns_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator.
@@ -153,10 +169,12 @@ module Spree
         def add_state_changes_tab(root)
           tab =
             Tab.new(
-              'calendar3.svg',
-              :state_changes,
-              ->(resource) { admin_order_state_changes_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'calendar3.svg',
+                name: :state_changes,
+                url: ->(resource) { admin_order_state_changes_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_custom_translator(::Spree::StateChange, :human_attribute_name).

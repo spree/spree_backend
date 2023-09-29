@@ -5,11 +5,11 @@ module Spree
     describe Resources::UserDefaultTabsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_tabs) do
-        [:"admin.user.account",
-         :"admin.user.addresses",
-         :"admin.user.orders",
-         :"admin.user.items",
-         :"admin.user.store_credits"]
+        ['admin.user.account',
+         'admin.user.addresses',
+         'admin.user.orders',
+         'admin.user.items',
+         'admin.user.store_credits']
       end
 
       describe '#build' do

@@ -19,10 +19,12 @@ module Spree
         def add_account_tab(root)
           tab =
             Tab.new(
-              'person.svg',
-              :"admin.user.account",
-              ->(resource) { edit_admin_user_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'person.svg',
+                name: "admin.user.account",
+                url: ->(resource) { edit_admin_user_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator
@@ -33,10 +35,12 @@ module Spree
         def add_addresses_tab(root)
           tab =
             Tab.new(
-              'pin-map.svg',
-              :"admin.user.addresses",
-              ->(resource) { addresses_admin_user_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'pin-map.svg',
+                name: "admin.user.addresses",
+                url: ->(resource) { addresses_admin_user_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator
@@ -47,10 +51,12 @@ module Spree
         def add_orders_tab(root)
           tab =
             Tab.new(
-              'inbox.svg',
-              :"admin.user.orders",
-              ->(resource) { orders_admin_user_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'inbox.svg',
+                name: 'admin.user.orders',
+                url: ->(resource) { orders_admin_user_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator
@@ -61,10 +67,12 @@ module Spree
         def add_items_tab(root)
           tab =
             Tab.new(
-              'tag.svg',
-              :"admin.user.items",
-              ->(resource) { items_admin_user_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'tag.svg',
+                name: 'admin.user.items',
+                url: ->(resource) { items_admin_user_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator
@@ -75,10 +83,12 @@ module Spree
         def add_store_credits_tab(root)
           tab =
             Tab.new(
-              'gift.svg',
-              :"admin.user.store_credits",
-              ->(resource) { admin_user_store_credits_path(resource) },
-              'nav-link'
+              {
+                icon_name: 'gift.svg',
+                name: 'admin.user.store_credits',
+                url: ->(resource) { admin_user_store_credits_path(resource) },
+                classes: 'nav-link'
+              }
             ).
             with_active_check.
             with_default_translator
