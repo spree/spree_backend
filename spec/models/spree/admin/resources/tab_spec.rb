@@ -6,24 +6,19 @@ module Spree
       let(:tab) { described_class.new(config) }
       let(:config) do
         {
-          icon_name: icon_name,
-          name: name,
-          url: url,
-          classes: classes,
-          partial_name: partial_name
+          icon_name: 'cart-check.svg',
+          name: 'Cart',
+          url: '/cart',
+          classes: 'nav-link',
+          partial_name: :cart
         }
       end
-      let(:icon_name) { 'cart-check.svg' }
-      let(:name) { 'Cart' }
-      let(:url) { '/cart' }
-      let(:classes) { 'nav-link' }
-      let(:partial_name) { :cart }
 
       describe '#icon_name' do
         subject { tab.icon_name }
 
         it 'returns icon_name' do
-          expect(subject).to eq(icon_name)
+          expect(subject).to eq(config[:icon_name])
         end
       end
 
@@ -31,7 +26,7 @@ module Spree
         subject { tab.name }
 
         it 'returns name' do
-          expect(subject).to eq(name)
+          expect(subject).to eq(config[:name])
         end
       end
 
@@ -39,7 +34,7 @@ module Spree
         subject { tab.url }
 
         it 'returns url' do
-          expect(subject).to eq(url)
+          expect(subject).to eq(config[:url])
         end
       end
 
@@ -47,7 +42,7 @@ module Spree
         subject { tab.classes }
 
         it 'returns classes' do
-          expect(subject).to eq(classes)
+          expect(subject).to eq(config[:classes])
         end
       end
 
@@ -55,7 +50,7 @@ module Spree
         subject { tab.partial_name }
 
         it 'returns partial_name' do
-          expect(subject).to eq(partial_name)
+          expect(subject).to eq(config[:partial_name])
         end
       end
       
@@ -98,7 +93,7 @@ module Spree
         before { tab.with_active_check }
 
         context 'when tab matches the current tab' do
-          let(:current_tab) { name }
+          let(:current_tab) { config[:partial_name] }
 
           it "returns true" do
             expect(subject).to be(true)

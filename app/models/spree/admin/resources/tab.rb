@@ -27,7 +27,7 @@ module Spree
         end
 
         def active?(current_tab)
-          @active_check.call(current_tab, name)
+          @active_check.call(current_tab, partial_name)
         end
 
         def complete?(resource)
