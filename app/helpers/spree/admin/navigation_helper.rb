@@ -312,6 +312,10 @@ module Spree
       def order_tabs
         Rails.application.config.spree_backend.order_tabs
       end
+
+      def user_tabs
+        Rails.application.config.spree_backend.user_tabs
+      end
     end
   end
 end
