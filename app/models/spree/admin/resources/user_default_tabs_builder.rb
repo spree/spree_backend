@@ -21,7 +21,7 @@ module Spree
             Tab.new(
               {
                 icon_name: 'person.svg',
-                name: "admin.user.account",
+                name: 'admin.user.account',
                 url: ->(resource) { edit_admin_user_path(resource) },
                 classes: 'nav-link',
                 partial_name: :account
@@ -38,7 +38,7 @@ module Spree
             Tab.new(
               {
                 icon_name: 'pin-map.svg',
-                name: "admin.user.addresses",
+                name: 'admin.user.addresses',
                 url: ->(resource) { addresses_admin_user_path(resource) },
                 classes: 'nav-link',
                 partial_name: :address
