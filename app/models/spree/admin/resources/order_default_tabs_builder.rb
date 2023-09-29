@@ -27,7 +27,8 @@ module Spree
                 icon_name: 'cart-check.svg',
                 name: :cart,
                 url: ->(resource) { cart_admin_order_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :cart
               }
             ).
             with_active_check.
@@ -50,7 +51,8 @@ module Spree
                 icon_name: 'funnel.svg',
                 name: :channel,
                 url: ->(resource) { channel_admin_order_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :channel
               }
             ).
             with_active_check.
@@ -67,7 +69,8 @@ module Spree
                 icon_name: 'person-lines-fill.svg',
                 name: :customer,
                 url: ->(resource) { admin_order_customer_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :customer_details
               }
             ).
             with_active_check.
@@ -88,7 +91,8 @@ module Spree
                 icon_name: 'truck.svg',
                 name: :shipments,
                 url: ->(resource) { edit_admin_order_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :shipments
               }
             ).
             with_active_check.
@@ -105,7 +109,8 @@ module Spree
                 icon_name: 'adjust.svg',
                 name: :adjustments,
                 url: ->(resource) { admin_order_adjustments_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :adjustments
               }
             ).
             with_active_check.
@@ -122,7 +127,8 @@ module Spree
                 icon_name: 'credit-card.svg',
                 name: :payments,
                 url: ->(resource) { admin_order_payments_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :payments
               }
             ).
             with_active_check.
@@ -139,7 +145,8 @@ module Spree
                 icon_name: 'enter.svg',
                 name: :return_authorizations,
                 url: ->(resource) { admin_order_return_authorizations_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :return_authorizations
               }
             ).
             with_active_check.
@@ -156,7 +163,8 @@ module Spree
                 icon_name: 'returns.svg',
                 name: :customer_returns,
                 url: ->(resource) { admin_order_customer_returns_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :customer_returns
               }
             ).
             with_active_check.
@@ -173,7 +181,8 @@ module Spree
                 icon_name: 'calendar3.svg',
                 name: :state_changes,
                 url: ->(resource) { admin_order_state_changes_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :state_changes
               }
             ).
             with_active_check.

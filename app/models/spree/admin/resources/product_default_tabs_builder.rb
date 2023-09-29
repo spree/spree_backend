@@ -26,7 +26,8 @@ module Spree
                 icon_name: 'edit.svg',
                 name: :details,
                 url: ->(resource) { edit_admin_product_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :details
               }
             ).
             with_active_check.
@@ -43,7 +44,8 @@ module Spree
                 icon_name: 'images.svg',
                 name: :images,
                 url: ->(resource) { admin_product_images_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :images
               }
             ).
             with_active_check.
@@ -64,7 +66,8 @@ module Spree
                 icon_name: 'adjust.svg',
                 name: :variants,
                 url: ->(resource) { admin_product_variants_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :variants
               }
             ).
             with_active_check.
@@ -85,7 +88,8 @@ module Spree
                 icon_name: 'list.svg',
                 name: :properties,
                 url: ->(resource) { admin_product_product_properties_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :properties
               }
             ).
             with_active_check.
@@ -106,7 +110,8 @@ module Spree
                 icon_name: 'box-seam.svg',
                 name: :stock,
                 url: ->(resource) { stock_admin_product_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :stock
               }
             ).
             with_active_check.
@@ -127,7 +132,8 @@ module Spree
                 icon_name: 'currency-exchange.svg',
                 name: :prices,
                 url: ->(resource) { admin_product_prices_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :prices
               }
             ).
             with_active_check.
@@ -148,7 +154,8 @@ module Spree
                 icon_name: 'download.svg',
                 name: 'admin.digitals.digital_assets',
                 url: ->(resource) { admin_product_digitals_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :digitals
               }
             ).
             with_active_check.
@@ -169,7 +176,8 @@ module Spree
                 icon_name: 'translate.svg',
                 name: :translations,
                 url: ->(resource) { translations_admin_product_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :translations
               }
             ).
             with_active_check.

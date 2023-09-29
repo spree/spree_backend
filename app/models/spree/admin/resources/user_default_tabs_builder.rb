@@ -23,7 +23,8 @@ module Spree
                 icon_name: 'person.svg',
                 name: "admin.user.account",
                 url: ->(resource) { edit_admin_user_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :account
               }
             ).
             with_active_check.
@@ -39,7 +40,8 @@ module Spree
                 icon_name: 'pin-map.svg',
                 name: "admin.user.addresses",
                 url: ->(resource) { addresses_admin_user_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :address
               }
             ).
             with_active_check.
@@ -55,7 +57,8 @@ module Spree
                 icon_name: 'inbox.svg',
                 name: 'admin.user.orders',
                 url: ->(resource) { orders_admin_user_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :orders
               }
             ).
             with_active_check.
@@ -71,7 +74,8 @@ module Spree
                 icon_name: 'tag.svg',
                 name: 'admin.user.items',
                 url: ->(resource) { items_admin_user_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :items
               }
             ).
             with_active_check.
@@ -87,7 +91,8 @@ module Spree
                 icon_name: 'gift.svg',
                 name: 'admin.user.store_credits',
                 url: ->(resource) { admin_user_store_credits_path(resource) },
-                classes: 'nav-link'
+                classes: 'nav-link',
+                partial_name: :store_credits
               }
             ).
             with_active_check.
