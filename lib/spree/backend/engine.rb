@@ -27,9 +27,9 @@ module Spree
       config.after_initialize do
         Rails.application.reload_routes!
         Rails.application.config.spree_backend.main_menu = Spree::Admin::MainMenu::DefaultConfigurationBuilder.new.build
-        Rails.application.config.spree_backend.order_tabs = Spree::Admin::Resources::OrderDefaultTabsBuilder.new.build
-        Rails.application.config.spree_backend.user_tabs = Spree::Admin::Resources::UserDefaultTabsBuilder.new.build
-        Rails.application.config.spree_backend.product_tabs = Spree::Admin::Resources::ProductDefaultTabsBuilder.new.build
+        # Rails.application.config.spree_backend.order_tabs = Spree::Admin::Resources::OrderDefaultTabsBuilder.new.build
+        # Rails.application.config.spree_backend.user_tabs = Spree::Admin::Resources::UserDefaultTabsBuilder.new.build
+        # Rails.application.config.spree_backend.product_tabs = Spree::Admin::Resources::ProductDefaultTabsBuilder.new.build
       end
     end
   end
