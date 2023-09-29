@@ -6,14 +6,14 @@ module Spree
       let(:builder) { described_class.new }
       let(:default_tabs) do
         %i(cart
-          channel
-          customer
-          shipments
-          adjustments
-          payments
-          return_authorizations
-          customer_returns
-          state_changes)
+           channel
+           customer
+           shipments
+           adjustments
+           payments
+           return_authorizations
+           customer_returns
+           state_changes)
       end
 
       describe '#build' do

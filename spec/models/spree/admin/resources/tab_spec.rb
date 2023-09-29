@@ -53,7 +53,7 @@ module Spree
           expect(subject).to eq(config[:partial_name])
         end
       end
-      
+
       describe '#available?' do
         subject { tab.available?(ability, resource) }
 
@@ -95,7 +95,7 @@ module Spree
         context 'when tab matches the current tab' do
           let(:current_tab) { config[:partial_name] }
 
-          it "returns true" do
+          it 'returns true' do
             expect(subject).to be(true)
           end
         end
@@ -103,7 +103,7 @@ module Spree
         context 'when tab does not match the current tab' do
           let(:current_tab) { 'non-matching' }
 
-          it "returns false" do
+          it 'returns false' do
             expect(subject).to be(false)
           end
         end
