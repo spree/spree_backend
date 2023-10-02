@@ -22,15 +22,7 @@ module Spree
 
         def add_cart_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'cart-check.svg',
-                name: :cart,
-                url: ->(resource) { cart_admin_order_path(resource) },
-                classes: 'nav-link',
-                partial_name: :cart
-              }
-            ).
+            Tab.new(cart_tab_config).
             with_active_check.
             with_default_translator.
             with_availability_check(
@@ -44,17 +36,19 @@ module Spree
           root.add(tab)
         end
 
+        def cart_tab_config
+          {
+            icon_name: 'cart-check.svg',
+            name: :cart,
+            url: ->(resource) { cart_admin_order_path(resource) },
+            classes: 'nav-link',
+            partial_name: :cart
+          }
+        end
+
         def add_channel_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'funnel.svg',
-                name: :channel,
-                url: ->(resource) { channel_admin_order_path(resource) },
-                classes: 'nav-link',
-                partial_name: :channel
-              }
-            ).
+            Tab.new(channel_tab_config).
             with_active_check.
             with_default_translator.
             with_update_availability_check
@@ -62,17 +56,19 @@ module Spree
           root.add(tab)
         end
 
+        def channel_tab_config
+          {
+            icon_name: 'funnel.svg',
+            name: :channel,
+            url: ->(resource) { channel_admin_order_path(resource) },
+            classes: 'nav-link',
+            partial_name: :channel
+          }
+        end
+
         def add_customer_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'person-lines-fill.svg',
-                name: :customer,
-                url: ->(resource) { admin_order_customer_path(resource) },
-                classes: 'nav-link',
-                partial_name: :customer_details
-              }
-            ).
+            Tab.new(customer_tab_config).
             with_active_check.
             with_default_translator.
             with_availability_check(
@@ -84,17 +80,19 @@ module Spree
           root.add(tab)
         end
 
+        def customer_tab_config
+          {
+            icon_name: 'person-lines-fill.svg',
+            name: :customer,
+            url: ->(resource) { admin_order_customer_path(resource) },
+            classes: 'nav-link',
+            partial_name: :customer_details
+          }
+        end
+
         def add_shipments_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'truck.svg',
-                name: :shipments,
-                url: ->(resource) { edit_admin_order_path(resource) },
-                classes: 'nav-link',
-                partial_name: :shipments
-              }
-            ).
+            Tab.new(shipments_tab_config).
             with_active_check.
             with_default_translator.
             with_update_availability_check
@@ -102,17 +100,19 @@ module Spree
           root.add(tab)
         end
 
+        def shipments_tab_config
+          {
+            icon_name: 'truck.svg',
+            name: :shipments,
+            url: ->(resource) { edit_admin_order_path(resource) },
+            classes: 'nav-link',
+            partial_name: :shipments
+          }
+        end
+
         def add_adjustments_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'adjust.svg',
-                name: :adjustments,
-                url: ->(resource) { admin_order_adjustments_path(resource) },
-                classes: 'nav-link',
-                partial_name: :adjustments
-              }
-            ).
+            Tab.new(adjustments_tab_config).
             with_active_check.
             with_default_translator.
             with_index_availability_check(::Spree::Adjustment)
@@ -120,17 +120,19 @@ module Spree
           root.add(tab)
         end
 
+        def adjustments_tab_config
+          {
+            icon_name: 'adjust.svg',
+            name: :adjustments,
+            url: ->(resource) { admin_order_adjustments_path(resource) },
+            classes: 'nav-link',
+            partial_name: :adjustments
+          }
+        end
+
         def add_payments_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'credit-card.svg',
-                name: :payments,
-                url: ->(resource) { admin_order_payments_path(resource) },
-                classes: 'nav-link',
-                partial_name: :payments
-              }
-            ).
+            Tab.new(payments_tab_config).
             with_active_check.
             with_default_translator.
             with_index_availability_check(::Spree::Payment)
@@ -138,17 +140,19 @@ module Spree
           root.add(tab)
         end
 
+        def payments_tab_config
+          {
+            icon_name: 'credit-card.svg',
+            name: :payments,
+            url: ->(resource) { admin_order_payments_path(resource) },
+            classes: 'nav-link',
+            partial_name: :payments
+          }
+        end
+
         def add_return_authorizations_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'enter.svg',
-                name: :return_authorizations,
-                url: ->(resource) { admin_order_return_authorizations_path(resource) },
-                classes: 'nav-link',
-                partial_name: :return_authorizations
-              }
-            ).
+            Tab.new(return_authorizations_tab_config).
             with_active_check.
             with_default_translator.
             with_index_availability_check(::Spree::ReturnAuthorization)
@@ -156,17 +160,19 @@ module Spree
           root.add(tab)
         end
 
+        def return_authorizations_tab_config
+          {
+            icon_name: 'enter.svg',
+            name: :return_authorizations,
+            url: ->(resource) { admin_order_return_authorizations_path(resource) },
+            classes: 'nav-link',
+            partial_name: :return_authorizations
+          }
+        end
+
         def add_customer_returns_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'returns.svg',
-                name: :customer_returns,
-                url: ->(resource) { admin_order_customer_returns_path(resource) },
-                classes: 'nav-link',
-                partial_name: :customer_returns
-              }
-            ).
+            Tab.new(customer_returns_tab_config).
             with_active_check.
             with_default_translator.
             with_index_availability_check(::Spree::CustomerReturn)
@@ -174,22 +180,34 @@ module Spree
           root.add(tab)
         end
 
+        def customer_returns_tab_config
+          {
+            icon_name: 'returns.svg',
+            name: :customer_returns,
+            url: ->(resource) { admin_order_customer_returns_path(resource) },
+            classes: 'nav-link',
+            partial_name: :customer_returns
+          }
+        end
+
         def add_state_changes_tab(root)
           tab =
-            Tab.new(
-              {
-                icon_name: 'calendar3.svg',
-                name: :state_changes,
-                url: ->(resource) { admin_order_state_changes_path(resource) },
-                classes: 'nav-link',
-                partial_name: :state_changes
-              }
-            ).
+            Tab.new(state_changes_tab_config).
             with_active_check.
             with_custom_translator(::Spree::StateChange, :human_attribute_name).
             with_update_availability_check
 
           root.add(tab)
+        end
+
+        def state_changes_tab_config
+          {
+            icon_name: 'calendar3.svg',
+            name: :state_changes,
+            url: ->(resource) { admin_order_state_changes_path(resource) },
+            classes: 'nav-link',
+            partial_name: :state_changes
+          }
         end
       end
     end
