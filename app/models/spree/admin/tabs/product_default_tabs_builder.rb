@@ -24,7 +24,6 @@ module Spree
           tab =
             Tab.new(details_config).
             with_active_check.
-            with_default_translator.
             with_admin_availability_check(::Spree::Product)
 
           root.add(tab)
@@ -44,7 +43,6 @@ module Spree
           tab =
             Tab.new(images_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Image) && !resource.deleted?
@@ -68,7 +66,6 @@ module Spree
           tab =
             Tab.new(variants_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Variant) && !resource.deleted?
@@ -92,7 +89,6 @@ module Spree
           tab =
             Tab.new(properties_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::ProductProperty) && !resource.deleted?
@@ -116,7 +112,6 @@ module Spree
           tab =
             Tab.new(stock_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::StockItem) && !resource.deleted?
@@ -140,7 +135,6 @@ module Spree
           tab =
             Tab.new(prices_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Price) && !resource.deleted?
@@ -164,7 +158,6 @@ module Spree
           tab =
             Tab.new(digitals_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Digital) && !resource.deleted?
@@ -188,7 +181,6 @@ module Spree
           tab =
             Tab.new(translations_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Product) && !resource.deleted?

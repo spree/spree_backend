@@ -25,7 +25,6 @@ module Spree
           tab =
             Tab.new(cart_tab_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               # An abstract module should not be aware of resource's internal structure.
               # If these checks are elaborate, it's better to have this complexity declared explicitly here.
@@ -52,7 +51,6 @@ module Spree
           tab =
             Tab.new(channel_tab_config).
             with_active_check.
-            with_default_translator.
             with_update_availability_check.
             with_data_hook('admin_order_tabs_channel_details')
 
@@ -73,7 +71,6 @@ module Spree
           tab =
             Tab.new(customer_tab_config).
             with_active_check.
-            with_default_translator.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:update, resource) && resource.checkout_steps.include?('address')
@@ -98,7 +95,6 @@ module Spree
           tab =
             Tab.new(shipments_tab_config).
             with_active_check.
-            with_default_translator.
             with_update_availability_check.
             with_data_hook('admin_order_tabs_shipment_details')
 
@@ -119,7 +115,6 @@ module Spree
           tab =
             Tab.new(adjustments_tab_config).
             with_active_check.
-            with_default_translator.
             with_index_availability_check(::Spree::Adjustment).
             with_data_hook('admin_order_tabs_adjustments')
 
@@ -140,7 +135,6 @@ module Spree
           tab =
             Tab.new(payments_tab_config).
             with_active_check.
-            with_default_translator.
             with_index_availability_check(::Spree::Payment).
             with_data_hook('admin_order_tabs_payments')
 
@@ -161,7 +155,6 @@ module Spree
           tab =
             Tab.new(return_authorizations_tab_config).
             with_active_check.
-            with_default_translator.
             with_index_availability_check(::Spree::ReturnAuthorization).
             with_data_hook('admin_order_tabs_return_authorizations')
 
@@ -182,7 +175,6 @@ module Spree
           tab =
             Tab.new(customer_returns_tab_config).
             with_active_check.
-            with_default_translator.
             with_index_availability_check(::Spree::CustomerReturn)
 
           root.add(tab)

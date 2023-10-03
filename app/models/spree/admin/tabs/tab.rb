@@ -38,7 +38,7 @@ module Spree
         end
 
         def text
-          return true unless @translate.present?
+          return ::Spree.t(name) unless @translate.present?
 
           @translate.call(name)
         end
