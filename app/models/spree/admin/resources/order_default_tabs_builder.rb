@@ -32,7 +32,8 @@ module Spree
               lambda do |ability, resource|
                 ability.can?(:update, resource) && (resource.shipments.empty? || resource.shipments.shipped.empty?)
               end
-            )
+            ).
+            with_data_hook('admin_order_tabs_cart_details')
 
           root.add(tab)
         end
@@ -52,7 +53,8 @@ module Spree
             Tab.new(channel_tab_config).
             with_active_check.
             with_default_translator.
-            with_update_availability_check
+            with_update_availability_check.
+            with_data_hook('admin_order_tabs_channel_details')
 
           root.add(tab)
         end
@@ -76,7 +78,8 @@ module Spree
               lambda do |ability, resource|
                 ability.can?(:update, resource) && resource.checkout_steps.include?('address')
               end
-            )
+            ).
+            with_data_hook('admin_order_tabs_customer_details')
 
           root.add(tab)
         end
@@ -96,7 +99,8 @@ module Spree
             Tab.new(shipments_tab_config).
             with_active_check.
             with_default_translator.
-            with_update_availability_check
+            with_update_availability_check.
+            with_data_hook('admin_order_tabs_shipment_details')
 
           root.add(tab)
         end
@@ -116,7 +120,8 @@ module Spree
             Tab.new(adjustments_tab_config).
             with_active_check.
             with_default_translator.
-            with_index_availability_check(::Spree::Adjustment)
+            with_index_availability_check(::Spree::Adjustment).
+            with_data_hook('admin_order_tabs_adjustments')
 
           root.add(tab)
         end
@@ -136,7 +141,8 @@ module Spree
             Tab.new(payments_tab_config).
             with_active_check.
             with_default_translator.
-            with_index_availability_check(::Spree::Payment)
+            with_index_availability_check(::Spree::Payment).
+            with_data_hook('admin_order_tabs_payments')
 
           root.add(tab)
         end
@@ -156,7 +162,8 @@ module Spree
             Tab.new(return_authorizations_tab_config).
             with_active_check.
             with_default_translator.
-            with_index_availability_check(::Spree::ReturnAuthorization)
+            with_index_availability_check(::Spree::ReturnAuthorization).
+            with_data_hook('admin_order_tabs_return_authorizations')
 
           root.add(tab)
         end
@@ -196,7 +203,8 @@ module Spree
             Tab.new(state_changes_tab_config).
             with_active_check.
             with_custom_translator(::Spree::StateChange, :human_attribute_name).
-            with_update_availability_check
+            with_update_availability_check.
+            with_data_hook('admin_order_tabs_state_changes')
 
           root.add(tab)
         end

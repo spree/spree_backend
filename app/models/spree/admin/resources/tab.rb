@@ -5,6 +5,7 @@ module Spree
         include ConditionalChecker
         include AvailabilityBuilderMethods
         include Translator
+        include DataHook
 
         attr_reader :icon_name, :name, :classes, :partial_name
 
@@ -40,6 +41,10 @@ module Spree
           return true unless @translate.present?
 
           @translate.call(name)
+        end
+
+        def data_hook
+          @data_hook.presence
         end
       end
     end
