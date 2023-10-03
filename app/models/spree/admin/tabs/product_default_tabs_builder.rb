@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    module Resources
+    module Tabs
       # rubocop:disable Metrics/ClassLength
       class ProductDefaultTabsBuilder
         include Spree::Core::Engine.routes.url_helpers

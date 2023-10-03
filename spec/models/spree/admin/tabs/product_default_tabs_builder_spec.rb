@@ -2,14 +2,17 @@ require 'spec_helper'
 
 module Spree
   module Admin
-    describe Resources::UserDefaultTabsBuilder, type: :model do
+    describe Tabs::ProductDefaultTabsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_tabs) do
-        ['admin.user.account',
-         'admin.user.addresses',
-         'admin.user.orders',
-         'admin.user.items',
-         'admin.user.store_credits']
+        [:details,
+         :images,
+         :variants,
+         :properties,
+         :stock,
+         :prices,
+         'admin.digitals.digital_assets',
+         :translations]
       end
 
       describe '#build' do

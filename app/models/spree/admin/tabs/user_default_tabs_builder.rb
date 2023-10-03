@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    module Resources
+    module Tabs
       class UserDefaultTabsBuilder
         include Spree::Core::Engine.routes.url_helpers
 

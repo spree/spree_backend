@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
   module Admin
-    describe Resources::Tab, type: :model do
+    describe Tabs::Tab, type: :model do
       let(:tab) { described_class.new(config) }
       let(:config) do
         {

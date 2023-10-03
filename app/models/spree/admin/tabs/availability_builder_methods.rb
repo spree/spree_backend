@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    module Resources
+    module Tabs
       module AvailabilityBuilderMethods
         def with_availability_check(availability_check)
           @availability_check = availability_check

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
   module Admin
-    describe Resources::OrderDefaultTabsBuilder, type: :model do
+    describe Tabs::OrderDefaultTabsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_tabs) do
         %i(cart

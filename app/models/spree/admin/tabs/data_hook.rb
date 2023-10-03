@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    module Resources
+    module Tabs
       module DataHook
         def with_data_hook(data_hook)
           @data_hook = data_hook

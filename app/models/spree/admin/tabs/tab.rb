@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    module Resources
+    module Tabs
       class Tab
         include ConditionalChecker
         include AvailabilityBuilderMethods

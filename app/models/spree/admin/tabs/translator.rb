@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    module Resources
+    module Tabs
       module Translator
         def with_default_translator
           @translate = ->(name) { ::Spree.t(name) }
