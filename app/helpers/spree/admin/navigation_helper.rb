@@ -310,15 +310,15 @@ module Spree
       end
 
       def order_tabs
-        Rails.application.config.spree_backend.order_tabs
+        Rails.application.config.spree_backend.tabs[:order]
       end
 
       def user_tabs
-        Rails.application.config.spree_backend.user_tabs
+        Rails.application.config.spree_backend.tabs[:user]
       end
 
       def product_tabs
-        Rails.application.config.spree_backend.product_tabs
+        Rails.application.config.spree_backend.tabs[:product]
       end
     end
   end
