@@ -4,7 +4,7 @@ module Spree
   module Admin
     describe Tabs::Tab, type: :model do
       let(:tab) { described_class.new(config) }
-      let(:config) do
+      let(:config_base) do
         {
           icon_name: 'cart-check.svg',
           name: 'Cart',
@@ -12,6 +12,10 @@ module Spree
           classes: 'nav-link',
           partial_name: :cart
         }
+      end
+      let(:additional_config) { {} }
+      let(:config) do
+        config_base.merge(additional_config)
       end
 
       describe '#icon_name' do
@@ -58,19 +62,11 @@ module Spree
           end
         end
 
-        context 'when availability check returns true' do
-          before do
-            tab.with_availability_check(->(_ability, _resource) { true })
-          end
-
-          it 'returns true' do
-            expect(subject).to be(true)
-          end
-        end
-
         context 'when availability check returns false' do
-          before do
-            tab.with_availability_check(->(_ability, _resource) { false })
+          let(:additional_config) do
+            {
+              availability_check: ->(_ability, _resource) { false }
+            }
           end
 
           it 'returns false' do
@@ -82,9 +78,12 @@ module Spree
       describe '#active?' do
         subject { tab.active?(current_tab) }
 
-        before { tab.with_active_check }
-
-        context 'when tab matches the current tab' do
+        context 'when active check returns true' do
+          let(:additional_config) do
+            {
+              active_check: ->(_current_tab, _text) { true }
+            }
+          end
           let(:current_tab) { config[:partial_name] }
 
           it 'returns true' do
@@ -92,7 +91,12 @@ module Spree
           end
         end
 
-        context 'when tab does not match the current tab' do
+        context 'when active check returns false' do
+          let(:additional_config) do
+            {
+              active_check: ->(_current_tab, _text) { false }
+            }
+          end
           let(:current_tab) { 'non-matching' }
 
           it 'returns false' do
@@ -106,26 +110,16 @@ module Spree
         let(:resource) { double }
 
         context 'when complete check is not set' do
-          it 'is returns true' do
-            expect(subject).to be(true)
-          end
-        end
-
-        context 'when complete check returns true' do
-          before do
-            tab.with_completed_check
-            allow(resource).to receive(:completed?).and_return(true)
-          end
-
           it 'returns true' do
             expect(subject).to be(true)
           end
         end
 
         context 'when complete check returns false' do
-          before do
-            tab.with_completed_check
-            allow(resource).to receive(:completed?).and_return(false)
+          let(:additional_config) do
+            {
+              completed_check: ->(_resource) { false }
+            }
           end
 
           it 'returns false' do
