@@ -7,14 +7,14 @@ module Spree
         include DataHook
 
         def initialize(config)
-          @icon_name = config[:icon_name]
-          @name = config[:name]
-          @url = config[:url]
-          @classes = config[:classes]
-          @partial_name = config[:partial_name]
+          @icon_name =          config[:icon_name]
+          @name =               config[:name]
+          @url =                config[:url]
+          @classes =            config[:classes]
+          @partial_name =       config[:partial_name]
           @availability_check = nil
-          @active_check = nil
-          @completed_check = nil
+          @active_check =       nil
+          @completed_check =    nil
         end
 
         def build
