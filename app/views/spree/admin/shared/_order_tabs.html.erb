@@ -6,13 +6,15 @@
 <% content_for :page_tabs do %>
   <% order_tabs.items.each do |tab| %>
     <% next unless tab.available?(current_ability, @order) %>
-      <%= content_tag :li, class: 'nav-item', data: { hook: tab.data_hook } do %>
-        <%= link_to_with_icon(
-          tab.icon_name,
-          tab.text,
-          tab.url(@order),
-          class: tab.active?(current) ? "active #{tab.classes}" : tab.classes
-        ) %>
+      <% next unless tab.complete?(@order) %>
+        <%= content_tag :li, class: 'nav-item', data: { hook: tab.data_hook } do %>
+          <%= link_to_with_icon(
+            tab.icon_name,
+            tab.text,
+            tab.url(@order),
+            class: tab.active?(current) ? "active #{tab.classes}" : tab.classes
+          ) %>
       <% end %>
+    <% end %>
   <% end %>
 <% end %>

@@ -155,6 +155,7 @@ module Spree
           tab =
             Tab.new(return_authorizations_tab_config).
             with_active_check.
+            with_completed_check.
             with_index_availability_check(::Spree::ReturnAuthorization).
             with_data_hook('admin_order_tabs_return_authorizations')
 
@@ -175,6 +176,7 @@ module Spree
           tab =
             Tab.new(customer_returns_tab_config).
             with_active_check.
+            with_completed_check.
             with_index_availability_check(::Spree::CustomerReturn)
 
           root.add(tab)
