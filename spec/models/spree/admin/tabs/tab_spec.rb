@@ -4,19 +4,19 @@ module Spree
   module Admin
     describe Tabs::Tab, type: :model do
       let(:tab) { described_class.new(config) }
-      let(:config_base) do
+      let(:config) do
         {
           icon_name: 'cart-check.svg',
           name: 'Cart',
           url: '/cart',
           classes: 'nav-link',
-          partial_name: :cart
+          partial_name: :cart,
+          availability_check: check,
+          active_check: check,
+          completed_check: check
         }
       end
-      let(:additional_config) { {} }
-      let(:config) do
-        config_base.merge(additional_config)
-      end
+      let(:check) { nil }
 
       describe '#icon_name' do
         subject { tab.icon_name }
@@ -63,11 +63,7 @@ module Spree
         end
 
         context 'when availability check returns false' do
-          let(:additional_config) do
-            {
-              availability_check: ->(_ability, _resource) { false }
-            }
-          end
+          let(:check) { ->(_ability, _resource) { false } }
 
           it 'returns false' do
             expect(subject).to be(false)
@@ -79,11 +75,7 @@ module Spree
         subject { tab.active?(current_tab) }
 
         context 'when active check returns true' do
-          let(:additional_config) do
-            {
-              active_check: ->(_current_tab, _text) { true }
-            }
-          end
+          let(:check) { ->(_current_tab, _text) { true } }
           let(:current_tab) { config[:partial_name] }
 
           it 'returns true' do
@@ -92,11 +84,7 @@ module Spree
         end
 
         context 'when active check returns false' do
-          let(:additional_config) do
-            {
-              active_check: ->(_current_tab, _text) { false }
-            }
-          end
+          let(:check) { ->(_current_tab, _text) { false } }
           let(:current_tab) { 'non-matching' }
 
           it 'returns false' do
@@ -116,11 +104,7 @@ module Spree
         end
 
         context 'when complete check returns false' do
-          let(:additional_config) do
-            {
-              completed_check: ->(_resource) { false }
-            }
-          end
+          let(:check) { ->(_resource) { false } }
 
           it 'returns false' do
             expect(subject).to be(false)
