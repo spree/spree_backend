@@ -12,7 +12,7 @@ module Spree
           @partial_name =       config[:partial_name]
           @availability_check = config[:availability_check]
           @active_check =       config[:active_check]
-          @completed_check  =   config[:completed_check]
+          @completed_check =    config[:completed_check]
           @text =               config[:text]
           @data_hook =          config[:data_hook]
         end
