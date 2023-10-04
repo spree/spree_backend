@@ -4,7 +4,6 @@ module Spree
       class Tab
         include ConditionalChecker
         include AvailabilityBuilderMethods
-        include Translator
         include DataHook
 
         attr_reader :icon_name, :name, :classes, :partial_name
@@ -38,9 +37,7 @@ module Spree
         end
 
         def text
-          return ::Spree.t(name) unless @translate.present?
-
-          @translate.call(name)
+          ::Spree.t(name)
         end
 
         def data_hook

@@ -194,7 +194,6 @@ module Spree
           tab =
             Tab.new(state_changes_tab_config).
             with_active_check.
-            with_custom_translator(::Spree::StateChange, :human_attribute_name).
             with_update_availability_check.
             with_data_hook('admin_order_tabs_state_changes')
 
