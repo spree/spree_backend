@@ -46,14 +46,6 @@ module Spree
         end
       end
 
-      describe '#partial_name' do
-        subject { tab.partial_name }
-
-        it 'returns partial_name' do
-          expect(subject).to eq(config[:partial_name])
-        end
-      end
-
       describe '#available?' do
         subject { tab.available?(ability, resource) }
 
