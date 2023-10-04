@@ -18,8 +18,9 @@ module Spree
 
         def add_account_tab(root)
           tab =
-            Tab.new(account_config).
-            with_active_check
+            TabBuilder.new(account_config).
+            with_active_check.
+            build
 
           root.add(tab)
         end
@@ -36,8 +37,9 @@ module Spree
 
         def add_addresses_tab(root)
           tab =
-            Tab.new(addresses_config).
-            with_active_check
+            TabBuilder.new(addresses_config).
+            with_active_check.
+            build
 
           root.add(tab)
         end
@@ -54,8 +56,9 @@ module Spree
 
         def add_orders_tab(root)
           tab =
-            Tab.new(orders_config).
-            with_active_check
+            TabBuilder.new(orders_config).
+            with_active_check.
+            build
 
           root.add(tab)
         end
@@ -72,8 +75,9 @@ module Spree
 
         def add_items_tab(root)
           tab =
-            Tab.new(items_config).
-            with_active_check
+            TabBuilder.new(items_config).
+            with_active_check.
+            build
 
           root.add(tab)
         end
@@ -90,8 +94,9 @@ module Spree
 
         def add_store_credits_tab(root)
           tab =
-            Tab.new(store_credits_config).
-            with_active_check
+            TabBuilder.new(store_credits_config).
+            with_active_check.
+            build
 
           root.add(tab)
         end

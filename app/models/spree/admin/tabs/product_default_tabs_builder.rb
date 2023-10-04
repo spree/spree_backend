@@ -22,9 +22,10 @@ module Spree
 
         def add_details_tab(root)
           tab =
-            Tab.new(details_config).
+            TabBuilder.new(details_config).
             with_active_check.
-            with_admin_availability_check(::Spree::Product)
+            with_admin_availability_check(::Spree::Product).
+            build
 
           root.add(tab)
         end
@@ -41,13 +42,14 @@ module Spree
 
         def add_images_tab(root)
           tab =
-            Tab.new(images_config).
+            TabBuilder.new(images_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Image) && !resource.deleted?
               end
-            )
+            ).
+            build
 
           root.add(tab)
         end
@@ -64,13 +66,14 @@ module Spree
 
         def add_variants_tab(root)
           tab =
-            Tab.new(variants_config).
+            TabBuilder.new(variants_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Variant) && !resource.deleted?
               end
-            )
+            ).
+            build
 
           root.add(tab)
         end
@@ -87,13 +90,14 @@ module Spree
 
         def add_properties_tab(root)
           tab =
-            Tab.new(properties_config).
+            TabBuilder.new(properties_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::ProductProperty) && !resource.deleted?
               end
-            )
+            ).
+            build
 
           root.add(tab)
         end
@@ -110,13 +114,14 @@ module Spree
 
         def add_stock_tab(root)
           tab =
-            Tab.new(stock_config).
+            TabBuilder.new(stock_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::StockItem) && !resource.deleted?
               end
-            )
+            ).
+            build
 
           root.add(tab)
         end
@@ -133,13 +138,14 @@ module Spree
 
         def add_prices_tab(root)
           tab =
-            Tab.new(prices_config).
+            TabBuilder.new(prices_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Price) && !resource.deleted?
               end
-            )
+            ).
+            build
 
           root.add(tab)
         end
@@ -156,13 +162,14 @@ module Spree
 
         def add_digitals_tab(root)
           tab =
-            Tab.new(digitals_config).
+            TabBuilder.new(digitals_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Digital) && !resource.deleted?
               end
-            )
+            ).
+            build
 
           root.add(tab)
         end
@@ -179,13 +186,14 @@ module Spree
 
         def add_translations_tab(root)
           tab =
-            Tab.new(translations_config).
+            TabBuilder.new(translations_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:admin, ::Spree::Product) && !resource.deleted?
               end
-            )
+            ).
+            build
 
           root.add(tab)
         end

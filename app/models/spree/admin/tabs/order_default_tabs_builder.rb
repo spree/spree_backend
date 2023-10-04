@@ -23,7 +23,7 @@ module Spree
 
         def add_cart_tab(root)
           tab =
-            Tab.new(cart_tab_config).
+            TabBuilder.new(cart_tab_config).
             with_active_check.
             with_availability_check(
               # An abstract module should not be aware of resource's internal structure.
@@ -32,7 +32,8 @@ module Spree
                 ability.can?(:update, resource) && (resource.shipments.empty? || resource.shipments.shipped.empty?)
               end
             ).
-            with_data_hook('admin_order_tabs_cart_details')
+            with_data_hook('admin_order_tabs_cart_details').
+            build
 
           root.add(tab)
         end
@@ -49,10 +50,11 @@ module Spree
 
         def add_channel_tab(root)
           tab =
-            Tab.new(channel_tab_config).
+            TabBuilder.new(channel_tab_config).
             with_active_check.
             with_update_availability_check.
-            with_data_hook('admin_order_tabs_channel_details')
+            with_data_hook('admin_order_tabs_channel_details').
+            build
 
           root.add(tab)
         end
@@ -69,14 +71,15 @@ module Spree
 
         def add_customer_tab(root)
           tab =
-            Tab.new(customer_tab_config).
+            TabBuilder.new(customer_tab_config).
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:update, resource) && resource.checkout_steps.include?('address')
               end
             ).
-            with_data_hook('admin_order_tabs_customer_details')
+            with_data_hook('admin_order_tabs_customer_details').
+            build
 
           root.add(tab)
         end
@@ -93,10 +96,11 @@ module Spree
 
         def add_shipments_tab(root)
           tab =
-            Tab.new(shipments_tab_config).
+            TabBuilder.new(shipments_tab_config).
             with_active_check.
             with_update_availability_check.
-            with_data_hook('admin_order_tabs_shipment_details')
+            with_data_hook('admin_order_tabs_shipment_details').
+            build
 
           root.add(tab)
         end
@@ -113,10 +117,11 @@ module Spree
 
         def add_adjustments_tab(root)
           tab =
-            Tab.new(adjustments_tab_config).
+            TabBuilder.new(adjustments_tab_config).
             with_active_check.
             with_index_availability_check(::Spree::Adjustment).
-            with_data_hook('admin_order_tabs_adjustments')
+            with_data_hook('admin_order_tabs_adjustments').
+            build
 
           root.add(tab)
         end
@@ -133,10 +138,11 @@ module Spree
 
         def add_payments_tab(root)
           tab =
-            Tab.new(payments_tab_config).
+            TabBuilder.new(payments_tab_config).
             with_active_check.
             with_index_availability_check(::Spree::Payment).
-            with_data_hook('admin_order_tabs_payments')
+            with_data_hook('admin_order_tabs_payments').
+            build
 
           root.add(tab)
         end
@@ -153,11 +159,12 @@ module Spree
 
         def add_return_authorizations_tab(root)
           tab =
-            Tab.new(return_authorizations_tab_config).
+            TabBuilder.new(return_authorizations_tab_config).
             with_active_check.
             with_completed_check.
             with_index_availability_check(::Spree::ReturnAuthorization).
-            with_data_hook('admin_order_tabs_return_authorizations')
+            with_data_hook('admin_order_tabs_return_authorizations').
+            build
 
           root.add(tab)
         end
@@ -174,10 +181,11 @@ module Spree
 
         def add_customer_returns_tab(root)
           tab =
-            Tab.new(customer_returns_tab_config).
+            TabBuilder.new(customer_returns_tab_config).
             with_active_check.
             with_completed_check.
-            with_index_availability_check(::Spree::CustomerReturn)
+            with_index_availability_check(::Spree::CustomerReturn).
+            build
 
           root.add(tab)
         end
@@ -194,10 +202,11 @@ module Spree
 
         def add_state_changes_tab(root)
           tab =
-            Tab.new(state_changes_tab_config).
+            TabBuilder.new(state_changes_tab_config).
             with_active_check.
             with_update_availability_check.
-            with_data_hook('admin_order_tabs_state_changes')
+            with_data_hook('admin_order_tabs_state_changes').
+            build
 
           root.add(tab)
         end
