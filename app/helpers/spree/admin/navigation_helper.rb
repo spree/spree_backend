@@ -320,6 +320,10 @@ module Spree
       def product_tabs
         Rails.application.config.spree_backend.tabs[:product]
       end
+
+      def orders_actions
+        Rails.application.config.spree_backend.actions[:orders]
+      end
     end
   end
 end
