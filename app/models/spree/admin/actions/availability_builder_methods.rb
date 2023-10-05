@@ -12,10 +12,10 @@ module Spree
           self
         end
 
-        # def with_availability_check(availability_check)
-        #   @availability_check = availability_check
-        #   self
-        # end
+        def with_availability_check(availability_check)
+          @availability_check = availability_check
+          self
+        end
 
         # def with_update_availability_check
         #   @availability_check = ->(ability, resource) { ability.can?(:update, resource) }

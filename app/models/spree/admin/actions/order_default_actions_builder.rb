@@ -7,6 +7,7 @@ module Spree
         def build
           root = Root.new
           add_resend_action(root)
+          add_reset_download_links_action(root)
           root
         end
 
@@ -28,6 +29,28 @@ module Spree
             url: ->(resource) { resend_admin_order_path(resource) },
             classes: 'btn-secondary',
             method: :post
+          }
+        end
+
+        def add_reset_download_links_action(root)
+          action =
+            ActionBuilder.new(reset_download_links_config).
+            with_availability_check(
+              lambda do |ability, resource|
+                ability.can?(:update, resource) && resource.some_digital?
+              end
+            ).
+            build
+
+          root.add(action)
+        end
+
+        def reset_download_links_config
+          {
+            icon_name: 'hdd.svg',
+            name: 'admin.digitals.reset_download_links',
+            url: ->(resource) { reset_digitals_admin_order_path(resource) },
+            method: :put
           }
         end
       end
