@@ -2,7 +2,6 @@ module Spree
   module Admin
     module Actions
       class ActionBuilder
-        include ConditionalChecker
         include AvailabilityBuilderMethods
 
         def initialize(config)
@@ -14,7 +13,7 @@ module Spree
         end
 
         def build
-          Tab.new(build_config)
+          Action.new(build_config)
         end
 
         private
