@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
   module Admin
-    describe Resources::OrdersDefaultActionsBuilder, type: :model do
+    describe Actions::OrdersDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
         %i(new_order)

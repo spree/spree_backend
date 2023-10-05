@@ -1,7 +1,7 @@
 module Spree
   module Admin
-    module Resources
-      class OrdersDefaultActionsBuilder
+    module Actions
+      class OrderDefaultActionsBuilder
         include Spree::Core::Engine.routes.url_helpers
 
         def build

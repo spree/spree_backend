@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
   module Admin
-    describe Resources::Root, type: :model do
+    describe Actions::Root, type: :model do
       let(:root) { described_class.new }
 
       describe '#add(item)' do
