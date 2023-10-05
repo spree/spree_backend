@@ -3,8 +3,8 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <%# TODO: add availability check %>
   <% orders_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability) %>
     <%= button_link_to(
       action.text,
       action.url,
