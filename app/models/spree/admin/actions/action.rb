@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    module Resources
+    module Actions
       class Action
         # include ConditionalChecker
         # include AvailabilityBuilderMethods

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
   module Admin
-    describe Resources::Action, type: :model do
+    describe Actions::Action, type: :model do
       # let(:tab) { described_class.new(config) }
       # let(:config) do
       #   {
