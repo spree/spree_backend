@@ -7,6 +7,11 @@ module Spree
           self
         end
 
+        def with_resend_availability_check
+          @availability_check = ->(ability, resource) { ability.can?(:resend, resource) }
+          self
+        end
+
         # def with_availability_check(availability_check)
         #   @availability_check = availability_check
         #   self

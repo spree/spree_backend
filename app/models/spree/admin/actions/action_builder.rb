@@ -10,6 +10,7 @@ module Spree
           @url = config[:url]
           @classes = config[:classes]
           @availability_check = nil
+          @method = config[:method]
         end
 
         def build
@@ -25,7 +26,8 @@ module Spree
             url: @url,
             classes: @classes,
             availability_check: @availability_check,
-            text: text
+            text: text,
+            method: @method
           }
         end
 
