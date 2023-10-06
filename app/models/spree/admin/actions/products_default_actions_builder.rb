@@ -26,7 +26,8 @@ module Spree
             icon_name: 'add.svg',
             name: :new_product,
             url: new_admin_product_path,
-            classes: 'btn-success'
+            classes: 'btn-success',
+            id: 'admin_new_product'
           }
         end
       end

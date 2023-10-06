@@ -2,7 +2,7 @@ module Spree
   module Admin
     module Actions
       class Action
-        attr_reader :icon_name, :name, :classes, :text, :method
+        attr_reader :icon_name, :name, :classes, :text, :method, :id
 
         def initialize(config)
           @icon_name =          config[:icon_name]
@@ -12,6 +12,7 @@ module Spree
           @availability_check = config[:availability_check]
           @text =               config[:text]
           @method =             config[:method]
+          @id =                 config[:id]
         end
 
         def available?(current_ability, resource = nil)
