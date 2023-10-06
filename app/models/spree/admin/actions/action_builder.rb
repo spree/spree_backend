@@ -12,6 +12,7 @@ module Spree
           @availability_check = nil
           @method = config[:method]
           @id = config[:id]
+          @translation_options = config[:translation_options]
         end
 
         def build
@@ -34,7 +35,9 @@ module Spree
         end
 
         def text
-          ::Spree.t(@name)
+          return ::Spree.t(@name) unless @translation_options.present?
+
+          ::Spree.t(@name, scope: @translation_options[:scope], default: ::Spree.t(@name))
         end
 
         # def available?(current_ability, resource)
