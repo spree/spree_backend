@@ -332,6 +332,10 @@ module Spree
       def users_actions
         Rails.application.config.spree_backend.actions[:users]
       end
+
+      def user_actions
+        Rails.application.config.spree_backend.actions[:user]
+      end
     end
   end
 end
