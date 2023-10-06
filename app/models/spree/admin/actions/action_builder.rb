@@ -11,6 +11,7 @@ module Spree
           @classes = config[:classes]
           @availability_check = nil
           @method = config[:method]
+          @id = config[:id]
         end
 
         def build
@@ -27,7 +28,8 @@ module Spree
             classes: @classes,
             availability_check: @availability_check,
             text: text,
-            method: @method
+            method: @method,
+            id: @id
           }
         end
 

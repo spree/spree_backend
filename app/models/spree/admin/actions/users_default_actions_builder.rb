@@ -26,7 +26,8 @@ module Spree
             icon_name: 'add.svg',
             name: :new_user,
             url: new_admin_user_path,
-            classes: 'btn-success'
+            classes: 'btn-success',
+            id: 'admin_new_user_link'
           }
         end
       end
