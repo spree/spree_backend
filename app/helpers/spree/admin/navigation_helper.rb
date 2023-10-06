@@ -328,6 +328,10 @@ module Spree
       def order_actions
         Rails.application.config.spree_backend.actions[:order]
       end
+
+      def users_actions
+        Rails.application.config.spree_backend.actions[:users]
+      end
     end
   end
 end
