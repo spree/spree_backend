@@ -28,7 +28,10 @@ module Spree
             name: :resend,
             url: ->(resource) { resend_admin_order_path(resource) },
             classes: 'btn-secondary',
-            method: :post
+            method: :post,
+            translation_options: {
+              scope: 'admin.order.events'
+            }
           }
         end
 
