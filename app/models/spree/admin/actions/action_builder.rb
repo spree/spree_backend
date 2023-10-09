@@ -13,6 +13,8 @@ module Spree
           @method = config[:method]
           @id = config[:id]
           @translation_options = config[:translation_options]
+          @target = config[:target]
+          @data = config[:data]
         end
 
         def build
@@ -30,7 +32,9 @@ module Spree
             availability_check: @availability_check,
             text: text(@name),
             method: @method,
-            id: @id
+            id: @id,
+            target: @target,
+            data: @data
           }
         end
 
