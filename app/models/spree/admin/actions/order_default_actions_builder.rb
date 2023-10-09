@@ -30,7 +30,8 @@ module Spree
             classes: 'btn-secondary',
             method: :post,
             translation_options: {
-              scope: 'admin.order.events'
+              scope: 'admin.order.events',
+              default: ::Spree.t(:resend)
             }
           }
         end

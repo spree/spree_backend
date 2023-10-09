@@ -28,16 +28,14 @@ module Spree
             url: @url,
             classes: @classes,
             availability_check: @availability_check,
-            text: text,
+            text: text(@name),
             method: @method,
             id: @id
           }
         end
 
-        def text
-          return ::Spree.t(@name) unless @translation_options.present?
-
-          ::Spree.t(@name, scope: @translation_options[:scope], default: ::Spree.t(@name))
+        def text(text, options = {})
+          ::Spree.t(text, options)
         end
 
         # def available?(current_ability, resource)
