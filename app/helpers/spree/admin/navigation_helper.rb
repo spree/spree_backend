@@ -1,5 +1,6 @@
 module Spree
   module Admin
+    # rubocop:disable Metrics/ModuleLength
     module NavigationHelper
       # Makes an admin navigation tab (<li> tag) that links to a routing resource under /admin.
       # The arguments should be a list of symbolized controller names that will cause this tab to
@@ -344,6 +345,7 @@ module Spree
       def product_actions
         Rails.application.config.spree_backend.actions[:product]
       end
+      # rubocop:enable Metrics/ModuleLength
     end
   end
 end
