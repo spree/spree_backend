@@ -13,6 +13,8 @@ module Spree
           @text =               config[:text]
           @method =             config[:method]
           @id =                 config[:id]
+          @target =             config[:target]
+          @data =               config[:data]
         end
 
         def available?(current_ability, resource = nil)
