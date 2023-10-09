@@ -1,6 +1,10 @@
 en:
   spree:
     admin:
+      actions:
+        approve: Approve
+        cancel: Cancel
+        resume: Resume
       url: URL
       active: Active
       name: Name

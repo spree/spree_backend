@@ -6,6 +6,9 @@ module Spree
 
         def build
           root = Root.new
+          add_approve_action(root)
+          add_cancel_action(root)
+          add_resume_action(root)
           add_resend_action(root)
           add_reset_download_links_action(root)
           root
@@ -55,6 +58,75 @@ module Spree
             name: 'admin.digitals.reset_download_links',
             url: ->(resource) { reset_digitals_admin_order_path(resource) },
             method: :put
+          }
+        end
+
+        def add_approve_action(root)
+          action =
+            ActionBuilder.new(approve_config).
+            with_state_change_check('approve').
+            build
+
+          root.add(action)
+        end
+
+        def approve_config
+          {
+            icon_name: 'approve.svg',
+            name: 'admin.actions.approve',
+            url: ->(resource) { approve_admin_order_path(resource) },
+            classes: 'btn-light',
+            method: :put,
+            translation_options: {
+              scope: 'admin.order.events'
+            },
+            data: { confirm: Spree.t(:order_sure_want_to, event: :approve) }
+          }
+        end
+
+        def add_cancel_action(root)
+          action =
+            ActionBuilder.new(cancel_config).
+            with_state_change_check('cancel').
+            build
+
+          root.add(action)
+        end
+
+        def cancel_config
+          {
+            icon_name: 'cancel.svg',
+            name: 'admin.actions.cancel',
+            url: ->(resource) { cancel_admin_order_path(resource) },
+            classes: 'btn-light',
+            method: :put,
+            translation_options: {
+              scope: 'admin.order.events'
+            },
+            data: { confirm: Spree.t(:order_sure_want_to, event: :cancel) }
+          }
+        end
+
+        def add_resume_action(root)
+          action =
+            ActionBuilder.new(resume_config).
+            with_state_change_check('resume').
+            build
+
+          root.add(action)
+        end
+
+        def resume_config
+          {
+            icon_name: 'resume.svg',
+            name: 'admin.actions.resume',
+            url: ->(resource) { resume_admin_order_path(resource) },
+            classes: 'btn-light',
+            method: :put,
+            translation_options: {
+              scope: 'admin.order.events'
+            },
+            data: { confirm: Spree.t(:order_sure_want_to, event: :resume) }
           }
         end
       end
