@@ -17,6 +17,11 @@ module Spree
           self
         end
 
+        def with_state_change_check(event)
+          @availability_check = ->(_ability, resource) { resource.send("can_#{event}?") }
+          self
+        end
+
         # def with_update_availability_check
         #   @availability_check = ->(ability, resource) { ability.can?(:update, resource) }
         #   self

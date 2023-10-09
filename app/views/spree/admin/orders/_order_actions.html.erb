@@ -1,7 +1,4 @@
 <% content_for :page_actions do %>
-  <% if can?(:fire, order) %>
-    <%= event_links(order, events) %>
-  <% end %>
   <% order_actions.items.each do |action| %>
     <% next unless action.available?(current_ability, order) %>
     <%= button_link_to(
