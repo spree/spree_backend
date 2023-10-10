@@ -26,7 +26,7 @@ module Spree
             name: 'admin.utilities.preview',
             url: ->(resource) { spree_storefront_resource_url(resource) },
             classes: 'btn-light',
-            id: 'admin_new_product',
+            id: 'adminPreviewProduct',
             translation_options: {
               name: :product
             },
