@@ -30,7 +30,7 @@ module Spree
             url: @url,
             classes: @classes,
             availability_check: @availability_check,
-            text: text(@name),
+            text: text(@name, @translation_options),
             method: @method,
             id: @id,
             target: @target,
@@ -38,8 +38,8 @@ module Spree
           }
         end
 
-        def text(text, options = {})
-          ::Spree.t(text, options)
+        def text(text, options)
+          options.present? ? ::Spree.t(text, options) : ::Spree.t(text)
         end
 
         # def available?(current_ability, resource)
