@@ -65,6 +65,7 @@ module Spree
           action =
             ActionBuilder.new(approve_config).
             with_state_change_check('approve').
+            with_fire_availability_check.
             build
 
           root.add(action)
@@ -88,6 +89,7 @@ module Spree
           action =
             ActionBuilder.new(cancel_config).
             with_state_change_check('cancel').
+            with_fire_availability_check.
             build
 
           root.add(action)
@@ -111,6 +113,7 @@ module Spree
           action =
             ActionBuilder.new(resume_config).
             with_state_change_check('resume').
+            with_fire_availability_check.
             build
 
           root.add(action)
