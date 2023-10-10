@@ -9,7 +9,7 @@ module Spree
           @name = config[:name]
           @url = config[:url]
           @classes = config[:classes]
-          @availability_check = nil
+          @availability_checks = []
           @method = config[:method]
           @id = config[:id]
           @translation_options = config[:translation_options]
@@ -29,7 +29,7 @@ module Spree
             name: @name,
             url: @url,
             classes: @classes,
-            availability_check: @availability_check,
+            availability_checks: @availability_checks,
             text: text(@name, @translation_options),
             method: @method,
             id: @id,
