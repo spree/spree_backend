@@ -13,6 +13,7 @@ module Spree
           @text =               config[:text]
           @method =             config[:method]
           @id =                 config[:id]
+          @translation_options = config[:translation_options]
           @target =             config[:target]
           @data =               config[:data]
         end
