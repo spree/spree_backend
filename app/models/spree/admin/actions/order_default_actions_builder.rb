@@ -74,7 +74,7 @@ module Spree
         def approve_config
           {
             icon_name: 'approve.svg',
-            name: 'admin.actions.approve',
+            name: :approve,
             url: ->(resource) { approve_admin_order_path(resource) },
             classes: 'btn-light',
             method: :put,
@@ -98,7 +98,7 @@ module Spree
         def cancel_config
           {
             icon_name: 'cancel.svg',
-            name: 'admin.actions.cancel',
+            name: :cancel,
             url: ->(resource) { cancel_admin_order_path(resource) },
             classes: 'btn-light',
             method: :put,
@@ -122,7 +122,7 @@ module Spree
         def resume_config
           {
             icon_name: 'resume.svg',
-            name: 'admin.actions.resume',
+            name: :resume,
             url: ->(resource) { resume_admin_order_path(resource) },
             classes: 'btn-light',
             method: :put,
