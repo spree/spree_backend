@@ -33,6 +33,7 @@ module Spree
             text: text(@name, @translation_options),
             method: @method,
             id: @id,
+            translation_options: @translation_options,
             target: @target,
             data: @data
           }
