@@ -5,16 +5,16 @@ module Spree
         include AvailabilityBuilderMethods
 
         def initialize(config)
-          @icon_name = config[:icon_name]
-          @name = config[:name]
-          @url = config[:url]
-          @classes = config[:classes]
+          @icon_name =           config[:icon_name]
+          @name =                config[:name]
+          @url =                 config[:url]
+          @classes =             config[:classes]
           @availability_checks = []
-          @method = config[:method]
-          @id = config[:id]
+          @method =              config[:method]
+          @id =                  config[:id]
           @translation_options = config[:translation_options]
-          @target = config[:target]
-          @data = config[:data]
+          @target =              config[:target]
+          @data =                config[:data]
         end
 
         def build
