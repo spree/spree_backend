@@ -42,32 +42,6 @@ module Spree
         def text(text, options)
           options.present? ? ::Spree.t(text, options) : ::Spree.t(text)
         end
-
-        # def available?(current_ability, resource)
-        #   return true unless @availability_check.present?
-
-        #   @availability_check.call(current_ability, resource)
-        # end
-
-        # def url(resource = nil)
-        #   @url.is_a?(Proc) ? @url.call(resource) : @url
-        # end
-
-        # def active?(current_tab)
-        #   @active_check.call(current_tab, partial_name)
-        # end
-
-        # def complete?(resource)
-        #   return true unless @completed_check.present?
-
-        #   @completed_check.call(resource)
-        # end
-
-        # def text
-        #   return true unless @translate.present?
-
-        #   @translate.call(name)
-        # end
       end
     end
   end
