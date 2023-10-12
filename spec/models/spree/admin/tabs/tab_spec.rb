@@ -13,7 +13,9 @@ module Spree
           partial_name: :cart,
           availability_check: check,
           active_check: check,
-          completed_check: check
+          completed_check: check,
+          text: 'Cart',
+          data_hook: 'data_hook'
         }
       end
       let(:check) { nil }
@@ -47,6 +49,22 @@ module Spree
 
         it 'returns classes' do
           expect(subject).to eq(config[:classes])
+        end
+      end
+
+      describe '#text' do
+        subject { tab.text }
+
+        it 'returns text' do
+          expect(subject).to eq(config[:text])
+        end
+      end
+
+      describe '#data_hook' do
+        subject { tab.data_hook }
+
+        it 'returns classes' do
+          expect(subject).to eq(config[:data_hook])
         end
       end
 
