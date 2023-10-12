@@ -16,51 +16,6 @@ module Spree
 
         private
 
-        def add_resend_action(root)
-          action =
-            ActionBuilder.new(resend_config).
-            with_resend_availability_check.
-            build
-
-          root.add(action)
-        end
-
-        def resend_config
-          {
-            icon_name: 'envelope.svg',
-            name: :resend,
-            url: ->(resource) { resend_admin_order_path(resource) },
-            classes: 'btn-secondary',
-            method: :post,
-            translation_options: {
-              scope: 'admin.order.events',
-              default: ::Spree.t(:resend)
-            }
-          }
-        end
-
-        def add_reset_download_links_action(root)
-          action =
-            ActionBuilder.new(reset_download_links_config).
-            with_availability_check(
-              lambda do |ability, resource|
-                ability.can?(:update, resource) && resource.some_digital?
-              end
-            ).
-            build
-
-          root.add(action)
-        end
-
-        def reset_download_links_config
-          {
-            icon_name: 'hdd.svg',
-            name: 'admin.digitals.reset_download_links',
-            url: ->(resource) { reset_digitals_admin_order_path(resource) },
-            method: :put
-          }
-        end
-
         def add_approve_action(root)
           action =
             ActionBuilder.new(approve_config).
@@ -130,6 +85,51 @@ module Spree
               scope: 'admin.order.events'
             },
             data: { confirm: Spree.t(:order_sure_want_to, event: :resume) }
+          }
+        end
+
+        def add_resend_action(root)
+          action =
+            ActionBuilder.new(resend_config).
+            with_resend_availability_check.
+            build
+
+          root.add(action)
+        end
+
+        def resend_config
+          {
+            icon_name: 'envelope.svg',
+            name: :resend,
+            url: ->(resource) { resend_admin_order_path(resource) },
+            classes: 'btn-secondary',
+            method: :post,
+            translation_options: {
+              scope: 'admin.order.events',
+              default: ::Spree.t(:resend)
+            }
+          }
+        end
+
+        def add_reset_download_links_action(root)
+          action =
+            ActionBuilder.new(reset_download_links_config).
+            with_availability_check(
+              lambda do |ability, resource|
+                ability.can?(:update, resource) && resource.some_digital?
+              end
+            ).
+            build
+
+          root.add(action)
+        end
+
+        def reset_download_links_config
+          {
+            icon_name: 'hdd.svg',
+            name: 'admin.digitals.reset_download_links',
+            url: ->(resource) { reset_digitals_admin_order_path(resource) },
+            method: :put
           }
         end
       end
