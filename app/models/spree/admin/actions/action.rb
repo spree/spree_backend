@@ -5,17 +5,17 @@ module Spree
         attr_reader :icon_name, :name, :classes, :text, :method, :id, :target, :data
 
         def initialize(config)
-          @icon_name =          config[:icon_name]
-          @name =               config[:name]
-          @url =                config[:url]
-          @classes =            config[:classes]
+          @icon_name =           config[:icon_name]
+          @name =                config[:name]
+          @url =                 config[:url]
+          @classes =             config[:classes]
           @availability_checks = config[:availability_checks]
-          @text =               config[:text]
-          @method =             config[:method]
-          @id =                 config[:id]
+          @text =                config[:text]
+          @method =              config[:method]
+          @id =                  config[:id]
           @translation_options = config[:translation_options]
-          @target =             config[:target]
-          @data =               config[:data]
+          @target =              config[:target]
+          @data =                config[:data]
         end
 
         def available?(current_ability, resource = nil)
