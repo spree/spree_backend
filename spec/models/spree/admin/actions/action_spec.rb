@@ -3,18 +3,22 @@ require 'spec_helper'
 module Spree
   module Admin
     describe Actions::Action, type: :model do
-      let(:tab) { described_class.new(config) }
+      let(:action) { described_class.new(config) }
       let(:config) do
         {
           icon_name: 'cart-check.svg',
           name: 'Cart',
           url: '/cart',
-          classes: 'nav-link'
+          classes: 'nav-link',
+          method: :put,
+          id: 'admin_new_order',
+          target: :blank,
+          data: { turbo: false }
         }
       end
 
       describe '#icon_name' do
-        subject { tab.icon_name }
+        subject { action.icon_name }
 
         it 'returns icon_name' do
           expect(subject).to eq(config[:icon_name])
@@ -22,7 +26,7 @@ module Spree
       end
 
       describe '#name' do
-        subject { tab.name }
+        subject { action.name }
 
         it 'returns name' do
           expect(subject).to eq(config[:name])
@@ -30,7 +34,7 @@ module Spree
       end
 
       describe '#url' do
-        subject { tab.url }
+        subject { action.url }
 
         it 'returns url' do
           expect(subject).to eq(config[:url])
@@ -38,15 +42,47 @@ module Spree
       end
 
       describe '#classes' do
-        subject { tab.classes }
+        subject { action.classes }
 
         it 'returns classes' do
           expect(subject).to eq(config[:classes])
         end
       end
 
+      describe '#method' do
+        subject { action.method }
+
+        it 'returns method' do
+          expect(subject).to eq(config[:method])
+        end
+      end
+
+      describe '#id' do
+        subject { action.id }
+
+        it 'returns id' do
+          expect(subject).to eq(config[:id])
+        end
+      end
+
+      describe '#target' do
+        subject { action.target }
+
+        it 'returns target' do
+          expect(subject).to eq(config[:target])
+        end
+      end
+
+      describe '#data' do
+        subject { action.data }
+
+        it 'returns data' do
+          expect(subject).to eq(config[:data])
+        end
+      end
+
       describe '#available?' do
-        subject { tab.available?(ability, resource) }
+        subject { action.available?(ability, resource) }
 
         let(:ability) { double }
         let(:resource) { double }
@@ -59,7 +95,7 @@ module Spree
 
         context 'when availability check returns true' do
           before do
-            tab.with_availability_check(->(_ability, _resource) { true })
+            action.with_availability_check(->(_ability, _resource) { true })
           end
 
           it 'returns true' do
@@ -69,7 +105,7 @@ module Spree
 
         context 'when availability check returns false' do
           before do
-            tab.with_availability_check(->(_ability, _resource) { false })
+            action.with_availability_check(->(_ability, _resource) { false })
           end
 
           it 'returns false' do
