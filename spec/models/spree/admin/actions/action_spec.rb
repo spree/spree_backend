@@ -10,12 +10,14 @@ module Spree
           name: 'Cart',
           url: '/cart',
           classes: 'nav-link',
+          availability_checks: availability_checks,
           method: :put,
           id: 'admin_new_order',
           target: :blank,
           data: { turbo: false }
         }
       end
+      let(:availability_checks) { [] }
 
       describe '#icon_name' do
         subject { action.icon_name }
@@ -87,15 +89,15 @@ module Spree
         let(:ability) { double }
         let(:resource) { double }
 
-        context 'when availability check is not set' do
+        context 'when availability checks were not set' do
           it 'is returns true' do
             expect(subject).to be(true)
           end
         end
 
-        context 'when availability check returns true' do
-          before do
-            action.with_availability_check(->(_ability, _resource) { true })
+        context 'when all availability checks return true' do
+          let(:availability_checks) do
+            [->(_ability, _resource) { true }]
           end
 
           it 'returns true' do
@@ -103,9 +105,9 @@ module Spree
           end
         end
 
-        context 'when availability check returns false' do
-          before do
-            action.with_availability_check(->(_ability, _resource) { false })
+        context 'when at least one availability check returns false' do
+          let(:availability_checks) do
+            [->(_ability, _resource) { false }]
           end
 
           it 'returns false' do
