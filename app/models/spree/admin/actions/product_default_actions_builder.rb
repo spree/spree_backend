@@ -24,7 +24,7 @@ module Spree
           {
             icon_name: 'view.svg',
             name: 'admin.utilities.preview',
-            url: ->(resource) { spree_storefront_resource_url(resource) },
+            url: ->(_resource) { admin_products_path },
             classes: 'btn-light',
             id: 'adminPreviewProduct',
             translation_options: {
