@@ -2,11 +2,11 @@ module Spree
   module Admin
     module Tabs
       class Tab
-        attr_reader :icon_name, :name, :classes, :text, :data_hook
+        attr_reader :icon_name, :key, :classes, :text, :data_hook
 
         def initialize(config)
           @icon_name =          config[:icon_name]
-          @name =               config[:name]
+          @key =                config[:key]
           @url =                config[:url]
           @classes =            config[:classes]
           @partial_name =       config[:partial_name]

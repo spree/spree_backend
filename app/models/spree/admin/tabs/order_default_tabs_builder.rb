@@ -41,7 +41,7 @@ module Spree
         def cart_tab_config
           {
             icon_name: 'cart-check.svg',
-            name: :cart,
+            key: :cart,
             url: ->(resource) { cart_admin_order_path(resource) },
             classes: 'nav-link',
             partial_name: :cart
@@ -62,7 +62,7 @@ module Spree
         def channel_tab_config
           {
             icon_name: 'funnel.svg',
-            name: :channel,
+            key: :channel,
             url: ->(resource) { channel_admin_order_path(resource) },
             classes: 'nav-link',
             partial_name: :channel
@@ -87,7 +87,7 @@ module Spree
         def customer_tab_config
           {
             icon_name: 'person-lines-fill.svg',
-            name: :customer,
+            key: :customer,
             url: ->(resource) { admin_order_customer_path(resource) },
             classes: 'nav-link',
             partial_name: :customer_details
@@ -108,7 +108,7 @@ module Spree
         def shipments_tab_config
           {
             icon_name: 'truck.svg',
-            name: :shipments,
+            key: :shipments,
             url: ->(resource) { edit_admin_order_path(resource) },
             classes: 'nav-link',
             partial_name: :shipments
@@ -129,7 +129,7 @@ module Spree
         def adjustments_tab_config
           {
             icon_name: 'adjust.svg',
-            name: :adjustments,
+            key: :adjustments,
             url: ->(resource) { admin_order_adjustments_path(resource) },
             classes: 'nav-link',
             partial_name: :adjustments
@@ -150,7 +150,7 @@ module Spree
         def payments_tab_config
           {
             icon_name: 'credit-card.svg',
-            name: :payments,
+            key: :payments,
             url: ->(resource) { admin_order_payments_path(resource) },
             classes: 'nav-link',
             partial_name: :payments
@@ -172,7 +172,7 @@ module Spree
         def return_authorizations_tab_config
           {
             icon_name: 'enter.svg',
-            name: :return_authorizations,
+            key: :return_authorizations,
             url: ->(resource) { admin_order_return_authorizations_path(resource) },
             classes: 'nav-link',
             partial_name: :return_authorizations
@@ -193,7 +193,7 @@ module Spree
         def customer_returns_tab_config
           {
             icon_name: 'returns.svg',
-            name: :customer_returns,
+            key: :customer_returns,
             url: ->(resource) { admin_order_customer_returns_path(resource) },
             classes: 'nav-link',
             partial_name: :customer_returns
@@ -214,7 +214,7 @@ module Spree
         def state_changes_tab_config
           {
             icon_name: 'calendar3.svg',
-            name: :state_changes,
+            key: :state_changes,
             url: ->(resource) { admin_order_state_changes_path(resource) },
             classes: 'nav-link',
             partial_name: :state_changes

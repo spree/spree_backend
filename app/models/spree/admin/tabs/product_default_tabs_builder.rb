@@ -33,7 +33,7 @@ module Spree
         def details_config
           {
             icon_name: 'edit.svg',
-            name: :details,
+            key: :details,
             url: ->(resource) { edit_admin_product_path(resource) },
             classes: 'nav-link',
             partial_name: :details
@@ -57,7 +57,7 @@ module Spree
         def images_config
           {
             icon_name: 'images.svg',
-            name: :images,
+            key: :images,
             url: ->(resource) { admin_product_images_path(resource) },
             classes: 'nav-link',
             partial_name: :images
@@ -81,7 +81,7 @@ module Spree
         def variants_config
           {
             icon_name: 'adjust.svg',
-            name: :variants,
+            key: :variants,
             url: ->(resource) { admin_product_variants_path(resource) },
             classes: 'nav-link',
             partial_name: :variants
@@ -105,7 +105,7 @@ module Spree
         def properties_config
           {
             icon_name: 'list.svg',
-            name: :properties,
+            key: :properties,
             url: ->(resource) { admin_product_product_properties_path(resource) },
             classes: 'nav-link',
             partial_name: :properties
@@ -129,7 +129,7 @@ module Spree
         def stock_config
           {
             icon_name: 'box-seam.svg',
-            name: :stock,
+            key: :stock,
             url: ->(resource) { stock_admin_product_path(resource) },
             classes: 'nav-link',
             partial_name: :stock
@@ -153,7 +153,7 @@ module Spree
         def prices_config
           {
             icon_name: 'currency-exchange.svg',
-            name: :prices,
+            key: :prices,
             url: ->(resource) { admin_product_prices_path(resource) },
             classes: 'nav-link',
             partial_name: :prices
@@ -177,7 +177,7 @@ module Spree
         def digitals_config
           {
             icon_name: 'download.svg',
-            name: 'admin.digitals.digital_assets',
+            key: 'admin.digitals.digital_assets',
             url: ->(resource) { admin_product_digitals_path(resource) },
             classes: 'nav-link',
             partial_name: :digitals
@@ -201,7 +201,7 @@ module Spree
         def translations_config
           {
             icon_name: 'translate.svg',
-            name: :translations,
+            key: :translations,
             url: ->(resource) { translations_admin_product_path(resource) },
             classes: 'nav-link',
             partial_name: :translations

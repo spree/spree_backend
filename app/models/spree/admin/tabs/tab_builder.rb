@@ -8,7 +8,7 @@ module Spree
 
         def initialize(config)
           @icon_name =          config[:icon_name]
-          @name =               config[:name]
+          @key =               config[:key]
           @url =                config[:url]
           @classes =            config[:classes]
           @partial_name =       config[:partial_name]
@@ -26,7 +26,7 @@ module Spree
         def build_config
           {
             icon_name: @icon_name,
-            name: @name,
+            key: @key,
             url: @url,
             classes: @classes,
             partial_name: @partial_name,
@@ -39,7 +39,7 @@ module Spree
         end
 
         def text
-          ::Spree.t(@name)
+          ::Spree.t(@key)
         end
 
         def data_hook
