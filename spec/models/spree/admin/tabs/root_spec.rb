@@ -76,6 +76,32 @@ module Spree
           end
         end
       end
+
+      describe '#item_for_key' do
+        subject { root.item_for_key(key) }
+        let(:key) { 'key' }
+
+        before do
+          items.each { |i| root.add(i) }
+        end
+
+        context 'when an item with given key exists' do
+          let(:items) { [double(key: 'other-key'), item] }
+          let(:item) { double(key: key) }
+
+          it 'returns the item' do
+            expect(subject).to be(item)
+          end
+        end
+
+        context 'when an item with given key does not exist' do
+          let(:items) { [double(key: 'other-key')] }
+
+          it 'returns nil' do
+            expect(subject).to be(nil)
+          end
+        end
+      end
     end
   end
 end

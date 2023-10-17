@@ -83,28 +83,6 @@ module Spree
         end
       end
 
-      describe '#item_for_key' do
-        subject { section.item_for_key(key) }
-        let(:key) { 'key' }
-
-        context 'when an item with given key exists' do
-          let(:items) { [double(key: 'other-key'), item] }
-          let(:item) { double(key: key) }
-
-          it 'returns the item' do
-            expect(subject).to be(item)
-          end
-        end
-
-        context 'when an item with given key does not exist' do
-          let(:items) { [double(key: 'other-key')] }
-
-          it 'returns nil' do
-            expect(subject).to be(nil)
-          end
-        end
-      end
-
       describe '#insert_before' do
         subject { section.insert_before(existing_key, item) }
 
