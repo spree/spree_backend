@@ -7,7 +7,7 @@ module Spree
       let(:config) do
         {
           icon_name: 'cart-check.svg',
-          name: 'Cart',
+          key: 'Cart',
           url: '/cart',
           classes: 'nav-link',
           partial_name: :cart,
@@ -28,11 +28,11 @@ module Spree
         end
       end
 
-      describe '#name' do
-        subject { tab.name }
+      describe '#key' do
+        subject { tab.key }
 
-        it 'returns name' do
-          expect(subject).to eq(config[:name])
+        it 'returns key' do
+          expect(subject).to eq(config[:key])
         end
       end
 
