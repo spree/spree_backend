@@ -12,12 +12,6 @@ module Spree
           @items = items
         end
 
-        def remove(item_key)
-          item_index = index_for_key!(item_key)
-
-          @items.delete_at(item_index)
-        end
-
         def item_for_key(key)
           @items.find { |e| e.key == key }
         end

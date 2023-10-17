@@ -48,6 +48,34 @@ module Spree
           end
         end
       end
+
+      describe '#remove' do
+        subject { root.remove(key) }
+        let(:key) { 'key' }
+        let(:other_key) { 'other-key' }
+
+        before do
+          items.each { |i| root.add(i) }
+        end
+
+        context 'when an item with given key exists' do
+          let(:items) { [double(key: key), double(key: other_key)] }
+
+          it 'removes the item' do
+            subject
+            expect(root.items.count).to eq(1)
+            expect(root.items.first.key).to eq(other_key)
+          end
+        end
+
+        context 'when an item with given key does not exist' do
+          let(:items) { [double(key: 'other-key')] }
+
+          it 'raises an error' do
+            expect { subject }.to raise_error(KeyError)
+          end
+        end
+      end
     end
   end
 end

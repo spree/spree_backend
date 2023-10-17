@@ -83,30 +83,6 @@ module Spree
         end
       end
 
-      describe '#remove' do
-        subject { section.remove(key) }
-        let(:key) { 'test-key' }
-        let(:other_key) { 'other-key' }
-
-        context 'when the element is present in an array' do
-          let(:items) { [double(key: key), double(key: other_key)] }
-
-          it 'removes the item' do
-            subject
-            expect(items.count).to eq(1)
-            expect(items.first.key).to eq(other_key)
-          end
-        end
-
-        context 'when the element is not present in an array' do
-          let(:items) { [double(key: other_key)] }
-
-          it 'removes the item' do
-            expect { subject }.to raise_error(KeyError)
-          end
-        end
-      end
-
       describe '#item_for_key' do
         subject { section.item_for_key(key) }
         let(:key) { 'key' }

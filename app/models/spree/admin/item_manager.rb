@@ -11,10 +11,23 @@ module Spree
         index_for_key(key).present?
       end
 
+      def remove(item_key)
+        item_index = index_for_key!(item_key)
+
+        @items.delete_at(item_index)
+      end
+
       private
 
       def index_for_key(key)
         @items.index { |e| e.key == key }
+      end
+
+      def index_for_key!(key)
+        item_index = index_for_key(key)
+        raise KeyError, "Item not found for key #{key}" unless item_index
+
+        item_index
       end
     end
   end
