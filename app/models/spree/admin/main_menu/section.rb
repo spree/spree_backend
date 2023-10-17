@@ -12,12 +12,6 @@ module Spree
           @items = items
         end
 
-        def add(item)
-          raise KeyError, "Item with key #{key} already exists" if index_for_key(item.key)
-
-          @items << item
-        end
-
         def child_with_key?(key)
           index_for_key(key).present?
         end
@@ -55,10 +49,6 @@ module Spree
         end
 
         private
-
-        def index_for_key(key)
-          @items.index { |e| e.key == key }
-        end
 
         def index_for_key!(key)
           item_index = index_for_key(key)

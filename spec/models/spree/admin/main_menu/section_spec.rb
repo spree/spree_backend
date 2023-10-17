@@ -83,38 +83,6 @@ module Spree
         end
       end
 
-      describe '#add' do
-        subject { section.add(item) }
-        let(:item) { double(key: 'test') }
-
-        context 'when there are no child items' do
-          let(:items) { [] }
-
-          it 'adds the item to the list' do
-            subject
-            expect(section.items.count).to eq(1)
-          end
-        end
-
-        context 'when there already exists an item with the same key' do
-          let(:items) { [double(key: 'test')] }
-
-          it 'raises an error' do
-            expect { subject }.to raise_error(KeyError)
-          end
-        end
-
-        context 'when there are other items with different keys' do
-          let(:items) { [double(key: 'other-key'), double(key: 'different-key') ]}
-        end
-
-        it 'adds the item to the list' do
-          subject
-          expect(section.items.count).to eq(1)
-          expect(section.items.last.key).to eq('test')
-        end
-      end
-
       describe '#remove' do
         subject { section.remove(key) }
         let(:key) { 'test-key' }
