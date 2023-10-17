@@ -12,12 +12,6 @@ module Spree
           @items = items
         end
 
-        def insert_after(item_key, item_to_add)
-          item_index = index_for_key!(item_key)
-
-          @items.insert(item_index + 1, item_to_add)
-        end
-
         def available?(current_ability, current_store)
           return true unless @availability_check.present?
 

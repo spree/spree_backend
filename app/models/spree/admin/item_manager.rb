@@ -27,6 +27,12 @@ module Spree
         @items.insert(item_index, item_to_add)
       end
 
+      def insert_after(item_key, item_to_add)
+        item_index = index_for_key!(item_key)
+
+        @items.insert(item_index + 1, item_to_add)
+      end
+
       private
 
       def index_for_key(key)
