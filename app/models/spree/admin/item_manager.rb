@@ -7,6 +7,10 @@ module Spree
         @items << item
       end
 
+      def child_with_key?(key)
+        index_for_key(key).present?
+      end
+
       private
 
       def index_for_key(key)

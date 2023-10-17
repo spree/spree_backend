@@ -12,10 +12,6 @@ module Spree
           @items = items
         end
 
-        def child_with_key?(key)
-          index_for_key(key).present?
-        end
-
         def remove(item_key)
           item_index = index_for_key!(item_key)
 

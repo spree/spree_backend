@@ -107,27 +107,6 @@ module Spree
         end
       end
 
-      describe '#child_with_key?' do
-        subject { section.child_with_key?(key) }
-        let(:key) { 'key' }
-
-        context 'when an item with given key exists' do
-          let(:items) { [double(key: key), double(key: 'other-key')] }
-
-          it 'returns true' do
-            expect(subject).to be(true)
-          end
-        end
-
-        context 'when an item with given key does not exist' do
-          let(:items) { [double(key: 'other-key')] }
-
-          it 'returns false' do
-            expect(subject).to be(false)
-          end
-        end
-      end
-
       describe '#item_for_key' do
         subject { section.item_for_key(key) }
         let(:key) { 'key' }

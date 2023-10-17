@@ -23,6 +23,35 @@ module Spree
           end
         end
       end
+
+      describe '#child_with_key?' do
+        subject { root.child_with_key?(key) }
+        let(:key) { 'key' }
+
+        context 'when an item with given key exists' do
+          let(:items) { [double(key: key), double(key: 'other-key')] }
+
+          before do
+            items.each { |i| root.add(i) }
+          end
+
+          it 'returns true' do
+            expect(subject).to be(true)
+          end
+        end
+
+        context 'when an item with given key does not exist' do
+          let(:items) { [double(key: 'other-key')] }
+
+          before do
+            items.each { |i| root.add(i) }
+          end
+
+          it 'returns false' do
+            expect(subject).to be(false)
+          end
+        end
+      end
     end
   end
 end
