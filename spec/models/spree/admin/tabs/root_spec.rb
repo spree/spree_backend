@@ -5,7 +5,7 @@ module Spree
     describe Tabs::Root, type: :model do
       let(:root) { described_class.new }
 
-      describe '#add(item)' do
+      describe '#add' do
         let(:item) { double(name: 'test') }
 
         context "when there's no item with a particular key" do
