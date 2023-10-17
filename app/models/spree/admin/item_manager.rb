@@ -21,6 +21,12 @@ module Spree
         @items.find { |e| e.key == key }
       end
 
+      def insert_before(item_key, item_to_add)
+        item_index = index_for_key!(item_key)
+
+        @items.insert(item_index, item_to_add)
+      end
+
       private
 
       def index_for_key(key)

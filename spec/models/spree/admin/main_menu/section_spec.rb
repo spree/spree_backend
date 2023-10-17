@@ -83,38 +83,6 @@ module Spree
         end
       end
 
-      describe '#insert_before' do
-        subject { section.insert_before(existing_key, item) }
-
-        let(:item) { double(key: inserted_key) }
-        let(:inserted_key) { 'test-item' }
-        let(:existing_key) { 'test-old' }
-
-        context 'when the list is empty' do
-          it 'raises an error' do
-            expect { subject }.to raise_error(KeyError)
-          end
-        end
-
-        context 'when an item with specified key does not exist' do
-          let(:items) { [double(key: 'other-key'), double(key: 'other-key2')] }
-
-          it 'raises an error' do
-            expect { subject }.to raise_error(KeyError)
-          end
-        end
-
-        context 'when an item with specified key exists' do
-          let(:items) { [double(key: 'other-key'), double(key: existing_key)] }
-
-          it 'inserts the item before the other item' do
-            subject
-            expect(section.items.count).to eq(3)
-            expect(section.items[1].key).to eq(inserted_key)
-          end
-        end
-      end
-
       describe '#insert_after' do
         subject { section.insert_after(existing_key, item) }
 
