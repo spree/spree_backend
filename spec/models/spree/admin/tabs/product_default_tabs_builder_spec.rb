@@ -19,9 +19,7 @@ module Spree
         subject { builder.build }
 
         it 'builds default tabs' do
-          # this means that tab items will need to respond to 'text' message,
-          # just as section items respond to 'key' message
-          expect(subject.items.map(&:name)).to match(default_tabs)
+          expect(subject.items.map(&:key)).to match(default_tabs)
         end
       end
     end
