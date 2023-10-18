@@ -21,15 +21,6 @@ module Spree
         def children?
           @items.any?
         end
-
-        private
-
-        def index_for_key!(key)
-          item_index = index_for_key(key)
-          raise KeyError, "Item not found for key #{key}" unless item_index
-
-          item_index
-        end
       end
     end
   end
