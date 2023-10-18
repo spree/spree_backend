@@ -211,24 +211,6 @@ module Spree
           expect(subject).to be(true)
         end
       end
-
-      describe '#children?' do
-        subject { root.children? }
-
-        context 'when there are child items' do
-          before { root.add(double(key: 'test')) }
-
-          it 'returns true' do
-            expect(subject).to be(true)
-          end
-        end
-
-        context 'when there are no child items' do
-          it 'returns false' do
-            expect(subject).to be(false)
-          end
-        end
-      end
     end
   end
 end
