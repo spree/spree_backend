@@ -8,7 +8,7 @@ module Spree
 
         def initialize(config)
           @icon_name =          config[:icon_name]
-          @key =               config[:key]
+          @key =                config[:key]
           @url =                config[:url]
           @classes =            config[:classes]
           @partial_name =       config[:partial_name]
