@@ -4,22 +4,29 @@ module Spree
   module Admin
     describe MainMenu::Root, type: :model do
       let(:root) { described_class.new }
+      let(:items) { [] }
+
+      before do
+        items.each { |i| root.add(i) }
+      end
 
       describe '#add' do
+        subject { root.add(item) }
         let(:item) { double(key: 'test') }
 
         context "when there's no item with a particular key" do
+
           it 'appends an item' do
-            root.add(item)
+            subject
             expect(root.items).to include(item)
           end
         end
 
         context 'when there is an item with a particular key' do
-          before { root.add(item) }
+          let(:items) { [item] }
 
           it 'raises an error' do
-            expect { root.add(item) }.to raise_error(KeyError)
+            expect { subject }.to raise_error(KeyError)
           end
         end
       end
@@ -27,10 +34,6 @@ module Spree
       describe '#child_with_key?' do
         subject { root.child_with_key?(key) }
         let(:key) { 'key' }
-
-        before do
-          items.each { |i| root.add(i) }
-        end
 
         context 'when an item with given key exists' do
           let(:items) { [double(key: key), double(key: 'other-key')] }
@@ -54,10 +57,6 @@ module Spree
         let(:key) { 'key' }
         let(:other_key) { 'other-key' }
 
-        before do
-          items.each { |i| root.add(i) }
-        end
-
         context 'when an item with given key exists' do
           let(:items) { [double(key: key), double(key: other_key)] }
 
@@ -80,10 +79,6 @@ module Spree
       describe '#item_for_key' do
         subject { root.item_for_key(key) }
         let(:key) { 'key' }
-
-        before do
-          items.each { |i| root.add(i) }
-        end
 
         context 'when an item with given key exists' do
           let(:items) { [double(key: 'other-key'), item] }
@@ -109,11 +104,6 @@ module Spree
         let(:item) { double(key: inserted_key) }
         let(:inserted_key) { 'test-item' }
         let(:existing_key) { 'test-old' }
-        let(:items) { [] }
-
-        before do
-          items.each { |i| root.add(i) }
-        end
 
         context 'when the list is empty' do
           it 'raises an error' do
@@ -146,11 +136,6 @@ module Spree
         let(:item) { double(key: inserted_key) }
         let(:inserted_key) { 'test-item' }
         let(:existing_key) { 'test-old' }
-        let(:items) { [] }
-
-        before do
-          items.each { |i| root.add(i) }
-        end
 
         context 'when the list is empty' do
           it 'raises an error' do
