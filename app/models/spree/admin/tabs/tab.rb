@@ -8,13 +8,13 @@ module Spree
           @icon_name =          config[:icon_name]
           @key =                config[:key]
           @url =                config[:url]
-          @classes =            config[:classes]
           @partial_name =       config[:partial_name]
           @availability_check = config[:availability_check]
           @active_check =       config[:active_check]
           @completed_check =    config[:completed_check]
           @text =               config[:text]
           @data_hook =          config[:data_hook]
+          @classes =            css_classes
         end
 
         def available?(current_ability, resource)
@@ -35,6 +35,12 @@ module Spree
           return true unless @completed_check.present?
 
           @completed_check.call(resource)
+        end
+
+        private
+
+        def css_classes
+          'nav-link'
         end
       end
     end

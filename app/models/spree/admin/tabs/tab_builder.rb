@@ -10,7 +10,6 @@ module Spree
           @icon_name =          config[:icon_name]
           @key =                config[:key]
           @url =                config[:url]
-          @classes =            config[:classes]
           @partial_name =       config[:partial_name]
           @availability_check = nil
           @active_check =       nil
@@ -28,7 +27,6 @@ module Spree
             icon_name: @icon_name,
             key: @key,
             url: @url,
-            classes: @classes,
             partial_name: @partial_name,
             availability_check: @availability_check,
             active_check: @active_check,

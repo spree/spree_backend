@@ -35,7 +35,6 @@ module Spree
             icon_name: 'edit.svg',
             key: :details,
             url: ->(resource) { edit_admin_product_path(resource) },
-            classes: 'nav-link',
             partial_name: :details
           }
         end
@@ -59,7 +58,6 @@ module Spree
             icon_name: 'images.svg',
             key: :images,
             url: ->(resource) { admin_product_images_path(resource) },
-            classes: 'nav-link',
             partial_name: :images
           }
         end
@@ -83,7 +81,6 @@ module Spree
             icon_name: 'adjust.svg',
             key: :variants,
             url: ->(resource) { admin_product_variants_path(resource) },
-            classes: 'nav-link',
             partial_name: :variants
           }
         end
@@ -107,7 +104,6 @@ module Spree
             icon_name: 'list.svg',
             key: :properties,
             url: ->(resource) { admin_product_product_properties_path(resource) },
-            classes: 'nav-link',
             partial_name: :properties
           }
         end
@@ -131,7 +127,6 @@ module Spree
             icon_name: 'box-seam.svg',
             key: :stock,
             url: ->(resource) { stock_admin_product_path(resource) },
-            classes: 'nav-link',
             partial_name: :stock
           }
         end
@@ -155,7 +150,6 @@ module Spree
             icon_name: 'currency-exchange.svg',
             key: :prices,
             url: ->(resource) { admin_product_prices_path(resource) },
-            classes: 'nav-link',
             partial_name: :prices
           }
         end
@@ -179,7 +173,6 @@ module Spree
             icon_name: 'download.svg',
             key: 'admin.digitals.digital_assets',
             url: ->(resource) { admin_product_digitals_path(resource) },
-            classes: 'nav-link',
             partial_name: :digitals
           }
         end
@@ -203,7 +196,6 @@ module Spree
             icon_name: 'translate.svg',
             key: :translations,
             url: ->(resource) { translations_admin_product_path(resource) },
-            classes: 'nav-link',
             partial_name: :translations
           }
         end

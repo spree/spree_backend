@@ -30,7 +30,6 @@ module Spree
             icon_name: 'person.svg',
             key: 'admin.user.account',
             url: ->(resource) { edit_admin_user_path(resource) },
-            classes: 'nav-link',
             partial_name: :account
           }
         end
@@ -49,7 +48,6 @@ module Spree
             icon_name: 'pin-map.svg',
             key: 'admin.user.addresses',
             url: ->(resource) { addresses_admin_user_path(resource) },
-            classes: 'nav-link',
             partial_name: :address
           }
         end
@@ -68,7 +66,6 @@ module Spree
             icon_name: 'inbox.svg',
             key: 'admin.user.orders',
             url: ->(resource) { orders_admin_user_path(resource) },
-            classes: 'nav-link',
             partial_name: :orders
           }
         end
@@ -87,7 +84,6 @@ module Spree
             icon_name: 'tag.svg',
             key: 'admin.user.items',
             url: ->(resource) { items_admin_user_path(resource) },
-            classes: 'nav-link',
             partial_name: :items
           }
         end
@@ -106,7 +102,6 @@ module Spree
             icon_name: 'gift.svg',
             key: 'admin.user.store_credits',
             url: ->(resource) { admin_user_store_credits_path(resource) },
-            classes: 'nav-link',
             partial_name: :store_credits
           }
         end
