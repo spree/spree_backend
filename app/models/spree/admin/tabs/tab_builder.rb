@@ -3,7 +3,7 @@ module Spree
     module Tabs
       class TabBuilder
         include ConditionalChecker
-        include AvailabilityBuilderMethods
+        include ::Spree::Admin::PermissionChecks
         include DataHook
 
         def initialize(config)

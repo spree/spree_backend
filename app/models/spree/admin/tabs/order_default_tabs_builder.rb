@@ -52,7 +52,7 @@ module Spree
           tab =
             TabBuilder.new(channel_tab_config).
             with_active_check.
-            with_update_availability_check.
+            with_update_ability_check.
             with_data_hook('admin_order_tabs_channel_details').
             build
 
@@ -98,7 +98,7 @@ module Spree
           tab =
             TabBuilder.new(shipments_tab_config).
             with_active_check.
-            with_update_availability_check.
+            with_update_ability_check.
             with_data_hook('admin_order_tabs_shipment_details').
             build
 
@@ -119,7 +119,7 @@ module Spree
           tab =
             TabBuilder.new(adjustments_tab_config).
             with_active_check.
-            with_index_availability_check(::Spree::Adjustment).
+            with_index_ability_check(::Spree::Adjustment).
             with_data_hook('admin_order_tabs_adjustments').
             build
 
@@ -140,7 +140,7 @@ module Spree
           tab =
             TabBuilder.new(payments_tab_config).
             with_active_check.
-            with_index_availability_check(::Spree::Payment).
+            with_index_ability_check(::Spree::Payment).
             with_data_hook('admin_order_tabs_payments').
             build
 
@@ -162,7 +162,7 @@ module Spree
             TabBuilder.new(return_authorizations_tab_config).
             with_active_check.
             with_completed_check.
-            with_index_availability_check(::Spree::ReturnAuthorization).
+            with_index_ability_check(::Spree::ReturnAuthorization).
             with_data_hook('admin_order_tabs_return_authorizations').
             build
 
@@ -184,7 +184,7 @@ module Spree
             TabBuilder.new(customer_returns_tab_config).
             with_active_check.
             with_completed_check.
-            with_index_availability_check(::Spree::CustomerReturn).
+            with_index_ability_check(::Spree::CustomerReturn).
             build
 
           root.add(tab)
@@ -204,7 +204,7 @@ module Spree
           tab =
             TabBuilder.new(state_changes_tab_config).
             with_active_check.
-            with_update_availability_check.
+            with_update_ability_check.
             with_data_hook('admin_order_tabs_state_changes').
             build
 

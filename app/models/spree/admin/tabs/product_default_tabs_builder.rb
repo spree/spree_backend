@@ -24,7 +24,7 @@ module Spree
           tab =
             TabBuilder.new(details_config).
             with_active_check.
-            with_admin_availability_check(::Spree::Product).
+            with_admin_ability_check(::Spree::Product).
             build
 
           root.add(tab)
