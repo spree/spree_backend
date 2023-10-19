@@ -37,7 +37,6 @@ module Spree
         Rails.application.config.spree_backend.actions[:users] = Spree::Admin::Actions::UsersDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions[:user] = Spree::Admin::Actions::UserDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions[:products] = Spree::Admin::Actions::ProductsDefaultActionsBuilder.new.build
-        Rails.application.config.spree_backend.actions[:product] = Spree::Admin::Actions::ProductDefaultActionsBuilder.new.build
       end
     end
   end
