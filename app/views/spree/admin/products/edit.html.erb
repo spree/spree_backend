@@ -1,16 +1,5 @@
 <% content_for :page_actions do %>
-  <% product_actions.items.each do |action| %>
-    <% next unless action.available?(current_ability) %>
-    <%= button_link_to(
-      action.text,
-      action.url,
-      class: action.classes,
-      icon: action.icon_name,
-      id: action.id,
-      target: action.target,
-      data: action.data
-    ) %>
-  <% end %>
+  <%= render partial: 'spree/shared/admin/preview_link' %>
 <% end %>
 
 <%= render partial: 'spree/admin/shared/product_tabs', locals: {current: :details} %>
