@@ -10,7 +10,7 @@ module Spree
         items.each { |i| root.add(i) }
       end
 
-      it_behaves_like "implements item manipulation and query methods"
+      it_behaves_like 'implements item manipulation and query methods'
     end
   end
 end

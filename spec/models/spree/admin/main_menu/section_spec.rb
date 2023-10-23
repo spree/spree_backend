@@ -10,7 +10,7 @@ module Spree
       let(:availability_check) { nil }
       let(:items) { [] }
 
-      it_behaves_like "implements item manipulation and query methods"
+      it_behaves_like 'implements item manipulation and query methods'
 
       describe '#key' do
         subject { section.key }
