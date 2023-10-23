@@ -2,7 +2,7 @@ module Spree
   module Admin
     module MainMenu
       class Section
-        include ::Spree::Admin::ItemAppender
+        include ::Spree::Admin::ItemManager
 
         attr_reader :key, :label_translation_key, :icon_key, :items
 

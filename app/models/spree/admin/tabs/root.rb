@@ -3,7 +3,6 @@ module Spree
     module Tabs
       class Root
         include ::Spree::Admin::ItemManager
-        include ::Spree::Admin::ItemAppender
 
         attr_reader :items
 
