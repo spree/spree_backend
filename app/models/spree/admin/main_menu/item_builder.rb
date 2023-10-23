@@ -2,7 +2,7 @@ module Spree
   module Admin
     module MainMenu
       class ItemBuilder
-        include AvailabilityBuilderMethods
+        include ::Spree::Admin::PermissionChecks
 
         def initialize(key, url)
           @key = key

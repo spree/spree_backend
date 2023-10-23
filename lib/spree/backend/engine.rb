@@ -3,7 +3,7 @@ require_relative 'configuration'
 module Spree
   module Backend
     class Engine < ::Rails::Engine
-      Environment = Struct.new(:main_menu)
+      Environment = Struct.new(:main_menu, :tabs)
 
       config.middleware.use 'Spree::Backend::Middleware::SeoAssist'
 
@@ -27,6 +27,10 @@ module Spree
       config.after_initialize do
         Rails.application.reload_routes!
         Rails.application.config.spree_backend.main_menu = Spree::Admin::MainMenu::DefaultConfigurationBuilder.new.build
+        Rails.application.config.spree_backend.tabs = {}
+        Rails.application.config.spree_backend.tabs[:order] = Spree::Admin::Tabs::OrderDefaultTabsBuilder.new.build
+        Rails.application.config.spree_backend.tabs[:user] = Spree::Admin::Tabs::UserDefaultTabsBuilder.new.build
+        Rails.application.config.spree_backend.tabs[:product] = Spree::Admin::Tabs::ProductDefaultTabsBuilder.new.build
       end
     end
   end

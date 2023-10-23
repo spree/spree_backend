@@ -9,7 +9,7 @@ module Spree
         end
 
         def add_to_section(section_key, item)
-          @items.find { |e| e.key == section_key }.add_item(item)
+          @items.find { |e| e.key == section_key }.add(item)
         end
       end
     end

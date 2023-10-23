@@ -2,7 +2,7 @@ module Spree
   module Admin
     module MainMenu
       class SectionBuilder
-        include AvailabilityBuilderMethods
+        include ::Spree::Admin::PermissionChecks
 
         def initialize(key, icon_key)
           @key = key

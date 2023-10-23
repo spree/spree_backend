@@ -308,6 +308,18 @@ module Spree
       def main_menu
         Rails.application.config.spree_backend.main_menu
       end
+
+      def order_tabs
+        Rails.application.config.spree_backend.tabs[:order]
+      end
+
+      def user_tabs
+        Rails.application.config.spree_backend.tabs[:user]
+      end
+
+      def product_tabs
+        Rails.application.config.spree_backend.tabs[:product]
+      end
     end
   end
 end

@@ -4,6 +4,13 @@ module Spree
   module Admin
     describe MainMenu::Root, type: :model do
       let(:root) { described_class.new }
+      let(:items) { [] }
+
+      before do
+        items.each { |i| root.add(i) }
+      end
+
+      it_behaves_like 'implements item manipulation and query methods'
 
       describe '#key' do
         subject { root.key }
@@ -40,21 +47,21 @@ module Spree
         end
       end
 
-      describe '#children?' do
-        subject { root.children? }
+      describe '#add_to_section' do
+        subject { root.add_to_section(section_key, item) }
 
-        context 'when there are child items' do
-          before { root.add(double(key: 'test')) }
+        let(:items) { [section] }
+        let(:section) { double(key: section_key) }
+        let(:section_key) { 'section' }
+        let(:item) { double(key: 'test') }
 
-          it 'returns true' do
-            expect(subject).to be(true)
-          end
+        before do
+          allow(section).to receive(:add).with(item)
         end
 
-        context 'when there are no child items' do
-          it 'returns false' do
-            expect(subject).to be(false)
-          end
+        it 'calls add on section' do
+          expect(section).to receive(:add).with(item)
+          subject
         end
       end
     end

@@ -19,7 +19,7 @@ describe 'Product Details', type: :feature, js: true do
     end
   end
 
-  context 'editing a product with WYSIWYG editer enabled' do
+  context 'editing a product with WYSIWYG editor enabled' do
     before do
       Spree::Backend::Config.product_wysiwyg_editor_enabled = true
       visit spree.admin_product_path(product)
