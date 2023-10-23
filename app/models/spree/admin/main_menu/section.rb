@@ -2,6 +2,8 @@ module Spree
   module Admin
     module MainMenu
       class Section
+        include ::Spree::Admin::ItemAppender
+
         attr_reader :key, :label_translation_key, :icon_key, :items
 
         def initialize(key, label_translation_key, icon_key, availability_check, items)

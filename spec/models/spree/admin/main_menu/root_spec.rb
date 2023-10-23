@@ -11,6 +11,7 @@ module Spree
       end
 
       it_behaves_like "implements item manipulation and query methods"
+      it_behaves_like "implements item appendage"
 
       describe '#key' do
         subject { root.key }

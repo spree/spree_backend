@@ -10,6 +10,8 @@ module Spree
       let(:availability_check) { nil }
       let(:items) { [] }
 
+      it_behaves_like "implements item appendage"
+
       describe '#key' do
         subject { section.key }
 
