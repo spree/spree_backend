@@ -46,6 +46,24 @@ module Spree
           expect(subject).to be(true)
         end
       end
+
+      describe '#add_to_section' do
+        subject { root.add_to_section(section_key, item) }
+
+        let(:items) { [section] }
+        let(:section) { double(key: section_key) }
+        let(:section_key) { 'section' }
+        let(:item) { double(key: 'test') }
+
+        before do
+          allow(section).to receive(:add).with(item)
+        end
+
+        it 'calls add on section' do
+          expect(section).to receive(:add).with(item)
+          subject
+        end
+      end
     end
   end
 end
