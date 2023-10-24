@@ -7,7 +7,7 @@ module Spree
       let(:key) { 'test-key' }
       let(:label_translation_key) { 'test-translation-key' }
       let(:icon_key) { 'icon-key' }
-      let(:availability_check) { nil }
+      let(:availability_checks) { [] }
       let(:items) { [] }
 
       it_behaves_like 'implements item manipulation and query methods'
@@ -49,7 +49,7 @@ module Spree
         end
 
         context 'when availability check returns true' do
-          let(:availability_check) { ->(_ability, _store) { true } }
+          let(:availability_checks) { [->(_ability, _store) { true }] }
 
           it 'returns true' do
             expect(subject).to be(true)
@@ -57,7 +57,7 @@ module Spree
         end
 
         context 'when availability check returns false' do
-          let(:availability_check) { ->(_ability, _store) { false } }
+          let(:availability_checks) { [->(_ability, _store) { false }] }
 
           it 'returns true' do
             expect(subject).to be(false)

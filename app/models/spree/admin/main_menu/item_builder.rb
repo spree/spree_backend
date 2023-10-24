@@ -5,12 +5,12 @@ module Spree
         include ::Spree::Admin::PermissionChecks
 
         def initialize(key, url)
-          @key = key
+          @key =                   key
           @label_translation_key = key
-          @url = url
-          @icon_key = nil
-          @availability_check = nil
-          @match_path = nil
+          @url =                   url
+          @icon_key =              nil
+          @availability_checks =   []
+          @match_path =            nil
         end
 
         def with_label_translation_key(key)
@@ -29,7 +29,7 @@ module Spree
         end
 
         def build
-          Item.new(@key, @label_translation_key, @url, @icon_key, @availability_check, @match_path)
+          Item.new(@key, @label_translation_key, @url, @icon_key, @availability_checks, @match_path)
         end
       end
     end

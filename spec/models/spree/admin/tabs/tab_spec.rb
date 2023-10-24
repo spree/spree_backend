@@ -11,7 +11,7 @@ module Spree
           url: '/cart',
           classes: 'nav-link',
           partial_name: :cart,
-          availability_check: check,
+          availability_checks: availability_checks,
           active_check: check,
           completed_check: check,
           text: 'Cart',
@@ -81,7 +81,7 @@ module Spree
         end
 
         context 'when availability check returns false' do
-          let(:check) { ->(_ability, _resource) { false } }
+          let(:availability_checks) { [->(_ability, _resource) { false }] }
 
           it 'returns false' do
             expect(subject).to be(false)
