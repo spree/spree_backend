@@ -4,25 +4,13 @@ module Spree
   module Admin
     describe Actions::Root, type: :model do
       let(:root) { described_class.new }
+      let(:items) { [] }
 
-      describe '#add(item)' do
-        let(:item) { double(key: 'test') }
-
-        context "when there's no item with a particular key" do
-          it 'appends an item' do
-            root.add(item)
-            expect(root.items).to include(item)
-          end
-        end
-
-        context 'when there is an item with a particular key' do
-          before { root.add(item) }
-
-          it 'raises an error' do
-            expect { root.add(item) }.to raise_error(KeyError)
-          end
-        end
+      before do
+        items.each { |i| root.add(i) }
       end
+
+      it_behaves_like 'implements item manipulation and query methods'
     end
   end
 end
