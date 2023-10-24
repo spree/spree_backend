@@ -21,8 +21,28 @@ module Spree
         self
       end
 
+      def with_create_ability_check(*classes)
+        @availability_checks << ->(ability, _current) { classes.any? { |c| ability.can?(:create, c) } }
+        self
+      end
+
       def with_update_ability_check
         @availability_checks << ->(ability, resource) { ability.can?(:update, resource) }
+        self
+      end
+
+      def with_resend_ability_check
+        @availability_checks << ->(ability, resource) { ability.can?(:resend, resource) }
+        self
+      end
+
+      def with_fire_ability_check
+        @availability_checks << ->(ability, resource) { ability.can?(:fire, resource) }
+        self
+      end
+
+      def with_state_change_check(event)
+        @availability_checks << ->(_ability, resource) { resource.send("can_#{event}?") }
         self
       end
     end
