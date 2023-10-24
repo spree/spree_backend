@@ -10,7 +10,7 @@
       target: action.target,
       data: action.data
     ) %>
-  <% end %>
+  <% end if product_actions&.items %>
 <% end %>
 
 <%= render partial: 'spree/admin/shared/product_tabs', locals: {current: :details} %>
