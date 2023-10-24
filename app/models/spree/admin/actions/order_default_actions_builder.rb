@@ -29,7 +29,7 @@ module Spree
         def approve_config
           {
             icon_name: 'approve.svg',
-            name: :approve,
+            key: :approve,
             url: ->(resource) { approve_admin_order_path(resource) },
             classes: 'btn-light',
             method: :put,
@@ -53,7 +53,7 @@ module Spree
         def cancel_config
           {
             icon_name: 'cancel.svg',
-            name: :cancel,
+            key: :cancel,
             url: ->(resource) { cancel_admin_order_path(resource) },
             classes: 'btn-light',
             method: :put,
@@ -77,7 +77,7 @@ module Spree
         def resume_config
           {
             icon_name: 'resume.svg',
-            name: :resume,
+            key: :resume,
             url: ->(resource) { resume_admin_order_path(resource) },
             classes: 'btn-light',
             method: :put,
@@ -100,7 +100,7 @@ module Spree
         def resend_config
           {
             icon_name: 'envelope.svg',
-            name: :resend,
+            key: :resend,
             url: ->(resource) { resend_admin_order_path(resource) },
             classes: 'btn-secondary',
             method: :post,
@@ -127,7 +127,7 @@ module Spree
         def reset_download_links_config
           {
             icon_name: 'hdd.svg',
-            name: 'admin.digitals.reset_download_links',
+            key: 'admin.digitals.reset_download_links',
             url: ->(resource) { reset_digitals_admin_order_path(resource) },
             method: :put
           }

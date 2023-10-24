@@ -2,11 +2,11 @@ module Spree
   module Admin
     module Actions
       class Action
-        attr_reader :icon_name, :name, :classes, :text, :method, :id, :target, :data
+        attr_reader :icon_name, :key, :classes, :text, :method, :id, :target, :data
 
         def initialize(config)
           @icon_name =           config[:icon_name]
-          @name =                config[:name]
+          @key =                 config[:key]
           @url =                 config[:url]
           @classes =             config[:classes]
           @availability_checks = config[:availability_checks]

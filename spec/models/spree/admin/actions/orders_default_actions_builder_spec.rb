@@ -12,7 +12,7 @@ module Spree
         subject { builder.build }
 
         it 'builds default tabs' do
-          expect(subject.items.map(&:name)).to match(default_actions)
+          expect(subject.items.map(&:key)).to match(default_actions)
         end
       end
     end

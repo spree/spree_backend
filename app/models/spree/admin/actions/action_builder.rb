@@ -6,7 +6,7 @@ module Spree
 
         def initialize(config)
           @icon_name =           config[:icon_name]
-          @name =                config[:name]
+          @key =                 config[:key]
           @url =                 config[:url]
           @classes =             config[:classes]
           @availability_checks = []
@@ -26,11 +26,11 @@ module Spree
         def build_config
           {
             icon_name: @icon_name,
-            name: @name,
+            key: @key,
             url: @url,
             classes: @classes,
             availability_checks: @availability_checks,
-            text: text(@name, @translation_options),
+            text: text(@key, @translation_options),
             method: @method,
             id: @id,
             translation_options: @translation_options,

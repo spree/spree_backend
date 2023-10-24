@@ -24,7 +24,7 @@ module Spree
         def new_user_config
           {
             icon_name: 'add.svg',
-            name: :new_user,
+            key: :new_user,
             url: new_admin_user_path,
             classes: 'btn-success',
             id: 'admin_new_user_link'
