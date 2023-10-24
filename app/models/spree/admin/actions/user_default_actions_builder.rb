@@ -15,7 +15,7 @@ module Spree
         def add_new_order_action(root)
           action =
             ActionBuilder.new(new_order_config).
-            with_create_availability_check(Spree::Order).
+            with_create_ability_check(Spree::Order).
             build
 
           root.add(action)

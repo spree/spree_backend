@@ -3,7 +3,7 @@ require 'spec_helper'
 module Spree
   module Admin
     describe MainMenu::Item, type: :model do
-      let(:item) { described_class.new(key, label_translation_key, url, icon_key, availability_check, match_path) }
+      let(:item) { described_class.new(key, label_translation_key, url, icon_key, availability_checks, match_path) }
       let(:key) { 'test-key' }
       let(:label_translation_key) { 'test-translation-key' }
       let(:url) { '/test' }

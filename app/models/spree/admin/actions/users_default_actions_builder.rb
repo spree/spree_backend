@@ -15,7 +15,7 @@ module Spree
         def add_new_user_action(root)
           action =
             ActionBuilder.new(new_user_config).
-            with_create_availability_check(::Spree.user_class).
+            with_create_ability_check(::Spree.user_class).
             build
 
           root.add(action)
