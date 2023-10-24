@@ -5,11 +5,11 @@ module Spree
         include ::Spree::Admin::PermissionChecks
 
         def initialize(key, icon_key)
-          @key = key
+          @key =                   key
           @label_translation_key = key
-          @icon_key = icon_key
-          @availability_check = nil
-          @items = []
+          @icon_key =              icon_key
+          @availability_checks =   []
+          @items =                 []
         end
 
         def with_label_translation_key(key)
@@ -28,7 +28,7 @@ module Spree
         end
 
         def build
-          Section.new(@key, @label_translation_key, @icon_key, @availability_check, @items)
+          Section.new(@key, @label_translation_key, @icon_key, @availability_checks, @items)
         end
       end
     end

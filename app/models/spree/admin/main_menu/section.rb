@@ -10,14 +10,16 @@ module Spree
           @key = key
           @label_translation_key = label_translation_key
           @icon_key = icon_key
-          @availability_check = availability_check
+          @availability_checks = availability_checks
           @items = items
         end
 
-        def available?(current_ability, current_store)
-          return true unless @availability_check.present?
+        def available?(current_ability, resource)
+          return true if @availability_checks.empty?
 
-          @availability_check.call(current_ability, current_store)
+          result = @availability_checks.map { |check| check.call(current_ability, resource) }
+
+          result.all?(true)
         end
 
         def children?
