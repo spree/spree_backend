@@ -24,7 +24,7 @@ module Spree
         def new_order_config
           {
             icon_name: 'add.svg',
-            name: :new_order,
+            key: :new_order,
             url: new_admin_order_path,
             classes: 'btn-success',
             id: 'admin_new_order'

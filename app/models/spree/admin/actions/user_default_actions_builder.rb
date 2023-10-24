@@ -24,7 +24,7 @@ module Spree
         def new_order_config
           {
             icon_name: 'add.svg',
-            name: :create_new_order,
+            key: :create_new_order,
             url: ->(resource) { new_admin_order_path(user_id: resource.id) },
             classes: 'btn-success',
             method: :post
