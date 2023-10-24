@@ -2,7 +2,7 @@ module Spree
   module Admin
     module Actions
       class ActionBuilder
-        include AvailabilityBuilderMethods
+        include ::Spree::Admin::PermissionChecks
 
         def initialize(config)
           @icon_name =           config[:icon_name]
