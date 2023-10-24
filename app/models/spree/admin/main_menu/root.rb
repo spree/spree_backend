@@ -5,7 +5,7 @@ module Spree
         attr_reader :items
 
         def initialize
-          super('root', 'root', nil, nil, [])
+          super('root', 'root', nil, [], [])
         end
 
         def add_to_section(section_key, item)

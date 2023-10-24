@@ -4,7 +4,7 @@ module Spree
       class Item
         attr_reader :key, :label_translation_key, :icon_key, :url, :match_path
 
-        def initialize(key, label_translation_key, url, icon_key, availability_check, match_path) # rubocop:disable Metrics/ParameterLists
+        def initialize(key, label_translation_key, url, icon_key, availability_checks, match_path) # rubocop:disable Metrics/ParameterLists
           @key = key
           @label_translation_key = label_translation_key
           @url = url

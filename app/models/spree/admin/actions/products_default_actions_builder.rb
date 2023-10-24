@@ -15,7 +15,7 @@ module Spree
         def add_new_product_action(root)
           action =
             ActionBuilder.new(new_product_config).
-            with_create_availability_check(::Spree::Product).
+            with_create_ability_check(::Spree::Product).
             build
 
           root.add(action)

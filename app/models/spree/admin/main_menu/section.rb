@@ -6,7 +6,7 @@ module Spree
 
         attr_reader :key, :label_translation_key, :icon_key, :items
 
-        def initialize(key, label_translation_key, icon_key, availability_check, items)
+        def initialize(key, label_translation_key, icon_key, availability_checks, items)
           @key = key
           @label_translation_key = label_translation_key
           @icon_key = icon_key
