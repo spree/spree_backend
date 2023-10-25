@@ -1,9 +1,18 @@
 <%= render partial: 'spree/admin/shared/product_tabs', locals: { current: :images } %>
 
 <% content_for :page_actions do %>
-  <%= yield :page_actions %>
-  <%= external_page_preview_link(@product) %>
-  <%= button_link_to(Spree.t(:new_image), spree.new_admin_product_image_url(@product), { class: "btn-success", icon: 'add.svg', id: 'new_image_link' }) if can? :create, Spree::Image %>
+  <% images_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability) %>
+    <%= button_link_to(
+      action.text,
+      action.url(@product),
+      class: action.classes,
+      icon: action.icon_name,
+      id: action.id,
+      target: action.target,
+      data: action.data
+    ) %>
+  <% end %>
 <% end %>
 
 <% has_variants = @product.has_variants? %>
