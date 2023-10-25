@@ -1,7 +1,7 @@
 module Spree
   module Admin
     module Actions
-      class ProductDefaultActionsBuilder
+      class ProductPreviewActionBuilder
         include Spree::Core::Engine.routes.url_helpers
 
         def build

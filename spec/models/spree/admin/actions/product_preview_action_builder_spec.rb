@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Spree
   module Admin
-    describe Actions::ProductDefaultActionsBuilder, type: :model do
+    describe Actions::ProductPreviewActionBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
         ['admin.utilities.preview']
