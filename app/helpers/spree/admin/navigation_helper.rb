@@ -373,6 +373,10 @@ module Spree
       def variants_actions
         Rails.application.config.spree_backend.actions[:variants]
       end
+
+      def product_properties_actions
+        Rails.application.config.spree_backend.actions[:product_properties]
+      end
       # rubocop:enable Metrics/ModuleLength
     end
   end
