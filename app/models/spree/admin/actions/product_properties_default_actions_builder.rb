@@ -46,7 +46,7 @@ module Spree
             key: :add_product_properties,
             url: 'javascript:;',
             classes: 'btn-success spree_add_fields',
-            data: { target: 'tbody#sortVert'}
+            data: { target: 'tbody#sortVert' }
           }
         end
       end
