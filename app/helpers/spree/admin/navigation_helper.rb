@@ -365,6 +365,10 @@ module Spree
       def payments_actions
         Rails.application.config.spree_backend.actions[:payments]
       end
+
+      def stock_actions
+        Rails.application.config.spree_backend.actions[:stock]
+      end
       # rubocop:enable Metrics/ModuleLength
     end
   end
