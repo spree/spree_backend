@@ -353,6 +353,10 @@ module Spree
       def prices_actions
         Rails.application.config.spree_backend.actions[:prices]
       end
+
+      def store_credits
+        Rails.application.config.spree_backend.actions[:store_credits]
+      end
       # rubocop:enable Metrics/ModuleLength
     end
   end

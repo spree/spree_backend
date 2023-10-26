@@ -38,6 +38,7 @@ module Spree
         Rails.application.config.spree_backend.actions[:user] = Spree::Admin::Actions::UserDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions[:products] = Spree::Admin::Actions::ProductsDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions.include?(:images) ? (Rails.application.config.spree_backend.actions[:images].items << Spree::Admin::Actions::ImagesDefaultActionsBuilder.new.build.items).flatten! : Rails.application.config.spree_backend.actions[:images] = Spree::Admin::Actions::ImagesDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:store_credits] = Spree::Admin::Actions::StoreCreditsDefaultActionsBuilder.new.build
       end
     end
   end
