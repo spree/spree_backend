@@ -64,8 +64,18 @@
   <% end %>
 <% else %>
   <% content_for :page_actions do %>
-    <%= external_page_preview_link(@product) %>
-    <%= button_link_to(Spree.t(:new_variant), spree.new_admin_product_variant_url(@product), { icon: 'add.svg', :'data-update' => 'new_variant', class: 'btn-success', id: 'new_var_link' }) if can? :create, Spree::Variant %>
+    <% variants_actions.items.each do |action| %>
+      <% next unless action.available?(current_ability) %>
+      <%= button_link_to(
+        action.text,
+        action.url(@product),
+        class: action.classes,
+        icon: action.icon_name,
+        id: action.id,
+        target: action.target,
+        data: action.data
+      ) %>
+    <% end %>
     <%= button_link_to (@deleted == '1' ? Spree.t(:show_active) : Spree.t(:show_deleted)), spree.admin_product_variants_url(@product, { q: { deleted_at_null: @deleted == '1' ? "0" : "1" } }), { class: 'btn-light', icon: 'filter.svg' } %>
   <% end %>
 <% end %>
