@@ -14,14 +14,14 @@ module Spree
 
         def add_add_store_credit_action(root)
           action =
-            ActionBuilder.new(new_user_config).
+            ActionBuilder.new(add_store_credit_config).
             with_create_ability_check(::Spree::StoreCredit).
             build
 
           root.add(action)
         end
 
-        def new_user_config
+        def add_store_credit_config
           {
             icon_name: 'add.svg',
             key: :add_store_credit,
