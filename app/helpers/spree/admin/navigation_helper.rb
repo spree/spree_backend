@@ -349,6 +349,10 @@ module Spree
       def images_actions
         Rails.application.config.spree_backend.actions[:images]
       end
+
+      def prices_actions
+        Rails.application.config.spree_backend.actions[:prices]
+      end
       # rubocop:enable Metrics/ModuleLength
     end
   end
