@@ -42,6 +42,7 @@ module Spree
         Rails.application.config.spree_backend.actions[:adjustments] = Spree::Admin::Actions::AdjustmentsDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions[:payments] = Spree::Admin::Actions::PaymentsDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions.include?(:variants) ? (Rails.application.config.spree_backend.actions[:variants].items << Spree::Admin::Actions::VariantsDefaultActionsBuilder.new.build.items).flatten! : Rails.application.config.spree_backend.actions[:variants] = Spree::Admin::Actions::VariantsDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions.include?(:product_properties) ? (Rails.application.config.spree_backend.actions[:product_properties].items << Spree::Admin::Actions::ProductPropertiesDefaultActionsBuilder.new.build.items).flatten! : Rails.application.config.spree_backend.actions[:product_properties] = Spree::Admin::Actions::ProductPropertiesDefaultActionsBuilder.new.build
       end
     end
   end

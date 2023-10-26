@@ -2,19 +2,19 @@
 <%= render 'spree/admin/shared/error_messages', target: @product %>
 
 <% content_for :page_actions do %>
-  <%= external_page_preview_link(@product) %>
-
-  <span class="js-new-ptype-link">
-    <%= button_link_to Spree.t(:select_from_prototype),
-      available_admin_prototypes_url,
-      { icon: 'list.svg', remote: true, 'data-update' => 'prototypes', class: 'btn-light' } %>
-  </span>
-
-  <%= button_link_to(
-    Spree.t(:add_product_properties),
-    "javascript:;",
-    { icon: 'add.svg', :'data-target' => "tbody#sortVert", class: 'btn-success spree_add_fields' }) %>
-<% end if can? :create, Spree::ProductProperty %>
+  <% product_properties_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability) %>
+    <%= button_link_to(
+      action.text,
+      action.url(@product),
+      class: action.classes,
+      icon: action.icon_name,
+      id: action.id,
+      target: action.target,
+      data: action.data
+    ) %>
+  <% end %>
+<% end %>
 
 <%= form_for @product, url: spree.admin_product_url(@product), method: :put do |f| %>
   <fieldset>
