@@ -354,7 +354,7 @@ module Spree
         Rails.application.config.spree_backend.actions[:prices]
       end
 
-      def store_credits
+      def store_credits_actions
         Rails.application.config.spree_backend.actions[:store_credits]
       end
 
