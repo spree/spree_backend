@@ -3,17 +3,17 @@ require 'spec_helper'
 module Spree
   module Admin
     describe MainMenu::Root, type: :model do
-      let(:root) { described_class.new }
+      let(:class_under_test) { described_class.new }
       let(:items) { [] }
 
       before do
-        items.each { |i| root.add(i) }
+        items.each { |i| class_under_test.add(i) }
       end
 
       it_behaves_like 'implements item manipulation and query methods'
 
       describe '#key' do
-        subject { root.key }
+        subject { class_under_test.key }
 
         it 'returns root' do
           expect(subject).to eq('root')
@@ -21,7 +21,7 @@ module Spree
       end
 
       describe '#label_translation_key' do
-        subject { root.label_translation_key }
+        subject { class_under_test.label_translation_key }
 
         it 'returns root' do
           expect(subject).to eq('root')
@@ -29,7 +29,7 @@ module Spree
       end
 
       describe '#icon_key' do
-        subject { root.icon_key }
+        subject { class_under_test.icon_key }
 
         it 'returns nil' do
           expect(subject).to be_nil
@@ -37,7 +37,7 @@ module Spree
       end
 
       describe '#available?' do
-        subject { root.available?(ability, store) }
+        subject { class_under_test.available?(ability, store) }
 
         let(:ability) { double }
         let(:store) { double }
@@ -48,7 +48,7 @@ module Spree
       end
 
       describe '#add_to_section' do
-        subject { root.add_to_section(section_key, item) }
+        subject { class_under_test.add_to_section(section_key, item) }
 
         let(:items) { [section] }
         let(:section) { double(key: section_key) }
