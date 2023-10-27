@@ -3,7 +3,7 @@ require 'spec_helper'
 module Spree
   module Admin
     describe MainMenu::Section, type: :model do
-      let(:section) { described_class.new(key, label_translation_key, icon_key, availability_check, items) }
+      let(:class_under_test) { described_class.new(key, label_translation_key, icon_key, availability_check, items) }
       let(:key) { 'test-key' }
       let(:label_translation_key) { 'test-translation-key' }
       let(:icon_key) { 'icon-key' }
@@ -13,7 +13,7 @@ module Spree
       it_behaves_like 'implements item manipulation and query methods'
 
       describe '#key' do
-        subject { section.key }
+        subject { class_under_test.key }
 
         it 'returns key' do
           expect(subject).to eq(key)
@@ -21,7 +21,7 @@ module Spree
       end
 
       describe '#label_translation_key' do
-        subject { section.label_translation_key }
+        subject { class_under_test.label_translation_key }
 
         it 'returns translation key' do
           expect(subject).to eq(label_translation_key)
@@ -29,7 +29,7 @@ module Spree
       end
 
       describe '#icon_key' do
-        subject { section.icon_key }
+        subject { class_under_test.icon_key }
 
         it 'returns icon mey' do
           expect(subject).to eq(icon_key)
@@ -37,7 +37,7 @@ module Spree
       end
 
       describe '#available?' do
-        subject { section.available?(ability, store) }
+        subject { class_under_test.available?(ability, store) }
 
         let(:ability) { double}
         let(:store) { double }
@@ -66,7 +66,7 @@ module Spree
       end
 
       describe '#children?' do
-        subject { section.children? }
+        subject { class_under_test.children? }
 
         context 'when there are child items' do
           let(:items) { [double] }
