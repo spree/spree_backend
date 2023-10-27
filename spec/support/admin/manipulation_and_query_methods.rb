@@ -1,13 +1,13 @@
 RSpec.shared_examples "implements item manipulation and query methods" do
   describe '#add' do
-    subject { root.add(item) }
+    subject { class_under_test.add(item) }
     let(:item) { double(key: 'test') }
 
     context "when there's no item with a particular key" do
 
       it 'appends an item' do
         subject
-        expect(root.items).to include(item)
+        expect(class_under_test.items).to include(item)
       end
     end
 
@@ -21,7 +21,7 @@ RSpec.shared_examples "implements item manipulation and query methods" do
   end
 
   describe '#child_with_key?' do
-    subject { root.child_with_key?(key) }
+    subject { class_under_test.child_with_key?(key) }
     let(:key) { 'key' }
 
     context 'when an item with given key exists' do
@@ -42,7 +42,7 @@ RSpec.shared_examples "implements item manipulation and query methods" do
   end
 
   describe '#remove' do
-    subject { root.remove(key) }
+    subject { class_under_test.remove(key) }
     let(:key) { 'key' }
     let(:other_key) { 'other-key' }
 
@@ -51,8 +51,8 @@ RSpec.shared_examples "implements item manipulation and query methods" do
 
       it 'removes the item' do
         subject
-        expect(root.items.count).to eq(1)
-        expect(root.items.first.key).to eq(other_key)
+        expect(class_under_test.items.count).to eq(1)
+        expect(class_under_test.items.first.key).to eq(other_key)
       end
     end
 
@@ -66,7 +66,7 @@ RSpec.shared_examples "implements item manipulation and query methods" do
   end
 
   describe '#item_for_key' do
-    subject { root.item_for_key(key) }
+    subject { class_under_test.item_for_key(key) }
     let(:key) { 'key' }
 
     context 'when an item with given key exists' do
@@ -88,7 +88,7 @@ RSpec.shared_examples "implements item manipulation and query methods" do
   end
 
   describe '#insert_before' do
-    subject { root.insert_before(existing_key, item) }
+    subject { class_under_test.insert_before(existing_key, item) }
 
     let(:item) { double(key: inserted_key) }
     let(:inserted_key) { 'test-item' }
@@ -113,14 +113,14 @@ RSpec.shared_examples "implements item manipulation and query methods" do
 
       it 'inserts the item before the other item' do
         subject
-        expect(root.items.count).to eq(3)
-        expect(root.items[1].key).to eq(inserted_key)
+        expect(class_under_test.items.count).to eq(3)
+        expect(class_under_test.items[1].key).to eq(inserted_key)
       end
     end
   end
 
   describe '#insert_after' do
-    subject { root.insert_after(existing_key, item) }
+    subject { class_under_test.insert_after(existing_key, item) }
 
     let(:item) { double(key: inserted_key) }
     let(:inserted_key) { 'test-item' }
@@ -145,8 +145,8 @@ RSpec.shared_examples "implements item manipulation and query methods" do
 
       it 'inserts the item after the other item' do
         subject
-        expect(root.items.count).to eq(3)
-        expect(root.items[1].key).to eq(inserted_key)
+        expect(class_under_test.items.count).to eq(3)
+        expect(class_under_test.items[1].key).to eq(inserted_key)
       end
     end
   end
