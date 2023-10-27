@@ -21,17 +21,15 @@
       <% end %>
 
       <div class="col-12"><hr></div>
-      <% unless rails_5? %>
-        <%= f.field_container :link_type_one do %>
-          <%= f.label :link_type_one, Spree.t('admin.navigation.link_to') %>
-          <%= f.select(:link_type_one,
-              spree_humanize_dropdown_values('Spree::Cms::Sections::SideBySideImages',
-                                              { const: 'LINKED_RESOURCE_TYPE' }),
-                                              { include_blank: false },
-                                              class: 'link_switcher',
-                                              data: { target_field: :link_one}) %>
-          <%= f.error_message_on :link_type_one %>
-        <% end %>
+      <%= f.field_container :link_type_one do %>
+        <%= f.label :link_type_one, Spree.t('admin.navigation.link_to') %>
+        <%= f.select(:link_type_one,
+            spree_humanize_dropdown_values('Spree::Cms::Sections::SideBySideImages',
+                                            { const: 'LINKED_RESOURCE_TYPE' }),
+                                            { include_blank: false },
+                                            class: 'link_switcher',
+                                            data: { target_field: :link_one}) %>
+        <%= f.error_message_on :link_type_one %>
       <% end %>
       <%= render "spree/admin/shared/link_fields", resource: @cms_section, linked_type: @cms_section.link_type_one, save_to: :link_one, f: f %>
     </div>
@@ -60,17 +58,15 @@
 
       <div class="col-12"><hr></div>
 
-      <% unless rails_5? %>
-        <%= f.field_container :link_type_two do %>
-          <%= f.label :link_type_two, Spree.t('admin.navigation.link_to') %>
-          <%= f.select(:link_type_two,
-              spree_humanize_dropdown_values('Spree::Cms::Sections::SideBySideImages',
-                                              { const: 'LINKED_RESOURCE_TYPE' }),
-                                              { include_blank: false },
-                                              class: 'link_switcher',
-                                              data: { target_field: :link_two}) %>
-          <%= f.error_message_on :link_type_two %>
-        <% end %>
+      <%= f.field_container :link_type_two do %>
+        <%= f.label :link_type_two, Spree.t('admin.navigation.link_to') %>
+        <%= f.select(:link_type_two,
+            spree_humanize_dropdown_values('Spree::Cms::Sections::SideBySideImages',
+                                            { const: 'LINKED_RESOURCE_TYPE' }),
+                                            { include_blank: false },
+                                            class: 'link_switcher',
+                                            data: { target_field: :link_two}) %>
+        <%= f.error_message_on :link_type_two %>
       <% end %>
       <%= render "spree/admin/shared/link_fields", resource: @cms_section, linked_type: @cms_section.link_type_two, save_to: :link_two, f: f %>
     </div>
