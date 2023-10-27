@@ -7,7 +7,7 @@ defaults: &defaults
     BUNDLE_JOBS: 4
     BUNDLE_RETRY: 3
     BUNDLE_PATH: ~/spree/vendor/bundle
-    RAILS_VERSION: '~> 7.0.0'
+    RAILS_VERSION: '~> 7.1.0'
   working_directory: ~/spree
   docker:
     - image: &ruby_3_0_image circleci/ruby:3.0-node-browsers
@@ -159,6 +159,7 @@ jobs:
       DB: postgres
       DB_HOST: localhost
       DB_USERNAME: postgres
+      RAILS_VERSION: '~> 7.0.0'
     docker:
       - image: *ruby_3_0_image
       - image: &postgres_image circleci/postgres:12-alpine
@@ -166,7 +167,7 @@ jobs:
           POSTGRES_USER: postgres
       - image: *redis_image
 
-  tests_ruby_3_2_rails_7_0_postgres:
+  tests_ruby_3_2_rails_7_1_postgres:
     <<: *run_tests_3_2
     environment:
       <<: *environment
@@ -178,7 +179,7 @@ jobs:
       - image: *postgres_image
       - image: *redis_image
 
-  tests_ruby_3_2_rails_7_0_mysql:
+  tests_ruby_3_2_rails_7_1_mysql:
     <<: *run_tests_3_2
     environment:
       <<: *environment
@@ -198,12 +199,12 @@ workflows:
     jobs:
       - bundle_ruby_3_0
       - bundle_ruby_3_2
-      - tests_ruby_3_2_rails_7_0_postgres:
+      - tests_ruby_3_2_rails_7_1_postgres:
           requires:
             - bundle_ruby_3_2
       - tests_ruby_3_0_rails_7_0_postgres:
           requires:
             - bundle_ruby_3_0
-      - tests_ruby_3_2_rails_7_0_mysql:
+      - tests_ruby_3_2_rails_7_1_mysql:
           requires:
             - bundle_ruby_3_2
