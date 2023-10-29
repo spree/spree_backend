@@ -162,9 +162,19 @@ module Spree
       end
 
       def create_before
-        return if params[:product][:prototype_id].blank?
+        if Rails::VERSION::STRING >= '7.1.0'
+          option_values_hash_keys = params[:product].keys.select { |e| e.starts_with?('option_values_hash[') }
+          option_values_hash = {}
+          option_values_hash_keys.each do |key|
+            value = params[:product].delete(key)
+            fixed_key = key.gsub(/option_values_hash\[/, '')
+            option_values_hash[fixed_key] ||= []
+            option_values_hash[fixed_key] << value['][]']
+          end
+          params[:product][:option_values_hash] = option_values_hash
+        end
 
-        @prototype = Spree::Prototype.find(params[:product][:prototype_id])
+        @prototype = Spree::Prototype.find(params[:product][:prototype_id]) if params[:product][:prototype_id].present?
       end
 
       def update_before
