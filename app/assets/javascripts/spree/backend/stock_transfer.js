@@ -128,7 +128,7 @@ document.addEventListener("spree:load", function() {
 
   TransferVariants.prototype._search_transfer_stock_items = function () {
     var stockLocationId = $('#transfer_source_location_id').val()
-    return this.build_select(Spree.routes.stock_items_api_v2 + '?filter[stock_location_id_eq]=' + stockLocationId + '&include=variant', 'variant_product_name_or_variant_sku_cont')
+    return this.build_select(Spree.routes.stock_items_api_v2 + '?filter[stock_location_id_eq]=' + stockLocationId + '&include=variant', 'variants_product_name_or_variants_sku_cont')
   }
 
   TransferVariants.prototype.format_variant_result = function (result) {
