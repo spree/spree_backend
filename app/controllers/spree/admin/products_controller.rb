@@ -162,7 +162,14 @@ module Spree
       end
 
       def create_before
+        raise 'Verify if the patch is still needed' if Rails::VERSION::STRING >= '7.2.0'
+
         if Rails::VERSION::STRING >= '7.1.0'
+          # This is a rather ugly fix for an issue with Rails 7.1.0 and 7.1.1
+          # As an example, a form field with name = option_values_hash[1][] and value = 5
+          # gets parsed incorrectly and is visible via params as the following structure
+          # { 'option_values_hash[1' => { '][]' => 5 } }
+          # This patch fixes that behavior to ensure compatibility with the existing templates
           option_values_hash_keys = params[:product].keys.select { |e| e.starts_with?('option_values_hash[') }
           option_values_hash = {}
           option_values_hash_keys.each do |key|
@@ -171,7 +178,7 @@ module Spree
             option_values_hash[fixed_key] ||= []
             option_values_hash[fixed_key] << value['][]']
           end
-          params[:product][:option_values_hash] = option_values_hash
+          params[:product][:option_values_hash] = option_values_hash if option_values_hash.present?
         end
 
         @prototype = Spree::Prototype.find(params[:product][:prototype_id]) if params[:product][:prototype_id].present?
