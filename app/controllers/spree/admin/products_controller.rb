@@ -10,6 +10,7 @@ module Spree
       before_action :set_product_defaults, only: :new
 
       create.before :create_before
+      create.before :fix_option_values_params_rails_7_1
       update.before :update_before
       update.before :skip_updating_status
       update.after :update_status
@@ -162,6 +163,12 @@ module Spree
       end
 
       def create_before
+        return if params[:product][:prototype_id].blank?
+
+        @prototype = Spree::Prototype.find(params[:product][:prototype_id])
+      end
+
+      def fix_option_values_params_rails_7_1
         raise 'Verify if the patch is still needed' if Rails::VERSION::STRING >= '7.2.0'
 
         if Rails::VERSION::STRING >= '7.1.0'
@@ -180,8 +187,6 @@ module Spree
           end
           params[:product][:option_values_hash] = option_values_hash if option_values_hash.present?
         end
-
-        @prototype = Spree::Prototype.find(params[:product][:prototype_id]) if params[:product][:prototype_id].present?
       end
 
       def update_before
