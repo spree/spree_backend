@@ -19,6 +19,7 @@ module Spree
         }
       end
       let(:check) { nil }
+      let(:availability_checks) { [] }
 
       describe '#icon_name' do
         subject { tab.icon_name }
