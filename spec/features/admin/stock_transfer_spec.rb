@@ -13,9 +13,10 @@ describe 'Stock Transfers', type: :feature, js: true do
     visit spree.admin_stock_transfers_path
     click_on 'New Stock Transfer'
 
+    expected_select_item = "#{variant.name} - #{variant.sku} (#{variant.options_text})"
     select2_open label: 'Variant'
     select2_search variant.sku, from: 'Variant'
-    select2_select variant.name, from: 'Variant', match: :first
+    select2_select expected_select_item, from: 'Variant', match: :first
 
     content = "#{variant.name} (#{variant.options_text}) - #{variant.sku}"
     expect(page).to have_content(content)

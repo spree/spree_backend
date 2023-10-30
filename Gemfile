@@ -6,7 +6,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
   actionmailer actionpack actionview activejob activemodel activerecord
   activestorage activesupport railties
 ].each do |rails_gem|
-  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 7.0.0'), require: false
+  gem rails_gem, ENV.fetch('RAILS_VERSION', '~> 7.1.0'), require: false
 end
 
 platforms :jruby do
@@ -30,8 +30,8 @@ group :test do
   gem 'email_spec'
   gem 'factory_bot_rails', '~> 6.0'
   gem 'multi_json'
-  gem 'rspec-activemodel-mocks', '~> 1.0'
-  gem 'rspec-rails', '~> 5.0'
+  gem 'rspec-activemodel-mocks'
+  gem 'rspec-rails'
   gem 'rspec-retry'
   gem 'rspec_junit_formatter'
   gem 'rswag-specs'
@@ -50,7 +50,6 @@ group :test, :development do
   gem 'rubocop', require: false
   gem 'rubocop-rspec', require: false
   gem 'pry-byebug'
-  gem 'webdrivers'
   gem 'selenium-webdriver'
   gem 'puma'
   gem 'ffaker'
