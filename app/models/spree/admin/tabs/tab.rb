@@ -2,19 +2,17 @@ module Spree
   module Admin
     module Tabs
       class Tab
-        attr_reader :icon_name, :key, :classes, :text, :data_hook
+        attr_reader :icon_key, :key, :label_translation_key, :data_hook
 
-        def initialize(config)
-          @icon_name =          config[:icon_name]
-          @key =                config[:key]
-          @url =                config[:url]
-          @partial_name =       config[:partial_name]
-          @availability_checks = config[:availability_checks]
-          @active_check =       config[:active_check]
-          @completed_check =    config[:completed_check]
-          @text =               config[:text]
-          @data_hook =          config[:data_hook]
-          @classes =            css_classes
+        def initialize(key, label_translation_key, url, icon_key, partial_name, availability_checks, active_check, data_hook)
+          @key = key
+          @label_translation_key = label_translation_key
+          @url = url
+          @icon_key = icon_key
+          @partial_name = partial_name
+          @availability_checks = availability_checks
+          @active_check = active_check
+          @data_hook = data_hook
         end
 
         def available?(current_ability, resource)
@@ -30,19 +28,9 @@ module Spree
         end
 
         def active?(current_tab)
+          return false unless @active_check.present?
+
           @active_check.call(current_tab, @partial_name)
-        end
-
-        def complete?(resource)
-          return true unless @completed_check.present?
-
-          @completed_check.call(resource)
-        end
-
-        private
-
-        def css_classes
-          'nav-link'
         end
       end
     end

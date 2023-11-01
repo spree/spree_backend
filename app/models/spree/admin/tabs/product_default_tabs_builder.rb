@@ -22,7 +22,8 @@ module Spree
 
         def add_details_tab(root)
           tab =
-            TabBuilder.new(details_config).
+            TabBuilder.new('details', ->(resource) { edit_admin_product_path(resource) }).
+            with_icon_key('edit.svg').
             with_active_check.
             with_admin_ability_check(::Spree::Product).
             build
@@ -30,18 +31,10 @@ module Spree
           root.add(tab)
         end
 
-        def details_config
-          {
-            icon_name: 'edit.svg',
-            key: :details,
-            url: ->(resource) { edit_admin_product_path(resource) },
-            partial_name: :details
-          }
-        end
-
         def add_images_tab(root)
           tab =
-            TabBuilder.new(images_config).
+            TabBuilder.new('images', ->(resource) { admin_product_images_path(resource) }).
+            with_icon_key('images.svg').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -53,18 +46,10 @@ module Spree
           root.add(tab)
         end
 
-        def images_config
-          {
-            icon_name: 'images.svg',
-            key: :images,
-            url: ->(resource) { admin_product_images_path(resource) },
-            partial_name: :images
-          }
-        end
-
         def add_variants_tab(root)
           tab =
-            TabBuilder.new(variants_config).
+            TabBuilder.new('variants', ->(resource) { admin_product_variants_path(resource) }).
+            with_icon_key('adjust.svg').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -76,18 +61,10 @@ module Spree
           root.add(tab)
         end
 
-        def variants_config
-          {
-            icon_name: 'adjust.svg',
-            key: :variants,
-            url: ->(resource) { admin_product_variants_path(resource) },
-            partial_name: :variants
-          }
-        end
-
         def add_properties_tab(root)
           tab =
-            TabBuilder.new(properties_config).
+            TabBuilder.new('properties', ->(resource) { admin_product_product_properties_path(resource) }).
+            with_icon_key('list.svg').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -99,18 +76,10 @@ module Spree
           root.add(tab)
         end
 
-        def properties_config
-          {
-            icon_name: 'list.svg',
-            key: :properties,
-            url: ->(resource) { admin_product_product_properties_path(resource) },
-            partial_name: :properties
-          }
-        end
-
         def add_stock_tab(root)
           tab =
-            TabBuilder.new(stock_config).
+            TabBuilder.new('stock', ->(resource) { stock_admin_product_path(resource) }).
+            with_icon_key('box-seam.svg').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -122,18 +91,10 @@ module Spree
           root.add(tab)
         end
 
-        def stock_config
-          {
-            icon_name: 'box-seam.svg',
-            key: :stock,
-            url: ->(resource) { stock_admin_product_path(resource) },
-            partial_name: :stock
-          }
-        end
-
         def add_prices_tab(root)
           tab =
-            TabBuilder.new(prices_config).
+            TabBuilder.new('prices', ->(resource) { admin_product_prices_path(resource) }).
+            with_icon_key('currency-exchange.svg').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -145,18 +106,12 @@ module Spree
           root.add(tab)
         end
 
-        def prices_config
-          {
-            icon_name: 'currency-exchange.svg',
-            key: :prices,
-            url: ->(resource) { admin_product_prices_path(resource) },
-            partial_name: :prices
-          }
-        end
-
         def add_digitals_tab(root)
           tab =
-            TabBuilder.new(digitals_config).
+            TabBuilder.new('digital_assets', ->(resource) { admin_product_digitals_path(resource) }).
+            with_icon_key('download.svg').
+            with_label_translation_key('admin.digitals.digital_assets').
+            with_partial_name('digitals').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -168,18 +123,10 @@ module Spree
           root.add(tab)
         end
 
-        def digitals_config
-          {
-            icon_name: 'download.svg',
-            key: 'admin.digitals.digital_assets',
-            url: ->(resource) { admin_product_digitals_path(resource) },
-            partial_name: :digitals
-          }
-        end
-
         def add_translations_tab(root)
           tab =
-            TabBuilder.new(translations_config).
+            TabBuilder.new('translations', ->(resource) { translations_admin_product_path(resource) }).
+            with_icon_key('translate.svg').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -189,15 +136,6 @@ module Spree
             build
 
           root.add(tab)
-        end
-
-        def translations_config
-          {
-            icon_name: 'translate.svg',
-            key: :translations,
-            url: ->(resource) { translations_admin_product_path(resource) },
-            partial_name: :translations
-          }
         end
       end
       # rubocop:enable Metrics/ClassLength

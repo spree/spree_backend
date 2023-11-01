@@ -18,92 +18,58 @@ module Spree
 
         def add_account_tab(root)
           tab =
-            TabBuilder.new(account_config).
+            TabBuilder.new('account', ->(resource) { edit_admin_user_path(resource) }).
+            with_label_translation_key('admin.user.account').
+            with_icon_key('person.svg').
             with_active_check.
             build
 
           root.add(tab)
-        end
-
-        def account_config
-          {
-            icon_name: 'person.svg',
-            key: 'admin.user.account',
-            url: ->(resource) { edit_admin_user_path(resource) },
-            partial_name: :account
-          }
         end
 
         def add_addresses_tab(root)
           tab =
-            TabBuilder.new(addresses_config).
+            TabBuilder.new('addresses', ->(resource) { addresses_admin_user_path(resource) }).
+            with_label_translation_key('admin.user.addresses').
+            with_icon_key('pin-map.svg').
+            with_partial_name('address').
             with_active_check.
             build
 
           root.add(tab)
-        end
-
-        def addresses_config
-          {
-            icon_name: 'pin-map.svg',
-            key: 'admin.user.addresses',
-            url: ->(resource) { addresses_admin_user_path(resource) },
-            partial_name: :address
-          }
         end
 
         def add_orders_tab(root)
           tab =
-            TabBuilder.new(orders_config).
+            TabBuilder.new('orders', ->(resource) { orders_admin_user_path(resource) }).
+            with_label_translation_key('admin.user.orders').
+            with_icon_key('inbox.svg').
             with_active_check.
             build
 
           root.add(tab)
-        end
-
-        def orders_config
-          {
-            icon_name: 'inbox.svg',
-            key: 'admin.user.orders',
-            url: ->(resource) { orders_admin_user_path(resource) },
-            partial_name: :orders
-          }
         end
 
         def add_items_tab(root)
           tab =
-            TabBuilder.new(items_config).
+            TabBuilder.new('items', ->(resource) { items_admin_user_path(resource) }).
+            with_label_translation_key('admin.user.items').
+            with_icon_key('tag.svg').
             with_active_check.
             build
 
           root.add(tab)
-        end
-
-        def items_config
-          {
-            icon_name: 'tag.svg',
-            key: 'admin.user.items',
-            url: ->(resource) { items_admin_user_path(resource) },
-            partial_name: :items
-          }
         end
 
         def add_store_credits_tab(root)
           tab =
-            TabBuilder.new(store_credits_config).
+            TabBuilder.new('store_credits', ->(resource) { admin_user_store_credits_path(resource) }).
+            with_label_translation_key('admin.user.store_credits').
+            with_icon_key('gift.svg').
             with_active_check.
             build
 
           root.add(tab)
-        end
-
-        def store_credits_config
-          {
-            icon_name: 'gift.svg',
-            key: 'admin.user.store_credits',
-            url: ->(resource) { admin_user_store_credits_path(resource) },
-            partial_name: :store_credits
-          }
         end
       end
     end

@@ -23,7 +23,8 @@ module Spree
 
         def add_cart_tab(root)
           tab =
-            TabBuilder.new(cart_tab_config).
+            TabBuilder.new('cart', ->(resource) { cart_admin_order_path(resource) }).
+            with_icon_key('cart-check.svg').
             with_active_check.
             with_availability_check(
               # An abstract module should not be aware of resource's internal structure.
@@ -38,18 +39,10 @@ module Spree
           root.add(tab)
         end
 
-        def cart_tab_config
-          {
-            icon_name: 'cart-check.svg',
-            key: :cart,
-            url: ->(resource) { cart_admin_order_path(resource) },
-            partial_name: :cart
-          }
-        end
-
         def add_channel_tab(root)
           tab =
-            TabBuilder.new(channel_tab_config).
+            TabBuilder.new('channel', ->(resource) { channel_admin_order_path(resource) }).
+            with_icon_key('funnel.svg').
             with_active_check.
             with_update_ability_check.
             with_data_hook('admin_order_tabs_channel_details').
@@ -58,18 +51,11 @@ module Spree
           root.add(tab)
         end
 
-        def channel_tab_config
-          {
-            icon_name: 'funnel.svg',
-            key: :channel,
-            url: ->(resource) { channel_admin_order_path(resource) },
-            partial_name: :channel
-          }
-        end
-
         def add_customer_tab(root)
           tab =
-            TabBuilder.new(customer_tab_config).
+            TabBuilder.new('customer', ->(resource) { admin_order_customer_path(resource) }).
+            with_icon_key('person-lines-fill.svg').
+            with_partial_name('customer_details').
             with_active_check.
             with_availability_check(
               lambda do |ability, resource|
@@ -82,18 +68,10 @@ module Spree
           root.add(tab)
         end
 
-        def customer_tab_config
-          {
-            icon_name: 'person-lines-fill.svg',
-            key: :customer,
-            url: ->(resource) { admin_order_customer_path(resource) },
-            partial_name: :customer_details
-          }
-        end
-
         def add_shipments_tab(root)
           tab =
-            TabBuilder.new(shipments_tab_config).
+            TabBuilder.new('shipments', ->(resource) { edit_admin_order_path(resource) }).
+            with_icon_key('truck.svg').
             with_active_check.
             with_update_ability_check.
             with_data_hook('admin_order_tabs_shipment_details').
@@ -102,18 +80,10 @@ module Spree
           root.add(tab)
         end
 
-        def shipments_tab_config
-          {
-            icon_name: 'truck.svg',
-            key: :shipments,
-            url: ->(resource) { edit_admin_order_path(resource) },
-            partial_name: :shipments
-          }
-        end
-
         def add_adjustments_tab(root)
           tab =
-            TabBuilder.new(adjustments_tab_config).
+            TabBuilder.new('adjustments', ->(resource) { admin_order_adjustments_path(resource) }).
+            with_icon_key('adjust.svg').
             with_active_check.
             with_index_ability_check(::Spree::Adjustment).
             with_data_hook('admin_order_tabs_adjustments').
@@ -122,18 +92,10 @@ module Spree
           root.add(tab)
         end
 
-        def adjustments_tab_config
-          {
-            icon_name: 'adjust.svg',
-            key: :adjustments,
-            url: ->(resource) { admin_order_adjustments_path(resource) },
-            partial_name: :adjustments
-          }
-        end
-
         def add_payments_tab(root)
           tab =
-            TabBuilder.new(payments_tab_config).
+            TabBuilder.new('payments', ->(resource) { admin_order_payments_path(resource) }).
+            with_icon_key('credit-card.svg').
             with_active_check.
             with_index_ability_check(::Spree::Payment).
             with_data_hook('admin_order_tabs_payments').
@@ -142,18 +104,10 @@ module Spree
           root.add(tab)
         end
 
-        def payments_tab_config
-          {
-            icon_name: 'credit-card.svg',
-            key: :payments,
-            url: ->(resource) { admin_order_payments_path(resource) },
-            partial_name: :payments
-          }
-        end
-
         def add_return_authorizations_tab(root)
           tab =
-            TabBuilder.new(return_authorizations_tab_config).
+            TabBuilder.new('return_authorizations', ->(resource) { admin_order_return_authorizations_path(resource) }).
+            with_icon_key('enter.svg').
             with_active_check.
             with_completed_check.
             with_index_ability_check(::Spree::ReturnAuthorization).
@@ -163,18 +117,10 @@ module Spree
           root.add(tab)
         end
 
-        def return_authorizations_tab_config
-          {
-            icon_name: 'enter.svg',
-            key: :return_authorizations,
-            url: ->(resource) { admin_order_return_authorizations_path(resource) },
-            partial_name: :return_authorizations
-          }
-        end
-
         def add_customer_returns_tab(root)
           tab =
-            TabBuilder.new(customer_returns_tab_config).
+            TabBuilder.new('customer_returns', ->(resource) { admin_order_customer_returns_path(resource) }).
+            with_icon_key('returns.svg').
             with_active_check.
             with_completed_check.
             with_index_ability_check(::Spree::CustomerReturn).
@@ -183,33 +129,16 @@ module Spree
           root.add(tab)
         end
 
-        def customer_returns_tab_config
-          {
-            icon_name: 'returns.svg',
-            key: :customer_returns,
-            url: ->(resource) { admin_order_customer_returns_path(resource) },
-            partial_name: :customer_returns
-          }
-        end
-
         def add_state_changes_tab(root)
           tab =
-            TabBuilder.new(state_changes_tab_config).
+            TabBuilder.new('state_changes', ->(resource) { admin_order_state_changes_path(resource) }).
+            with_icon_key('calendar3.svg').
             with_active_check.
             with_update_ability_check.
             with_data_hook('admin_order_tabs_state_changes').
             build
 
           root.add(tab)
-        end
-
-        def state_changes_tab_config
-          {
-            icon_name: 'calendar3.svg',
-            key: :state_changes,
-            url: ->(resource) { admin_order_state_changes_path(resource) },
-            partial_name: :state_changes
-          }
         end
       end
       # rubocop:enable Metrics/ClassLength

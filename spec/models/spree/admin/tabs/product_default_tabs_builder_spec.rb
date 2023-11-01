@@ -5,14 +5,14 @@ module Spree
     describe Tabs::ProductDefaultTabsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_tabs) do
-        [:details,
-         :images,
-         :variants,
-         :properties,
-         :stock,
-         :prices,
-         'admin.digitals.digital_assets',
-         :translations]
+        %w(details
+           images
+           variants
+           properties
+           stock
+           prices
+           digital_assets
+           translations)
       end
 
       describe '#build' do
