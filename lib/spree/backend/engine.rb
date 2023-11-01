@@ -3,7 +3,7 @@ require_relative 'configuration'
 module Spree
   module Backend
     class Engine < ::Rails::Engine
-      Environment = Struct.new(:main_menu, :tabs)
+      Environment = Struct.new(:main_menu, :tabs, :actions)
 
       config.middleware.use 'Spree::Backend::Middleware::SeoAssist'
 
@@ -31,6 +31,18 @@ module Spree
         Rails.application.config.spree_backend.tabs[:order] = Spree::Admin::Tabs::OrderDefaultTabsBuilder.new.build
         Rails.application.config.spree_backend.tabs[:user] = Spree::Admin::Tabs::UserDefaultTabsBuilder.new.build
         Rails.application.config.spree_backend.tabs[:product] = Spree::Admin::Tabs::ProductDefaultTabsBuilder.new.build
+        Rails.application.config.spree_backend.actions = {}
+        Rails.application.config.spree_backend.actions[:orders] = Spree::Admin::Actions::OrdersDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:order] = Spree::Admin::Actions::OrderDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:users] = Spree::Admin::Actions::UsersDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:user] = Spree::Admin::Actions::UserDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:products] = Spree::Admin::Actions::ProductsDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions.include?(:images) ? (Rails.application.config.spree_backend.actions[:images].items << Spree::Admin::Actions::ImagesDefaultActionsBuilder.new.build.items).flatten! : Rails.application.config.spree_backend.actions[:images] = Spree::Admin::Actions::ImagesDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:store_credits] = Spree::Admin::Actions::StoreCreditsDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:adjustments] = Spree::Admin::Actions::AdjustmentsDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:payments] = Spree::Admin::Actions::PaymentsDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions.include?(:variants) ? (Rails.application.config.spree_backend.actions[:variants].items << Spree::Admin::Actions::VariantsDefaultActionsBuilder.new.build.items).flatten! : Rails.application.config.spree_backend.actions[:variants] = Spree::Admin::Actions::VariantsDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions.include?(:product_properties) ? (Rails.application.config.spree_backend.actions[:product_properties].items << Spree::Admin::Actions::ProductPropertiesDefaultActionsBuilder.new.build.items).flatten! : Rails.application.config.spree_backend.actions[:product_properties] = Spree::Admin::Actions::ProductPropertiesDefaultActionsBuilder.new.build
       end
     end
   end

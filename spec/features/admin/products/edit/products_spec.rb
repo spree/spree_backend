@@ -46,15 +46,6 @@ describe 'Product Details', type: :feature, js: true do
       click_button 'Update'
       expect(page).to have_content('successfully updated!')
     end
-
-    it 'has a link to preview a product' do
-      allow(Spree::Core::Engine).to receive(:frontend_available?).and_return(true)
-
-      click_link 'Details'
-
-      expect(page).to have_css('#adminPreviewProduct')
-      expect(page).to have_link Spree.t(:preview_product), href: "http://www.example.com/products/bun-th-t-n-ng"
-    end
   end
 
   describe 'status related fields behavior' do

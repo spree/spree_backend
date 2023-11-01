@@ -1,5 +1,6 @@
 module Spree
   module Admin
+    # rubocop:disable Metrics/ModuleLength
     module NavigationHelper
       # Makes an admin navigation tab (<li> tag) that links to a routing resource under /admin.
       # The arguments should be a list of symbolized controller names that will cause this tab to
@@ -320,6 +321,63 @@ module Spree
       def product_tabs
         Rails.application.config.spree_backend.tabs[:product]
       end
+
+      def orders_actions
+        Rails.application.config.spree_backend.actions[:orders]
+      end
+
+      def order_actions
+        Rails.application.config.spree_backend.actions[:order]
+      end
+
+      def users_actions
+        Rails.application.config.spree_backend.actions[:users]
+      end
+
+      def user_actions
+        Rails.application.config.spree_backend.actions[:user]
+      end
+
+      def products_actions
+        Rails.application.config.spree_backend.actions[:products]
+      end
+
+      def product_actions
+        Rails.application.config.spree_backend.actions[:product]
+      end
+
+      def images_actions
+        Rails.application.config.spree_backend.actions[:images]
+      end
+
+      def prices_actions
+        Rails.application.config.spree_backend.actions[:prices]
+      end
+
+      def store_credits_actions
+        Rails.application.config.spree_backend.actions[:store_credits]
+      end
+
+      def adjustments_actions
+        Rails.application.config.spree_backend.actions[:adjustments]
+      end
+
+      def payments_actions
+        Rails.application.config.spree_backend.actions[:payments]
+      end
+
+      def stock_actions
+        Rails.application.config.spree_backend.actions[:stock]
+      end
+
+      def variants_actions
+        Rails.application.config.spree_backend.actions[:variants]
+      end
+
+      def product_properties_actions
+        Rails.application.config.spree_backend.actions[:product_properties]
+      end
+      # rubocop:enable Metrics/ModuleLength
     end
   end
 end

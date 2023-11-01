@@ -1,10 +1,15 @@
 <%= render partial: 'spree/admin/shared/order_tabs', locals: { current: :payments } %>
 
 <% content_for :page_actions do %>
-  <% if @order.outstanding_balance? && can?(:create, Spree::Payment) %>
-    <span id="new_payment_section">
-      <%= button_link_to Spree.t(:new_payment), new_admin_order_payment_url(@order), class: "btn-success", icon: 'add.svg' %>
-    </span>
+  <% payments_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability, @order) %>
+    <%= button_link_to(
+      action.text,
+      action.url(@order),
+      class: action.classes,
+      icon: action.icon_name,
+      id: action.id
+    ) %>
   <% end %>
 <% end %>
 

@@ -1,3 +1,11 @@
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:create_new_order), spree.new_admin_order_path(user_id: @user.id), class: "btn-success", icon: 'add.svg' if can?(:create, Spree::Order) %>
+  <% user_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability) %>
+    <%= button_link_to(
+      action.text,
+      action.url(@user),
+      class: action.classes,
+      icon: action.icon_name
+    ) %>
+  <% end %>
 <% end %>

@@ -4,19 +4,21 @@ module Spree
       class Item
         attr_reader :key, :label_translation_key, :icon_key, :url, :match_path
 
-        def initialize(key, label_translation_key, url, icon_key, availability_check, match_path) # rubocop:disable Metrics/ParameterLists
+        def initialize(key, label_translation_key, url, icon_key, availability_checks, match_path) # rubocop:disable Metrics/ParameterLists
           @key = key
           @label_translation_key = label_translation_key
           @url = url
           @icon_key = icon_key
-          @availability_check = availability_check
+          @availability_checks = availability_checks
           @match_path = match_path
         end
 
-        def available?(current_ability, current_store)
-          return true unless @availability_check.present?
+        def available?(current_ability, resource)
+          return true if @availability_checks.empty?
 
-          @availability_check.call(current_ability, current_store)
+          result = @availability_checks.map { |check| check.call(current_ability, resource) }
+
+          result.all?(true)
         end
 
         def children?

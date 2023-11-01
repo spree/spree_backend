@@ -3,12 +3,12 @@ require 'spec_helper'
 module Spree
   module Admin
     describe MainMenu::Item, type: :model do
-      let(:item) { described_class.new(key, label_translation_key, url, icon_key, availability_check, match_path) }
+      let(:item) { described_class.new(key, label_translation_key, url, icon_key, availability_checks, match_path) }
       let(:key) { 'test-key' }
       let(:label_translation_key) { 'test-translation-key' }
       let(:url) { '/test' }
       let(:icon_key) { 'icon-key' }
-      let(:availability_check) { nil }
+      let(:availability_checks) { [] }
       let(:match_path) { nil }
 
       describe '#key' do
@@ -65,7 +65,7 @@ module Spree
         end
 
         context 'when availability check returns true' do
-          let(:availability_check) { ->(_ability, _store) { true } }
+          let(:availability_checks) { [->(_ability, _store) { true }] }
 
           it 'returns true' do
             expect(subject).to be(true)
@@ -73,7 +73,7 @@ module Spree
         end
 
         context 'when availability check returns false' do
-          let(:availability_check) { ->(_ability, _store) { false } }
+          let(:availability_checks) { [->(_ability, _store) { false }] }
 
           it 'returns true' do
             expect(subject).to be(false)

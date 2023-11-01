@@ -1,18 +1,13 @@
 <% content_for :page_actions do %>
-  <% if can?(:fire, order) %>
-    <%= event_links(order, events) %>
-  <% end %>
-  <% if can?(:resend, order) %>
-    <%= button_link_to Spree.t(:resend, scope: 'admin.order.events', default: Spree.t(:resend)),
-          resend_admin_order_url(order),
-          method: :post,
-          icon: 'envelope.svg', class: 'btn-secondary' %>
-  <% end %>
-
-  <% if (can? :update, @order) && @order.some_digital? %>
-    <%= button_link_to Spree.t('admin.digitals.reset_download_links'),
-        reset_digitals_admin_order_url(@order),
-        method: :put,
-        icon: 'hdd.svg' %>
+  <% order_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability, order) %>
+    <%= button_link_to(
+      action.text,
+      action.url(order),
+      class: action.classes,
+      icon: action.icon_name,
+      method: action.method,
+      data: action.data
+    ) %>
   <% end %>
 <% end %>
