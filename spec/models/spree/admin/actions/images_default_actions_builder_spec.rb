@@ -5,7 +5,7 @@ module Spree
     describe Actions::ImagesDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        [:new_image]
+        %w(new_image)
       end
 
       describe '#build' do

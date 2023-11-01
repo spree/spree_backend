@@ -18,7 +18,11 @@ module Spree
 
         def add_approve_action(root)
           action =
-            ActionBuilder.new(approve_config).
+            ActionBuilder.new('approve', ->(resource) { approve_admin_order_path(resource) }).
+            with_icon_key('approve.svg').
+            with_label_translation_key('admin.order.events.approve').
+            with_method(:put).
+            with_data_attributes({ confirm: Spree.t(:order_sure_want_to, event: :approve) }).
             with_state_change_check('approve').
             with_fire_ability_check.
             build
@@ -26,23 +30,13 @@ module Spree
           root.add(action)
         end
 
-        def approve_config
-          {
-            icon_name: 'approve.svg',
-            key: :approve,
-            url: ->(resource) { approve_admin_order_path(resource) },
-            classes: 'btn-light',
-            method: :put,
-            translation_options: {
-              scope: 'admin.order.events'
-            },
-            data: { confirm: Spree.t(:order_sure_want_to, event: :approve) }
-          }
-        end
-
         def add_cancel_action(root)
           action =
-            ActionBuilder.new(cancel_config).
+            ActionBuilder.new('cancel', ->(resource) { cancel_admin_order_path(resource) }).
+            with_icon_key('cancel.svg').
+            with_label_translation_key('admin.order.events.cancel').
+            with_method(:put).
+            with_data_attributes({ confirm: Spree.t(:order_sure_want_to, event: :cancel) }).
             with_state_change_check('cancel').
             with_fire_ability_check.
             build
@@ -50,23 +44,13 @@ module Spree
           root.add(action)
         end
 
-        def cancel_config
-          {
-            icon_name: 'cancel.svg',
-            key: :cancel,
-            url: ->(resource) { cancel_admin_order_path(resource) },
-            classes: 'btn-light',
-            method: :put,
-            translation_options: {
-              scope: 'admin.order.events'
-            },
-            data: { confirm: Spree.t(:order_sure_want_to, event: :cancel) }
-          }
-        end
-
         def add_resume_action(root)
           action =
-            ActionBuilder.new(resume_config).
+            ActionBuilder.new('resume', ->(resource) { resume_admin_order_path(resource) }).
+            with_icon_key('resume.svg').
+            with_label_translation_key('admin.order.events.resume').
+            with_method(:put).
+            with_data_attributes({ confirm: Spree.t(:order_sure_want_to, event: :resume) }).
             with_state_change_check('resume').
             with_fire_ability_check.
             build
@@ -74,46 +58,25 @@ module Spree
           root.add(action)
         end
 
-        def resume_config
-          {
-            icon_name: 'resume.svg',
-            key: :resume,
-            url: ->(resource) { resume_admin_order_path(resource) },
-            classes: 'btn-light',
-            method: :put,
-            translation_options: {
-              scope: 'admin.order.events'
-            },
-            data: { confirm: Spree.t(:order_sure_want_to, event: :resume) }
-          }
-        end
-
         def add_resend_action(root)
           action =
-            ActionBuilder.new(resend_config).
+            ActionBuilder.new('resend', ->(resource) { resend_admin_order_path(resource) }).
+            with_icon_key('envelope.svg').
+            with_label_translation_key('admin.order.events.resend').
+            with_method(:post).
+            with_style(::Spree::Admin::Actions::ActionStyle::SECONDARY).
             with_resend_ability_check.
             build
 
           root.add(action)
         end
 
-        def resend_config
-          {
-            icon_name: 'envelope.svg',
-            key: :resend,
-            url: ->(resource) { resend_admin_order_path(resource) },
-            classes: 'btn-secondary',
-            method: :post,
-            translation_options: {
-              scope: 'admin.order.events',
-              default: ::Spree.t(:resend)
-            }
-          }
-        end
-
         def add_reset_download_links_action(root)
           action =
-            ActionBuilder.new(reset_download_links_config).
+            ActionBuilder.new('reset_download_links', ->(resource) { reset_digitals_admin_order_path(resource) }).
+            with_icon_key('hdd.svg').
+            with_label_translation_key('admin.digitals.reset_download_links').
+            with_method(:put).
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:update, resource) && resource.some_digital?
@@ -122,15 +85,6 @@ module Spree
             build
 
           root.add(action)
-        end
-
-        def reset_download_links_config
-          {
-            icon_name: 'hdd.svg',
-            key: 'admin.digitals.reset_download_links',
-            url: ->(resource) { reset_digitals_admin_order_path(resource) },
-            method: :put
-          }
         end
       end
     end

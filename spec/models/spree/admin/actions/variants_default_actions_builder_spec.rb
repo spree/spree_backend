@@ -5,7 +5,7 @@ module Spree
     describe Actions::VariantsDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        [:new_variant]
+        %w(new_variant)
       end
 
       describe '#build' do

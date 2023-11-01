@@ -4,10 +4,10 @@
   <% adjustments_actions.items.each do |action| %>
     <% next unless action.available?(current_ability) %>
     <%= button_link_to(
-      action.text,
+      Spree.t(action.label_translation_key),
       action.url(@order),
       class: action.classes,
-      icon: action.icon_name
+      icon: action.icon_key
     ) %>
   <% end %>
 <% end %>

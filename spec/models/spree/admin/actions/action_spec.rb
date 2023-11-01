@@ -3,27 +3,39 @@ require 'spec_helper'
 module Spree
   module Admin
     describe Actions::Action, type: :model do
-      let(:action) { described_class.new(config) }
-      let(:config) do
-        {
-          icon_name: 'cart-check.svg',
-          key: 'Cart',
-          url: '/cart',
-          classes: 'nav-link',
-          availability_checks: availability_checks,
-          method: :put,
-          id: 'admin_new_order',
-          target: :blank,
-          data: { turbo: false }
-        }
+      let(:action) do
+        described_class.new(
+          key,
+          label_translation_key,
+          url,
+          icon_key,
+          style,
+          availability_checks,
+          additional_classes,
+          method,
+          id,
+          target,
+          data_attributes
+        )
       end
+
+      let(:key) { 'new_order' }
+      let(:label_translation_key) { 'new_order' }
+      let(:url) { '/admin/orders/new' }
+      let(:icon_key) { 'add.svg' }
+      let(:style) { ::Spree::Admin::Actions::ActionStyle::PRIMARY }
       let(:availability_checks) { [] }
+      let(:additional_classes) { 'additional-class' }
+      let(:method) { :put }
+      let(:id) { 'new_order_button' }
+      let(:target) { '_blank' }
+      let(:data_attributes) { { turbo: false } }
 
-      describe '#icon_name' do
-        subject { action.icon_name }
+      describe '#icon_key' do
+        subject { action.icon_key }
 
-        it 'returns icon_name' do
-          expect(subject).to eq(config[:icon_name])
+        it 'returns icon_key' do
+          expect(subject).to eq(icon_key)
         end
       end
 
@@ -31,7 +43,7 @@ module Spree
         subject { action.key }
 
         it 'returns key' do
-          expect(subject).to eq(config[:key])
+          expect(subject).to eq(key)
         end
       end
 
@@ -39,15 +51,15 @@ module Spree
         subject { action.url }
 
         it 'returns url' do
-          expect(subject).to eq(config[:url])
+          expect(subject).to eq(url)
         end
       end
 
       describe '#classes' do
         subject { action.classes }
 
-        it 'returns classes' do
-          expect(subject).to eq(config[:classes])
+        it 'returns style classes and additional classes' do
+          expect(subject).to eq('btn-success additional-class')
         end
       end
 
@@ -55,7 +67,7 @@ module Spree
         subject { action.method }
 
         it 'returns method' do
-          expect(subject).to eq(config[:method])
+          expect(subject).to eq(method)
         end
       end
 
@@ -63,7 +75,7 @@ module Spree
         subject { action.id }
 
         it 'returns id' do
-          expect(subject).to eq(config[:id])
+          expect(subject).to eq(id)
         end
       end
 
@@ -71,15 +83,15 @@ module Spree
         subject { action.target }
 
         it 'returns target' do
-          expect(subject).to eq(config[:target])
+          expect(subject).to eq(target)
         end
       end
 
       describe '#data' do
-        subject { action.data }
+        subject { action.data_attributes }
 
         it 'returns data' do
-          expect(subject).to eq(config[:data])
+          expect(subject).to eq(data_attributes)
         end
       end
 

@@ -5,7 +5,7 @@ module Spree
     describe Actions::UserDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        %i(create_new_order)
+        %w(create_new_order)
       end
 
       describe '#build' do

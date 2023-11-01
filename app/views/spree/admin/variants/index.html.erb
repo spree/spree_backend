@@ -67,13 +67,13 @@
     <% variants_actions.items.each do |action| %>
       <% next unless action.available?(current_ability) %>
       <%= button_link_to(
-        action.text,
+        Spree.t(action.label_translation_key),
         action.url(@product),
         class: action.classes,
-        icon: action.icon_name,
+        icon: action.icon_key,
         id: action.id,
         target: action.target,
-        data: action.data
+        data: action.data_attributes
       ) %>
     <% end %>
     <%= button_link_to (@deleted == '1' ? Spree.t(:show_active) : Spree.t(:show_deleted)), spree.admin_product_variants_url(@product, { q: { deleted_at_null: @deleted == '1' ? "0" : "1" } }), { class: 'btn-light', icon: 'filter.svg' } %>

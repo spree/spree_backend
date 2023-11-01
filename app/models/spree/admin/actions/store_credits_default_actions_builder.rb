@@ -14,20 +14,13 @@ module Spree
 
         def add_add_store_credit_action(root)
           action =
-            ActionBuilder.new(add_store_credit_config).
+            ActionBuilder.new('add_store_credit', ->(resource) { new_admin_user_store_credit_path(resource) }).
+            with_icon_key('add.svg').
+            with_style(::Spree::Admin::Actions::ActionStyle::PRIMARY).
             with_create_ability_check(::Spree::StoreCredit).
             build
 
           root.add(action)
-        end
-
-        def add_store_credit_config
-          {
-            icon_name: 'add.svg',
-            key: :add_store_credit,
-            url: ->(resource) { new_admin_user_store_credit_path(resource) },
-            classes: 'btn-success'
-          }
         end
       end
     end

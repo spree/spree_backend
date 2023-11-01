@@ -14,21 +14,14 @@ module Spree
 
         def add_new_image_action(root)
           action =
-            ActionBuilder.new(new_image_config).
+            ActionBuilder.new('new_image', ->(resource) { new_admin_product_image_path(resource) }).
+            with_icon_key('add.svg').
+            with_style(::Spree::Admin::Actions::ActionStyle::PRIMARY).
+            with_id('new_image_link').
             with_create_ability_check(::Spree::Image).
             build
 
           root.add(action)
-        end
-
-        def new_image_config
-          {
-            icon_name: 'add.svg',
-            key: :new_image,
-            url: ->(resource) { new_admin_product_image_path(resource) },
-            classes: 'btn-success',
-            id: 'new_image_link'
-          }
         end
       end
     end

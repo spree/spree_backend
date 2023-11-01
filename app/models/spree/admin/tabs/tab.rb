@@ -4,7 +4,7 @@ module Spree
       class Tab
         attr_reader :icon_key, :key, :label_translation_key, :data_hook
 
-        def initialize(key, label_translation_key, url, icon_key, partial_name, availability_checks, active_check, data_hook)
+        def initialize(key, label_translation_key, url, icon_key, partial_name, availability_checks, active_check, data_hook) # rubocop:disable Metrics/ParameterLists
           @key = key
           @label_translation_key = label_translation_key
           @url = url

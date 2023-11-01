@@ -14,21 +14,14 @@ module Spree
 
         def add_new_user_action(root)
           action =
-            ActionBuilder.new(new_user_config).
+            ActionBuilder.new('new_user', new_admin_user_path).
+            with_icon_key('add.svg').
+            with_style(::Spree::Admin::Actions::ActionStyle::PRIMARY).
+            with_id('admin_new_user_link').
             with_create_ability_check(::Spree.user_class).
             build
 
           root.add(action)
-        end
-
-        def new_user_config
-          {
-            icon_name: 'add.svg',
-            key: :new_user,
-            url: new_admin_user_path,
-            classes: 'btn-success',
-            id: 'admin_new_user_link'
-          }
         end
       end
     end

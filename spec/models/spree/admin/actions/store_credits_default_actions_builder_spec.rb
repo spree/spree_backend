@@ -5,7 +5,7 @@ module Spree
     describe Actions::StoreCreditsDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        [:add_store_credit]
+        %w(add_store_credit)
       end
 
       describe '#build' do
