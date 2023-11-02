@@ -272,7 +272,7 @@ module Spree
       end
 
       def main_part_classes
-        ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
+        Spree::Deprecation.warn(<<-DEPRECATION, caller)
           Admin::NavigationHelper#main_part_classes is deprecated and will be removed in Spree 5.0.
         DEPRECATION
         if cookies['sidebar-minimized'] == 'true'
@@ -283,7 +283,7 @@ module Spree
       end
 
       def main_sidebar_classes
-        ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
+        Spree::Deprecation.warn(<<-DEPRECATION, caller)
           Admin::NavigationHelper#main_sidebar_classes is deprecated and will be removed in Spree 5.0.
         DEPRECATION
         if cookies['sidebar-minimized'] == 'true'
@@ -294,7 +294,7 @@ module Spree
       end
 
       def wrapper_classes
-        ActiveSupport::Deprecation.warn(<<-DEPRECATION, caller)
+        Spree::Deprecation.warn(<<-DEPRECATION, caller)
           Admin::NavigationHelper#wrapper_classes is deprecated and will be removed in Spree 5.0.
         DEPRECATION
         'sidebar-minimized' if cookies['sidebar-minimized'] == 'true'
