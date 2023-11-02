@@ -4,13 +4,13 @@
   <% images_actions.items.each do |action| %>
     <% next unless action.available?(current_ability) %>
     <%= button_link_to(
-      action.text,
+      Spree.t(action.label_translation_key),
       action.url(@product),
       class: action.classes,
-      icon: action.icon_name,
+      icon: action.icon_key,
       id: action.id,
       target: action.target,
-      data: action.data
+      data: action.data_attributes
     ) %>
   <% end %>
 <% end %>

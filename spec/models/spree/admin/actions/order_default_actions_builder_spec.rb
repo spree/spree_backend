@@ -5,11 +5,7 @@ module Spree
     describe Actions::OrderDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        [:approve,
-         :cancel,
-         :resume,
-         :resend,
-         'admin.digitals.reset_download_links']
+        %w(approve cancel resume resend reset_download_links)
       end
 
       describe '#build' do

@@ -8,10 +8,10 @@
     <% next unless tab.available?(current_ability, @product) %>
       <li class="nav-item">
         <%= link_to_with_icon(
-          tab.icon_name,
-          tab.text,
+          tab.icon_key,
+          Spree.t(tab.label_translation_key),
           tab.url(@product),
-          class: tab.active?(current) ? "active #{tab.classes}" : tab.classes
+          class: tab.active?(current) ? 'active nav-link' : 'nav-link'
         ) %>
       </li>
   <% end %>

@@ -5,7 +5,7 @@ module Spree
     describe Actions::PaymentsDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        [:new_payment]
+        %w(new_payment)
       end
 
       describe '#build' do

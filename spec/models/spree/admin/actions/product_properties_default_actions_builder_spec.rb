@@ -5,8 +5,7 @@ module Spree
     describe Actions::ProductPropertiesDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        [:select_from_prototype,
-         :add_product_properties]
+        %w(select_from_prototype add_product_properties)
       end
 
       describe '#build' do

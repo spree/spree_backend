@@ -14,7 +14,10 @@ module Spree
 
         def add_new_payment_action(root)
           action =
-            ActionBuilder.new(new_payment_config).
+            ActionBuilder.new('new_payment', ->(resource) { new_admin_order_payment_path(resource) }).
+            with_icon_key('add.svg').
+            with_style(::Spree::Admin::Actions::ActionStyle::PRIMARY).
+            with_id('new_payment_section').
             with_availability_check(
               lambda do |ability, resource|
                 ability.can?(:create, ::Spree::Payment) && resource.outstanding_balance?
@@ -23,16 +26,6 @@ module Spree
             build
 
           root.add(action)
-        end
-
-        def new_payment_config
-          {
-            icon_name: 'add.svg',
-            key: :new_payment,
-            url: ->(resource) { new_admin_order_payment_path(resource) },
-            classes: 'btn-success',
-            id: 'new_payment_section'
-          }
         end
       end
     end

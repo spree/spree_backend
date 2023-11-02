@@ -14,21 +14,14 @@ module Spree
 
         def add_new_order_action(root)
           action =
-            ActionBuilder.new(new_order_config).
+            ActionBuilder.new('create_new_order', ->(resource) { new_admin_order_path(user_id: resource.id) }).
+            with_icon_key('add.svg').
+            with_style(::Spree::Admin::Actions::ActionStyle::PRIMARY).
+            with_method(:post).
             with_create_ability_check(Spree::Order).
             build
 
           root.add(action)
-        end
-
-        def new_order_config
-          {
-            icon_name: 'add.svg',
-            key: :create_new_order,
-            url: ->(resource) { new_admin_order_path(user_id: resource.id) },
-            classes: 'btn-success',
-            method: :post
-          }
         end
       end
     end

@@ -5,7 +5,7 @@ module Spree
     describe Actions::AdjustmentsDefaultActionsBuilder, type: :model do
       let(:builder) { described_class.new }
       let(:default_actions) do
-        [:new_adjustment]
+        %w(new_adjustment)
       end
 
       describe '#build' do

@@ -2,20 +2,26 @@ module Spree
   module Admin
     module Actions
       class Action
-        attr_reader :icon_name, :key, :classes, :text, :method, :id, :target, :data
+        STYLE_CLASSES = {
+          ::Spree::Admin::Actions::ActionStyle::PRIMARY => 'btn-success',
+          ::Spree::Admin::Actions::ActionStyle::SECONDARY => 'btn-secondary',
+          ::Spree::Admin::Actions::ActionStyle::LIGHT => 'btn-light'
+        }
 
-        def initialize(config)
-          @icon_name =           config[:icon_name]
-          @key =                 config[:key]
-          @url =                 config[:url]
-          @classes =             config[:classes]
-          @availability_checks = config[:availability_checks]
-          @text =                config[:text]
-          @method =              config[:method]
-          @id =                  config[:id]
-          @translation_options = config[:translation_options]
-          @target =              config[:target]
-          @data =                config[:data]
+        attr_reader :key, :label_translation_key, :icon_key, :method, :id, :target, :data_attributes
+
+        def initialize(key, label_translation_key, url, icon_key, style, availability_checks, additional_classes, method, id, target, data_attributes) # rubocop:disable Metrics/ParameterLists
+          @key = key
+          @label_translation_key = label_translation_key
+          @url = url
+          @icon_key = icon_key
+          @style = style
+          @availability_checks = availability_checks
+          @additional_classes = additional_classes
+          @method = method
+          @id = id
+          @target = target
+          @data_attributes = data_attributes
         end
 
         def available?(current_ability, resource = nil)
@@ -28,6 +34,13 @@ module Spree
 
         def url(resource = nil)
           @url.is_a?(Proc) ? @url.call(resource) : @url
+        end
+
+        def classes
+          [
+            STYLE_CLASSES[@style],
+            @additional_classes
+          ].compact.join(' ')
         end
       end
     end
