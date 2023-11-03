@@ -254,7 +254,7 @@ en:
         this_link_takes_you_to_your_stores_home_page: This link takes you to your stores home page.
       settings: Settings
       utilities:
-        preview: Preview %{name}
+        preview: Preview
       webhooks_subscribers:
         webhooks_subscribers: Webhooks Subscribers
         new_webhooks_subscriber: New Webhooks Subscriber
