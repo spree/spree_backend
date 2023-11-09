@@ -1,6 +1,6 @@
 module Spree
   module Backend
-    VERSION = '5.0.0.alpha'.freeze
+    VERSION = '4.7.0'.freeze
 
     def self.version
       VERSION
