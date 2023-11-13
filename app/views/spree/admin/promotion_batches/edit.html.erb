@@ -1,0 +1,68 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:promotion_batches), admin_promotion_batches_path %> /
+  <%= @promotion_batch.id %>
+<% end %>
+
+<% if @promotion_batch.template_promotion_id%>
+  <div class="card">
+    <div class="card-body">
+      <%= form_tag csv_import_admin_promotion_batch_path, method: :post, multipart: true do %>
+        <%= file_field_tag :file, accept: ".csv" %>
+        <%= submit_tag Spree.t('promotion_batch_form.import_codes') %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% unless @promotion_batch.template_promotion_id%>
+  <%= form_for @promotion_batch, url: object_url, method: :put do |f| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <%= render partial: 'form', locals: { f: f } %>
+        <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<% if @promotion_batch.template_promotion_id %>
+  <%= form_with url: populate_admin_promotion_batch_path(@promotion_batch), method: :post do %>
+    <div>
+      <%= label_tag :batch_size do %>
+        <%= number_field_tag(:batch_size) %>
+        <%= Spree.t('promotion_batch_form.batch_size') %>
+      <% end %>
+    </div>
+        <div>
+      <%= label_tag :prefix do %>
+        <%= radio_button :code, :affix, 'prefix' %>
+        <%= Spree.t('promotion_batch_form.prefix') %>
+      <% end %>
+    </div>
+    <div>
+      <%= label_tag :suffix do %>
+        <%= radio_button :code, :affix, 'suffix' %>
+        <%= Spree.t('promotion_batch_form.suffix') %>
+      <% end %>
+    </div>
+    <div>
+      <%= label_tag :affix_content do %>
+        <%= text_field_tag(:affix_content) %>
+        <%= Spree.t('promotion_batch_form.affix_content') %>
+      <% end %>
+    </div>
+    <div>
+      <%= label_tag :forbidden_phrases do %>
+        <%= text_area_tag(:forbidden_phrases) %>
+        <%= Spree.t('promotion_batch_form.forbidden_phrases') %>
+      <% end %>
+    </div>
+    <div>
+      <%= label_tag :random_part_bytes do %>
+        <%= number_field_tag(:random_part_bytes, value = 4) %>
+        <%= Spree.t('promotion_batch_form.random_part_bytes') %>
+      <% end %>
+    </div>
+    <%= submit_tag(Spree.t('promotion_batch_form.populate')) %>
+  <% end %>
+<% end %>

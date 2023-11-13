@@ -1,0 +1,6 @@
+<div data-hook="new_promotion_batch_template_promotion" class="col-12 col-md-4">
+  <%= f.field_container :template_promotion do %>
+    <%= f.label :template_promotion_id, Spree.t(:template_promotion) %>
+    <%= f.collection_select :template_promotion_id, Spree::Promotion.non_batched, :id, ->(promotion) { "#{promotion.name} # #{promotion.id}" }, { include_blank: true }, { class: 'select2-clear w-100' } %>
+  <% end %>
+</div>

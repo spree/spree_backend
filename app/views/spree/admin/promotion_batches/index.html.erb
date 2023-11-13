@@ -1,0 +1,45 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::PromotionBatch) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <% promotion_batches_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability) %>
+    <%= button_link_to(
+      Spree.t(action.label_translation_key),
+      action.url,
+      class: action.classes,
+      icon: action.icon_key
+    ) %>
+  <% end %>
+<% end %>
+
+<% if @promotion_batches.any? %>
+  <div class="table-responsive border rounded bg-white">
+    <table class="table">
+      <thead class="text-muted">
+        <tr>
+          <th><%= Spree.t(:id) %></th>
+          <th><%= Spree.t(:size) %></th>
+          <th><%= Spree.t(:template_promotion) %></th>
+          <th data-hook="admin_promotion_batches_index_header_actions" class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @promotion_batches.each do |promotion_batch| %>
+          <tr id="<%= spree_dom_id promotion_batch %>">
+            <td><%= link_to Spree::PromotionBatchPresenter.new(promotion_batch).call[:model_name_id], spree.admin_promotion_batch_path(promotion_batch) %></td>
+            <td><%= promotion_batch.promotions.count %></td>
+            <td><%= link_to Spree::PromotionBatchPresenter.new(promotion_batch).call[:template_promotion_name_id], spree.edit_admin_promotion_path(promotion_batch.template_promotion) if promotion_batch.template_promotion %></td>
+            <td class="actions" data-hook="admin_promotion_batches_index_row_actions">
+              <span class="d-flex justify-content-end">
+                <%= link_to_edit promotion_batch, no_text: true if can?(:edit, promotion_batch) %>
+                <%= link_to_delete promotion_batch, no_text: true if can?(:delete, promotion_batch) %>
+              </span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
