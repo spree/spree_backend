@@ -1,0 +1,11 @@
+<% tabs.items.each do |tab| %>
+  <% next unless tab.available?(current_ability, object) %>
+  <%= content_tag :li, class: 'nav-item', data: { hook: tab.data_hook } do %>
+    <%= link_to_with_icon(
+      tab.icon_key,
+      Spree.t(tab.label_translation_key),
+      tab.url(object),
+      class: tab.active?(current) ? 'active nav-link' : 'nav-link'
+    ) %>
+  <% end %>
+<% end %>
