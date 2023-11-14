@@ -4,15 +4,5 @@
 <% end %>
 
 <% content_for :page_tabs do %>
-  <% product_tabs.items.each do |tab| %>
-    <% next unless tab.available?(current_ability, @product) %>
-      <li class="nav-item">
-        <%= link_to_with_icon(
-          tab.icon_key,
-          Spree.t(tab.label_translation_key),
-          tab.url(@product),
-          class: tab.active?(current) ? 'active nav-link' : 'nav-link'
-        ) %>
-      </li>
-  <% end %>
+  <%= render partial: 'spree/admin/shared/tabs', locals: { tabs: product_tabs, object: @product, current: current } %>
 <% end %>
