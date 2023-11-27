@@ -68,7 +68,7 @@ jobs:
                   path: /tmp/test-results
                   destination: raw-test-output
               - store_test_results:
-                  path: /tmp/test-results
+                  path: ~/rspec
 
   tests_postgres:
     <<: *run_test
