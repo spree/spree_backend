@@ -1,4 +1,5 @@
 require_relative 'configuration'
+require_relative 'runtime_configuration'
 
 module Spree
   module Backend
@@ -9,6 +10,7 @@ module Spree
 
       initializer 'spree.backend.environment', before: :load_config_initializers do |app|
         Spree::Backend::Config = Spree::Backend::Configuration.new
+        Spree::Backend::RuntimeConfig = Spree::Backend::RuntimeConfiguration.new
         app.config.spree_backend = Environment.new
       end
 
