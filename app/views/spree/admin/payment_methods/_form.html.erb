@@ -58,6 +58,18 @@
 
     <% unless @object.new_record? %>
     <div class="col-12 col-md-6">
+
+    <% if @object.respond_to?(:payment_configuration_guide) %>
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5 class="mb-0"><%= Spree.t(:payment_method_configuration) %></h5>
+        </div>
+        <div class="card-body">
+        <%= render "spree/admin/payment_methods/configuration_guides/#{@object.payment_configuration_guide}" %>
+        </div>
+    </div>
+    <% end %>
+
       <div class="card mb-3">
         <div class="card-header">
           <h5 class="mb-0"><%= Spree.t(:payment_provider_settings) %></h5>
