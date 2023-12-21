@@ -10,7 +10,6 @@ module Spree
       before_action :set_product_defaults, only: :new
 
       create.before :create_before
-      create.before :save_option_values
       update.before :update_before
       update.before :skip_updating_status
       update.after :update_status
@@ -166,11 +165,6 @@ module Spree
         return if params[:product][:prototype_id].blank?
 
         @prototype = Spree::Prototype.find(params[:product][:prototype_id])
-      end
-
-      def save_option_values
-        option_values_hash = params[:option_values_hash]
-        params[:product][:option_values_hash] = option_values_hash if option_values_hash.present?
       end
 
       def update_before
