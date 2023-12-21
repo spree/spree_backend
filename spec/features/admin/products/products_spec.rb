@@ -222,7 +222,8 @@ describe 'Products', type: :feature do
 
       let(:prototype) do
         size = build_option_type_with_values('size', %w(Small Medium Large))
-        FactoryBot.create(:prototype, name: 'Size', option_types: [size])
+        length = build_option_type_with_values('length', %w(Short, Long))
+        FactoryBot.create(:prototype, name: 'Size', option_types: [size, length])
       end
 
       let(:option_values_hash) do
@@ -252,14 +253,18 @@ describe 'Products', type: :feature do
         fill_in 'product_price', with: '100'
 
         find('[name="product[prototype_id]"]').find(:option, 'Size').select_option
+        check 'Small'
+        check 'Medium'
         check 'Large'
+        check 'Short'
+        check 'Long'
         find('[name="product[shipping_category_id]"]').find(:option, @shipping_category.name).select_option
 
         click_button 'Create'
 
         expect(page).to have_content('successfully created!')
         expect(page).to have_field(id: 'product_status', with: 'draft')
-        expect(Spree::Product.last.variants.length).to eq(1)
+        expect(Spree::Product.last.variants.length).to eq(6)
       end
 
       it 'does not display variants when prototype does not contain option types' do
