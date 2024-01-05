@@ -4,7 +4,7 @@ document.addEventListener("spree:load", function() {
   tinymce.init({
     selector: '.spree-rte',
     plugins: [
-      'image table paste code link table'
+      'image table paste code link table lists'
     ],
     menubar: false,
     toolbar: 'undo redo | styleselect | bold italic link forecolor backcolor | alignleft aligncenter alignright alignjustify | table | bullist numlist outdent indent | code '
@@ -14,7 +14,7 @@ document.addEventListener("spree:load", function() {
     selector: '.spree-rte-simple',
     menubar: false,
     plugins: [
-      'image table paste link table'
+      'image table paste link table lists'
     ],
     toolbar: 'undo redo | styleselect | bold italic link forecolor backcolor | alignleft aligncenter alignright alignjustify | table | bullist numlist outdent indent'
   });
