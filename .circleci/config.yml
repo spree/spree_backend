@@ -79,7 +79,7 @@ jobs:
             type: string
         parallelism:
             type: integer
-            default: 3
+            default: 8
     environment:
       <<: *environment
       DB: postgres
@@ -101,7 +101,7 @@ jobs:
             type: string
         parallelism:
             type: integer
-            default: 3
+            default: 8
     environment:
       <<: *environment
       DB: mysql
@@ -149,7 +149,6 @@ workflows:
           save_cache_key: spree-dashboard-bundle-v10-ruby-3-2-{{ checksum "Gemfile.lock" }}
       - tests_postgres:
           name: tests_ruby_3_2_rails_7_1_postgres
-          parallelism: 8
           rails_version: '~> 7.1.0'
           ruby_image: cimg/ruby:3.2.0-browsers
           redis_image: circleci/redis:6.2-alpine
@@ -160,7 +159,6 @@ workflows:
               - bundle_ruby_3_2
       - tests_postgres:
           name: tests_ruby_3_0_rails_7_0_postgres
-          parallelism: 8
           rails_version: '~> 7.0.0'
           ruby_image: circleci/ruby:3.0-node-browsers
           redis_image: circleci/redis:6.2-alpine
