@@ -127,7 +127,7 @@ jobs:
       - run:
           name:  Send test coverage
           command: bash << parameters.run_file_path >>
-          
+
 
 workflows:
   version: 2
@@ -139,13 +139,13 @@ workflows:
           restore_cache_key_2: "spree-dashboard-bundle-v10-ruby-3-0"
           ruby_image: circleci/ruby:3.0-node-browsers
           redis_image: circleci/redis:6.2-alpine
-          run_file_path: ./.circleci/bundle_ruby_3_0.sh
+          run_file_path: ./bin/bundle_ruby_3_0.sh
           save_cache_key: spree-dashboard-bundle-v10-ruby-3-0-{{ checksum "Gemfile.lock" }}
       - run_test:
           name: bundle_ruby_3_2
           ruby_image: cimg/ruby:3.2.0-browsers
           redis_image: circleci/redis:6.2-alpine
-          run_file_path: ./.circleci/bundle_ruby_3_2.sh
+          run_file_path: ./bin/bundle_ruby.sh
           save_cache_key: spree-dashboard-bundle-v10-ruby-3-2-{{ checksum "Gemfile.lock" }}
       - tests_postgres:
           name: tests_ruby_3_2_rails_7_1_postgres
@@ -155,7 +155,7 @@ workflows:
           redis_image: circleci/redis:6.2-alpine
           postgres_image: circleci/postgres:12-alpine
           store_artefacts: true
-          run_file_path: ./.circleci/tests_database_ci.sh
+          run_file_path: ./bin/tests_database_ci.sh
           requires:
               - bundle_ruby_3_2
       - tests_postgres:
@@ -166,7 +166,7 @@ workflows:
           redis_image: circleci/redis:6.2-alpine
           postgres_image: circleci/postgres:12-alpine
           store_artefacts: true
-          run_file_path: ./.circleci/tests_database_ci.sh
+          run_file_path: ./bin/tests_database_ci.sh
           requires:
               - bundle_ruby_3_0
       - tests_mysql:
@@ -176,7 +176,7 @@ workflows:
           redis_image: circleci/redis:6.2-alpine
           mysql_image: circleci/mysql:8-ram
           store_artefacts: true
-          run_file_path: ./.circleci/tests_database_ci.sh
+          run_file_path: ./bin/tests_database_ci.sh
           requires:
               - bundle_ruby_3_2
-       
+

@@ -2,7 +2,7 @@ require 'spree/backend'
 
 module Spree
   def self.admin_path
-    Spree::Backend::Config[:admin_path]
+    Spree::Backend::RuntimeConfig[:admin_path]
   end
 
   # Used to configure admin_path for Spree
@@ -13,6 +13,6 @@ module Spree
   #   Spree.admin_path = '/custom-path'
 
   def self.admin_path=(path)
-    Spree::Backend::Config[:admin_path] = path
+    Spree::Backend::RuntimeConfig[:admin_path] = path
   end
 end

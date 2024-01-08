@@ -10,7 +10,6 @@ module Spree
       before_action :set_product_defaults, only: :new
 
       create.before :create_before
-      create.before :fix_option_values_params_rails_7_1
       update.before :update_before
       update.before :skip_updating_status
       update.after :update_status
@@ -166,27 +165,6 @@ module Spree
         return if params[:product][:prototype_id].blank?
 
         @prototype = Spree::Prototype.find(params[:product][:prototype_id])
-      end
-
-      def fix_option_values_params_rails_7_1
-        raise 'Verify if the patch is still needed' if Rails::VERSION::STRING >= '7.2.0'
-
-        if Rails::VERSION::STRING >= '7.1.0'
-          # This is a rather ugly fix for an issue with Rails 7.1.0 and 7.1.1
-          # As an example, a form field with name = option_values_hash[1][] and value = 5
-          # gets parsed incorrectly and is visible via params as the following structure
-          # { 'option_values_hash[1' => { '][]' => 5 } }
-          # This patch fixes that behavior to ensure compatibility with the existing templates
-          option_values_hash_keys = params[:product].keys.select { |e| e.starts_with?('option_values_hash[') }
-          option_values_hash = {}
-          option_values_hash_keys.each do |key|
-            value = params[:product].delete(key)
-            fixed_key = key.gsub(/option_values_hash\[/, '')
-            option_values_hash[fixed_key] ||= []
-            option_values_hash[fixed_key] << value['][]']
-          end
-          params[:product][:option_values_hash] = option_values_hash if option_values_hash.present?
-        end
       end
 
       def update_before

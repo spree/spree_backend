@@ -56,6 +56,7 @@
       </div>
     </div>
 
+    <% unless @object.new_record? %>
     <div class="col-12 col-md-6">
       <div class="card mb-3">
         <div class="card-header">
@@ -63,7 +64,6 @@
         </div>
         <div class="card-body">
           <div id="preference-settings" data-hook class="form-group">
-            <% unless @object.new_record? %>
             <% if preference_fields(@object, f).empty? %>
               <%= Spree.t('no_payment_provider_settings_message') %>
             <% end %>
@@ -72,10 +72,11 @@
               <% if @object.respond_to?(:preferences) %>
                 <div id="gateway-settings-warning" class="info warning"><%= Spree.t(:provider_settings_warning) %></div>
               <% end %>
-            <% end %>
           </div>
         </div>
       </div>
     </div>
+    <% end %>
+
   </div>
 </div>
