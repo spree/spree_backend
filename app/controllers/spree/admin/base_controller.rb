@@ -42,7 +42,10 @@ module Spree
         begin
           authorize! :read, Spree::Admin
         rescue CanCan::AccessDenied
-          redirect_to main_app.respond_to?(:root_path) ? main_app.root_path : '/'
+          redirect_to spree.admin_access_denied_path
+          false
+        else
+          true
         end
       end
 
