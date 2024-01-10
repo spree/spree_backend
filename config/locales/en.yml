@@ -339,3 +339,6 @@ en:
         taxes_section:
           message_with_taxes: You're tax calculation is setup!
           message_without_taxes: You can use tax services such as TaxJar or setup tax calculation manually
+      payment_methods:
+        edit:
+          payment_method_configuration: "Payment Method Configuration"
