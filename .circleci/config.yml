@@ -147,6 +147,12 @@ workflows:
           redis_image: circleci/redis:6.2-alpine
           run_file_path: ./bin/bundle_ruby.sh
           save_cache_key: spree-dashboard-bundle-v10-ruby-3-2-{{ checksum "Gemfile.lock" }}
+      - run_test:
+          name: bundle_ruby_3_3
+          ruby_image: cimg/ruby:3.3.0-browsers
+          redis_image: circleci/redis:6.2-alpine
+          run_file_path: ./bin/bundle_ruby.sh
+          save_cache_key: spree-dashboard-bundle-v10-ruby-3-3-{{ checksum "Gemfile.lock" }}
       - tests_postgres:
           name: tests_ruby_3_2_rails_7_1_postgres
           rails_version: '~> 7.1.0'
@@ -177,4 +183,24 @@ workflows:
           run_file_path: ./bin/tests_database_ci.sh
           requires:
               - bundle_ruby_3_2
+      - tests_postgres:
+          name: tests_ruby_3_3_rails_7_1_postgres
+          rails_version: '~> 7.1.0'
+          ruby_image: cimg/ruby:3.3.0-browsers
+          redis_image: circleci/redis:6.2-alpine
+          postgres_image: circleci/postgres:12-alpine
+          store_artefacts: true
+          run_file_path: ./bin/tests_database_ci.sh
+          requires:
+              - bundle_ruby_3_3
+      - tests_mysql:
+          name: tests_ruby_3_3_rails_7_1_mysql
+          rails_version: '~> 7.1.0'
+          ruby_image: cimg/ruby:3.3.0-browsers
+          redis_image: circleci/redis:6.2-alpine
+          mysql_image: circleci/mysql:8-ram
+          store_artefacts: true
+          run_file_path: ./bin/tests_database_ci.sh
+          requires:
+              - bundle_ruby_3_3
 
