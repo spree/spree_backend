@@ -29,7 +29,7 @@ body.sidebar-open {
 }
 a.sidebar-submenu-item:hover, a.sidebar-submenu-item:focus {
     text-decoration: none;
-    color: theme-color('primary') !important;
+    color: map-get($theme-colors, 'primary') !important;
     cursor: pointer;
 }
 
