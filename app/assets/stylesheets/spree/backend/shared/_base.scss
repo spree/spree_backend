@@ -83,7 +83,7 @@ div.admin-product-image-container {
 .js-remove-promo-rule-option-value {
   color: map-get($theme-colors, 'primary') !important;
   &:hover {
-    color: darken(map-get($theme-colors, 'primary'), 10) !important;
+    color: shade-color(map-get($theme-colors, 'primary'), 10) !important;
   }
 }
 
