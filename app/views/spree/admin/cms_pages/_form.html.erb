@@ -7,9 +7,9 @@
           <div class="row g-0 pb-0">
             <div class="col d-flex justify-content-start align-items-center">
               <%= f.field_container :visible, class: ['pb-0 mb-0'] do %>
-                <div class="custom-control custom-switch custom-switch-md">
-                  <%= f.check_box :visible, class: 'custom-control-input', data: {cms_page_id: @cms_page.id} %>
-                  <label class="custom-control-label" for="cms_page_visible"></label>
+                <div class="form-control form-switch form-switch-md">
+                  <%= f.check_box :visible, class: 'form-control-input', data: {cms_page_id: @cms_page.id} %>
+                  <label class="form-control-label" for="cms_page_visible"></label>
                   <%= f.error_message_on :visible %>
                 </div>
               <% end %>

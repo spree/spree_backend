@@ -16,9 +16,9 @@
       </div>
       <div class="col-12">
         <%= f.field_container :deleted_at_null do %>
-          <div class="custom-control custom-checkbox">
-            <%= f.check_box :deleted_at_null, {checked: params[:q][:deleted_at_null] == '0', class: 'custom-control-input'}, '0', '1' %>
-            <%= f.label :deleted_at_null, Spree.t(:show_deleted), class: 'custom-control-label' %>
+          <div class="form-control form-checkbox">
+            <%= f.check_box :deleted_at_null, {checked: params[:q][:deleted_at_null] == '0', class: 'form-control-input'}, '0', '1' %>
+            <%= f.label :deleted_at_null, Spree.t(:show_deleted), class: 'form-control-label' %>
           </div>
         <% end %>
       </div>
