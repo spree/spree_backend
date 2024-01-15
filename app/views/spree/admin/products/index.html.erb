@@ -47,7 +47,7 @@
   <table class="table" id="listing_products">
     <thead class="text-muted">
       <tr data-hook="admin_products_index_headers">
-        <th scope="col" class="pl-5" colspan="2"><%= sort_link @search,:name, Spree.t(:name), { default_order: "desc" }, {title: 'admin_products_listing_name_title'} %></th>
+        <th scope="col" class="ps-5" colspan="2"><%= sort_link @search,:name, Spree.t(:name), { default_order: "desc" }, {title: 'admin_products_listing_name_title'} %></th>
         <% if defined?(Spree::Vendor) && can?(:manage, Spree::Vendor) %>
           <th scope="col" class="text-center"><%= Spree.t(:vendor) %></th>
         <% end %>

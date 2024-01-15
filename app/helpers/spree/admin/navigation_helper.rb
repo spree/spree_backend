@@ -62,7 +62,7 @@ module Spree
                  link_to(
                    titleized_label,
                    destination_url,
-                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block #{selected ? 'font-weight-bold' : 'text-muted'}"
+                   class: "sidebar-submenu-item w-100 py-2 py-md-1 ps-5 d-block #{selected ? 'font-weight-bold' : 'text-muted'}"
                  )
                end
 
@@ -257,7 +257,7 @@ module Spree
         options[:class] = 'sidebar-menu-item d-block w-100'
         options[:class] << ' selected font-weight-bold' if options[:is_selected]
         content_tag(:li, options) do
-          link_to(link_text, url, class: "#{'text-muted' unless options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block")
+          link_to(link_text, url, class: "#{'text-muted' unless options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 ps-5 d-block")
         end
       end
 
@@ -301,7 +301,7 @@ module Spree
       end
 
       def page_header_back_button(url)
-        link_to url, class: 'btn btn-outline-info me-3 pr-1' do
+        link_to url, class: 'btn btn-outline-info me-3 pe-1' do
           svg_icon name: 'chevron-left.svg', width: 15, height: 15
         end
       end
