@@ -264,7 +264,7 @@ module Spree
       def active_badge(condition, options = {})
         label = options[:label]
         label ||= condition ? Spree.t(:say_yes) : Spree.t(:say_no)
-        css_class = condition ? 'badge-active' : 'badge-inactive'
+        css_class = condition ? 'bg-active' : 'bg-inactive'
 
         content_tag(:small, class: "badge rounded-pill #{css_class}") do
           label

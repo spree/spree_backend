@@ -27,7 +27,7 @@
           <td>
             <%= shipping_method.name %>
             <% if shipping_method.admin_name.present? %>
-              <small class="badge rounded-pill badge-light ml-2">
+              <small class="badge rounded-pill bg-light ml-2">
                 <%= shipping_method.admin_name %>
               </small>
             <% end %>
@@ -41,17 +41,17 @@
           <% end %>
           <td class="text-center">
             <% shipping_method.zones.each do |zone| %>
-              <%= link_to zone.name, spree.edit_admin_zone_path(zone), class: 'badge rounded-pill badge-secondary' %>
+              <%= link_to zone.name, spree.edit_admin_zone_path(zone), class: 'badge rounded-pill bg-secondary' %>
             <% end %>
           </td>
           <td class="text-center"><%= shipping_method.calculator.description %></td>
           <td class="text-center">
             <% if shipping_method.display_on.blank? %>
-              <span class="badge rounded-pill badge-danger">
+              <span class="badge rounded-pill bg-danger">
                 <%= Spree.t(:none) %>
               </span>
             <% else %>
-              <span class="badge rounded-pill badge-success">
+              <span class="badge rounded-pill bg-success">
                 <%= Spree.t("admin.display_on.#{shipping_method.display_on}") %>
               </span>
             <% end %>

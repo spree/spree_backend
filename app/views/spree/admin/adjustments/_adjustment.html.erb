@@ -14,7 +14,7 @@
     <%= adjustment.display_amount.to_html %>
   </td>
   <td class="text-center">
-    <span class="text-lowercase badge rounded-pill badge-<%= adjustment.state %>">
+    <span class="text-lowercase badge rounded-pill bg-<%= adjustment.state %>">
       <%= Spree.t("state_machine_states.#{adjustment.state}") %>
     </span>
   </td>
