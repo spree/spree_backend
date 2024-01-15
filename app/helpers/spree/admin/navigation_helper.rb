@@ -62,7 +62,7 @@ module Spree
                  link_to(
                    titleized_label,
                    destination_url,
-                   class: "sidebar-submenu-item w-100 py-2 py-md-1 ps-5 d-block #{selected ? 'font-weight-bold' : 'text-muted'}"
+                   class: "sidebar-submenu-item w-100 py-2 py-md-1 ps-5 d-block #{selected ? 'fw-bold' : 'text-muted'}"
                  )
                end
 
@@ -255,7 +255,7 @@ module Spree
           url.ends_with?("#{controller.controller_name.singularize}/edit")
 
         options[:class] = 'sidebar-menu-item d-block w-100'
-        options[:class] << ' selected font-weight-bold' if options[:is_selected]
+        options[:class] << ' selected fw-bold' if options[:is_selected]
         content_tag(:li, options) do
           link_to(link_text, url, class: "#{'text-muted' unless options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 ps-5 d-block")
         end

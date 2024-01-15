@@ -232,7 +232,7 @@ module Spree
       end
 
       def required_span_tag
-        content_tag(:span, ' *', class: 'required font-weight-bold text-danger')
+        content_tag(:span, ' *', class: 'required fw-bold text-danger')
       end
 
       def external_page_preview_link(resource, options = {})

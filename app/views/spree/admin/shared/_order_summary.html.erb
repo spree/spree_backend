@@ -39,7 +39,7 @@
       <% if @order.completed? %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small data-hook='admin_order_tab_date_completed_title'><%= Spree.t(:date_completed) %></small>
-          <span class="text-end small font-weight-bold" id='date_complete'>
+          <span class="text-end small fw-bold" id='date_complete'>
             <%= pretty_time(@order.completed_at) %>
           </span>
         </li>
@@ -48,14 +48,14 @@
       <% if @order.approved? %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small><%= Spree.t(:approved_at) %></small>
-          <span class="text-end small font-weight-bold">
+          <span class="text-end small fw-bold">
             <%= pretty_time(@order.approved_at) %>
           </span>
         </li>
         <% if @order.approver.present? %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <small><%= Spree.t(:approver) %></small>
-            <span class="text-end small font-weight-bold">
+            <span class="text-end small fw-bold">
               <%= link_to @order.approver.email, spree.admin_users_path(@order.approver) %>
             </span>
           </li>
@@ -65,14 +65,14 @@
       <% if @order.canceled? && @order.canceled_at %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small><%= Spree.t(:canceled_at) %></small>
-          <span class="text-end small font-weight-bold">
+          <span class="text-end small fw-bold">
             <%= pretty_time(@order.canceled_at) %>
           </span>
         </li>
         <% if @order.canceler.present? %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <small><%= Spree.t(:canceler) %></small>
-            <span class="text-end small font-weight-bold">
+            <span class="text-end small fw-bold">
               <%= link_to @order.canceler.email, spree.admin_users_path(@order.canceler) %>
             </span>
           </li>
