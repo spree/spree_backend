@@ -4,64 +4,64 @@
 }
 
 // Green
-.badge-completed,
-.badge-complete,
-.badge-resumed,
-.badge-considered_safe,
-.badge-paid,
-.badge-shipped,
-.badge-ready,
-.badge-active,
-.badge-success,
-.badge-sold,
-.badge-open,
-.badge-authorized,
-.badge-published,
-.badge-live,
-.badge-approved {
+.bg-completed,
+.bg-complete,
+.bg-resumed,
+.bg-considered_safe,
+.bg-paid,
+.bg-shipped,
+.bg-ready,
+.bg-active,
+.bg-success,
+.bg-sold,
+.bg-open,
+.bg-authorized,
+.bg-published,
+.bg-live,
+.bg-approved {
   @include badge-variant(theme-color('success'));
 }
 
 // Red
-.badge-failed,
-.badge-considered_risky,
-.badge-error,
-.badge-invalid,
-.badge-rejected,
-.badge-closed {
+.bg-failed,
+.bg-considered_risky,
+.bg-error,
+.bg-invalid,
+.bg-rejected,
+.bg-closed {
   @include badge-variant(theme-color('danger'));
 }
 
 // Orange
-.badge-processing,
-.badge-pending,
-.badge-awaiting_return,
-.badge-returned,
-.badge-credit_owed,
-.badge-balance_due,
-.badge-backorder,
-.badge-checkout,
-.badge-cart,
-.badge-address,
-.badge-delivery,
-.badge-payment,
-.badge-confirm,
-.badge-canceled,
-.badge-void,
-.badge-inactive,
-.badge-notice,
-.badge-suspended,
-.badge-partial {
+.bg-processing,
+.bg-pending,
+.bg-awaiting_return,
+.bg-returned,
+.bg-credit_owed,
+.bg-balance_due,
+.bg-backorder,
+.bg-checkout,
+.bg-cart,
+.bg-address,
+.bg-delivery,
+.bg-payment,
+.bg-confirm,
+.bg-canceled,
+.bg-void,
+.bg-inactive,
+.bg-notice,
+.bg-suspended,
+.bg-partial {
   @include badge-variant(theme-color('warning'));
 }
 
 // light
-.badge-disabled,
-.badge-invited {
+.bg-disabled,
+.bg-invited {
   @include badge-variant(theme-color('light'));
 }
 
 // Info
-.badge-onboarding {
+.bg-onboarding {
   @include badge-variant(theme-color('info'));
 }
