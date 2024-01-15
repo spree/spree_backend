@@ -5,33 +5,33 @@
     <div class="list-group" id="list-tab" role="tablist">
       <a class="list-group-item list-group-item-action <% if @products_added %>list-group-item-info<% elsif @active_tab == 'products' %>active<% end %>" id="list-products-list" data-toggle="list" href="#list-products" role="tab" aria-controls="products">
         <% if @products_added %>
-          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "me-3" %>
         <% else %>
-          <%= svg_icon name: 'tags', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'tags', width: 20, height: 20, classes: "me-3" %>
         <% end %>
         <%= Spree.t('admin.gettting_started.add_products') %>
       </a>
       <a class="list-group-item list-group-item-action <% if @shipping_methods_added %>list-group-item-info<% elsif @active_tab == 'shipping' %>active<% end %>" id="list-shipping-list" data-toggle="list" href="#list-shipping" role="tab" aria-controls="shipping">
         <% if @shipping_methods_added %>
-          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "me-3" %>
         <% else %>
-          <%= svg_icon name: 'truck', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'truck', width: 20, height: 20, classes: "me-3" %>
         <% end %>
         <%= Spree.t('admin.gettting_started.setup_shipping') %>
       </a>
       <a class="list-group-item list-group-item-action <% if @payment_methods_added %>list-group-item-info<% elsif @active_tab == 'payments' %>active<% end %>" id="list-payments-list" data-toggle="list" href="#list-payments" role="tab" aria-controls="payments">
         <% if @payment_methods_added %>
-          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "me-3" %>
         <% else %>
-          <%= svg_icon name: 'cash-coin', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'cash-coin', width: 20, height: 20, classes: "me-3" %>
         <% end %>
         <%= Spree.t('admin.gettting_started.setup_payment_method') %>
       </a>
       <a class="list-group-item list-group-item-action <% if @taxes_added %>list-group-item-info<% elsif @active_tab == 'taxes' %>active<% end %>" id="list-taxes-list" data-toggle="list" href="#list-taxes" role="tab" aria-controls="taxes">
         <% if @taxes_added %>
-          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'check-circle-fill', width: 20, height: 20, classes: "me-3" %>
         <% else %>
-          <%= svg_icon name: 'receipt', width: 20, height: 20, classes: "mr-3" %>
+          <%= svg_icon name: 'receipt', width: 20, height: 20, classes: "me-3" %>
         <% end %>
         <%= Spree.t('admin.gettting_started.setup_taxes') %>
       </a>
@@ -55,7 +55,7 @@
           <p>
             <%= Spree.t('admin.gettting_started.shipping_section.message_with_shipping') %>
             <% @shippable_countries.each do |country| %>
-              <strong class="mr-2">
+              <strong class="me-2">
                 <%= country.name %>
                 <%= flag_icon(country.iso, class: 'border border-gray rounded') %>
               </strong>

@@ -76,11 +76,11 @@ module Spree
       def main_menu_item(text, url: nil, icon: nil)
         link_to url, 'data-toggle': 'collapse', class: 'd-flex w-100 px-3 py-2 position-relative align-items-center' do
           if icon.ends_with?('.svg')
-            svg_icon(name: icon, classes: 'mr-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
+            svg_icon(name: icon, classes: 'me-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
               content_tag(:span, raw(" #{text}"), class: 'text-muted') +
               svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           else
-            content_tag(:span, nil, class: "icon text-muted icon-#{icon} mr-2") +
+            content_tag(:span, nil, class: "icon text-muted icon-#{icon} me-2") +
               content_tag(:span, raw(" #{text}"), class: 'text-muted') +
               svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           end
@@ -177,9 +177,9 @@ module Spree
         options[:height] ||= ICON_SIZE
         if icon_name
           icon = if icon_name.ends_with?('.svg')
-                   svg_icon(name: icon_name, classes: "#{'mr-2' unless text.empty?} icon icon-#{icon_name}", width: options[:width], height: options[:height])
+                   svg_icon(name: icon_name, classes: "#{'me-2' unless text.empty?} icon icon-#{icon_name}", width: options[:width], height: options[:height])
                  else
-                   content_tag(:span, '', class: "#{'mr-2' unless text.empty?} icon icon-#{icon_name}")
+                   content_tag(:span, '', class: "#{'me-2' unless text.empty?} icon icon-#{icon_name}")
                  end
           text = "#{icon} #{text}"
         end
@@ -301,7 +301,7 @@ module Spree
       end
 
       def page_header_back_button(url)
-        link_to url, class: 'btn btn-outline-info mr-3 pr-1' do
+        link_to url, class: 'btn btn-outline-info me-3 pr-1' do
           svg_icon name: 'chevron-left.svg', width: 15, height: 15
         end
       end
