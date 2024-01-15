@@ -266,7 +266,7 @@ module Spree
         label ||= condition ? Spree.t(:say_yes) : Spree.t(:say_no)
         css_class = condition ? 'badge-active' : 'badge-inactive'
 
-        content_tag(:small, class: "badge badge-pill #{css_class}") do
+        content_tag(:small, class: "badge rounded-pill #{css_class}") do
           label
         end
       end
