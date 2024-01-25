@@ -3,7 +3,9 @@ import { Sortable } from "sortablejs"
 import { patch } from "../utilities/request_utility"
 
 export default class extends Controller {
-  static values = { handle: String }
+  static get values() {
+    return { handle: String }
+  }
 
   connect() {
     const itemSortable = {
