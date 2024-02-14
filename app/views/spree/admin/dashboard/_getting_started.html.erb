@@ -1,4 +1,4 @@
-<h4 class="mb-3"><%= Spree.t('admin.gettting_started.lets_get_you_started') %></h4>
+<h4 class="mb-3"><%= Spree.t('admin.getting_started.lets_get_you_started') %></h4>
 
 <div class="row mb-3">
   <div class="col-4">
@@ -9,7 +9,7 @@
         <% else %>
           <%= svg_icon name: 'tags', width: 20, height: 20, classes: "mr-3" %>
         <% end %>
-        <%= Spree.t('admin.gettting_started.add_products') %>
+        <%= Spree.t('admin.getting_started.add_products') %>
       </a>
       <a class="list-group-item list-group-item-action <% if @shipping_methods_added %>list-group-item-info<% elsif @active_tab == 'shipping' %>active<% end %>" id="list-shipping-list" data-toggle="list" href="#list-shipping" role="tab" aria-controls="shipping">
         <% if @shipping_methods_added %>
@@ -17,7 +17,7 @@
         <% else %>
           <%= svg_icon name: 'truck', width: 20, height: 20, classes: "mr-3" %>
         <% end %>
-        <%= Spree.t('admin.gettting_started.setup_shipping') %>
+        <%= Spree.t('admin.getting_started.setup_shipping') %>
       </a>
       <a class="list-group-item list-group-item-action <% if @payment_methods_added %>list-group-item-info<% elsif @active_tab == 'payments' %>active<% end %>" id="list-payments-list" data-toggle="list" href="#list-payments" role="tab" aria-controls="payments">
         <% if @payment_methods_added %>
@@ -25,7 +25,7 @@
         <% else %>
           <%= svg_icon name: 'cash-coin', width: 20, height: 20, classes: "mr-3" %>
         <% end %>
-        <%= Spree.t('admin.gettting_started.setup_payment_method') %>
+        <%= Spree.t('admin.getting_started.setup_payment_method') %>
       </a>
       <a class="list-group-item list-group-item-action <% if @taxes_added %>list-group-item-info<% elsif @active_tab == 'taxes' %>active<% end %>" id="list-taxes-list" data-toggle="list" href="#list-taxes" role="tab" aria-controls="taxes">
         <% if @taxes_added %>
@@ -33,7 +33,7 @@
         <% else %>
           <%= svg_icon name: 'receipt', width: 20, height: 20, classes: "mr-3" %>
         <% end %>
-        <%= Spree.t('admin.gettting_started.setup_taxes') %>
+        <%= Spree.t('admin.getting_started.setup_taxes') %>
       </a>
     </div>
   </div>
@@ -41,19 +41,19 @@
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade <% if @active_tab == 'products'%>show active<% end %>" id="list-products" role="tabpanel" aria-labelledby="list-products-list">
         <% if @products_added %>
-          <p><%= Spree.t('admin.gettting_started.products_section.message_with_products_html', count: current_store.products.count ) %></p>
+          <p><%= Spree.t('admin.getting_started.products_section.message_with_products_html', count: current_store.products.count ) %></p>
         <% else %>
           <p>
-            <%= Spree.t('admin.gettting_started.products_section.message_without_products') %>
-            <%= link_to(Spree.t('admin.gettting_started.products_section.import_message'), 'https://api.spreecommerce.org/docs/api-v2/27527143a4edf-create-a-product') %>
+            <%= Spree.t('admin.getting_started.products_section.message_without_products') %>
+            <%= link_to(Spree.t('admin.getting_started.products_section.import_message'), 'https://api.spreecommerce.org/docs/api-v2/27527143a4edf-create-a-product') %>
           </p>
-          <%= link_to_with_icon 'add.svg', Spree.t('admin.gettting_started.add_products'), spree.admin_products_path, class: 'btn btn-success btn-sm mb-2' %>
+          <%= link_to_with_icon 'add.svg', Spree.t('admin.getting_started.add_products'), spree.admin_products_path, class: 'btn btn-success btn-sm mb-2' %>
         <% end %>
       </div>
       <div class="tab-pane fade <% if @active_tab == 'shipping'%>show active<% end %>" id="list-shipping" role="tabpanel" aria-labelledby="list-shipping-list">
         <% if @shipping_methods_added %>
           <p>
-            <%= Spree.t('admin.gettting_started.shipping_section.message_with_shipping') %>
+            <%= Spree.t('admin.getting_started.shipping_section.message_with_shipping') %>
             <% @shippable_countries.each do |country| %>
               <strong class="mr-2">
                 <%= country.name %>
@@ -63,33 +63,33 @@
           </p>
         <% else %>
           <p>
-            <%= Spree.t('admin.gettting_started.shipping_section.message_without_shipping') %>
+            <%= Spree.t('admin.getting_started.shipping_section.message_without_shipping') %>
           </p>
-          <%= link_to_with_icon 'settings.svg', Spree.t('admin.gettting_started.setup_shipping'), spree.admin_shipping_methods_path, class: 'btn btn-primary btn-sm mb-2' %>
+          <%= link_to_with_icon 'settings.svg', Spree.t('admin.getting_started.setup_shipping'), spree.admin_shipping_methods_path, class: 'btn btn-primary btn-sm mb-2' %>
         <% end %>
       </div>
       <div class="tab-pane fade <% if @active_tab == 'payments'%>show active<% end %>" id="list-payments" role="tabpanel" aria-labelledby="list-payments-list">
         <% if @payment_methods_added %>
           <p>
-            <%= Spree.t('admin.gettting_started.payment_methods_section.message_with_payment_method') %>
+            <%= Spree.t('admin.getting_started.payment_methods_section.message_with_payment_method') %>
           </p>
         <% else %>
           <p>
-            <%= Spree.t('admin.gettting_started.payment_methods_section.message_without_payment_method') %>
+            <%= Spree.t('admin.getting_started.payment_methods_section.message_without_payment_method') %>
           </p>
-          <%= link_to_with_icon 'settings.svg', Spree.t('admin.gettting_started.setup_payment_method'), spree.admin_payment_methods_path, class: 'btn btn-primary btn-sm mb-2' %>
+          <%= link_to_with_icon 'settings.svg', Spree.t('admin.getting_started.setup_payment_method'), spree.admin_payment_methods_path, class: 'btn btn-primary btn-sm mb-2' %>
         <% end %>
       </div>
       <div class="tab-pane fade <% if @active_tab == 'taxes' %>show active<% end %>" id="list-taxes" role="tabpanel" aria-labelledby="list-taxes-list">
         <% if @taxes_added %>
           <p>
-            <%= Spree.t('admin.gettting_started.taxes_section.message_with_taxes') %>
+            <%= Spree.t('admin.getting_started.taxes_section.message_with_taxes') %>
           </p>
         <% else %>
           <p>
-            <%= Spree.t('admin.gettting_started.taxes_section.message_without_taxes') %>
+            <%= Spree.t('admin.getting_started.taxes_section.message_without_taxes') %>
           </p>
-          <%= link_to_with_icon 'settings.svg', Spree.t('admin.gettting_started.setup_taxes_calculation'), spree.admin_tax_rates_path, class: 'btn btn-primary btn-sm mb-2' %>
+          <%= link_to_with_icon 'settings.svg', Spree.t('admin.getting_started.setup_taxes_calculation'), spree.admin_tax_rates_path, class: 'btn btn-primary btn-sm mb-2' %>
         <% end %>
 
       </div>
