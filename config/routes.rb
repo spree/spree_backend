@@ -10,11 +10,14 @@ Spree::Core::Engine.add_routes do
 
     resources :promotion_categories, except: [:show]
 
-    resources :promotion_batches do
-      member do
-        get :csv_export, to: 'promotion_batches#csv_export'
-        post :csv_import, to: 'promotion_batches#csv_import'
-        post :populate
+    resources :template_promotions do
+      resources :promotion_batches, only: %i[index new create show] do
+        collection do
+          get :import
+          post :process_import, to: 'promotion_batches#process_import'
+        end
+
+        get :export
       end
     end
 

@@ -1,5 +1,7 @@
 <% content_for :page_title do %>
-  <%= plural_resource_name(Spree::PromotionBatch) %>
+  <%= link_to Spree.t(:template_promotions), admin_template_promotions_url %> /
+  <%= link_to @template_promotion.name, edit_admin_template_promotion_url(@template_promotion) %> /
+  <%= Spree.t(:promotion_batches) %>
 <% end %>
 
 <% content_for :page_actions do %>
@@ -7,7 +9,7 @@
     <% next unless action.available?(current_ability) %>
     <%= button_link_to(
       Spree.t(action.label_translation_key),
-      action.url,
+      action.url(@template_promotion),
       class: action.classes,
       icon: action.icon_key
     ) %>
@@ -20,26 +22,33 @@
       <thead class="text-muted">
         <tr>
           <th><%= Spree.t(:id) %></th>
-          <th><%= Spree.t(:size) %></th>
-          <th><%= Spree.t(:template_promotion) %></th>
+          <th><%= Spree.t('admin.promotion_batches.generated_codes') %></th>
+          <th><%= Spree.t(:created_at) %></th>
+          <th><%= Spree.t(:state) %></th>
           <th data-hook="admin_promotion_batches_index_header_actions" class="actions"></th>
         </tr>
       </thead>
       <tbody>
         <% @promotion_batches.each do |promotion_batch| %>
           <tr id="<%= spree_dom_id promotion_batch %>">
-            <td><%= link_to Spree::PromotionBatchPresenter.new(promotion_batch).call[:model_name_id], spree.admin_promotion_batch_path(promotion_batch) %></td>
+            <td><%= promotion_batch.id %></td>
             <td><%= promotion_batch.promotions.count %></td>
-            <td><%= link_to Spree::PromotionBatchPresenter.new(promotion_batch).call[:template_promotion_name_id], spree.edit_admin_promotion_path(promotion_batch.template_promotion) if promotion_batch.template_promotion %></td>
-            <td class="actions" data-hook="admin_promotion_batches_index_row_actions">
-              <span class="d-flex justify-content-end">
-                <%= link_to_edit promotion_batch, no_text: true if can?(:edit, promotion_batch) %>
-                <%= link_to_delete promotion_batch, no_text: true if can?(:delete, promotion_batch) %>
-              </span>
+            <td><%= promotion_batch.created_at.strftime('%F %T %Z') %></td>
+            <td><%= promotion_batch.state %></td>
+            <td>
+              <%= button_link_to('', admin_promotions_path({ q: { promotion_batch_id_eq: promotion_batch.id }}), icon: 'list.svg', class: 'btn btn-light btn-sm with-tip icon-link', data: { 'original-title' => Spree.t('admin.promotion_batches.view_promotions') }) %>
+              <%= button_link_to('', admin_template_promotion_promotion_batch_export_path(template_promotion_id: @template_promotion.id, promotion_batch_id: promotion_batch.id), icon: 'file-earmark-arrow-down.svg', class: 'btn btn-light btn-sm with-tip icon-link', data: { 'original-title' => Spree.t('admin.promotion_batches.export_csv')} ) %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+<% else %>
+  <div class="text-center no-objects-found m-5">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::PromotionBatch)) %>,
+    <%= link_to Spree.t('admin.promotion_batches.generate_codes'), new_object_url if can?(:create, Spree::PromotionBatch) %>
+    <%= Spree.t(:or) %>
+    <%= link_to Spree.t('admin.promotion_batches.import_csv'), import_admin_template_promotion_promotion_batches_path(@template_promotion) if can?(:create, Spree::PromotionBatch) %>!
   </div>
 <% end %>

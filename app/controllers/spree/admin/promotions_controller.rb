@@ -39,8 +39,7 @@ module Spree
         params[:q] ||= HashWithIndifferentAccess.new
         params[:q][:s] ||= 'id desc'
 
-        @collection = super
-        @collection = @collection.non_batched
+        @collection = super.where(template: false)
         @search = @collection.ransack(params[:q])
         @collection = @search.result(distinct: true).
                       includes(promotion_includes).

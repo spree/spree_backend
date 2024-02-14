@@ -19,7 +19,6 @@ module Spree
           add_integrations_section(root)
           add_oauth_section(root)
           add_settings_section(root)
-          add_promotion_batches_section(root)
           root
         end
 
@@ -138,6 +137,10 @@ module Spree
             ItemBuilder.new('promotion_categories', admin_promotion_categories_path).
               with_admin_ability_check(Spree::PromotionCategory).
               with_label_translation_key('admin.tab.promotion_categories').
+              build,
+            ItemBuilder.new('bulk_promo_codes', admin_template_promotions_path).
+              with_admin_ability_check(Spree::Promotion, Spree::PromotionBatch).
+              with_label_translation_key('admin.tab.bulk_promo_codes').
               build
           ]
 
@@ -255,13 +258,6 @@ module Spree
                     with_items(items).
                     build
           root.add(section)
-        end
-
-        def add_promotion_batches_section(root)
-          root.add(ItemBuilder.new('promotion_batches', admin_promotion_batches_path).
-            with_icon_key('stack.svg').
-            with_admin_ability_check(Spree::PromotionBatch).
-            build)
         end
         # rubocop:enable Metrics/AbcSize
       end

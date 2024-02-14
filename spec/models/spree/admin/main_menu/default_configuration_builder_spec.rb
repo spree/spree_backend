@@ -9,7 +9,7 @@ module Spree
         subject { builder.build }
 
         it 'builds a valid menu' do
-          expect(subject.items.count).to eq(13)
+          expect(subject.items.count).to eq(12)
           expect(subject.items.map(&:key)).to include('dashboard')
           expect(subject.items.map(&:key)).to include('orders')
           expect(subject.items.map(&:key)).to include('settings')

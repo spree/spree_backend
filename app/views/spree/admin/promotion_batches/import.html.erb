@@ -1,0 +1,24 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:template_promotions), admin_template_promotions_url %> /
+  <%= link_to @template_promotion.name, edit_admin_template_promotion_url(@template_promotion) %> /
+  <%= link_to Spree.t(:promotion_batches), admin_template_promotion_promotion_batches_url(@template_promotion) %> /
+  <%= Spree.t('admin.promotion_batches.import_csv') %>
+<% end %>
+
+
+<div class="card">
+  <div class="card-body">
+    <%= form_tag process_import_admin_template_promotion_promotion_batches_path(@template_promotion), method: :post, multipart: true do %>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="form-group">
+            <%= label_tag :file, Spree.t('admin.promotion_batches.csv_file'), class: 'form-control-file' %>
+            <%= file_field_tag :file, accept: '.csv' %>
+            <small class="form-text text-muted"><%= Spree.t('admin.promotion_batches.csv_file_notice') %></small>
+          </div>
+          <%= render partial: 'spree/admin/shared/new_resource_links' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

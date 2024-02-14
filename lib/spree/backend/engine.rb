@@ -48,10 +48,8 @@ module Spree
         Rails.application.config.spree_backend.actions[:payments] = Spree::Admin::Actions::PaymentsDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions[:variants] = Spree::Admin::Actions::VariantsDefaultActionsBuilder.new.build
         Rails.application.config.spree_backend.actions[:product_properties] = Spree::Admin::Actions::ProductPropertiesDefaultActionsBuilder.new.build
-        Rails.application.config.spree_backend.actions[:promotion_batch_actions] =
-          Spree::Admin::Actions::PromotionBatchDefaultActionsBuilder.new.build
-        Rails.application.config.spree_backend.actions[:promotion_batches_actions] =
-          Spree::Admin::Actions::PromotionBatchesDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:template_promotion] = Spree::Admin::Actions::TemplatePromotionDefaultActionsBuilder.new.build
+        Rails.application.config.spree_backend.actions[:promotion_batches] = Spree::Admin::Actions::PromotionBatchesDefaultActionsBuilder.new.build
       end
     end
   end

@@ -378,12 +378,12 @@ module Spree
         Rails.application.config.spree_backend.actions[:product_properties]
       end
 
-      def promotion_batch_actions
-        Rails.application.config.spree_backend.actions[:promotion_batch_actions]
+      def template_promotion_actions
+        Rails.application.config.spree_backend.actions[:template_promotion]
       end
 
       def promotion_batches_actions
-        Rails.application.config.spree_backend.actions[:promotion_batches_actions]
+        Rails.application.config.spree_backend.actions[:promotion_batches]
       end
       # rubocop:enable Metrics/ModuleLength
     end

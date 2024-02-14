@@ -1,6 +1,26 @@
-<div data-hook="new_promotion_batch_template_promotion" class="col-12 col-md-4">
-  <%= f.field_container :template_promotion do %>
-    <%= f.label :template_promotion_id, Spree.t(:template_promotion) %>
-    <%= f.collection_select :template_promotion_id, Spree::Promotion.non_batched, :id, ->(promotion) { "#{promotion.name} # #{promotion.id}" }, { include_blank: true }, { class: 'select2-clear w-100' } %>
-  <% end %>
+<div class="row">
+  <div class="col-12 col-md-6">
+    <h4><%= Spree.t('admin.promotion_batches.general_settings') %></h4>
+    <div class="form-group">
+      <%= label_tag :amount, Spree.t('admin.promotion_batches.amount') %>
+      <%= number_field_tag :amount, nil, class: 'form-control' %>
+    </div>
+
+    <hr/>
+    <h4><%= Spree.t('admin.promotion_batches.generator_settings') %></h4>
+    <div class="form-group">
+      <%= label_tag :random_characters, Spree.t('admin.promotion_batches.random_characters') %>
+      <%= number_field_tag :random_characters, nil, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :prefix, Spree.t('admin.promotion_batches.prefix') %>
+      <%= text_field_tag :prefix, nil, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :suffix, Spree.t('admin.promotion_batches.suffix') %>
+      <%= text_field_tag :suffix, nil, class: 'form-control' %>
+    </div>
+  </div>
 </div>

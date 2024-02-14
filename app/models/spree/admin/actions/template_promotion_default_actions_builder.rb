@@ -1,12 +1,12 @@
 module Spree
   module Admin
     module Actions
-      class PromotionBatchesDefaultActionsBuilder
+      class TemplatePromotionDefaultActionsBuilder
         include Spree::Core::Engine.routes.url_helpers
 
         def build
           root = Root.new
-          add_view_promotions_action(root)
+          add_view_promotion_batches_action(root)
           add_import_promotion_batch_action(root)
           add_generate_promotion_batch_action(root)
           root
@@ -17,11 +17,11 @@ module Spree
         def add_generate_promotion_batch_action(root)
           action =
             ActionBuilder.new('generate_codes', ->(template_promotion) { new_admin_template_promotion_promotion_batch_path(template_promotion_id: template_promotion.id) }).
-            with_label_translation_key('admin.promotion_batches.generate_codes').
-            with_icon_key('add.svg').
-            with_style(Spree::Admin::Actions::ActionStyle::PRIMARY).
-            with_create_ability_check(Spree::PromotionBatch).
-            build
+              with_label_translation_key('admin.promotion_batches.generate_codes').
+              with_icon_key('add.svg').
+              with_style(Spree::Admin::Actions::ActionStyle::PRIMARY).
+              with_create_ability_check(Spree::PromotionBatch).
+              build
 
           root.add(action)
         end
@@ -38,9 +38,9 @@ module Spree
           root.add(action)
         end
 
-        def add_view_promotions_action(root)
+        def add_view_promotion_batches_action(root)
           action =
-            ActionBuilder.new('view_promotions', ->(template_promotion) { admin_promotions_path(q: { for_template_promotion_id: template_promotion.id }) }).
+            ActionBuilder.new('view_promotion_batches', ->(template_promotion) { admin_template_promotion_promotion_batches_path(template_promotion) }).
               with_label_translation_key('admin.promotion_batches.view_promotions').
               with_icon_key('list.svg').
               with_style(Spree::Admin::Actions::ActionStyle::LIGHT).
