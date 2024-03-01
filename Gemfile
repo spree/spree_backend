@@ -16,8 +16,10 @@ end
 platforms :ruby do
   if ENV['DB'] == 'mysql'
     gem 'mysql2'
+  elsif ENV['DB'] == 'postgresql'
+    gem 'pg'
   else
-    gem 'pg', '~> 1.1'
+    gem 'sqlite3'
   end
 end
 
@@ -56,7 +58,6 @@ group :test, :development do
 end
 
 group :development do
-  gem 'github_fast_changelog'
   gem 'solargraph'
 end
 

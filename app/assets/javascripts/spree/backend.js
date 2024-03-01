@@ -1,3 +1,7 @@
+//= require jquery
+//= require popper
+//= require bootstrap
+//= require flatpickr
 //= require purify
 //= require sortable
 //= require jquery3

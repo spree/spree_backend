@@ -1,6 +1,6 @@
 //= link_tree ../images
 
-//= link spree-dashboard.js
+//= link sortablejs.js
 //= link spree/backend/all.js
 //= link spree/backend/all.css
 
