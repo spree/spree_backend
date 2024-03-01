@@ -13,10 +13,17 @@ module Spree
         end
 
         def install
-          template 'app/javascript/spree-dashboard.js'
           template 'vendor/assets/javascripts/spree/backend/all.js'
           template 'vendor/assets/stylesheets/spree/backend/all.css'
-          run 'yarn add @spree/dashboard'
+
+          say 'Ensure Request.js are installed'
+          run 'bin/rails requestjs:install'
+
+          say 'Pin SortableJS to importmap.rb'
+          run 'bin/importmap pin sortablejs'
+
+          say 'Pin Spree Dashboard Stimulus controllers in importmap.rb'
+          append_to_file 'config/importmap.rb', 'pin_all_from Spree::Backend::Engine.root.join("app/javascript/controllers"), under: "controllers", to: "controllers"'
         end
       end
     end

@@ -1,3 +1,4 @@
+//= require spree/backend/global/tooltips
 //= require spree/backend/global/alerts
 //= require spree/backend/global/animate_css
 //= require spree/backend/global/fetch_request_utility

@@ -10,6 +10,9 @@
 //= require tinymce
 //= require underscore-min.js
 //= require jsonapi-serializer.min
+//= require popper
+//= require bootstrap-sprockets
+//= require flatpickr
 
 //= require spree/backend/global/_index
 
