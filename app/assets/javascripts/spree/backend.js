@@ -1,7 +1,3 @@
-//= require jquery
-//= require popper
-//= require bootstrap
-//= require flatpickr
 //= require purify
 //= require sortable
 //= require jquery3
@@ -14,6 +10,9 @@
 //= require tinymce
 //= require underscore-min.js
 //= require jsonapi-serializer.min
+//= require popper
+//= require bootstrap-sprockets
+//= require flatpickr
 
 //= require spree/backend/global/_index
 
