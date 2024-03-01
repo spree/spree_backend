@@ -62,7 +62,7 @@ group :development do
 end
 
 
-spree_opts = { path: '../spree' }
+spree_opts = { github: 'spree/spree', branch: 'main' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
 gemspec
