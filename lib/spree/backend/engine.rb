@@ -16,10 +16,12 @@ module Spree
 
       initializer 'spree.backend.importmap', before: 'importmap' do |app|
         app.config.importmap.paths << Engine.root.join('config/importmap.rb')
+        # https://github.com/rails/importmap-rails?tab=readme-ov-file#sweeping-the-cache-in-development-and-test
+        app.config.importmap.cache_sweepers << Engine.root.join('app/javascript')
       end
 
       # https://github.com/rails/importmap-rails/issues/58#issuecomment-1910256388
-      initializer 'my_engine.assets.precompile' do |app|
+      initializer 'spree.backend.assets.precompile' do |app|
         app.config.assets.paths << Engine.root.join('app/javascript')
         app.config.assets.paths << Engine.root.join('app/javascript/controllers')
 
