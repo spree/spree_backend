@@ -16,7 +16,7 @@ end
 platforms :ruby do
   if ENV['DB'] == 'mysql'
     gem 'mysql2'
-  elsif ENV['DB'] == 'postgresql'
+  elsif ENV['DB'] == 'postgres'
     gem 'pg'
   else
     gem 'sqlite3'
@@ -62,7 +62,7 @@ group :development do
 end
 
 
-spree_opts = { github: 'spree/spree', branch: 'main' }
+spree_opts = { path: '../spree' }
 gem 'spree_core', spree_opts
 gem 'spree_api', spree_opts
 gemspec

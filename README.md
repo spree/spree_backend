@@ -4,7 +4,7 @@
 
 # Spree Admin Dashboard
 
-This is the default Spree Admin Dashboard. 
+This is the default Spree Admin Dashboard.
 
 ## Developed by
 
@@ -50,39 +50,6 @@ You can also [add Spree and Admin Dashboard to an existing Ruby on Rails applica
 Spree Admin Dashboard is an open source project and we love contributions in any form - pull requests, issues, feature ideas!
 
 Please review the [Spree Contributing Guide](https://dev-docs.spreecommerce.org/contributing/index)
-
-### Development Setup (JavaScript)
-
-When working on the JavaScript in Spree Dashboard locally, you will need to yarn link your local development copy of `@spree/dashboard`, to the Rails app you are working in, so that your changes are picked up and represented live in the view.
-
-
-From the root of `spree_backend` run:
-
-```bash
-yarn link
-```
-
-Next, from the root of the Rails app you are using to develop run:
-
-```bash
-yarn link "@spree/dashboard"
-```
-
-Once your local Spree Dashboard is linked with the Rails app you are using for development you will need two terminal tabs open, 
-one at the root of your Rails app, and one at the root of `spree_backend`.
-
-In the terminal window at the root of the `spree_backend` run:
-
-```bash
-yarn watch
-```
-
-And from the Rails app you are using to run Spree and develop in run the following:
-
-```bash
-bin/dev
-```
-Any changes made to the JavaScript files in `spree_backend` will be processed by yarn and picked up in the Rails app you are running for development.
 
 ### Local setup
 
