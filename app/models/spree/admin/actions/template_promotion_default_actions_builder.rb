@@ -41,7 +41,7 @@ module Spree
         def add_view_promotion_batches_action(root)
           action =
             ActionBuilder.new('view_promotion_batches', ->(template_promotion) { admin_template_promotion_promotion_batches_path(template_promotion) }).
-              with_label_translation_key('admin.promotion_batches.view_promotions').
+              with_label_translation_key('admin.promotion_batches.view_promotion_batches').
               with_icon_key('list.svg').
               with_style(Spree::Admin::Actions::ActionStyle::LIGHT).
               with_manage_ability_check(Spree::Promotion).

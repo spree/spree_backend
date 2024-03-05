@@ -20,7 +20,7 @@
   <%= form_for @promotion, url: spree.admin_promotion_path(@promotion), method: :put do |f| %>
     <div id="actions" class="filter_list mt-3">
       <% if @promotion.actions.any? %>
-        <%= render partial: 'promotion_action',  collection: @promotion.actions %>
+        <%= render partial: 'spree/admin/promotions/promotion_action',  collection: @promotion.actions %>
       <% else %>
         <div class="alert alert-warning">
           <%= Spree.t(:no_actions_added) %>

@@ -12,8 +12,8 @@
       <div class="row">
         <div class="col-12 col-md-6">
           <div class="form-group">
-            <%= label_tag :file, Spree.t('admin.promotion_batches.csv_file'), class: 'form-control-file' %>
-            <%= file_field_tag :file, accept: '.csv' %>
+            <%= label_tag :file, raw(Spree.t('admin.promotion_batches.csv_file') + required_span_tag), class: 'form-control-file' %>
+            <%= file_field_tag :file, accept: '.csv', required: :required %>
             <small class="form-text text-muted"><%= Spree.t('admin.promotion_batches.csv_file_notice') %></small>
           </div>
           <%= render partial: 'spree/admin/shared/new_resource_links' %>

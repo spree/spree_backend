@@ -13,6 +13,7 @@ module Spree
 
       def create
         Spree::PromotionBatches::CreateWithRandomCodes.new.call(template_promotion: @template_promotion, amount: params[:amount].to_i, random_characters: params[:random_characters].to_i, prefix: params[:prefix], suffix: params[:suffix])
+        redirect_to(admin_template_promotion_promotion_batches_path(template_promotion_id: @template_promotion.id))
       end
 
       def import; end

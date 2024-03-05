@@ -1,6 +1,7 @@
 en:
   spree:
     admin:
+      id: ID
       url: URL
       active: Active
       name: Name
@@ -186,6 +187,7 @@ en:
         random_characters: Number of random characters to generate for each code
         suffix: (Optional) Suffix
         view_promotions: View Promotions
+        view_promotion_batches: View Promotion Batches
       reports:
         for: For %{store_name}
       return_authorization:
