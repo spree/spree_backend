@@ -1,0 +1,77 @@
+<%= render partial: 'spree/admin/shared/error_messages', locals: { target: @promotion } %>
+
+<div class="row" id="general_fields">
+  <div class="col-12 col-lg-4">
+    <%= f.field_container :name do %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.error_message_on :name %>
+    <% end %>
+
+    <%= f.field_container :path do %>
+      <%= f.label :path %>
+      <%= f.text_field :path, class: 'form-control' %>
+    <% end %>
+
+    <%= f.field_container :advertise, class: ['checkbox'] do %>
+      <%= f.label :advertise do %>
+        <%= f.check_box :advertise %>
+        <%= Spree.t(:advertise) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="col-12 col-lg-4">
+    <%= f.field_container :description do %>
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 7, class: 'form-control' %>
+    <% end %>
+
+    <%= f.field_container :category do %>
+      <%= f.label :promotion_category %>
+      <%= f.collection_select(:promotion_category_id, @promotion_categories, :id, :name, { include_blank: Spree.t('match_choices.none') }, { class: 'select2 w-100' }) %>
+    <% end %>
+
+    <% if @stores.count > 1 %>
+      <%= f.field_container :stores do %>
+        <%= f.label :promotion_stores, Spree.t(:stores) %>
+        <%= collection_select(:promotion, :store_ids, @stores, :id, :unique_name, {}, { multiple: true, class: 'select2' }) %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="expiry_fields" class="col-12 col-lg-4">
+    <div id="starts_at_field" class="form-group">
+      <%= f.label :starts_at %>
+      <div class="input-group datePickerFrom"
+           data-wrap="true"
+           data-enable-time="true"
+           data-alt-format="<%= Spree.t(:fpr_human_friendly_date_time_format, scope: 'date_picker', default: 'M j, Y H:i') %>"
+           data-max-date="<%= @promotion.expires_at %>">
+        <%= f.datetime_field :starts_at,
+                             class: 'form-control',
+                             placeholder: Spree.t('starting_from'),
+                             'data-input':'' %>
+
+        <%= render partial: 'spree/admin/shared/cal_close' %>
+      </div>
+    </div>
+
+    <div id="expires_at_field" class="form-group">
+      <%= f.label :expires_at %>
+      <div class="input-group datePickerTo"
+           data-wrap="true"
+           data-enable-time='true'
+           data-alt-format="<%= Spree.t(:fpr_human_friendly_date_time_format, scope: 'date_picker', default: 'M j, Y H:i') %>"
+           data-min-date="<%= @promotion.starts_at %>">
+        <%= f.datetime_field :expires_at,
+                             placeholder:Spree.t('ends_at'),
+                             class: 'form-control',
+                             'data-input':'' %>
+
+        <%= render partial: 'spree/admin/shared/cal_close' %>
+      </div>
+    </div>
+
+  </div>
+</div>

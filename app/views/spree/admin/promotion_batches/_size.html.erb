@@ -1,0 +1,6 @@
+<div class="col-12 col-lg-4">
+  <%= form_tag(duplicate_admin_promotion_batch_path(@promotion_batch), method: :post) do %>
+    <%= number_field_tag(:batch_size) %>
+    <%= submit_tag("Duplicate") %>
+  <% end %>
+</div>

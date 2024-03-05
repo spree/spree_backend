@@ -1,0 +1,54 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:template_promotions), admin_template_promotions_url %> /
+  <%= link_to @template_promotion.name, edit_admin_template_promotion_url(@template_promotion) %> /
+  <%= Spree.t(:promotion_batches) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <% promotion_batches_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability) %>
+    <%= button_link_to(
+      Spree.t(action.label_translation_key),
+      action.url(@template_promotion),
+      class: action.classes,
+      icon: action.icon_key
+    ) %>
+  <% end %>
+<% end %>
+
+<% if @promotion_batches.any? %>
+  <div class="table-responsive border rounded bg-white">
+    <table class="table">
+      <thead class="text-muted">
+        <tr>
+          <th><%= Spree.t('admin.id') %></th>
+          <th><%= Spree.t('admin.promotion_batches.generated_codes') %></th>
+          <th><%= Spree.t(:created_at) %></th>
+          <th><%= Spree.t(:state) %></th>
+          <th data-hook="admin_promotion_batches_index_header_actions" class="actions"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @promotion_batches.each do |promotion_batch| %>
+          <tr id="<%= spree_dom_id promotion_batch %>">
+            <td><%= promotion_batch.id %></td>
+            <td><%= promotion_batch.promotions.count %></td>
+            <td><%= promotion_batch.created_at.strftime('%F %T %Z') %></td>
+            <td><%= promotion_batch.state %></td>
+            <td>
+              <%= button_link_to('', admin_promotions_path({ q: { promotion_batch_id_eq: promotion_batch.id }}), icon: 'list.svg', class: 'btn btn-light btn-sm with-tip icon-link', data: { 'original-title' => Spree.t('admin.promotion_batches.view_promotions') }) %>
+              <%= button_link_to('', admin_template_promotion_promotion_batch_export_path(template_promotion_id: @template_promotion.id, promotion_batch_id: promotion_batch.id), icon: 'file-earmark-arrow-down.svg', class: 'btn btn-light btn-sm with-tip icon-link', data: { 'original-title' => Spree.t('admin.promotion_batches.export_csv')} ) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <div class="text-center no-objects-found m-5">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::PromotionBatch)) %>,
+    <%= link_to Spree.t('admin.promotion_batches.generate_codes'), new_object_url if can?(:create, Spree::PromotionBatch) %>
+    <%= Spree.t(:or) %>
+    <%= link_to Spree.t('admin.promotion_batches.import_csv'), import_admin_template_promotion_promotion_batches_path(@template_promotion) if can?(:create, Spree::PromotionBatch) %>!
+  </div>
+<% end %>

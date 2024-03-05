@@ -137,6 +137,10 @@ module Spree
             ItemBuilder.new('promotion_categories', admin_promotion_categories_path).
               with_admin_ability_check(Spree::PromotionCategory).
               with_label_translation_key('admin.tab.promotion_categories').
+              build,
+            ItemBuilder.new('bulk_promo_codes', admin_template_promotions_path).
+              with_admin_ability_check(Spree::Promotion, Spree::PromotionBatch).
+              with_label_translation_key('admin.tab.bulk_promo_codes').
               build
           ]
 

@@ -1,0 +1,15 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:template_promotions), admin_template_promotions_url %> /
+  <%= link_to @template_promotion.name, edit_admin_template_promotion_url(@template_promotion) %> /
+  <%= link_to Spree.t(:promotion_batches), admin_template_promotion_promotion_batches_url(@template_promotion) %> /
+  <%= Spree.t('admin.promotion_batches.generate_codes') %>
+<% end %>
+
+<div class="card">
+  <div class="card-body">
+    <%= form_for :promotion_batch, url: collection_url do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+      <%= render partial: 'spree/admin/shared/new_resource_links' %>
+    <% end %>
+  </div>
+</div>

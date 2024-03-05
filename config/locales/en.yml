@@ -1,6 +1,7 @@
 en:
   spree:
     admin:
+      id: ID
       url: URL
       active: Active
       name: Name
@@ -116,6 +117,7 @@ en:
         physical: Physical
         digital: Digital
       tab:
+        bulk_promo_codes: Bulk Promo Codes
         configuration: Configuration
         content: Content
         option_types: Option Types
@@ -171,6 +173,21 @@ en:
         scopes: Scopes
         documentation_message: 'To learn how to authenticate requests to the Platform API, '
         documentation_cta: see the documentation
+      promotion_batches:
+        amount: Number of codes to generate
+        csv_file: Select a CSV file to import
+        csv_file_notice: The CSV file should include one promo code per line, without any additional columns
+        export_csv: Export CSV
+        generate_codes: Generate Codes
+        generated_codes: Generated Codes
+        general_settings: General Settings
+        generator_settings: Generator Settings
+        import_csv: Import CSV
+        prefix: (Optional) Prefix
+        random_characters: Number of random characters to generate for each code
+        suffix: (Optional) Suffix
+        view_promotions: View Promotions
+        view_promotion_batches: View Promotion Batches
       reports:
         for: For %{store_name}
       return_authorization:
@@ -190,6 +207,9 @@ en:
         customer_support_email_help: "This email is visible to your Store visitors in the Footer section"
         new_order_notifications_email_help: "If you want to receive an email notification every time someone places an Order please provide an email address for that notification to be sent to"
         seo_robots: "Please check <a href='https://developers.google.com/search/reference/robots_meta_tag' target='_blank'>this page for more help</a>"
+      template_promotions:
+        generated_promotions: Generated Promotions
+        new_template: New Template
       user:
         account: Account
         addresses: Addresses
