@@ -27,7 +27,7 @@
 
             <% if @order.completed? %>
               <div>
-                <span class="badge badge-pill badge-secondary">
+                <span class="badge rounded-pill bg-secondary">
                   <%= guest ? Spree.t(:say_yes) : Spree.t(:say_no) %>
                   <%= hidden_field_tag :guest_checkout, guest %>
                 </span>

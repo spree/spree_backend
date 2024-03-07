@@ -63,7 +63,7 @@
           <td><%= link_to return_authorization.number, spree.edit_admin_order_return_authorization_path(return_authorization.order, return_authorization) %></td>
           <td><%= link_to return_authorization.order.number, spree.edit_admin_order_path(return_authorization.order) %></td>
           <td>
-            <span class="badge badge-pill badge-<%= return_authorization.state %>"><%= Spree.t("return_authorization_states.#{return_authorization.state}") %></span>
+            <span class="badge rounded-pill bg-<%= return_authorization.state %>"><%= Spree.t("return_authorization_states.#{return_authorization.state}") %></span>
           </td>
           <td class="actions">
             <span class="d-flex justify-content-end">

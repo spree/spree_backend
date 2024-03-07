@@ -39,40 +39,40 @@
         $baseVal: 1rem;
     }
 
-    .custom-control-label {
+    .form-control-label {
         padding-left: #{$baseVal};
         padding-bottom: #{$mainVal};
     }
 
-    .custom-control-label::before {
+    .form-control-label::before {
         height: $mainVal;
         width: calc(#{$index} + 0.75rem);
         border-radius: $mainVal * 2;
     }
 
-    .custom-control-label::after {
+    .form-control-label::after {
         width: calc(#{$mainVal} - 4px);
         height: calc(#{$mainVal} - 4px);
         border-radius: calc(#{$index} - (#{$mainVal} / 2));
     }
 
-    .custom-control-input:checked ~ .custom-control-label::after {
+    .form-control-input:checked ~ .form-control-label::after {
         transform: translateX(calc(#{$mainVal} - 0.25rem));
     }
 }
 
-.custom-switch.custom-switch-sm {
+.form-switch.form-switch-sm {
     @include switch();
 }
 
-.custom-switch.custom-switch-md {
+.form-switch.form-switch-md {
     @include switch('md');
 }
 
-.custom-switch.custom-switch-lg {
+.form-switch.form-switch-lg {
     @include switch('lg');
 }
 
-.custom-switch.custom-switch-xl {
+.form-switch.form-switch-xl {
     @include switch('xl');
 }

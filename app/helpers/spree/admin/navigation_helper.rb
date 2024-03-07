@@ -62,7 +62,7 @@ module Spree
                  link_to(
                    titleized_label,
                    destination_url,
-                   class: "sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block #{selected ? 'font-weight-bold' : 'text-muted'}"
+                   class: "sidebar-submenu-item w-100 py-2 py-md-1 ps-5 d-block #{selected ? 'fw-bold' : 'text-muted'}"
                  )
                end
 
@@ -76,11 +76,11 @@ module Spree
       def main_menu_item(text, url: nil, icon: nil)
         link_to url, 'data-toggle': 'collapse', class: 'd-flex w-100 px-3 py-2 position-relative align-items-center' do
           if icon.ends_with?('.svg')
-            svg_icon(name: icon, classes: 'mr-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
+            svg_icon(name: icon, classes: 'me-2 text-muted', width: MENU_ICON_SIZE, height: MENU_ICON_SIZE) +
               content_tag(:span, raw(" #{text}"), class: 'text-muted') +
               svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           else
-            content_tag(:span, nil, class: "icon text-muted icon-#{icon} mr-2") +
+            content_tag(:span, nil, class: "icon text-muted icon-#{icon} me-2") +
               content_tag(:span, raw(" #{text}"), class: 'text-muted') +
               svg_icon(name: 'chevron-right.svg', classes: 'drop-menu-indicator text-muted position-absolute', width: (MENU_ICON_SIZE - 8), height: (MENU_ICON_SIZE - 8))
           end
@@ -105,7 +105,7 @@ module Spree
 
         select_tag(:per_page,
                    options_for_select(per_page_options, selected_option),
-                   class: "w-auto form-control js-per-page-select per-page-selected-#{selected_option} custom-select custom-select-sm")
+                   class: "w-auto form-control js-per-page-select per-page-selected-#{selected_option} form-select form-select-sm")
       end
 
       # helper method to create proper url to apply per page ing
@@ -177,9 +177,9 @@ module Spree
         options[:height] ||= ICON_SIZE
         if icon_name
           icon = if icon_name.ends_with?('.svg')
-                   svg_icon(name: icon_name, classes: "#{'mr-2' unless text.empty?} icon icon-#{icon_name}", width: options[:width], height: options[:height])
+                   svg_icon(name: icon_name, classes: "#{'me-2' unless text.empty?} icon icon-#{icon_name}", width: options[:width], height: options[:height])
                  else
-                   content_tag(:span, '', class: "#{'mr-2' unless text.empty?} icon icon-#{icon_name}")
+                   content_tag(:span, '', class: "#{'me-2' unless text.empty?} icon icon-#{icon_name}")
                  end
           text = "#{icon} #{text}"
         end
@@ -255,18 +255,18 @@ module Spree
           url.ends_with?("#{controller.controller_name.singularize}/edit")
 
         options[:class] = 'sidebar-menu-item d-block w-100'
-        options[:class] << ' selected font-weight-bold' if options[:is_selected]
+        options[:class] << ' selected fw-bold' if options[:is_selected]
         content_tag(:li, options) do
-          link_to(link_text, url, class: "#{'text-muted' unless options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 pl-5 d-block")
+          link_to(link_text, url, class: "#{'text-muted' unless options[:is_selected]} sidebar-submenu-item w-100 py-2 py-md-1 ps-5 d-block")
         end
       end
 
       def active_badge(condition, options = {})
         label = options[:label]
         label ||= condition ? Spree.t(:say_yes) : Spree.t(:say_no)
-        css_class = condition ? 'badge-active' : 'badge-inactive'
+        css_class = condition ? 'bg-active' : 'bg-inactive'
 
-        content_tag(:small, class: "badge badge-pill #{css_class}") do
+        content_tag(:small, class: "badge rounded-pill #{css_class}") do
           label
         end
       end
@@ -301,7 +301,7 @@ module Spree
       end
 
       def page_header_back_button(url)
-        link_to url, class: 'btn btn-outline-info mr-3 pr-1' do
+        link_to url, class: 'btn btn-outline-info me-3 pe-1' do
           svg_icon name: 'chevron-left.svg', width: 15, height: 15
         end
       end

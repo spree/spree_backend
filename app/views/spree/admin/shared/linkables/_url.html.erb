@@ -10,9 +10,9 @@
 <% end %>
 
 <%= f.field_container :new_window do %>
-  <div class="custom-control custom-checkbox">
-    <%= f.check_box :new_window, class: 'custom-control-input' %>
-    <%= f.label :new_window, Spree.t('admin.navigation.open_link_in_new_window'), class: 'custom-control-label' %>
+  <div class="form-control form-checkbox">
+    <%= f.check_box :new_window, class: 'form-control-input' %>
+    <%= f.label :new_window, Spree.t('admin.navigation.open_link_in_new_window'), class: 'form-control-label' %>
     <%= f.error_message_on :new_window %>
   </div>
 <% end %>
