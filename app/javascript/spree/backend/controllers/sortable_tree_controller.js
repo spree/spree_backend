@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { Sortable } from "sortablejs"
-import { patch } from "request_utility"
+import { patch } from "helpers"
 
 export default class extends Controller {
   static values = { handle: String }

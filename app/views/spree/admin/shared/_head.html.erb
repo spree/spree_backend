@@ -22,7 +22,7 @@
 </script>
 
 <%= render 'spree/admin/shared/paths' %>
-<%= javascript_importmap_tags %>
+<%= javascript_importmap_tags 'application-spree-backend' %>
 <%= javascript_include_tag 'spree/backend/all', data: { turbo_track: "reload" } %>
 <%= render "spree/admin/shared/translations" %>
 
