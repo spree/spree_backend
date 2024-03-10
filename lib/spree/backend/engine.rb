@@ -14,7 +14,7 @@ module Spree
         app.config.spree_backend = Environment.new
       end
 
-      initializer "mission_control-jobs.assets" do |app|
+      initializer "spree.backend.assets" do |app|
         app.config.assets.paths << root.join("app/javascript")
         app.config.assets.precompile += %w[ spree_backend_manifest ]
       end
