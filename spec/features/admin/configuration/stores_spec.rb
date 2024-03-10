@@ -56,7 +56,7 @@ describe 'Stores admin', type: :feature do
       page.fill_in 'store_mail_from_address', with: 'no-reply@example.com'
       select 'EUR', from: 'Default currency'
       select 'GBP', from: 'Supported Currencies'
-      unselect 'USD', from: 'Supported Currencies'
+      unselect 'USD', from: 'Supported Currencies', match: :first
       select 'GBP', from: 'Supported Currencies'
 
       select 'English (US)', from: 'Default locale'
