@@ -1,7 +1,9 @@
 //= link_tree ../images
 
-//= link sortablejs.js
-//= link request_utility.js
+//= link_directory ../../javascript/spree/backend .js
+//= link_directory ../../javascript/spree/backend/controllers .js
+//= link_directory ../../javascript/spree/backend/helpers .js
+
 //= link spree/backend/all.js
 //= link spree/backend/all.css
 
