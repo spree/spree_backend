@@ -23,7 +23,11 @@ module Spree
           run 'bin/importmap pin sortablejs'
 
           say 'Pin Spree Dashboard Stimulus controllers in importmap.rb'
-          append_to_file 'config/importmap.rb', 'pin_all_from Spree::Backend::Engine.root.join("app/javascript/controllers"), under: "controllers", to: "controllers"'
+
+          append_file 'config/importmap.rb', <<-IMPORTS.strip_heredoc
+            pin_all_from Spree::Backend::Engine.root.join("app/javascript/controllers"), under: "controllers", to: "controllers"
+            pin "request_utility", to: "request_utility"
+          IMPORTS
         end
       end
     end
