@@ -21,7 +21,7 @@
     <hr />
     <%= f.field_container :checkout_zone_id do %>
       <%= f.label :checkout_zone_id, Spree.t(:shipping_zone) %>
-      <%= f.select :checkout_zone_id, options_for_select(@zones), { include_blank: Spree.t(:no_limits_zone) }, { class: 'select2' } %>
+      <%= f.select :checkout_zone_id, options_for_select(@zones, @store.checkout_zone_id), { include_blank: Spree.t(:no_limits_zone) }, { class: 'select2' } %>
       <small class="form-text text-muted">
         <%= raw(Spree.t('admin.store_form.checkout_zone_help')) %>
       </small>
