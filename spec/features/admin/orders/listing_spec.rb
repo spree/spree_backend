@@ -50,13 +50,13 @@ describe 'Orders Listing', type: :feature do
     it 'lists existing orders' do
       within_row(1) do
         expect(column_text(1)).to eq 'R100'
-        expect(find('td:nth-child(3)')).to have_css '.badge-considered_risky'
+        expect(find('td:nth-child(3)')).to have_css '.bg-considered_risky'
         expect(column_text(4)).to eq 'balance due'
       end
 
       within_row(2) do
         expect(column_text(1)).to eq 'R200'
-        expect(find('td:nth-child(3)')).to have_css '.badge-considered_safe'
+        expect(find('td:nth-child(3)')).to have_css '.bg-considered_safe'
       end
     end
 
@@ -176,7 +176,7 @@ describe 'Orders Listing', type: :feature do
     end
 
     it 'is able to apply a ransack filter by clicking a quickfilter icon', js: true do
-      label_pending = page.find '.badge-pending'
+      label_pending = page.find '.bg-pending'
       parent_td = label_pending.find(:xpath, '..')
 
       # Click the quick filter Pending for order #R100

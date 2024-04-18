@@ -19,15 +19,15 @@
             </label>
           </div>
 
-          <div class="ml-2">
+          <div class="ms-2">
               <button id="cmsSectionEditorFullScreen" type="button" class="btn btn-outline-primary no-wrap" data-toggle="button" autocomplete="off"><%= raw Spree.t('admin.cms.full_screen_mode') %></button>
           </div>
         </div>
       </div>
-      <div class="row no-gutters">
+      <div class="row g-0">
         <div id="draggableSectionsHolder" class="col-12 col-md-3 bg-light border">
           <% if @cms_page.cms_sections.any? %>
-            <div id="cmsPagesectionsArea" class="card-body row m-0 p-1 no-gutters">
+            <div id="cmsPagesectionsArea" class="card-body row m-0 p-1 g-0">
               <% @cms_page.cms_sections.each do |section| %>
                 <%= render 'spree/admin/cms_pages/section_template', section: section %>
               <% end %>

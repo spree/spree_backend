@@ -9,9 +9,9 @@
     </div>
 
     <div class="col-12 col-md-4">
-      <%= f.field_container :hide_from_nav, class: ['custom-control', 'custom-checkbox', 'my-4'] do %>
-        <%= f.check_box :hide_from_nav, class: 'custom-control-input' %>
-        <%= f.label :hide_from_nav, Spree.t(:hide_from_subcategories_nav), class: 'custom-control-label' %>
+      <%= f.field_container :hide_from_nav, class: ['form-control', 'form-checkbox', 'my-4'] do %>
+        <%= f.check_box :hide_from_nav, class: 'form-control-input' %>
+        <%= f.label :hide_from_nav, Spree.t(:hide_from_subcategories_nav), class: 'form-control-label' %>
         <%= f.error_message_on :hide_from_nav %>
       <% end %>
     </div>

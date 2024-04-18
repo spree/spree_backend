@@ -6,7 +6,7 @@
     <ul class="list-group list-group-flush">
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <small><%= Spree.t(:status) %></small>
-        <span class="state badge badge-pill badge-<%= @order.state %> badge-pill text-capitalize" id="order_status">
+        <span class="state badge rounded-pill bg-<%= @order.state %> rounded-pill text-capitalize" id="order_status">
           <%= Spree.t(@order.state, scope: :order_state) %>
         </span>
       </li>
@@ -14,7 +14,7 @@
       <% if @order.shipment_state.present? %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small><%= Spree.t(:shipment) %></small>
-          <span class="state badge badge-pill badge-<%= @order.shipment_state %> badge-pill text-capitalize" id="shipment_status">
+          <span class="state badge rounded-pill bg-<%= @order.shipment_state %> rounded-pill text-capitalize" id="shipment_status">
             <%= Spree.t(@order.shipment_state, scope: :shipment_states, default: [:missing, "none"]) %>
           </span>
         </li>
@@ -23,7 +23,7 @@
       <% if @order.payment_state.present? %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small><%= Spree.t(:payment) %></small>
-          <span class="state badge badge-pill badge-<%= @order.payment_state %> badge-pill text-capitalize" id="payment_status">
+          <span class="state badge rounded-pill bg-<%= @order.payment_state %> rounded-pill text-capitalize" id="payment_status">
             <%= Spree.t(@order.payment_state, scope: :payment_states, default: [:missing, "none"]) %>
           </span>
         </li>
@@ -31,7 +31,7 @@
 
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <small data-hook='admin_order_tab_channel_title'><%= Spree.t(:channel) %></small>
-        <span class="state badge badge-pill text-capitalize" id='order_channel'>
+        <span class="state badge rounded-pill text-capitalize" id='order_channel'>
           <%= @order.channel %>
         </span>
       </li>
@@ -39,7 +39,7 @@
       <% if @order.completed? %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small data-hook='admin_order_tab_date_completed_title'><%= Spree.t(:date_completed) %></small>
-          <span class="text-right small font-weight-bold" id='date_complete'>
+          <span class="text-end small fw-bold" id='date_complete'>
             <%= pretty_time(@order.completed_at) %>
           </span>
         </li>
@@ -48,14 +48,14 @@
       <% if @order.approved? %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small><%= Spree.t(:approved_at) %></small>
-          <span class="text-right small font-weight-bold">
+          <span class="text-end small fw-bold">
             <%= pretty_time(@order.approved_at) %>
           </span>
         </li>
         <% if @order.approver.present? %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <small><%= Spree.t(:approver) %></small>
-            <span class="text-right small font-weight-bold">
+            <span class="text-end small fw-bold">
               <%= link_to @order.approver.email, spree.admin_users_path(@order.approver) %>
             </span>
           </li>
@@ -65,14 +65,14 @@
       <% if @order.canceled? && @order.canceled_at %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small><%= Spree.t(:canceled_at) %></small>
-          <span class="text-right small font-weight-bold">
+          <span class="text-end small fw-bold">
             <%= pretty_time(@order.canceled_at) %>
           </span>
         </li>
         <% if @order.canceler.present? %>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <small><%= Spree.t(:canceler) %></small>
-            <span class="text-right small font-weight-bold">
+            <span class="text-end small fw-bold">
               <%= link_to @order.canceler.email, spree.admin_users_path(@order.canceler) %>
             </span>
           </li>
@@ -81,7 +81,7 @@
 
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <small data-hook='admin_order_tab_subtotal_title'><%= Spree.t(:subtotal) %></small>
-        <span class="state badge badge-pill text-capitalize" id='item_total'>
+        <span class="state badge rounded-pill text-capitalize" id='item_total'>
           <%= @order.display_item_total.to_html %>
         </span>
       </li>
@@ -89,7 +89,7 @@
       <% if @order.checkout_steps.include?("delivery") && @order.ship_total > 0 %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small data-hook='admin_order_tab_ship_total_title'><%= Spree.t(:ship_total) %></small>
-          <span class="state badge badge-pill text-capitalize" id='ship_total'>
+          <span class="state badge rounded-pill text-capitalize" id='ship_total'>
             <%= @order.display_ship_total.to_html %>
           </span>
         </li>
@@ -98,7 +98,7 @@
       <% if @order.included_tax_total != 0 %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small data-hook='admin_order_tab_included_tax_title'><%= Spree.t(:tax_included) %></small>
-          <span class="state badge badge-pill text-capitalize" id='included_tax_total'>
+          <span class="state badge rounded-pill text-capitalize" id='included_tax_total'>
             <%= @order.display_included_tax_total.to_html %>
           </span>
         </li>
@@ -107,7 +107,7 @@
       <% if @order.additional_tax_total != 0 %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small data-hook='admin_order_tab_additional_tax_title'><%= Spree.t(:tax) %></small>
-          <span class="state badge badge-pill text-capitalize" id='additional_tax_total'>
+          <span class="state badge rounded-pill text-capitalize" id='additional_tax_total'>
             <%= @order.display_additional_tax_total.to_html %>
           </span>
         </li>
@@ -115,7 +115,7 @@
 
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <small data-hook='admin_order_tab_total_title'><%= Spree.t(:total) %></small>
-        <span class="state badge badge-pill badge-primary text-capitalize" id='order_total'>
+        <span class="state badge rounded-pill bg-primary text-capitalize" id='order_total'>
           <%= @order.display_total.to_html %>
         </span>
       </li>

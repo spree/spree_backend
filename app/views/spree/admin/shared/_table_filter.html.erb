@@ -2,7 +2,7 @@
   <div class="filter-wrap mb-4">
     <div class="col-12 px-0">
       <div class="input-group index-filter-button flex-nowrap">
-        <%= form_tag request.fullpath, id: "quick-search", class: 'flex-grow-1 mr-3' do %>
+        <%= form_tag request.fullpath, id: "quick-search", class: 'flex-grow-1 me-3' do %>
           <%= text_field_tag :quick_search, nil, class: "form-control js-quick-search", placeholder: Spree.t(:search_by) %>
         <% end %>
 

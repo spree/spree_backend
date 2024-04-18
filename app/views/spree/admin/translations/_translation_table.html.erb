@@ -14,7 +14,7 @@
       <tbody id="translations_body" data-hook="translations_body">
         <% resource.class.translatable_fields.each do |field| %>
           <tr id="translates_field_row" data-hook="translates_field_row">
-            <td class="text-left" style="min-width: 12.5rem; position: absolute; background-color: white; height: 3.5rem">
+            <td class="text-start" style="min-width: 12.5rem; position: absolute; background-color: white; height: 3.5rem">
               <span><%= Spree.t(field) %></span>
             </td>
             <td style="min-width: 12.5rem; display: block; height: 100%"></td>

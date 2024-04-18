@@ -15,9 +15,9 @@
         <small class="form-text text-muted">
           <%= Spree.t('admin.store.digital_settings.digital_asset_authorized_clicks.info') %>
         </small>
-        <%= f.field_container :limit_digital_download_count, class: ['custom-control', 'custom-checkbox', 'my-4'] do %>
-          <%= f.check_box :limit_digital_download_count, class: 'custom-control-input' %>
-          <%= f.label :limit_digital_download_count, Spree.t('admin.store.digital_settings.limit_digital_download_count'), class: 'custom-control-label' %>
+        <%= f.field_container :limit_digital_download_count, class: ['form-control', 'form-checkbox', 'my-4'] do %>
+          <%= f.check_box :limit_digital_download_count, class: 'form-control-input' %>
+          <%= f.label :limit_digital_download_count, Spree.t('admin.store.digital_settings.limit_digital_download_count'), class: 'form-control-label' %>
           <%= f.error_message_on :limit_digital_download_count %>
         <% end %>
       </div>
@@ -31,9 +31,9 @@
         <small class="form-text text-muted">
           <%= Spree.t('admin.store.digital_settings.digital_asset_authorized_days.info') %>
         </small>
-        <%= f.field_container :limit_digital_download_days, class: ['custom-control', 'custom-checkbox', 'my-4'] do %>
-          <%= f.check_box :limit_digital_download_days, class: 'custom-control-input' %>
-          <%= f.label :limit_digital_download_days, Spree.t('admin.store.digital_settings.limit_digital_download_days'), class: 'custom-control-label' %>
+        <%= f.field_container :limit_digital_download_days, class: ['form-control', 'form-checkbox', 'my-4'] do %>
+          <%= f.check_box :limit_digital_download_days, class: 'form-control-input' %>
+          <%= f.label :limit_digital_download_days, Spree.t('admin.store.digital_settings.limit_digital_download_days'), class: 'form-control-label' %>
           <%= f.error_message_on :limit_digital_download_days %>
         <% end %>
       </div>

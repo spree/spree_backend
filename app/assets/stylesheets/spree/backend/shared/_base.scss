@@ -79,9 +79,9 @@ div.admin-product-image-container {
 }
 
 .js-remove-promo-rule-option-value {
-  color: theme-color('primary') !important;
+  color: map-get($theme-colors, 'primary') !important;
   &:hover {
-    color: darken(theme-color('primary'), 10) !important;
+    color: shade-color(map-get($theme-colors, 'primary'), 10) !important;
   }
 }
 
@@ -93,7 +93,7 @@ div.admin-product-image-container {
   cursor: grab;
 }
 
-.badge-light-muted-text {
+.bg-light-muted-text {
   color: rgba(0, 0, 0, 0.50);
 }
 
