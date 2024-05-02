@@ -4,7 +4,7 @@
     aria-label="Spree Commerce version">
     <div class="d-flex align-items-center justify-content-between">
       <span class="text-muted small">
-        <%= link_to Spree.version, "https://github.com/spree/spree/releases/tag/v#{Spree.version.gsub('.beta', '')}", target: '_blank' %>
+        <%= link_to Spree.version, "https://github.com/spree/spree/releases/tag/v#{Spree.version.gsub(/\.beta|\.rc\d+/, '')}", target: '_blank' %>
       </span>
       <% if spree_update_available? %>
         <span class="small text-info">
