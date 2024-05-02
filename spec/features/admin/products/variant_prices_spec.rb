@@ -35,7 +35,7 @@ describe 'Variant Prices', type: :feature, js: true do
     it 'allows to save a compare to price for each currency' do
       visit spree.admin_product_path(product)
       click_link 'Prices'
-      expect(page).to have_content 'COMPARE AT PRICE'
+      expect(page).to have_content 'Compare at price'
 
       fill_in "vp_#{product.master.id}_USD_price", with: '29.95', fill_options: { clear: :backspace }
       fill_in "vp_#{product.master.id}_EUR_price", with: '21.94', fill_options: { clear: :backspace }
