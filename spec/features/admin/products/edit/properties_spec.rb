@@ -20,7 +20,7 @@ describe 'Product Properties', type: :feature, js: true do
 
       expect(page).to have_current_path(spree.admin_product_product_properties_path(product))
       expect(page).to have_content('Add Product Properties')
-      expect(page).to have_content('SHOW PROPERTY')
+      expect(page).to have_content('Show Property')
       expect(page).to have_selector("input[value='Material']")
       expect(page).to have_selector("input[value='Leather']")
       expect(page).to have_field('product_product_properties_attributes_0_show_property', checked: true)

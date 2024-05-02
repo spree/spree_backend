@@ -1,8 +1,22 @@
+// https://github.com/twbs/bootstrap/blob/v4.6.2/scss/_variables.scss
+
 $theme-colors: (
-  "primary": #4C75BA,
+  "primary": #000,
 );
 
-$enable-shadows: true;
+$enable-responsive-font-sizes: true;
+$font-family-sans-serif: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-size-base:   0.813rem !default;
+$font-size-plus:   0.875rem !default;
+$font-size-sm:    0.75rem !default;
+$font-size-lg:    1rem !default;
+
+$border-radius: 0.5rem !default;
+$border-radius-sm: 0.4rem !default;
+$border-radius-lg: 0.75rem !default;
+
+$dropdown-item-padding-y:           .5rem !default;
+$dropdown-item-padding-x:           1rem !default;
 
 // https://github.com/twbs/bootstrap/issues/32019
 // we need this hotfix for sassc

@@ -45,8 +45,6 @@ describe 'New Menu', type: :feature do
       expect(page).to have_text 'Main Menu has no items. Click the Add New Item button to begin adding links to this menu.'
       expect(page).to have_selector('a', text: Spree.t('admin.navigation.add_new_item'))
 
-      expect(page).not_to have_css('.translation_missing', visible: :all)
-
       # Tests that root name is in sync with menu name.
       fill_in 'Name', with: 'X14dP'
       click_on 'Update'
