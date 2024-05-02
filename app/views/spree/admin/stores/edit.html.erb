@@ -9,7 +9,7 @@
   <fieldset>
     <%= render partial: 'form', locals: { f: f } %>
     <div class="form-actions" data-hook="buttons">
-      <%= button Spree.t('actions.update'), 'save.svg', 'submit', {class: 'btn-success', data: { disable_with: "#{ Spree.t(:saving) }..." }} %>
+      <%= button Spree.t('actions.update'), 'save.svg', 'submit', {class: 'btn-primary', data: { disable_with: "#{ Spree.t(:saving) }..." }} %>
 
       <%= link_to_with_icon 'delete.svg', Spree.t(:delete), spree.admin_store_url(@store), { class: 'btn btn-danger float-right', data: { confirm: Spree.t(:are_you_sure), method: :delete } } if can?(:delete, @store) && @store.can_be_deleted? %>
     </div>

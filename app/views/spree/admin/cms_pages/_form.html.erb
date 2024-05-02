@@ -16,17 +16,17 @@
 
               <span id="visibilityStatus" class="d-flex align-items-center">
                 <span class="page_hidden badge badge-pill badge-secondary <% if @cms_page.visible? %>d-none<% end %>">
-                  <%= svg_icon name: "eye-slash-fill.svg", width: '18', height: '18' %> <%= Spree.t('admin.cms.draft_mode') %>
+                  <%= svg_icon name: "eye-slash-fill.svg", width: '14', height: '14' %> <%= Spree.t('admin.cms.draft_mode') %>
                 </span>
 
                 <span class="page_visible badge badge-pill badge-primary <% if @cms_page.draft_mode? %>d-none<% end %>">
-                  <%= svg_icon name: "view.svg", width: '18', height: '18' %> <%= Spree.t('admin.cms.visible') %>
+                  <%= svg_icon name: "view.svg", width: '14', height: '14' %> <%= Spree.t('admin.cms.visible') %>
                 </span>
               </span>
             </div>
             <div class="col-auto d-flex align-items-center">
               <span class="badge badge-pill badge-secondary">
-                  <%= svg_icon name: "translate.svg", width: '18', height: '18' %> <%= locale_full_name(@cms_page.locale) %>
+                  <%= svg_icon name: "translate.svg", width: '14', height: '14' %> <%= locale_full_name(@cms_page.locale) %>
               </span>
             </div>
           </div>

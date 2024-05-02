@@ -1,9 +1,22 @@
 <% if can?(:admin, current_store) && Spree::Backend::RuntimeConfig[:admin_show_version] %>
-  <p
-    class="spree-version ml-3 my-3"
+  <div
+    class="spree-version px-3 py-2"
     aria-label="Spree Commerce version">
-    <span class="badge badge-pill badge-info">
-    <%= Spree.version %>
-    </span>
-  </p>
+    <div class="d-flex align-items-center justify-content-between">
+      <span class="text-muted small">
+        <%= link_to Spree.version, "https://github.com/spree/spree/releases/tag/v#{Spree.version.gsub('.beta', '')}", target: '_blank' %>
+      </span>
+      <% if spree_update_available? %>
+        <span class="small text-info">
+          <%= Spree.t(:update_available) %>!
+        </span>
+      <% end %>
+    </div>
+    
+    <% if spree_update_available? %>
+      <a href="https://docs.spreecommerce.org/developer/upgrades" target="_blank" class="mt-2 btn btn-sm btn-primary with-tip btn-block" title="Update your Spree instance to the latest version">
+        <%= Spree.t(:update_spree) %>
+      </a>
+    <% end %>
+  </div>
 <% end %>

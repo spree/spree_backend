@@ -47,7 +47,7 @@
             <%= Spree.t('admin.getting_started.products_section.message_without_products') %>
             <%= link_to(Spree.t('admin.getting_started.products_section.import_message'), 'https://api.spreecommerce.org/docs/api-v2/27527143a4edf-create-a-product') %>
           </p>
-          <%= link_to_with_icon 'add.svg', Spree.t('admin.getting_started.add_products'), spree.admin_products_path, class: 'btn btn-success btn-sm mb-2' %>
+          <%= link_to_with_icon 'add.svg', Spree.t('admin.getting_started.add_products'), spree.admin_products_path, class: 'btn btn-primary btn-sm mb-2' %>
         <% end %>
       </div>
       <div class="tab-pane fade <% if @active_tab == 'shipping'%>show active<% end %>" id="list-shipping" role="tabpanel" aria-labelledby="list-shipping-list">

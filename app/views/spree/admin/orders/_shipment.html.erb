@@ -12,7 +12,7 @@
         <%= link_to shipment.stock_location.name, spree.edit_admin_stock_location_url(shipment.stock_location) %>
       </strong>
       <% if shipment.ready? and can? :update, shipment %>
-        <%= link_to Spree.t(:ship), 'javascript:;', class: 'ship ml-auto btn btn-success', data: { 'shipment-number' => shipment.number } %>
+        <%= link_to Spree.t(:ship), 'javascript:;', class: 'ship ml-auto btn btn-primary', data: { 'shipment-number' => shipment.number } %>
         <div class='clearfix'></div>
       <% end %>
     </h5>
@@ -47,7 +47,7 @@
               <span class="d-flex justify-content-center">
                 <% if can? :update, shipment %>
                   <%= link_to_with_icon 'cancel.svg', Spree.t('actions.cancel'), "#", class: 'cancel-method btn btn-light btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true %>
-                  <%= link_to_with_icon 'save.svg', Spree.t('actions.save'), "#", class: 'save-method btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
+                  <%= link_to_with_icon 'save.svg', Spree.t('actions.save'), "#", class: 'save-method btn btn-primary btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
                 <% end %>
               </span>
             </td>
@@ -84,7 +84,7 @@
             <span class="d-flex justify-content-center">
               <% if can? :update, shipment %>
                 <%= link_to_with_icon 'cancel.svg', Spree.t('actions.cancel'), "#", class: 'cancel-tracking btn btn-light btn-sm', data: {action: 'cancel'}, title: Spree.t('actions.cancel'), no_text: true %>
-                <%= link_to_with_icon 'save.svg', Spree.t('actions.save'), "#", class: 'save-tracking btn btn-success btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
+                <%= link_to_with_icon 'save.svg', Spree.t('actions.save'), "#", class: 'save-tracking btn btn-primary btn-sm', data: {'shipment-number' => shipment.number, action: 'save'}, title: Spree.t('actions.save'), no_text: true %>
               <% end %>
             </span>
           </td>

@@ -31,7 +31,7 @@
              <h5 class="mb-0 align-self-center"><%= Spree.t('admin.navigation.menu_items', menu_name: @menu.name) %></h5>
             </div>
             <div class="col d-flex justify-content-end">
-              <%= button_link_to Spree.t('admin.navigation.add_new_item', menu: @menu.name), spree.new_admin_menu_menu_item_path(@menu), icon: 'add.svg', class: 'no-wrap btn btn-success align-self-center' %>
+              <%= button_link_to Spree.t('admin.navigation.add_new_item', menu: @menu.name), spree.new_admin_menu_menu_item_path(@menu), icon: 'add.svg', class: 'no-wrap btn btn-primary align-self-center' %>
             </div>
           </div>
         </div>

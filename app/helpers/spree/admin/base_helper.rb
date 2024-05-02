@@ -286,6 +286,10 @@ module Spree
       def taxon_wysiwyg_editor_enabled?
         Spree::Backend::Config[:taxon_wysiwyg_editor_enabled]
       end
+
+      def spree_update_available?
+        @spree_update_available ||= Spree::Admin::Updater.update_available?
+      end
     end
   end
 end

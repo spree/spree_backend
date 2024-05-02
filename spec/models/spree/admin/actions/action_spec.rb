@@ -59,7 +59,7 @@ module Spree
         subject { action.classes }
 
         it 'returns style classes and additional classes' do
-          expect(subject).to eq('btn-success additional-class')
+          expect(subject).to eq('btn-primary additional-class')
         end
       end
 

@@ -3,7 +3,7 @@ module Spree
     module Actions
       class Action
         STYLE_CLASSES = {
-          ::Spree::Admin::Actions::ActionStyle::PRIMARY => 'btn-success',
+          ::Spree::Admin::Actions::ActionStyle::PRIMARY => 'btn-primary',
           ::Spree::Admin::Actions::ActionStyle::SECONDARY => 'btn-secondary',
           ::Spree::Admin::Actions::ActionStyle::LIGHT => 'btn-light'
         }
