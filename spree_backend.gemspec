@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.metadata = {
     "bug_tracker_uri"   => "https://github.com/spree/spree_backend/issues",
     "changelog_uri"     => "https://github.com/spree/spree_backend/releases/tag/v#{s.version}",
-    "documentation_uri" => "https://dev-docs.spreecommerce.org/",
+    "documentation_uri" => "https://docs.spreecommerce.org/",
     "source_code_uri"   => "https://github.com/spree/spree_backend/tree/v#{s.version}",
   }
 
@@ -37,7 +37,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'importmap-rails'
   s.add_dependency 'inline_svg', '~> 1.5'
   s.add_dependency 'jquery-rails', '~> 4.3'
-  s.add_dependency 'jquery-ui-rails', '~> 6.0'
+  s.add_dependency 'jquery-ui-rails', '>= 6', '< 8'
   s.add_dependency 'responders'
   s.add_dependency 'requestjs-rails'
   s.add_dependency 'sass-rails',       '>= 5'

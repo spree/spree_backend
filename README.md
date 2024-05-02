@@ -37,19 +37,19 @@ Default credentials:
 
 ## Installation
 
-Spree Admin Dashboard is bundled with [Spree Starter](https://github.com/spree/spree_starter) and we recommend following [Spree Getting Started guide](https://dev-docs.spreecommerce.org/getting-started/installation).
+Spree Admin Dashboard is bundled with [Spree Starter](https://github.com/spree/spree_starter) and we recommend following [Spree Getting Started guide](https://docs.spreecommerce.org/getting-started/installation).
 
-You can also [add Spree and Admin Dashboard to an existing Ruby on Rails application](https://dev-docs.spreecommerce.org/advanced/existing_app_tutorial) as well.
+You can also [add Spree and Admin Dashboard to an existing Ruby on Rails application](https://docs.spreecommerce.org/advanced/existing_app_tutorial) as well.
 
 ## Documentation
 
-* [Developer Documentation](https://dev-docs.spreecommerce.org/)
+* [Developer Documentation](https://docs.spreecommerce.org/)
 
 ## Contributing
 
 Spree Admin Dashboard is an open source project and we love contributions in any form - pull requests, issues, feature ideas!
 
-Please review the [Spree Contributing Guide](https://dev-docs.spreecommerce.org/contributing/index)
+Please review the [Spree Contributing Guide](https://docs.spreecommerce.org/developer/contributing/quickstart)
 
 ### Local setup
 
