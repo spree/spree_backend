@@ -7,7 +7,7 @@
 
     <div class="dropdown-menu dropdown-menu-right overflow-hidden mt-2 p-0 mr-2">
       <div class="dropdown-item px-0 text-center bg-light">
-        <span class="d-block"><%= try_spree_current_user.email %></span>
+        <span class="d-block"><%= try_spree_current_user.try(:email) %></span>
       </div>
       <div class="dropdown-divider m-0"></div>
 
@@ -19,7 +19,7 @@
           <% end %>
       <% end %>
 
-      <% if can?(:manage, try_spree_current_user) %>
+      <% if can?(:manage, try_spree_current_user) && try_spree_current_user.persisted? %>
           <%= link_to spree.edit_admin_user_path(try_spree_current_user), class: 'd-block my-1 dropdown-item' do %>
             <%= svg_icon name: "user.svg", width: '14', height: '14' %>
             &nbsp;
