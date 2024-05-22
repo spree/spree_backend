@@ -288,11 +288,11 @@ module Spree
       end
 
       def spree_admin_show_version?
-        can?(:admin, current_store) && Spree::Backend::RuntimeConfig[:admin_show_version] && !Rails.env.test?
+        can?(:admin, current_store) && Spree::Backend::RuntimeConfig[:admin_show_version]
       end
 
       def spree_update_available?
-        @spree_update_available ||= Spree::Admin::Updater.update_available?
+        @spree_update_available ||= !Rails.env.test? && Spree::Admin::Updater.update_available?
       end
     end
   end
