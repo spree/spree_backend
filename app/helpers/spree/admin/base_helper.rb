@@ -287,6 +287,10 @@ module Spree
         Spree::Backend::Config[:taxon_wysiwyg_editor_enabled]
       end
 
+      def spree_admin_show_version?
+        can?(:admin, current_store) && Spree::Backend::RuntimeConfig[:admin_show_version] && !Rails.env.test?
+      end
+
       def spree_update_available?
         @spree_update_available ||= Spree::Admin::Updater.update_available?
       end
