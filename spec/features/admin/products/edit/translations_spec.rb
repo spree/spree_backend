@@ -4,12 +4,60 @@ describe 'Product Translations', type: :feature, js: true do
   stub_authorization!
 
   let(:store) { Spree::Store.default }
-  let(:product) { create(:product, stores: [store]) }
+  let(:product) { create(:product, stores: [store], name: 'Old Product Name EN') }
 
   context 'managing translations' do
     context 'when there is more than one locale configured for a store' do
       before do
         store.update!(default_locale: 'en', supported_locales: 'en,fr')
+      end
+
+      it 'allows an admin to update all translations' do
+        visit spree.admin_product_path(product)
+
+        click_link 'Translations'
+
+        fill_in 'translation_name_en', with: 'Product Name EN', fill_options: { clear: :backspace }
+        fill_in 'translation_name_fr', with: 'Product Name FR'
+        click_button 'Update'
+
+        wait_for_turbo
+
+        expect(product.translations.count).to eq(1)
+
+        translation_fr = product.translations.find_by!(locale: 'fr')
+        expect(translation_fr.name).to eq('Product Name FR')
+        expect(translation_fr.slug).to eq('product-name-fr')
+
+        expect(product.reload.name).to eq('Product Name EN')
+        expect(product.name_en).to eq('Product Name EN')
+      end
+
+      context 'when changing translations after switching store default locale' do
+        before do
+          store.update!(default_locale: 'fr')
+        end
+
+        it 'allows an admin to update all translations' do
+          visit spree.admin_product_path(product.id)
+
+          click_link 'Translations'
+
+          fill_in 'translation_name_en', with: 'Product Name EN', fill_options: { clear: :backspace }
+          fill_in 'translation_name_fr', with: 'Product Name FR'
+          click_button 'Update'
+
+          wait_for_turbo
+
+          expect(product.translations.count).to eq(1)
+
+          translation_fr = product.translations.find_by!(locale: 'fr')
+          expect(translation_fr.name).to eq('Product Name FR')
+          expect(translation_fr.slug).to eq('product-name-fr')
+
+          expect(product.reload.name).to eq('Product Name EN')
+          expect(product.name_en).to eq('Product Name EN')
+        end
       end
 
       context 'when there are no translations for a given language' do
@@ -25,7 +73,7 @@ describe 'Product Translations', type: :feature, js: true do
 
           wait_for_turbo
 
-          expect(product.translations.count).to eq(2)
+          expect(product.translations.count).to eq(1)
 
           translation_fr = product.translations.find_by!(locale: 'fr')
           expect(translation_fr.name).to eq(new_translation)
@@ -55,7 +103,7 @@ describe 'Product Translations', type: :feature, js: true do
 
           wait_for_turbo
 
-          expect(product.translations.count).to eq(2)
+          expect(product.translations.count).to eq(1)
 
           translation_fr = product.translations.find_by!(locale: 'fr')
           expect(translation_fr.name).to eq(new_name_translation)
@@ -75,7 +123,7 @@ describe 'Product Translations', type: :feature, js: true do
 
           wait_for_turbo
 
-          expect(product.translations.count).to eq(2)
+          expect(product.translations.count).to eq(1)
 
           translation_fr = product.translations.find_by!(locale: 'fr')
           expect(translation_fr.name).to eq(new_name_translation)
