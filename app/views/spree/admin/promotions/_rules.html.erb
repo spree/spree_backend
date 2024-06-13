@@ -31,7 +31,7 @@
 
     <div id="rules" class="filter_list mt-3">
       <% if @promotion.rules.any? %>
-        <%= render partial: 'promotion_rule', collection: @promotion.rules, locals: {} %>
+        <%= render partial: 'spree/admin/promotions/promotion_rule', collection: @promotion.rules, locals: {} %>
       <% else %>
         <div class="alert alert-warning">
           <%= Spree.t(:no_rules_added) %>

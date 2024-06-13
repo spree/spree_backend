@@ -1,0 +1,42 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:template_promotions), admin_template_promotions_url %> /
+  <%= @promotion.name %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <% template_promotion_actions.items.each do |action| %>
+    <% next unless action.available?(current_ability) %>
+    <%= button_link_to(
+          Spree.t(action.label_translation_key),
+          action.url(@promotion),
+          class: action.classes,
+          icon: action.icon_key
+        ) %>
+  <% end %>
+<% end %>
+
+<%= form_for @promotion, url: object_url, method: :put do |f| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <%= render partial: 'form', locals: { f: f } %>
+      <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+    </div>
+  </div>
+
+<% end %>
+
+<div id="promotion-filters" class="row">
+  <div id="rules_container" class="col-12 col-md-6">
+    <div class="card  ">
+      <%= render partial: 'spree/admin/promotions/rules' %>
+    </div>
+  </div>
+
+  <div id="actions_container" class="col-12 col-md-6">
+    <div class="card  ">
+      <%= render partial: 'spree/admin/promotions/actions' %>
+    </div>
+  </div>
+</div>
+
+<%= render partial: "spree/admin/variants/autocomplete", formats: [:js] %>
