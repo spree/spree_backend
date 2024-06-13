@@ -85,9 +85,11 @@ module Spree
               build,
             ItemBuilder.new('properties', admin_properties_path).
               with_admin_ability_check(Spree::Property).
+              with_match_path('/properties').
               build,
             ItemBuilder.new('prototypes', admin_prototypes_path).
               with_admin_ability_check(Spree::Prototype).
+              with_match_path('/prototypes').
               build,
             ItemBuilder.new('taxonomies', admin_taxonomies_path).
               with_admin_ability_check(Spree::Taxonomy).
@@ -110,9 +112,11 @@ module Spree
           items = [
             ItemBuilder.new('stock_transfers', admin_stock_transfers_path).
               with_manage_ability_check(Spree::StockTransfer).
+              with_match_path('/stock_transfers').
               build,
             ItemBuilder.new('stock_locations', admin_stock_locations_path).
               with_manage_ability_check(Spree::StockLocation).
+              with_match_path('/stock_locations').
               build
           ]
 
@@ -133,10 +137,14 @@ module Spree
 
         def add_promotions_section(root)
           items = [
-            ItemBuilder.new('promotions', admin_promotions_path).build,
+            ItemBuilder.new('promotions', admin_promotions_path).
+            with_admin_ability_check(Spree::Promotion).
+            with_match_path('/promotions').
+            build,
             ItemBuilder.new('promotion_categories', admin_promotion_categories_path).
               with_admin_ability_check(Spree::PromotionCategory).
               with_label_translation_key('admin.tab.promotion_categories').
+              with_match_path('/promotion_categories').
               build
           ]
 
@@ -217,35 +225,53 @@ module Spree
         # rubocop:disable Metrics/AbcSize
         def add_settings_section(root)
           items = [
-            ItemBuilder.new('store', ->(store) { edit_admin_store_path(store) }).build,
+            ItemBuilder.new('store', ->(store) { edit_admin_store_path(store) }).
+              with_match_path(/\/admin\/stores\//).
+              build,
             ItemBuilder.new('tax_categories', admin_tax_categories_path).
+              with_match_path('/tax_categories').
               with_manage_ability_check(Spree::TaxCategory).
               build,
-            ItemBuilder.new('tax_rates', admin_tax_rates_path).with_manage_ability_check(Spree::TaxRate).build,
-            ItemBuilder.new('zones', admin_zones_path).with_manage_ability_check(Spree::Zone).build,
-            ItemBuilder.new('country', admin_countries_path).with_manage_ability_check(Spree::Country).build,
+            ItemBuilder.new('tax_rates', admin_tax_rates_path).with_manage_ability_check(Spree::TaxRate).
+              with_match_path('/tax_rates').
+              build,
+            ItemBuilder.new('zones', admin_zones_path).with_manage_ability_check(Spree::Zone).
+              with_match_path('/zones').
+              build,
+            ItemBuilder.new('country', admin_countries_path).with_manage_ability_check(Spree::Country).
+              with_match_path(%r{^/admin/countries$}).
+              build,
             ItemBuilder.new('states', ->(store) { admin_country_states_path(store.default_country) }).
+              with_match_path(/states/).
               with_manage_ability_check(->(ability, store) { store.default_country && ability.can?(:manage, Spree::Country) }).
               build,
             ItemBuilder.new('shipping_methods', admin_shipping_methods_path).
+              with_match_path('/shipping_methods').
               with_manage_ability_check(Spree::ShippingMethod).
               build,
             ItemBuilder.new('shipping_categories', admin_shipping_categories_path).
+              with_match_path('/shipping_categories').
               with_manage_ability_check(Spree::ShippingCategory).
               build,
             ItemBuilder.new('store_credit_categories', admin_store_credit_categories_path).
+              with_match_path('/store_credit_categories').
               with_manage_ability_check(Spree::StoreCreditCategory).
               build,
             ItemBuilder.new('refund_reasons', admin_refund_reasons_path).
+              with_match_path('/refund_reasons').
               with_manage_ability_check(Spree::RefundReason).
               build,
             ItemBuilder.new('reimbursement_types', admin_reimbursement_types_path).
+              with_match_path('/reimbursement_types').
               with_manage_ability_check(Spree::ReimbursementType).
               build,
             ItemBuilder.new('return_authorization_reasons', admin_return_authorization_reasons_path).
+              with_match_path('/return_authorization_reasons').
               with_manage_ability_check(Spree::ReturnAuthorizationReason).
               build,
-            ItemBuilder.new('roles', admin_roles_path).with_manage_ability_check(Spree::Role).build
+            ItemBuilder.new('roles', admin_roles_path).with_manage_ability_check(Spree::Role).
+              with_match_path('/roles').
+              build
           ]
 
           section = SectionBuilder.new('settings', 'gear-fill.svg').
