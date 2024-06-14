@@ -33,7 +33,7 @@ module Spree
           params[:product][:option_type_ids] = params[:product][:option_type_ids].reject(&:empty?)
         end
         invoke_callbacks(:update, :before)
-        if @object.update(permitted_resource_params)
+        if @object.update(sanitized_resource_params)
           set_current_store
           invoke_callbacks(:update, :after)
           flash[:success] = flash_message_for(@object, :successfully_updated)
@@ -194,6 +194,23 @@ module Spree
         else
           super
         end
+      end
+
+      def sanitized_resource_params
+        return permitted_resource_params if permitted_resource_params[:product_properties_attributes].nil?
+
+        taken_property_names = []
+        unique_product_properties_attributes = permitted_resource_params[:product_properties_attributes].select do |_, property_attributes|
+          if taken_property_names.include?(property_attributes[:property_name])
+            false
+          else
+            taken_property_names << property_attributes[:property_name]
+            true
+          end
+        end
+        sanitized_resource_params = permitted_resource_params
+        sanitized_resource_params[:product_properties_attributes] = unique_product_properties_attributes
+        sanitized_resource_params
       end
 
       private
