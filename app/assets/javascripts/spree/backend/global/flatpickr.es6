@@ -23,7 +23,9 @@ document.addEventListener("spree:load", function() {
 
 document.addEventListener("turbo:before-cache", function() {
   document.querySelectorAll('.datePickerFrom, .datePickerTo, .datepicker').forEach(function(element) {
-    element._flatpickr.destroy()
+    if (element._flatpickr) {
+      element._flatpickr.destroy()
+    }
   })
 })
 
