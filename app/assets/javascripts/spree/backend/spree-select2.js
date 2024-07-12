@@ -1,9 +1,11 @@
 // we need to delete select2 instances before document is saved to cache
 // https://stackoverflow.com/questions/36497723/select2-with-ajax-gets-initialized-several-times-with-rails-turbolinks-events
 document.addEventListener("turbo:before-cache", function() {
-  $('select.select2').select2('destroy')
-  $('select.select2-clear').select2('destroy')
+  $('select.select2, select.select2-clear').each(function() {
+    $(this).select2('destroy')
+  })
 })
+
 
 document.addEventListener("spree:load", function() {
   // Initiate a standard Select2 on any select element with the class .select2
