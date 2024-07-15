@@ -23,12 +23,12 @@
   </li>
   <li class="nav-item">
     <%= link_to Spree.t('admin.orders.unpaid'),
-      params.merge({q: {payment_state_not_eq: :paid, completed_at_not_null: 1}}).permit!,
+      params.merge({q: {payment_state_not_eq: :paid, state_eq: 'complete'}}).permit!,
       class: "nav-link #{'active' if params[:q][:payment_state_not_eq] == 'paid'}" %>
   </li>
   <li class="nav-item">
     <%= link_to Spree.t('admin.orders.unfulfilled'),
-      params.merge({q: {shipment_state_not_eq: :shipped, completed_at_not_null: 1}}).permit!,
+      params.merge({q: {shipment_state_not_eq: :shipped, state_eq: 'complete'}}).permit!,
       class: "nav-link #{'active' if params[:q][:shipment_state_not_eq] == 'shipped'}" %>
   </li>
 <% end if @show_only_completed %>
