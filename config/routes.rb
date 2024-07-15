@@ -220,6 +220,7 @@ Spree::Core::Engine.add_routes do
     resources :webhooks_subscribers
 
     get '/forbidden', to: 'errors#forbidden', as: :forbidden
+    get '/access-denied', to: 'errors#access_denied', as: :access_denied
     resource :dashboard, controller: 'dashboard'
 
     root to: 'dashboard#show'
