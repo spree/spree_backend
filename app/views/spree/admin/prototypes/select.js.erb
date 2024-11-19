@@ -1,4 +1,15 @@
-<% @prototype_properties.sort_by{ |prop| -prop[:id] }.each do |prop| %>
-  $("a.spree_add_fields").click();
-  $(".product_property.fields:first input[type=text]:first").val("<%= prop.name %>");
+<% @prototype_properties.sort_by { |prop| -prop[:id] }.each do |prop| %>
+  var lastField = $(".product_property.fields").last().find("input[type=text]").first();
+
+  if (lastField.val().trim() === "") {
+    // If the last field is empty, populate it with the property name
+    lastField.val("<%= j(prop.name) %>");
+  } else {
+    // Simulate clicking the "Add Product Properties" button
+    $("#contentHeaderRow a.spree_add_fields").click();
+
+    // After adding, get the new last field
+    lastField = $(".product_property.fields").last().find("input[type=text]").first();
+    lastField.val("<%= j(prop.name) %>");
+  }
 <% end %>

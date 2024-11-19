@@ -8,7 +8,7 @@
     </thead>
     <tbody>
       <% @prototypes.each do |prototype| %>
-        <tr id="row_<%= prototype.id %>" data-hook="available_row">
+        <tr id="row_<%= prototype.id %>" data-turbo-prefetch="false" data-hook="available_row">
           <td><%= prototype.name %></td>
           <td class="actions">
             <span class="d-flex justify-content-end">
