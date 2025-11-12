@@ -1,3 +1,10 @@
+> [!IMPORTANT]
+>
+> This gem supports only Spree 4. For the Spree 5 admin, please go to the [spree/spree] repository (https://github.com/spree/spree/tree/main/admin).
+>
+> We will not be developing/merging new features for this gem. However, bug fixes and security patches are very welcome!
+
+
 <a href="https://spreecommerce.org">
    <img src="https://raw.githubusercontent.com/spree/spree-dev-docs/master/.gitbook/assets/admin_panel_978-2x.jpg" alt="Spree Commerce - a headless open-source ecommerce platform for multi-store, marketplace, or B2B global brands" />
 </a>
