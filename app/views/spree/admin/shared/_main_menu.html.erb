@@ -14,7 +14,7 @@
   <% main_menu.items.each do |item| %>
     <% next unless item.available?(current_ability, current_store) %>
 
-    <ul class="nav nav-sidebar" id="sidebar<%= item.key.upcase %>>">
+    <ul class="nav nav-sidebar" id="sidebar<%= item.key.upcase %>">
       <% if item.children? %>
         <li class="sidebar-menu-item d-block w-100 text-muted">
           <%= main_menu_item(Spree.t(item.label_translation_key), url: "#sidebar-#{item.key}", icon: item.icon_key) %>
