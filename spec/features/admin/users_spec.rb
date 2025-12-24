@@ -183,6 +183,17 @@ describe 'Users', type: :feature do
       expect(page).to have_checked_field('user_spree_role_admin')
     end
 
+    it 'can edit first and last name' do
+      fill_in 'user_first_name', with: 'John'
+      fill_in 'user_last_name', with: 'Doe'
+      click_button 'Update'
+
+      expect(page).to have_text 'Account updated'
+      user_a.reload
+      expect(user_a.first_name).to eq 'John'
+      expect(user_a.last_name).to eq 'Doe'
+    end
+
     it 'can edit user shipping address' do
       click_link 'Addresses'
 
