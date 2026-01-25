@@ -51,16 +51,16 @@ function show_flash(type, message) {
 function appendToFlashAlertsContainer (message, type) {
   if (type === 'info') type = 'notice'
 
-  const parnetNode = document.querySelector('#FlashAlertsContainer')
+  const parentNode = document.querySelector('#FlashAlertsContainer')
   const node = document.createElement('SPAN');
   const textNode = document.createTextNode(message);
 
   // Only the most recent alert should be left in the #FlashAlertsContainer.
-  parnetNode.innerHTML = ''
+  parentNode.innerHTML = ''
 
   node.classList.add('d-none')
   node.setAttribute('data-alert-type', type);
   node.appendChild(textNode)
 
-  parnetNode.appendChild(node);
+  parentNode.appendChild(node);
 }
