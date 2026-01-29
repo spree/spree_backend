@@ -12,6 +12,8 @@ module Spree
       end
 
       def setup_property
+        return if @product.product_properties.any?
+
         @product.product_properties.build
       end
     end
