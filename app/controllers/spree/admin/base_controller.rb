@@ -16,6 +16,7 @@ module Spree
       helper 'spree/currency'
       layout 'spree/layouts/admin'
 
+      before_action :ensure_can_read_admin_panel
       before_action :authorize_admin
       before_action :load_stores
 
@@ -35,6 +36,17 @@ module Spree
                  end
         authorize! :admin, record
         authorize! action, record
+      end
+
+      def ensure_can_read_admin_panel
+        begin
+          authorize! :read, Spree::Admin
+        rescue CanCan::AccessDenied
+          redirect_to spree.admin_access_denied_path
+          false
+        else
+          true
+        end
       end
 
       def redirect_unauthorized_access
